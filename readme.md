@@ -32,8 +32,8 @@ The first version of the API will be READ ONLY and allow for users and applicati
 the OneLink Billboard database for consumption by the NOC Dashboard, and any future applications build both
 for internal use by OneLink, and (eventually) by 3rd party developers through restricted, managed and
 authenticated access to OneLink resources.
-```
 
+```
 -------------------------------------------------------------------------------------------------------------
 
 GET /client/                                            api.onelink.com/v1/client
