@@ -1,6 +1,8 @@
 # OneLink API
 
 ## Getting Started
+This is a global OneLink API that will be consumed by various internal and external applications.
+
 #### Installation
 Navigate to the directory you wish your repository to exist in, and run the following command:
 
