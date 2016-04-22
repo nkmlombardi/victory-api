@@ -34,6 +34,8 @@ for internal use by OneLink, and (eventually) by 3rd party developers through re
 authenticated access to OneLink resources.
 ```
 
+-------------------------------------------------------------------------------------------------------------
+
 GET /client/                                            api.onelink.com/v1/client
     Returns all Clients.
 
