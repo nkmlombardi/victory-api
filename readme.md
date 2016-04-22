@@ -28,12 +28,11 @@ In the root directory of the repository. This will serve the application on port
 
 ## API Spec
 #### Version 1
-```
 The first version of the API will be READ ONLY and allow for users and applications to pull metadata from
 the OneLink Billboard database for consumption by the NOC Dashboard, and any future applications build both
 for internal use by OneLink, and (eventually) by 3rd party developers through restricted, managed and
 authenticated access to OneLink resources.
------------------------------------------------------------------------------------------------------------------
+```
 
 GET /client/                                            api.onelink.com/v1/client
     Returns all Clients.
