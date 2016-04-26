@@ -1,13 +1,12 @@
 module.exports = {
     // OneLink Software
-    home:       require('./home.controller'),
-    client:     require('./client.controller'),
-    project:    require('./project.controller'),
-    // origin:     require('./origin.controller'),
-    // target:     require('./target.controller'),
+    client:     require('./client'),
+    project:    require('./project'),
+    // origin:     require('./origin'),
+    // target:     require('./target'),
 
     // OneLink Infrastructure
-    // datacenter: require('./datacenter.controller'),
-    // cluster:    require('./cluster.controller'),
-    // server:     require('./server.controller')
+    // datacenter: require('./datacenter'),
+    // cluster:    require('./cluster'),
+    // server:     require('./server')
 };

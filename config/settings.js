@@ -4,12 +4,10 @@ var settings = {
     path: path.normalize(path.join(__dirname, '..')),
     port: process.env.NODE_PORT || 3000,
     database: {
-        protocol: "postgresql", // or "mysql"
-        query: { pool: true },
-        host: "127.0.0.1",
-        database: "anontxt_dev",
-        user: "anontxt",
-        password: "apassword"
+        host: '10.10.78.59',
+        user: 'onelink_dev',
+        password: 'onelink_dev',
+        database: 'onelink_dev'
     }
 };
 

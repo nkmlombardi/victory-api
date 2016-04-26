@@ -2,12 +2,12 @@ var path            = require('path');
 var express         = require('express');
 var helmet          = require('helmet');
 var settings        = require('./settings');
-var models          = require('../app/models/');
 var session         = require('express-session');
 var passport        = require('passport');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
+var mysql           = require('mysql');
 
 module.exports = function(app) {
     // Serve static content
@@ -29,17 +29,11 @@ module.exports = function(app) {
     // Format Returned JSON Data
     app.set('json spaces', 4);
 
-    // Database Models Middleware
-    // app.use(function(req, res, next) {
-    //     models(function(err, db) {
-    //         if (err) return next(err);
-
-    //         req.models = db.models;
-    //         req.db = db;
-
-    //         return next();
-    //     });
-    // }),
+    // Database Middleware
+    app.use(function(req, res, next) {
+        req.db = mysql.createConnection(settings.database);
+        next();
+    }),
 
     // Enable CORS to avoid Cross Domain Origin issues
     app.use(function(req, res, next) {
