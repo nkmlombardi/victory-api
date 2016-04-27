@@ -7,15 +7,12 @@ var colors = require('colors')
 var settings = require('./config/settings');
 var environment = require('./config/environment');
 var routes = require('./config/routes');
-var mysql = require('mysql');
 
 module.exports.start = function(done) {
     var app = express();
 
     environment(app);
     routes(app);
-
-
 
     app.listen(settings.port, function() {
         console.log(("Listening on port " + settings.port).green);
