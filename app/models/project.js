@@ -1,14 +1,14 @@
 module.exports = function(sequelize, DataTypes) {
 
-    var Client = sequelize.define('client', {
-        client_id: {
+    var Project = sequelize.define('project', {
+        project_id: {
             type: DataTypes.INTEGER,
             primaryKey: true
         },
-        client_name: DataTypes.STRING,
-        client_flag: DataTypes.STRING,
+        client_id: DataTypes.INTEGER,
+        project_name: DataTypes.STRING,
 
-     }, {
+    }, {
         // don't add the timestamp attributes (updatedAt, createdAt)
         timestamps: false,
 
@@ -27,16 +27,16 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'BB_CLIENT'
+        tableName: 'BB_PROJECT'
     }, {
         classMethods: {
             associate: function(models) {
-                console.log('Models in assocation: ', models);
+                console.log('Models: ', models);
 
-                Client.belongsToMany(models.project, { through: 'client_id', as: 'projects' });
+                Project.hasOne(models.client, { foreignKey: 'client_id', targetKey: 'client_id' });
             }
         }
     });
 
-    return Client;
+    return Project;
 };

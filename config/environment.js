@@ -7,7 +7,7 @@ var passport        = require('passport');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var models          = require('../app/models');
+var database        = require('../app/models');
 
 module.exports = function(app) {
     // Serve static content
@@ -31,14 +31,9 @@ module.exports = function(app) {
 
     // Database Middleware
     app.use(function (req, res, next) {
-        models(function (err, db) {
-            if (err) return next(err);
-
-            req.models = db.models;
-            req.db     = db;
-
-            return next();
-        });
+        req.db = database;
+        req.models = database.models;
+        return next();
     }),
 
     // Enable CORS to avoid Cross Domain Origin issues

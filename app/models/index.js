@@ -1,29 +1,34 @@
+var fs = require("fs");
+var path = require("path");
 var Sequelize = require('sequelize');
 var settings = require('../../config/settings');
+var db = { models: [] };
 
-var connection = null;
+// Establish Datbase Connection
+var sequelize = new Sequelize(settings.database, settings.user, settings.password, settings.connection);
 
-function setup(db, cb) {
-    require('./client')(Sequelize, db);
-    console.log('Setup being ran!');
+// Read in Models & import to Sequelize
+fs
+    .readdirSync(__dirname)
+    .filter(function(file) {
+        return (file.indexOf(".") !== 0) && (file !== "index.js");
+    })
+    .forEach(function(file) {
+        var model = sequelize.import(path.join(__dirname, file));
+        db.models[model.name] = model;
+    });
 
-    return cb(null, db);
-}
+// Setup Model Associations
+Object.keys(db.models).forEach(function(modelName) {
+    if ("associate" in db.models[modelName]) {
+        db.models[modelName].associate(db);
+    }
+});
 
-module.exports = function(cb) {
-    if (connection) return cb(null, connection);
+// Attach Sequelize library to database & return
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-    // Establish Datbase Connection
-    var sequelize = new Sequelize(settings.database, settings.user, settings.password, settings.connection);
-    sequelize.authenticate()
-        .then(function() {
-            console.log('Connection has been established successfully.');
+console.log('Loaded Models: ', db.models);
 
-            connection = sequelize;
-            setup(sequelize, cb);
-        })
-        .catch(function(err) {
-            console.log('Unable to connect to the database: ', err);
-        })
-        .done();
-};
+module.exports = db;
