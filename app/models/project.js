@@ -33,7 +33,9 @@ module.exports = function(sequelize, DataTypes) {
             associate: function(models) {
                 console.log('Models: ', models);
 
-                Project.hasOne(models.client, { foreignKey: 'client_id', targetKey: 'client_id' });
+                Project.hasOne(models.client, {
+                    foreignKey: 'client_id'
+                });
             }
         }
     });

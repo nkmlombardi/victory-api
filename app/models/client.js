@@ -31,9 +31,12 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                console.log('Models in assocation: ', models);
 
-                Client.belongsToMany(models.project, { through: 'client_id', as: 'projects' });
+                Client.belongsTo(models.project, {
+                    through: 'ProjectClient',
+                    foreignKey: 'client_id',
+                    otherKey: 'project_id'
+                });
             }
         }
     });
