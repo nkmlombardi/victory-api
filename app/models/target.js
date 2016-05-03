@@ -1,16 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('client', {
-        client_id: {
+    return sequelize.define('target', {
+        target_id: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        client_name: {
-            type: DataTypes.STRING,
+        origin_id: {
+            type: DataTypes.INTEGER(11),
             allowNull: false
         },
-        client_flag: {
+        target_flag: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: 'GREEN'
@@ -25,45 +25,82 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: '0'
         },
-        is_marketing_ok: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            defaultValue: '1'
-        },
-        alexa_domain: {
-            type: DataTypes.STRING,
-            allowNull: true
-        },
-        alexa_rank_us: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            defaultValue: '0'
-        },
-        alexa_rank_world: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            defaultValue: '0'
-        },
-        client_comment: {
+        target_flag_comment: {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        notification_level: {
+        target_lang_code: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        target_staging_domain: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        target_live_domain: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        target_live_link: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        target_live_subdir: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        target_live_cname: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        target_live_cname_auth: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        target_live_cdn_origin: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        target_live_cdn_vendor: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        target_comment: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        data_center: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        cluster_name: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        piwik_site_id: {
+            type: DataTypes.INTEGER(11),
+            allowNull: true
+        },
+        test_plan: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        test_pre_build: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: '0'
         },
-        monthly_fee_comment: {
+        target_thumbnail: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        lcp_enabled: {
+        is_monitoring_enabled: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: '1'
+            defaultValue: '0'
         },
-        lcp_threshold: {
-            type: DataTypes.INTEGER(11),
+        initial_live_date: {
+            type: DataTypes.DATE,
             allowNull: true
         },
         created_dtm: {
@@ -84,18 +121,40 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 'setup'
         },
-        monthly_fee_local: {
-            type: DataTypes.DECIMAL,
-            allowNull: false,
-            defaultValue: '0.00'
+        search_fee: {
+            type: DataTypes.INTEGER(10),
+            allowNull: true
         },
-        monthly_fee_currency_code: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: 'USD'
+        monthly_fee: {
+            type: DataTypes.INTEGER(10),
+            allowNull: true
         },
-        client_hash: {
-            type: DataTypes.STRING,
+        is_live: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: '0'
+        },
+        is_onelink_checkable: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: '1'
+        },
+        client_hosted: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: '0'
+        },
+        health_code: {
+            type: 'CHAR(1)',
+            allowNull: false,
+            defaultValue: 'G'
+        },
+        health_details: {
+            type: DataTypes.TEXT,
+            allowNull: true
+        },
+        health_dtm: {
+            type: DataTypes.DATE,
             allowNull: true
         }
     }, {
@@ -117,17 +176,6 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'BB_CLIENT'
-    }, {
-        classMethods: {
-            associate: function(models) {
-
-                Client.belongsTo(models.project, {
-                    through: 'ProjectClient',
-                    foreignKey: 'client_id',
-                    otherKey: 'project_id'
-                });
-            }
-        }
+        tableName: 'BB_PROJECT_TARGET'
     });
 };

@@ -1,16 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('client', {
-        client_id: {
+    return sequelize.define('origin', {
+        origin_id: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             primaryKey: true,
             autoIncrement: true
         },
-        client_name: {
-            type: DataTypes.STRING,
+        project_id: {
+            type: DataTypes.INTEGER(11),
             allowNull: false
         },
-        client_flag: {
+        origin_flag: {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: 'GREEN'
@@ -25,46 +25,74 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: '0'
         },
-        is_marketing_ok: {
-            type: DataTypes.INTEGER(11),
+        is_white_label: {
+            type: DataTypes.BOOLEAN,
             allowNull: false,
-            defaultValue: '1'
+            defaultValue: '0'
         },
-        alexa_domain: {
+        source_lang_code: {
+            type: 'CHAR(6)',
+            allowNull: true
+        },
+        origin_live_domain: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        origin_live_cdn_domain: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        alexa_rank_us: {
+        origin_live_cdn_vendor: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        origin_live_http: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false,
+            defaultValue: '80'
+        },
+        origin_live_https: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             defaultValue: '0'
         },
-        alexa_rank_world: {
+        origin_private_domain: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        origin_private_http: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             defaultValue: '0'
         },
-        client_comment: {
+        origin_private_https: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false,
+            defaultValue: '0'
+        },
+        origin_https_only: {
+            type: DataTypes.INTEGER(11),
+            allowNull: false,
+            defaultValue: '0'
+        },
+        origin_monitor_homepage: {
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+            defaultValue: '1'
+        },
+        origin_monitoring_comment: {
             type: DataTypes.TEXT,
             allowNull: true
         },
-        notification_level: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: '0'
-        },
-        monthly_fee_comment: {
+        origin_thumbnail: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        lcp_enabled: {
-            type: DataTypes.BOOLEAN,
+        mobile_site_code: {
+            type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: '1'
-        },
-        lcp_threshold: {
-            type: DataTypes.INTEGER(11),
-            allowNull: true
+            defaultValue: '',
+            DESKTOP: ''
         },
         created_dtm: {
             type: DataTypes.DATE,
@@ -84,18 +112,17 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 'setup'
         },
-        monthly_fee_local: {
-            type: DataTypes.DECIMAL,
+        health_code: {
+            type: 'CHAR(1)',
             allowNull: false,
-            defaultValue: '0.00'
+            defaultValue: 'G'
         },
-        monthly_fee_currency_code: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: 'USD'
+        health_details: {
+            type: DataTypes.TEXT,
+            allowNull: true
         },
-        client_hash: {
-            type: DataTypes.STRING,
+        health_dtm: {
+            type: DataTypes.DATE,
             allowNull: true
         }
     }, {
@@ -117,17 +144,6 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'BB_CLIENT'
-    }, {
-        classMethods: {
-            associate: function(models) {
-
-                Client.belongsTo(models.project, {
-                    through: 'ProjectClient',
-                    foreignKey: 'client_id',
-                    otherKey: 'project_id'
-                });
-            }
-        }
+        tableName: 'BB_PROJECT_ORIGIN'
     });
 };

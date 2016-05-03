@@ -25,9 +25,6 @@ Object.keys(db.models).forEach(function(modelName) {
     }
 });
 
-db.models.project.hasOne(db.models.client, { foreignKey: 'client_id', targetKey: 'client_id' });
-db.models.client.belongsToMany(db.models.project, { through: 'client_id', as: 'projects' });
-
 // Attach Sequelize library to database & return
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

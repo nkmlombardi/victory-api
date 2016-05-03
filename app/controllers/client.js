@@ -1,5 +1,3 @@
-var helpers = require('./_helpers');
-
 /*
     This resource does not include an endpoint to retrieve the Client's relation
     to Servers as there is no way to determine which Servers a Client exists on
@@ -13,13 +11,11 @@ module.exports = {
         });
     },
 
-
     getClient: function(req, res, next) {
         req.models.client.findById(req.params.id).then(function(clients) {
             return res.json(clients);
         });
     },
-
 
     getClientProjects: function(req, res, next) {
         var sql = "SELECT * FROM BB_PROJECT WHERE client_id = :id";
@@ -33,9 +29,8 @@ module.exports = {
         });
     },
 
-
     getClientOrigins: function(req, res, next) {
-        var sql = "SELECT * FROM BB_PROJECT_ORIGIN WHERE project_id IN (SELECT project_id FROM BB_PROJECT WHERE client_id = :id);";
+        var sql = "SELECT * FROM BB_PROJECT_ORIGIN WHERE project_id IN (SELECT project_id FROM BB_PROJECT WHERE client_id = :id)";
 
         req.db.sequelize.query(sql, {
             replacements: { id: req.params.id },
@@ -45,7 +40,6 @@ module.exports = {
             return res.json(projects);
         });
     },
-
 
     getClientTargets: function(req, res, next) {
         var sql =   "SELECT * FROM BB_PROJECT_TARGET WHERE origin_id IN (" +
@@ -62,7 +56,6 @@ module.exports = {
             return res.json(projects);
         });
     },
-
 
     getClientClusters: function(req, res, next) {
         var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
@@ -81,7 +74,6 @@ module.exports = {
             return res.json(projects);
         });
     },
-
 
     getClientDatacenters: function(req, res, next) {
         var sql =   "SELECT * FROM BB_DATA_CENTER WHERE data_center_code IN (" +
