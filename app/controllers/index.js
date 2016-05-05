@@ -7,5 +7,8 @@ module.exports = {
 
     // OneLink Infrastructure
     datacenter: require('./datacenter'),
-    cluster:    require('./cluster')
+    cluster:    require('./cluster'),
+
+    // Authentication
+    auth: require('./authentication')
 };

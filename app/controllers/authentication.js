@@ -1,34 +1,33 @@
 // Load required packages
-var passport = require('passport');
-var BasicStrategy = require('passport-http').BasicStrategy;
-var DigestStrategy = require('passport-http').DigestStrategy;
-var LocalStrategy = require('passport-local').Strategy;
-var BearerStrategy = require('passport-http-bearer').Strategy;
-var LocalAPIKeyStrategy = require('passport-localapikey-update').Strategy;
+var passport                = require('passport');
+var BasicStrategy           = require('passport-http').BasicStrategy;
+var DigestStrategy          = require('passport-http').DigestStrategy;
+var LocalStrategy           = require('passport-local').Strategy;
+var BearerStrategy          = require('passport-http-bearer').Strategy;
+var LocalAPIKeyStrategy     = require('passport-localapikey-update').Strategy;
 
 // Load required models
-var User = require(util.paths.models + 'user');
-var Client = require(util.paths.models + 'client');
-var Token = require(util.paths.models + 'token');
+// var User    = require('./user');
+// var Client  = require('./client');
+// var Token   = require('./token');
 
 /*
     This strategy includes having each user in the database contain an API key
     with which they may make requests to API.
  */
-passport.use(new LocalAPIKeyStrategy(
+passport.use('apikey', new LocalAPIKeyStrategy(
     function(apikey, callback) {
-        User.findOne({ apikey: apikey }, function(err, user) {
-            if (err) {
-                return callback(err);
-            }
 
-            // No user found with that api key
-            if (!user) {
-                return callback(null, false);
-            }
+        var keys = [
+            "3bce4931-6c75-41ab-afe0-2ec108a30860",
+            "Development"
+        ];
 
-            return callback(null, user);
-        });
+        if (keys.indexOf(apikey) > -1) {
+            return callback(null, true);
+        }
+
+        return callback(null, false);
     }
 ));
 
@@ -164,6 +163,6 @@ passport.use(new BearerStrategy(
     }
 ));
 
-exports.isAuthenticated = passport.authenticate(['local', 'bearer'], { session: false });
+exports.isAuthenticated = passport.authenticate(['apikey'], { session: false });
 exports.isClientAuthenticated = passport.authenticate('client-basic', { session: false });
 exports.isBearerAuthenticated = passport.authenticate('bearer', { session: false });
