@@ -71,6 +71,18 @@ module.exports = {
         });
     },
 
+    getClusterServers: function(req, res, next) {
+        var sql =   "SELECT * FROM BB_ONELINK_SERVER WHERE cluster_name  = :id";
+
+        req.db.sequelize.query(sql, {
+            replacements: { id: req.params.id },
+            type: req.db.sequelize.QueryTypes.SELECT
+
+        }).then(function(servers) {
+            return res.json(servers);
+        });
+    },
+
     getClusterDatacenter: function(req, res, next) {
         var sql =   "SELECT * FROM BB_DATA_CENTER WHERE data_center_code IN (" +
                         "SELECT data_center FROM BB_ONELINK_CLUSTER WHERE cluster_name = :id" +

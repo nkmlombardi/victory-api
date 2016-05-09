@@ -59,20 +59,6 @@ module.exports = {
         });
     },
 
-    getTargetClusters: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
-                        "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE target_id = :id" +
-                    ")";
-
-        req.db.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
-
-        }).then(function(clusters) {
-            return res.json(clusters);
-        });
-    },
-
     getTargetDatacenters: function(req, res, next) {
         var sql =   "SELECT * FROM BB_DATA_CENTER WHERE data_center_code IN (" +
                         "SELECT data_center FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
@@ -87,5 +73,35 @@ module.exports = {
         }).then(function(datacenters) {
             return res.json(datacenters);
         });
-    }
+    },
+
+    getTargetClusters: function(req, res, next) {
+        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
+                        "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE target_id = :id" +
+                    ")";
+
+        req.db.sequelize.query(sql, {
+            replacements: { id: req.params.id },
+            type: req.db.sequelize.QueryTypes.SELECT
+
+        }).then(function(clusters) {
+            return res.json(clusters);
+        });
+    },
+
+    // getTargetServers: function(req, res, next) {
+    //     var sql =   "SELECT * FROM BB_ONELINK_SERVER WHERE external_ip IN (" +
+    //                     "SELECT external_ip FROM BB_ONELINK_CNAME WHERE onelink_cname IN (" +
+    //                         "SELECT target_live_cname FROM BB_PROJECT_TARGET WHERE target_id = :id" +
+    //                     ")" +
+    //                 ")";
+
+    //     req.db.sequelize.query(sql, {
+    //         replacements: { id: req.params.id },
+    //         type: req.db.sequelize.QueryTypes.SELECT
+
+    //     }).then(function(clusters) {
+    //         return res.json(clusters);
+    //     });
+    // }
 };

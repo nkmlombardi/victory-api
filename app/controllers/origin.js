@@ -53,10 +53,10 @@ module.exports = {
         });
     },
 
-    getOriginClusters: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
-                        "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id IN (" +
-                            "SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE origin_id = :id" +
+    getOriginServers: function(req, res, next) {
+        var sql =   "SELECT * FROM BB_PROJECT_SERVER WHERE external_ip IN (" +
+                        "SELECT external_ip FROM BB_ONELINK_CNAME WHERE onelink_cname IN (" +
+                            "SELECT target_live_cname FROM BB_ONELINK_TARGET WHERE origin_id = :id" +
                         ")" +
                     ")";
 
@@ -64,17 +64,29 @@ module.exports = {
             replacements: { id: req.params.id },
             type: req.db.sequelize.QueryTypes.SELECT
 
-        }).then(function(projects) {
-            return res.json(projects);
+        }).then(function(servers) {
+            return res.json(servers);
+        });
+    },
+
+    getOriginClusters: function(req, res, next) {
+        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
+                        "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id = :id" +
+                    ")";
+
+        req.db.sequelize.query(sql, {
+            replacements: { id: req.params.id },
+            type: req.db.sequelize.QueryTypes.SELECT
+
+        }).then(function(clusters) {
+            return res.json(clusters);
         });
     },
 
     getOriginDatacenters: function(req, res, next) {
         var sql =   "SELECT * FROM BB_DATA_CENTER WHERE data_center_code IN (" +
                         "SELECT data_center FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
-                            "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id IN (" +
-                                "SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE origin_id = :id" +
-                            ")" +
+                            "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id = :id" +
                         ")" +
                     ")";
 
@@ -82,8 +94,8 @@ module.exports = {
             replacements: { id: req.params.id },
             type: req.db.sequelize.QueryTypes.SELECT
 
-        }).then(function(projects) {
-            return res.json(projects);
+        }).then(function(datacenters) {
+            return res.json(datacenters);
         });
     }
 };

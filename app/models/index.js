@@ -1,34 +1,42 @@
-var fs = require("fs");
-var path = require("path");
-var Sequelize = require('sequelize');
-var settings = require('../../config/settings');
-var db = { models: [] };
+var fs          = require('fs');
+var path        = require('path');
+var Sequelize   = require('sequelize');
 
-// Establish Datbase Connection
-var sequelize = new Sequelize(settings.database, settings.user, settings.password, settings.connection);
+module.exports = function(settings) {
+    var db = {
+        models: []
+    };
 
-// Read in Models & import to Sequelize
-fs
-    .readdirSync(__dirname)
-    .filter(function(file) {
-        return (file.indexOf(".") !== 0) && (file !== "index.js");
-    })
-    .forEach(function(file) {
-        var model = sequelize.import(path.join(__dirname, file));
-        db.models[model.name] = model;
+    // Establish Datbase Connection
+    var sequelize = new Sequelize(
+        settings.database,
+        settings.user,
+        settings.password,
+        settings.connection
+    );
+
+    // Read in Models & import to Sequelize
+    fs.readdirSync(__dirname)
+        .filter(function(file) {
+            return (file.indexOf('.') !== 0) && (file !== 'index.js');
+        })
+        .forEach(function(file) {
+            var model = sequelize.import(path.join(__dirname, file));
+            db.models[model.name] = model;
+        });
+
+    // Setup Model Associations
+    Object.keys(db.models).forEach(function(modelName) {
+        if ('associate' in db.models[modelName]) {
+            db.models[modelName].associate(db);
+        }
     });
 
-// Setup Model Associations
-Object.keys(db.models).forEach(function(modelName) {
-    if ("associate" in db.models[modelName]) {
-        db.models[modelName].associate(db);
-    }
-});
+    // Attach Sequelize library to database & return
+    db.sequelize = sequelize;
+    db.Sequelize = Sequelize;
 
-// Attach Sequelize library to database & return
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
+    console.log('Loaded Models: ', db.models);
 
-console.log('Loaded Models: ', db.models);
-
-module.exports = db;
+    return db;
+};

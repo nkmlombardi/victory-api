@@ -1,69 +1,69 @@
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('client', {
-        client_id: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true
-        },
-        client_name: {
+    return sequelize.define('server', {
+        internal_ip: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        client_flag: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: 'GREEN'
-        },
-        is_hidden: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: '0'
-        },
-        is_inactive: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: '0'
-        },
-        is_marketing_ok: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            defaultValue: '1'
-        },
-        alexa_domain: {
+        cluster_name: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        alexa_rank_us: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            defaultValue: '0'
-        },
-        alexa_rank_world: {
-            type: DataTypes.INTEGER(11),
-            allowNull: false,
-            defaultValue: '0'
-        },
-        client_comment: {
-            type: DataTypes.TEXT,
+        unix_hostname: {
+            type: DataTypes.STRING,
             allowNull: true
+        },
+        friendly_hostname: {
+            type: DataTypes.STRING,
+            allowNull: true,
+            primaryKey: true
         },
         notification_level: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: '0'
         },
-        monthly_fee_comment: {
+        data_center_code: {
             type: DataTypes.STRING,
             allowNull: true
         },
-        lcp_enabled: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: '1'
+        physical_machine: {
+            type: DataTypes.STRING,
+            allowNull: true
         },
-        lcp_threshold: {
-            type: DataTypes.INTEGER(11),
+        virtual_slice: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        onelink_swrev: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        onelink_swdate: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        lcp_swrev: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        lcp_swdate: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        oltm_swrev: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        oltm_swdate: {
+            type: DataTypes.STRING,
+            allowNull: true
+        },
+        last_pull_dtm: {
+            type: DataTypes.DATE,
+            allowNull: true
+        },
+        apache_down_dtm: {
+            type: DataTypes.DATE,
             allowNull: true
         },
         created_dtm: {
@@ -84,18 +84,17 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false,
             defaultValue: 'setup'
         },
-        monthly_fee_local: {
-            type: DataTypes.DECIMAL,
+        health_code: {
+            type: 'CHAR(1)',
             allowNull: false,
-            defaultValue: '0.00'
+            defaultValue: 'G'
         },
-        monthly_fee_currency_code: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: 'USD'
+        health_details: {
+            type: DataTypes.TEXT,
+            allowNull: true
         },
-        client_hash: {
-            type: DataTypes.STRING,
+        health_dtm: {
+            type: DataTypes.DATE,
             allowNull: true
         }
     }, {
@@ -117,6 +116,6 @@ module.exports = function(sequelize, DataTypes) {
         freezeTableName: true,
 
         // define the table's name
-        tableName: 'BB_CLIENT'
+        tableName: 'BB_ONELINK_SERVER'
     });
 };

@@ -1,34 +1,33 @@
+// Global Variables
+require('dotenv').config();
+process.env.NODE_ENV = (process.env.NODE_ENV || 'development').toLowerCase();
+
 // Global Dependencies
-var path = require('path');
-var express = require('express');
-var colors = require('colors')
+var path        = require('path');
+var express     = require('express');
+var colors      = require('colors')
 
 // Configuration
-var settings = require('./config/settings');
-var environment = require('./config/environment');
-var routes = require('./config/routes');
+var config      = require('./config')();
+var routes      = require('./config/routes');
 
 module.exports.start = function(done) {
     var app = express();
 
-    environment(app);
+    config.middleware(app);
     routes(app);
 
-    app.listen(settings.port, function() {
-        console.log(("Listening on port " + settings.port).green);
+    app.listen(config.settings.port, function() {
+        console.log(('Listening on port ' + config.settings.port + ' in ' + process.env.NODE_ENV.toUpperCase() + ' mode.').green);
 
-        if (done) {
-            return done(null, app, server);
-        }
+        if (done) { return done(null, app, server); }
 
     }).on('error', function(e) {
         if (e.code == 'EADDRINUSE') {
             console.log('Address in use. Is the server already running?'.red);
         }
 
-        if (done) {
-            return done(e);
-        }
+        if (done) { return done(e); }
     });
 }
 

@@ -6,6 +6,8 @@
 
 module.exports = {
     getClients: function(req, res, next) {
+        console.log(req.models);
+
         req.models.client.findAll().then(function(clients) {
             return res.json(clients);
         });

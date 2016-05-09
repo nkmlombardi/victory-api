@@ -79,6 +79,22 @@ module.exports = {
         });
     },
 
+    getDatacenterServers: function(req, res, next) {
+        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE data_center = :id";
+
+        var sql =   "SELECT * FROM BB_PROJECT_SERVER WHERE cluster_name IN (" +
+                        "SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = :id" +
+                    ")";
+
+        req.db.sequelize.query(sql, {
+            replacements: { id: req.params.id },
+            type: req.db.sequelize.QueryTypes.SELECT
+
+        }).then(function(servers) {
+            return res.json(servers);
+        });
+    },
+
     getDatacenterClusters: function(req, res, next) {
         var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE data_center = :id";
 

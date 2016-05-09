@@ -196,15 +196,5 @@ module.exports = function(sequelize, DataTypes) {
 
         // define the table's name
         tableName: 'BB_PROJECT'
-    }, {
-        classMethods: {
-            associate: function(models) {
-                console.log('Models: ', models);
-
-                Project.hasOne(models.client, {
-                    foreignKey: 'client_id'
-                });
-            }
-        }
     });
 };
