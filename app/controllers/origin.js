@@ -53,21 +53,21 @@ module.exports = {
         });
     },
 
-    getOriginServers: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_PROJECT_SERVER WHERE external_ip IN (" +
-                        "SELECT external_ip FROM BB_ONELINK_CNAME WHERE onelink_cname IN (" +
-                            "SELECT target_live_cname FROM BB_ONELINK_TARGET WHERE origin_id = :id" +
-                        ")" +
-                    ")";
+    // getOriginServers: function(req, res, next) {
+    //     var sql =   "SELECT * FROM BB_ONELINK_SERVER WHERE external_ip IN (" +
+    //                     "SELECT external_ip FROM BB_ONELINK_CNAME WHERE onelink_cname IN (" +
+    //                         "SELECT target_live_cname FROM BB_ONELINK_TARGET WHERE origin_id = :id" +
+    //                     ")" +
+    //                 ")";
 
-        req.db.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+    //     req.db.sequelize.query(sql, {
+    //         replacements: { id: req.params.id },
+    //         type: req.db.sequelize.QueryTypes.SELECT
 
-        }).then(function(servers) {
-            return res.json(servers);
-        });
-    },
+    //     }).then(function(servers) {
+    //         return res.json(servers);
+    //     });
+    // },
 
     getOriginClusters: function(req, res, next) {
         var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +

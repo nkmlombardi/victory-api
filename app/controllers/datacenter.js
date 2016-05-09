@@ -80,9 +80,7 @@ module.exports = {
     },
 
     getDatacenterServers: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE data_center = :id";
-
-        var sql =   "SELECT * FROM BB_PROJECT_SERVER WHERE cluster_name IN (" +
+        var sql =   "SELECT * FROM BB_ONELINK_SERVER WHERE cluster_name IN (" +
                         "SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = :id" +
                     ")";
 

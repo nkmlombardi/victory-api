@@ -2,7 +2,6 @@
 process.env.NODE_ENV = (process.env.NODE_ENV || 'testing').toLowerCase();
 
 // Global Dependencies
-var path        = require('path');
 var express     = require('express');
 var colors      = require('colors')
 var request     = require('request');
