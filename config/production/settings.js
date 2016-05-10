@@ -9,7 +9,8 @@ var settings = {
     connection: {
         host:       '10.10.78.59',
         dialect:    'mariadb'
-    }
+    },
+    keys: []
 };
 
 module.exports = settings;

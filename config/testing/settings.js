@@ -10,7 +10,10 @@ var settings = {
         host:       '10.10.78.59',
         dialect:    'mariadb',
         logging:    false
-    }
+    },
+    keys: [
+        'testing'
+    ]
 };
 
 module.exports = settings;

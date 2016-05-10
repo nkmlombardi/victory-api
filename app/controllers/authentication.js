@@ -1,4 +1,5 @@
 // Load required packages
+var settings                = require('../../config')().settings;
 var passport                = require('passport');
 var BasicStrategy           = require('passport-http').BasicStrategy;
 var DigestStrategy          = require('passport-http').DigestStrategy;
@@ -18,12 +19,7 @@ var LocalAPIKeyStrategy     = require('passport-localapikey-update').Strategy;
 passport.use('apikey', new LocalAPIKeyStrategy(
     function(apikey, callback) {
 
-        var keys = [
-            "3bce4931-6c75-41ab-afe0-2ec108a30860",
-            "Development"
-        ];
-
-        if (keys.indexOf(apikey) > -1) {
+        if (settings.keys.indexOf(apikey) > -1) {
             return callback(null, true);
         }
 
