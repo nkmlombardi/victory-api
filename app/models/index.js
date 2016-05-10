@@ -36,7 +36,7 @@ module.exports = function(settings) {
     db.sequelize = sequelize;
     db.Sequelize = Sequelize;
 
-    console.log('Loaded Models: ', db.models);
+    // console.log('Loaded Models: ', db.models);
 
     return db;
 };

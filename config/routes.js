@@ -7,7 +7,7 @@ var controllers = require('../app/controllers')
 module.exports = function(app) {
 
     // Base Endpoint
-    // app.route('/v1')                                         .get(controllers.home);
+    app.route('/')                                              .get(function(req, res, next) { res.sendStatus(200); });
 
 
     // OneLink Software

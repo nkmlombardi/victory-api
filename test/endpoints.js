@@ -1,4 +1,5 @@
 // Global Variables
+require('dotenv').config({ path: '../.env' });
 process.env.NODE_ENV = (process.env.NODE_ENV || 'testing').toLowerCase();
 
 // Global Dependencies
@@ -28,13 +29,13 @@ app._router.stack.forEach(function(r) {
         request({
             url: 'http://localhost:' + config.settings.port + r.route.path,
             headers: {
-                'apikey': 'Development'
+                'apikey': process.env.TEST_APIKEY
             }
         }, function(error, response, body) {
             if (!error && response.statusCode == 200) {
                 console.log((r.route.path + ': ' + response.statusCode).green);
             } else {
-                console.log((r.route.path + ': ' + error).red);
+                console.log((r.route.path + ': ' + response.statusCode + ' Error: ' + error).red);
             }
         });
     }

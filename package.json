@@ -1,32 +1,35 @@
 {
-    "name": "noc-api",
-    "description": "API for the OneLink Network Operations Center.",
-    "version": "0.1.0",
-    "dependencies": {
-        "body-parser": "^1.15.0",
-        "colors": "0.6.2",
-        "dotenv": "^2.0.0",
-        "express": "^4.13.4",
-        "express-session": "^1.13.0",
-        "helmet": "^1.3.0",
-        "lodash": "2.3.0",
-        "method-override": "^2.3.5",
-        "morgan": "^1.7.0",
-        "mysql": "github:felixge/node-mysql",
-        "passport": "^0.3.2",
-        "passport-http": "^0.3.0",
-        "passport-http-bearer": "^1.0.1",
-        "passport-local": "^1.0.0",
-        "passport-localapikey-update": "^0.5.0",
-        "pg": "2.6.2",
-        "request": "^2.72.0",
-        "sequelize": "^3.22.0"
-    },
-    "devDependencies": {
-        "nodemon": "0.7.10"
-    },
-    "scripts": {
-        "start": "script/start",
-        "reset": "script/reset"
-    }
+  "name": "noc-api",
+  "description": "API for the OneLink Network Operations Center.",
+  "version": "0.1.0",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "colors": "0.6.2",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "express-session": "^1.13.0",
+    "helmet": "^1.3.0",
+    "lodash": "2.3.0",
+    "method-override": "^2.3.5",
+    "morgan": "^1.7.0",
+    "mysql": "github:felixge/node-mysql",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-local": "^1.0.0",
+    "passport-localapikey-update": "^0.5.0",
+    "pg": "2.6.2",
+    "request": "^2.72.0",
+    "sequelize": "^3.22.0"
+  },
+  "devDependencies": {
+    "mocha": "^2.4.5",
+    "nodemon": "0.7.10",
+    "really-need": "^1.9.2",
+    "supertest": "^1.2.0"
+  },
+  "scripts": {
+    "start": "script/start",
+    "reset": "script/reset"
+  }
 }
