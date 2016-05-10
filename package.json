@@ -30,6 +30,7 @@
   },
   "scripts": {
     "start": "script/start",
-    "reset": "script/reset"
+    "reset": "script/reset",
+    "test": "mocha -R spec ./test"
   }
 }
