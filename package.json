@@ -30,6 +30,6 @@
   },
   "scripts": {
     "start": "nodemon ./server.js",
-    "test": "mocha -R spec ./test"
+    "test": "mocha --recursive ./test"
   }
 }

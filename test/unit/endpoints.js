@@ -11,7 +11,7 @@ describe('loading server', function() {
     var server;
 
     beforeEach(function() {
-        server = require('../server', { bustCache: true });
+        server = require('../../server', { bustCache: true });
     });
 
     afterEach(function(done) {
@@ -37,7 +37,7 @@ describe('loading server', function() {
     through each endpoint.
  */
 describe('checking endpoints', function() {
-    server = require('../server', { bustCache: true });
+    server = require('../../server', { bustCache: true });
 
     server.endpoints.forEach(function(r) {
         it(r.route.path, function(done) {
