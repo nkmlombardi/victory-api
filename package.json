@@ -12,7 +12,6 @@
     "lodash": "2.3.0",
     "method-override": "^2.3.5",
     "morgan": "^1.7.0",
-    "mysql": "github:felixge/node-mysql",
     "passport": "^0.3.2",
     "passport-http": "^0.3.0",
     "passport-http-bearer": "^1.0.1",
