@@ -1,11 +1,11 @@
 // Load required packages
-var settings                = require('../../config')().settings;
-var passport                = require('passport');
-var BasicStrategy           = require('passport-http').BasicStrategy;
-var DigestStrategy          = require('passport-http').DigestStrategy;
-var LocalStrategy           = require('passport-local').Strategy;
-var BearerStrategy          = require('passport-http-bearer').Strategy;
-var LocalAPIKeyStrategy     = require('passport-localapikey-update').Strategy;
+var settings = require('../../config')().settings;
+var passport = require('passport');
+var BasicStrategy = require('passport-http').BasicStrategy;
+var DigestStrategy = require('passport-http').DigestStrategy;
+var LocalStrategy = require('passport-local').Strategy;
+var BearerStrategy = require('passport-http-bearer').Strategy;
+var LocalAPIKeyStrategy = require('passport-localapikey-update').Strategy;
 
 // Load required models
 // var User    = require('./user');

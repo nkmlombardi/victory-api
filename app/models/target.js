@@ -77,10 +77,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: true
         },
-        piwik_site_id: {
-            type: DataTypes.INTEGER(11),
-            allowNull: true
-        },
         test_plan: {
             type: DataTypes.TEXT,
             allowNull: true
