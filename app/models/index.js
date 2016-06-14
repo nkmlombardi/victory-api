@@ -36,7 +36,18 @@ module.exports = function(settings) {
     db.sequelize = sequelize;
     db.Sequelize = Sequelize;
 
-    // console.log('Loaded Models: ', db.models);
+    // ---
 
+    var mysql = require('promise-mysql');
+     
+    mysql.createConnection({
+        host: settings.connection.host,
+        user: settings.user,
+        password: settings.password,
+        database: settings.database
+    }).then(function(conn){
+        db.connection = conn;
+    });
+    
     return db;
 };

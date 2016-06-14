@@ -1,4 +1,7 @@
-var controllers = require('../app/controllers')
+var settings = require('../config')().settings;
+var controllers = require('../app/controllers');
+var cache = require('apicache').options(settings.cache).middleware;
+
 
 /*
     This file contains all of the API's resource endpoints grouped in logical order.
@@ -12,8 +15,8 @@ module.exports = function(app) {
 
     // OneLink Software
         // Client Resource
-        app.route('/v1/clients')                                .get(controllers.auth.isAuthenticated,      controllers.client.getClients);
-        app.route('/v1/clients/tree')                           .get(controllers.auth.isAuthenticated,      controllers.client.getClientsTree);
+        app.route('/v1/clients')                                .get(controllers.auth.isAuthenticated,      cache('1 hour'),    controllers.client.getClients);
+        app.route('/v1/clients/tree')                           .get(controllers.auth.isAuthenticated,      cache('1 hour'),    controllers.client.getClientsTree);
 
         app.route('/v1/clients/:id')                            .get(controllers.auth.isAuthenticated,      controllers.client.getClient);
 

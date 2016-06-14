@@ -23,12 +23,57 @@ module.exports = {
                         'AND O.origin_id = T.origin_id ' +
                     'ORDER BY 1, 2, 3, 4;';
 
+
+        console.time('relationQuery');
+        req.db.connection.query(sql).then(function(relations) {
+            console.timeEnd('relationQuery');
+
+            console.time('buildTree');
+            var relationalTree = treebuilder.buildRelations(relations);
+            console.timeEnd('buildTree');
+
+            console.time('resourceQuery');
+            Promise.all([
+                req.db.connection.query('SELECT * FROM BB_CLIENT'),
+                req.db.connection.query('SELECT * FROM BB_PROJECT'),
+                req.db.connection.query('SELECT * FROM BB_PROJECT_ORIGIN'),
+                req.db.connection.query('SELECT * FROM BB_PROJECT_TARGET')
+
+            ]).then(function(data) {
+                console.timeEnd('resourceQuery');
+
+                var datasets = {
+                    clients:    data[0],
+                    projects:   data[1],
+                    origins:    data[2],
+                    targets:    data[3]
+                };
+
+                console.time('populateTree');
+                var linkedTree = treebuilder.linkRelations(relationalTree, datasets);
+                console.timeEnd('populateTree');
+
+                return res.json(linkedTree);
+            });
+        });
+
+       
+    },
+
+    getClientsTree2: function(req, res, next) {
+        var sql =   'SELECT C.client_id, P.project_id, O.origin_id, T.target_id ' +
+                    'FROM BB_CLIENT C, BB_PROJECT P, BB_PROJECT_ORIGIN O, BB_PROJECT_TARGET T ' +
+                    'WHERE C.client_id = P.client_id ' +
+                        'AND P.project_id = O.project_id ' +
+                        'AND O.origin_id = T.origin_id ' +
+                    'ORDER BY 1, 2, 3, 4;';
+
         Promise.all([
-            req.db.sequelize.query(sql,                                 { type: req.db.sequelize.QueryTypes.SELECT }),
-            req.db.sequelize.query('SELECT * FROM BB_CLIENT',           { type: req.db.sequelize.QueryTypes.SELECT }),
-            req.db.sequelize.query('SELECT * FROM BB_PROJECT',          { type: req.db.sequelize.QueryTypes.SELECT }),
-            req.db.sequelize.query('SELECT * FROM BB_PROJECT_ORIGIN',   { type: req.db.sequelize.QueryTypes.SELECT }),
-            req.db.sequelize.query('SELECT * FROM BB_PROJECT_TARGET',   { type: req.db.sequelize.QueryTypes.SELECT })
+            req.db.connection.query(sql),
+            req.db.connection.query('SELECT * FROM BB_CLIENT'),
+            req.db.connection.query('SELECT * FROM BB_PROJECT'),
+            req.db.connection.query('SELECT * FROM BB_PROJECT_ORIGIN'),
+            req.db.connection.query('SELECT * FROM BB_PROJECT_TARGET')
 
         ]).then(function(data) {
             console.log('All promises resolved.');
