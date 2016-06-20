@@ -12,7 +12,10 @@ var settings = {
     },
     keys: [
         'development'
-    ]
+    ],
+    cache: {
+        debug: true
+    }
 };
 
 module.exports = settings;
