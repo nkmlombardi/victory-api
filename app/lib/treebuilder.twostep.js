@@ -71,28 +71,24 @@ module.exports = {
         // For each data row, loop through the expected levels traversing the output tree
         tree.forEach(function(data) {
 
-            // Keep this as a reference to the current level
-            var depthCursor = tree;
-
             // Iterate through properties, only consider ID's
             Object.keys(data).forEach(function(key) {
                 if (key.indexOf('_id') > -1) {
                     var resourceID = key.replace('_id', 's');
 
                     // Search through the dataset for an object that has a matching ID
+                    // We are splicing from the resource array for performance gains
                     var resource = function(resources, reference, attribute) {
                         for (var i = 0; i < resources.length; i++) {
                             if (resources[i][attribute] === reference[attribute]) {
-                                return resources[i];
+                                return resources.splice(i, 1);
                             }
                         }
-                    }(datasets[resourceID], data, key);
+                    }(datasets[resourceID], data, key)[0];
 
                     // Copy properties to the tree object we are iterating on
                     for (var property in resource) {
-                        if (property.indexOf('_id') === -1) {
-                            data[property] = resource[property];
-                        }
+                        data[property] = resource[property];
                     }
 
                 // If the property we are iterating on is not an ID, it must be an

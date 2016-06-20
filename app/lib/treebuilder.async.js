@@ -1,5 +1,5 @@
 module.exports = {
-    buildRelations: function(data, levels, resources, tree) {
+    buildRelations: function(data, datasets, levels, resources, tree) {
         levels      = levels || Object.keys(data[0]);
         resources   = resources || levels.map(function(x) { return x.replace('_id', 's'); });
         tree        = tree || [];

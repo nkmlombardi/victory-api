@@ -33,6 +33,7 @@ module.exports = function(app) {
     app.use(function (req, res, next) {
         req.db = database;
         req.models = database.models;
+        req.connection = database.connection;
         return next();
     }),
 

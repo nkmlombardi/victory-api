@@ -1,6 +1,7 @@
-var fs          = require('fs');
-var path        = require('path');
-var Sequelize   = require('sequelize');
+var fs = require('fs');
+var path = require('path');
+var Sequelize = require('sequelize');
+var mysql = require('promise-mysql');
 
 module.exports = function(settings) {
     var db = {
@@ -36,7 +37,14 @@ module.exports = function(settings) {
     db.sequelize = sequelize;
     db.Sequelize = Sequelize;
 
-    // console.log('Loaded Models: ', db.models);
+    mysql.createConnection({
+        database: settings.database,
+        host: settings.connection.host,
+        user: settings.user,
+        password: settings.password
 
-    return db;
+    }).then(function(conn) {
+        db.connection = conn;
+        return db;
+    });
 };

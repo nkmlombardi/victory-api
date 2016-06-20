@@ -1,5 +1,5 @@
 module.exports = {
-    buildRelationsSync: function(data, levels, resources, tree) {
+    buildRelations: function(data, datasets, levels, resources, tree) {
         levels      = levels || Object.keys(data[0]);
         resources   = resources || levels.map(function(x) { return x.replace('_id', 's'); });
         tree        = tree || [];
@@ -13,13 +13,10 @@ module.exports = {
             // Go down one level at a time
             levels.forEach(function(property, depth) {
 
-                // console.log('Property: ', property);
-                // console.log('Depth: ', depth);
-
                 // Look to see if a branch has already been created
                 var index;
                 depthCursor.forEach(function(child, i) {
-                    if (d[property] == child[levels[depth]]) {                  // if object.prop.val == child.prop.val on current level in new tree
+                    if (d[property] == child[levels[depth]]) {
                         index = i;
                     }
                 });
@@ -28,7 +25,7 @@ module.exports = {
                 if (isNaN(index)) {
                     var newResource = { [levels[depth]]: d[property] };
 
-                    Search through the dataset for an object that has a matching ID
+                    // Search through the dataset for an object that has a matching ID
                     var resource = function(resources, reference, attribute) {
                         for (var i = 0; i < resources.length; i++) {
                             if (resources[i][attribute] === reference[attribute]) {
@@ -42,9 +39,7 @@ module.exports = {
                     // Copy properties to the tree object we are iterating on
                     if (resource) {
                         for (var property in resource) {
-                            // if (property.indexOf('_id') === -1) {
-                                newResource[property] = resource[property];
-                            // }
+                            newResource[property] = resource[property];
                         }
                     } else {
 
