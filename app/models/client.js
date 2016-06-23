@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+var Client = function(sequelize, DataTypes) {
     return sequelize.define('client', {
         client_id: {
             type: DataTypes.INTEGER(11),
@@ -120,3 +120,5 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'BB_CLIENT'
     });
 };
+
+module.exports = Client;

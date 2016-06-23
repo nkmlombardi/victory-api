@@ -1,8 +1,30 @@
+var treebuilder = require('../lib/treebuilder.sync');
+var Promise = require("bluebird");
+
 module.exports = {
     getDatacenters: function(req, res, next) {
-        req.models.datacenter.findAll().then(function(datacenters) {
+        req.connection.query("SELECT * FROM BB_DATA_CENTER").then(function(datacenters) {
             return res.json(datacenters);
         });
+    },
+
+    getDatacentersTree: function(req, res, next) {
+        var sql =   'SELECT D.data_center_code AS datacenter_id, C.cluster_name AS cluster_id, S.internal_ip AS server_id ' +
+                    'FROM BB_DATA_CENTER D, BB_ONELINK_CLUSTER C, BB_ONELINK_SERVER S ' +
+                    'WHERE D.data_center_code = C.data_center ' +
+                        'AND C.cluster_name = S.cluster_name ' +
+                    'ORDER BY 1, 2, 3;';
+
+        req.connection.query(sql)
+            .then(function(relations) {
+                Promise.props({
+                    datacenters:    req.connection.query("SELECT *, data_center_code AS datacenter_id FROM BB_DATA_CENTER"),
+                    clusters:       req.connection.query("SELECT *, cluster_name AS cluster_id, data_center AS datacenter_id FROM BB_ONELINK_CLUSTER"),
+                    servers:        req.connection.query("SELECT *, internal_ip AS server_id, cluster_name AS cluster_id FROM BB_ONELINK_SERVER"),
+                }).then(function(data) {
+                    return res.json(treebuilder.build(relations, data));
+                });
+            })
     },
 
     getDatacenter: function(req, res, next) {

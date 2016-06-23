@@ -139,19 +139,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: '0'
-        },
-        health_code: {
-            type: 'CHAR(1)',
-            allowNull: false,
-            defaultValue: 'G'
-        },
-        health_details: {
-            type: DataTypes.TEXT,
-            allowNull: true
-        },
-        health_dtm: {
-            type: DataTypes.DATE,
-            allowNull: true
         }
     }, {
         // don't add the timestamp attributes (updatedAt, createdAt)

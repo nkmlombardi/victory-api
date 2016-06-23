@@ -1,13 +1,37 @@
+var treebuilder = require('../lib/treebuilder.twostep');
+var Promise = require("bluebird");
+
 module.exports = {
-    getOrigins: function(req, res, next) {
+    getOriginAll: function(req, res, next) {
         req.models.origin.findAll().then(function(origins) {
             return res.json(origins);
+        });
+    },
+
+    getOriginAllTree: function(req, res, next) {
+        req.models.origin.findAll({
+            include: {
+                model: req.models.target
+            }
+        }).then(function(data) {
+            res.json(data);
         });
     },
 
     getOrigin: function(req, res, next) {
         req.models.origin.findById(req.params.id).then(function(origin) {
             return res.json(origin);
+        });
+    },
+
+    getOriginTree: function(req, res, next) {
+        req.models.origin.findOne({
+            where: { origin_id: req.params.id },
+            include: {
+                model: req.models.target
+            }
+        }).then(function(data) {
+            res.json(data);
         });
     },
 
@@ -28,46 +52,20 @@ module.exports = {
     },
 
     getOriginProject: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_PROJECT WHERE project_id IN (" +
-                        "SELECT project_id FROM BB_PROJECT_ORIGIN WHERE origin_id = :id" +
-                    ")";
-
-        req.db.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
-
-        }).then(function(project) {
-            return res.json(project[0]);
+        req.models.origin.findById(req.params.id).then(function(origin) {
+            origin.getProject().then(function(project) {
+                return res.json(project);
+            });
         });
     },
 
     getOriginTargets: function(req, res, next) {
-        var sql = "SELECT * FROM BB_PROJECT_TARGET WHERE origin_id = :id";
-
-        req.db.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
-
-        }).then(function(targets) {
-            return res.json(targets);
+        req.models.origin.findById(req.params.id).then(function(origin) {
+            origin.getTargets().then(function(targets) {
+                return res.json(targets);
+            });
         });
     },
-
-    // getOriginServers: function(req, res, next) {
-    //     var sql =   "SELECT * FROM BB_ONELINK_SERVER WHERE external_ip IN (" +
-    //                     "SELECT external_ip FROM BB_ONELINK_CNAME WHERE onelink_cname IN (" +
-    //                         "SELECT target_live_cname FROM BB_ONELINK_TARGET WHERE origin_id = :id" +
-    //                     ")" +
-    //                 ")";
-
-    //     req.db.sequelize.query(sql, {
-    //         replacements: { id: req.params.id },
-    //         type: req.db.sequelize.QueryTypes.SELECT
-
-    //     }).then(function(servers) {
-    //         return res.json(servers);
-    //     });
-    // },
 
     getOriginClusters: function(req, res, next) {
         var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +

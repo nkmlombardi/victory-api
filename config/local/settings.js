@@ -7,12 +7,15 @@ var settings = {
     user:       'onelink_dev',
     password:   'onelink_dev',
     connection: {
-        host:       '10.10.78.59',
+        host:       '10.10.78.75',
         dialect:    'mariadb'
     },
     keys: [
         'local'
-    ]
+    ],
+    cache: {
+        debug: true
+    }
 };
 
 module.exports = settings;

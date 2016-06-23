@@ -9,7 +9,7 @@ module.exports = {
      * @param  {[array]}    tree        tree structure output by the algorithm
      * @return {[array]}                returns the tree structure that is built
      */
-    buildRelations: function(data, indexes, resources, tree) {
+    link: function(data, indexes, resources, tree) {
         indexes     = indexes || Object.keys(data[0]);
         resources   = resources || indexes.map(function(x) { return x.replace('_id', 's'); });
         levels      = indexes.slice(0, -1);
@@ -67,7 +67,7 @@ module.exports = {
      * @param  {[array]}    datasets    flat file with corresponding IDs
      * @return {[array]}                fully populated tree based on linked resources
      */
-    linkRelations: function f(tree, datasets) {
+    build: function f(tree, datasets) {
         // For each data row, loop through the expected levels traversing the output tree
         tree.forEach(function(data) {
 

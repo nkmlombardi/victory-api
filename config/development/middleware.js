@@ -31,10 +31,10 @@ module.exports = function(app) {
 
     // Database Middleware
     app.use(function (req, res, next) {
-        req.db = database;
         req.models = database.models;
         req.connection = database.connection;
-        return next();
+
+        next();
     }),
 
     // Enable CORS to avoid Cross Domain Origin issues

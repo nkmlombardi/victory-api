@@ -1,8 +1,28 @@
+var treebuilder = require('../lib/treebuilder.sync');
+var Promise = require("bluebird");
+
 module.exports = {
     getClusters: function(req, res, next) {
         req.models.cluster.findAll().then(function(clusters) {
             return res.json(clusters);
         });
+    },
+
+    getClustersTree: function(req, res, next) {
+        var sql =   'SELECT C.cluster_name AS cluster_id, S.internal_ip AS server_id ' +
+                    'FROM BB_ONELINK_CLUSTER C, BB_ONELINK_SERVER S ' +
+                    'WHERE C.cluster_name = S.cluster_name ' +
+                    'ORDER BY 1, 2;';
+
+        req.connection.query(sql)
+            .then(function(relations) {
+                Promise.props({
+                    clusters:       req.connection.query("SELECT *, cluster_name AS cluster_id FROM BB_ONELINK_CLUSTER"),
+                    servers:        req.connection.query("SELECT *, internal_ip AS server_id, cluster_name AS cluster_id FROM BB_ONELINK_SERVER"),
+                }).then(function(data) {
+                    return res.json(treebuilder.build(relations, data));
+                });
+            })
     },
 
     getCluster: function(req, res, next) {

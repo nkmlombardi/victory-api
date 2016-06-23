@@ -2,41 +2,42 @@ var fs = require('fs');
 var path = require('path');
 var Sequelize = require('sequelize');
 var mysql = require('promise-mysql');
+var simport = require('sequelize-import');
 
 module.exports = function(settings) {
+    // Create Sequelize database connection
     var db = {
-        models: []
+        sequelize: new Sequelize(
+            settings.database,
+            settings.user,
+            settings.password,
+            settings.connection
+        )
     };
 
-    // Establish Datbase Connection
-    var sequelize = new Sequelize(
-        settings.database,
-        settings.user,
-        settings.password,
-        settings.connection
-    );
-
-    // Read in Models & import to Sequelize
-    fs.readdirSync(__dirname)
-        .filter(function(file) {
-            return (file.indexOf('.') !== 0) && (file !== 'index.js');
-        })
-        .forEach(function(file) {
-            var model = sequelize.import(path.join(__dirname, file));
-            db.models[model.name] = model;
-        });
-
-    // Setup Model Associations
-    Object.keys(db.models).forEach(function(modelName) {
-        if ('associate' in db.models[modelName]) {
-            db.models[modelName].associate(db);
-        }
+    // Load in database models
+    db.models = simport(__dirname, db.sequelize, {
+        exclude: ['index.js']
     });
 
-    // Attach Sequelize library to database & return
-    db.sequelize = sequelize;
-    db.Sequelize = Sequelize;
 
+    // Establish relations
+    //// Client
+    db.models.client.hasMany(db.models.project,     { foreignKey: 'client_id' });
+
+    //// Project
+    db.models.project.belongsTo(db.models.client,   { foreignKey: 'client_id' });
+    db.models.project.hasMany(db.models.origin,     { foreignKey: 'project_id' });
+
+    //// Origin
+    db.models.origin.belongsTo(db.models.project,   { foreignKey: 'project_id' });
+    db.models.origin.hasMany(db.models.target,      { foreignKey: 'origin_id' });
+
+    //// Target
+    db.models.target.belongsTo(db.models.origin,    { foreignKey: 'origin_id' });
+
+
+    // Native MySql connection
     mysql.createConnection({
         database: settings.database,
         host: settings.connection.host,
@@ -45,6 +46,7 @@ module.exports = function(settings) {
 
     }).then(function(conn) {
         db.connection = conn;
-        return db;
     });
+
+    return db;
 };
