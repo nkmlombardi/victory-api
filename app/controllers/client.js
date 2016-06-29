@@ -88,9 +88,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
             return res.json(projects);
@@ -106,9 +106,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
             return res.json(projects);
@@ -126,9 +126,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
             return res.json(projects);

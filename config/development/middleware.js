@@ -33,14 +33,14 @@ module.exports = function(app) {
     app.use(function (req, res, next) {
         req.models = database.models;
         req.connection = database.connection;
-
+        req.sequelize = database.sequelize;
         next();
     }),
 
     // Enable CORS to avoid Cross Domain Origin issues
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", req.headers.origin);
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, apikey");
         res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
         next();
     });

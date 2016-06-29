@@ -40,9 +40,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(clients) {
             return res.json(clients);
@@ -56,9 +56,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(project) {
             return res.json(project);
@@ -70,9 +70,9 @@ module.exports = {
                         "SELECT origin_id FROM BB_PROJECT_TARGET WHERE cluster_name = :id" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(origins) {
             return res.json(origins);
@@ -82,9 +82,9 @@ module.exports = {
     getClusterTargets: function(req, res, next) {
         var sql =   "SELECT * FROM BB_PROJECT_TARGET WHERE cluster_name = :id";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(clusters) {
             return res.json(clusters);
@@ -94,9 +94,9 @@ module.exports = {
     getClusterServers: function(req, res, next) {
         var sql =   "SELECT * FROM BB_ONELINK_SERVER WHERE cluster_name  = :id";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(servers) {
             return res.json(servers);
@@ -108,9 +108,9 @@ module.exports = {
                         "SELECT data_center FROM BB_ONELINK_CLUSTER WHERE cluster_name = :id" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(datacenters) {
             return res.json(datacenters[0]);

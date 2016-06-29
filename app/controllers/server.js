@@ -24,9 +24,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(clients) {
             return res.json(clients);
@@ -44,9 +44,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
             return res.json(projects);
@@ -62,9 +62,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(origins) {
             return res.json(origins);
@@ -78,9 +78,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(targets) {
             return res.json(targets);
@@ -94,9 +94,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(datacenters) {
             return res.json(datacenters[0]);
@@ -108,9 +108,9 @@ module.exports = {
                         "SELECT cluster_name FROM BB_ONELINK_SERVER WHERE friendly_hostname = :id" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(clusters) {
             return res.json(clusters[0]);

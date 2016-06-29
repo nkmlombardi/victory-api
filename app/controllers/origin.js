@@ -42,9 +42,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(client) {
             return res.json(client[0]);
@@ -72,9 +72,9 @@ module.exports = {
                         "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id = :id" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(clusters) {
             return res.json(clusters);
@@ -88,9 +88,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(datacenters) {
             return res.json(datacenters);

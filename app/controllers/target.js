@@ -20,9 +20,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(client) {
             return res.json(client[0]);
@@ -36,9 +36,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(project) {
             return res.json(project[0]);
@@ -50,9 +50,9 @@ module.exports = {
                         "SELECT origin_id FROM BB_PROJECT_TARGET WHERE target_id = :id" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(origins) {
             return res.json(origins[0]);
@@ -66,9 +66,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(datacenters) {
             return res.json(datacenters);
@@ -80,9 +80,9 @@ module.exports = {
                         "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE target_id = :id" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(clusters) {
             return res.json(clusters);
@@ -96,9 +96,9 @@ module.exports = {
     //                     ")" +
     //                 ")";
 
-    //     req.db.sequelize.query(sql, {
+    //     req.sequelize.query(sql, {
     //         replacements: { id: req.params.id },
-    //         type: req.db.sequelize.QueryTypes.SELECT
+    //         type: req.sequelize.QueryTypes.SELECT
 
     //     }).then(function(clusters) {
     //         return res.json(clusters);

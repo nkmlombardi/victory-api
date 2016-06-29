@@ -60,9 +60,9 @@ module.exports = {
     getProjectTargets: function(req, res, next) {
         var sql = "SELECT * FROM BB_PROJECT_TARGET WHERE origin_id IN (SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE project_id = :id)";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
             return res.json(projects);
@@ -76,9 +76,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
             return res.json(projects);
@@ -94,9 +94,9 @@ module.exports = {
                         ")" +
                     ")";
 
-        req.db.sequelize.query(sql, {
+        req.sequelize.query(sql, {
             replacements: { id: req.params.id },
-            type: req.db.sequelize.QueryTypes.SELECT
+            type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
             return res.json(projects);
