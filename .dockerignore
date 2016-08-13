@@ -1,0 +1,14 @@
+*.sublime-*
+.dockerignore
+.DS_Store
+.env
+.eslintrc
+.git
+.gitignore
+.groc.json
+.jsbeautifyrc
+Dockerfile
+Dockerrun.aws.json
+logs
+node_modules
+README.md

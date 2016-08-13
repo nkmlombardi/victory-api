@@ -1,0 +1,20 @@
+api:
+    build: .
+    env_file:
+        - ./.environment/public.env
+        - ./.environment/private.env
+    links:
+        - "mongodb"
+    ports:
+        - "80:80"
+        - "3000:3000"
+        - "3001:3001"
+    volumes:
+        - ./:/api
+
+mongodb:
+    image: mongo
+    ports:
+        - "27017:27017"
+    volumes:
+        - ./database:/data/db
