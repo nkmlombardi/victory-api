@@ -7,7 +7,7 @@ var Promise = require("bluebird");
 */
 
 module.exports = {
-    getClientAll: function(req, res, next) {
+    getUser: function(req, res, next) {
         // Logic
     }
 };

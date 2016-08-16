@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 module.exports = function(settings) {
-    mongoose.connect('mongodb://' + settings.host);
+    mongoose.connect(settings.database.type + '://' + settings.database.host + ':' + settings.database.port);
 
     // If the connection throws an error
     mongoose.connection.on('error',function (err) {
@@ -13,15 +13,12 @@ module.exports = function(settings) {
         console.log('Mongoose default connection disconnected');
     });
 
-
+    // When the connection is established
     mongoose.connection.on('connected', function () {
-        console.log('Mongoose default connection open to ' + settings.host);
-
-        return {
-            mongoose: mongoose,
-            models: {
-                user: require('user')(mongoose).model,
-            }
-        };
+        console.log('Mongoose default connection open to ' + settings.database.host);
     });
+
+    return {
+        User: require('./user')
+    };
 };

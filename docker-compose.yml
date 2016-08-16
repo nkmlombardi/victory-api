@@ -4,7 +4,7 @@ api:
         - ./.environment/public.env
         - ./.environment/private.env
     links:
-        - "mongodb"
+        - "database"
     ports:
         - "80:80"
         - "3000:3000"
@@ -12,9 +12,14 @@ api:
     volumes:
         - ./:/api
 
-mongodb:
+database:
     image: mongo
     ports:
         - "27017:27017"
+    volumes_from:
+        - storage
+
+storage:
+    image: tianon/true
     volumes:
         - ./database:/data/db

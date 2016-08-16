@@ -1,21 +1,21 @@
 var path = require('path');
 
 var settings = {
-    path:       path.normalize(path.join(__dirname, '..')),
-    port:       process.env.NODE_PORT || 3000,
-    database:   'onelink_dev',
-    user:       'onelink_dev',
-    password:   'onelink_dev',
-    connection: {
-        host:       '10.10.78.75',
-        dialect:    'mariadb'
+    path:   path.normalize(path.join(__dirname, '..')),
+    port:   process.env.NODE_PORT || 3000,
+    database:   {
+        type:   process.env.DATABASE_TYPE || 'mongodb',
+        host:   process.env.DATABASE_HOST || 'localhost',
+        port:   process.env.DATABASE_PORT || 27017
     },
     keys: [
-        'local'
+        'development'
     ],
     cache: {
         debug: true
     }
 };
+
+console.log('Local settings loaded.');
 
 module.exports = settings;

@@ -7,7 +7,7 @@ var passport        = require('passport');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var database        = require('../../app/models')(settings);
+var mmodels         = require('../../app/models')(settings);
 
 module.exports = function(app) {
     // Serve static content
@@ -31,9 +31,7 @@ module.exports = function(app) {
 
     // Database Middleware
     app.use(function (req, res, next) {
-        req.models = database.models;
-        req.connection = database.connection;
-        req.sequelize = database.sequelize;
+        req.models = models;
         next();
     }),
 

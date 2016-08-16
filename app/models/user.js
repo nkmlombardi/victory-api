@@ -1,4 +1,6 @@
-module.exports = function(mongoose) {
+var mongoose = require('mongoose');
+
+module.exports = function() {
     var schema = new mongoose.Schema({
         email:  String,
         password: String,
@@ -7,8 +9,5 @@ module.exports = function(mongoose) {
         modified_at: Date
     });
 
-    return {
-        schema: schema,
-        model: mongoose.model('User', schema)
-    }
+    return mongoose.model('User', schema);
 };
