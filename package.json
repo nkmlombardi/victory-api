@@ -23,7 +23,8 @@
     "pg": "2.6.2",
     "plaid": "^1.0.10",
     "request": "^2.72.0",
-    "sequelize": "^3.22.0"
+    "sequelize": "^3.24.0",
+    "sequelize-import": "^1.2.1"
   },
   "devDependencies": {
     "mocha": "^2.4.5",

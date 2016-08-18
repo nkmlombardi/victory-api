@@ -1,15 +1,17 @@
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('user', {
-        email: {
+    return Sequelize.define('plaid_token', {
+        token: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            primaryKey: true
         },
-        password: {
-            type: DataTypes.STRING,
+        userId: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         access_token: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         timestamps: true,
@@ -19,7 +21,7 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                models.user.hasOne(models.plaidToken);
+                models.plaidToken.belongsTo(models.user);
             }
         }
     });
