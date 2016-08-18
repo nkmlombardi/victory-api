@@ -7,11 +7,10 @@ module.exports = function(settings) {
     // Create Sequelize database connection
     var database = {
         sequelize: new Sequelize(settings.name, settings.user, settings.pass, {
-                host:       settings.host,
-                dialect:    'postgres',
-                port:       settings.port
-            }
-        ),
+            host: settings.host,
+            dialect: 'postgres',
+            port: settings.port
+        }),
         models: {
             // Models are loaded in below
         }
@@ -26,6 +25,12 @@ module.exports = function(settings) {
         if ("associate" in database.models[modelName]) {
             database.models[modelName].associate(database.models);
         }
+    });
+
+    database.sequelize.sync().then(function() {
+        console.log('Models synced to database.');
+    }).catch(function(error) {
+        console.log('Failed to sync to database: ', error);
     });
 
     return database;

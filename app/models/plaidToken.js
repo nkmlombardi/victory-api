@@ -1,5 +1,5 @@
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('plaid_token', {
+    return Sequelize.define('plaidToken', {
         token: {
             type: DataTypes.STRING,
             allowNull: false,

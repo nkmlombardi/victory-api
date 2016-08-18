@@ -10,5 +10,12 @@ var cache = require('apicache').options(settings.cache).middleware;
 module.exports = function(app) {
 
     // Base Endpoint
-    app.route('/')                                              .get(function(req, res, next) { res.sendStatus(200); });
+    app.route('/').get(function(req, res, next) {
+        req.models.plaidToken.findAll()
+            .then(function(users) {
+                res.json(users);
+            }).error(function(error) {
+                res.send(error);
+            });
+    });
 };
