@@ -1,5 +1,5 @@
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('PlaidToken', {
+    return Sequelize.define('Passport', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -13,9 +13,12 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
-        access_token: {
-            type: DataTypes.STRING,
-            allowNull: false
+        auth_key: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4
+        },
+        strategy: {
+            type: DataTypes.STRING
         }
     }, {
         timestamps: true,
@@ -24,7 +27,7 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                models.PlaidToken.belongsTo(models.User);
+                models.Passport.belongsTo(models.User);
             }
         }
     });

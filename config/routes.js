@@ -18,4 +18,12 @@ module.exports = function(app) {
                 res.send(error);
             });
     });
+
+    app.route('/authenticate').post(function(req, res, next) {
+        req.models.AuthToken.create({
+            user_id: 1
+        }).then(function(token) {
+            res.json(token);
+        });
+    });
 };

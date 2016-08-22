@@ -1,8 +1,10 @@
+var crypto = require('crypto');
+
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('PlaidToken', {
+    return Sequelize.define('AuthToken', {
         id: {
             type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+            defaultValue: DataTypes.UUIDv4,
             primaryKey: true
         },
         user_id: {
@@ -13,9 +15,12 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
-        access_token: {
+        auth_token: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            defaultValue: function() {
+                return crypto.randomBytes(32).toString('hex');
+            }
         }
     }, {
         timestamps: true,
@@ -24,7 +29,7 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                models.PlaidToken.belongsTo(models.User);
+                models.AuthToken.belongsTo(models.User);
             }
         }
     });

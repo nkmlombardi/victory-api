@@ -10,7 +10,8 @@ services:
         ports:
             - "3000:3000"
         volumes:
-            - ./:/api
+            - ./app:/api/app
+            - ./config:/api/config
         depends_on:
             - database
 

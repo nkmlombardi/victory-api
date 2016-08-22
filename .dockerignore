@@ -9,6 +9,6 @@
 .jsbeautifyrc
 Dockerfile
 Dockerrun.aws.json
-logs
-node_modules
+logs/
+node_modules/
 README.md

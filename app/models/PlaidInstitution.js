@@ -1,8 +1,8 @@
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('PlaidToken', {
-        id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+    return Sequelize.define('PlaidInstitution', {
+        plaid_id: {
+            type: DataTypes.STRING,
+            allowNull: false,
             primaryKey: true
         },
         user_id: {
@@ -13,19 +13,14 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
-        access_token: {
-            type: DataTypes.STRING,
-            allowNull: false
+
+        // Attributes
+        name: {
+            type: DataTypes.STRING
         }
     }, {
         timestamps: true,
         paranoid: true,
         underscored: true
-    }, {
-        classMethods: {
-            associate: function(models) {
-                models.PlaidToken.belongsTo(models.User);
-            }
-        }
     });
 };
