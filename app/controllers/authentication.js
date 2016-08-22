@@ -12,21 +12,6 @@ var LocalAPIKeyStrategy = require('passport-localapikey-update').Strategy;
 // var Client  = require('./client');
 // var Token   = require('./token');
 
-/*
-    This strategy includes having each user in the database contain an API key
-    with which they may make requests to API.
- */
-passport.use('apikey', new LocalAPIKeyStrategy(
-    function(apikey, callback) {
-
-        if (settings.keys.indexOf(apikey) > -1) {
-            return callback(null, true);
-        }
-
-        return callback(null, false);
-    }
-));
-
 passport.use(new BasicStrategy(
     function(username, password, callback) {
         User.findOne({ username: username }, function(err, user) {
@@ -108,24 +93,6 @@ passport.use(new LocalStrategy({
                 // Success
                 return callback(null, user);
             });
-        });
-    }
-));
-
-passport.use('client-basic', new BasicStrategy(
-    function(username, password, callback) {
-        Client.findOne({ id: username }, function(err, client) {
-            if (err) {
-                return callback(err);
-            }
-
-            // No client found with that id or bad password
-            if (!client || client.secret !== password) {
-                return callback(null, false);
-            }
-
-            // Success
-            return callback(null, client);
         });
     }
 ));
