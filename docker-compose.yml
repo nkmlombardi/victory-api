@@ -9,15 +9,16 @@ services:
             - database
         ports:
             - "3000:3000"
-        volumes:
-            - ./:/api
+        depends_on:
+            - database
 
     database:
-        image: mongo
+        image: postgres
         ports:
-            - "27017:27017"
+            - "5432:5432"
         volumes:
-            - storage:/data/db
+            - storage:/var/lib/postgresql/data
 
 volumes:
     storage:
+        driver: local

@@ -11,5 +11,6 @@ module.exports = {
     server:     require('./server'),
 
     // Authentication
-    auth: require('./authentication')
+    auth:       require('./authentication'),
+    token:      require('./token')
 };

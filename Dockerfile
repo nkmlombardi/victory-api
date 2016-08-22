@@ -2,6 +2,17 @@
 FROM node:argon
 MAINTAINER Nick Lombardi <nlombardi@translations.com>
 
+# Add build utils (seems to be necessary for certain node-gyp commands)
+RUN apt-get update && \
+    apt-get install \
+        -y \
+        --no-install-recommends \
+        build-essential \
+    && \
+    apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
 # Set npm log levels
 RUN npm config --global set progress false && \
     npm config --global set spin false && \
@@ -12,21 +23,19 @@ RUN npm config --global set progress false && \
 RUN npm install npm@3.9.5 -g \
     --loglevel=warn
 
-# Create Working Directory
-RUN mkdir /api
+# Create the directory we are going to install our app into, and make all
+# following RUN commands execute in that directory
+RUN mkdir -p /api
 WORKDIR /api
 
-# Install Dependencies
-RUN npm install
+# Copy in the package.json and NPM install first
+# to hopefully be able to reuse a prio cached image
+COPY package.json /api
+RUN npm install \
+    --loglevel=warn
 
-# Install pm2 so we can run our application
-RUN npm i -g pm2
-
-# Copy source & mount directory
 COPY . /api
-VOLUME ./:/api
 
-# Expose ports & serve application
-EXPOSE 3000
+EXPOSE 80 3000 3001 443
 
-CMD ["npm", "start"]
+CMD [ "npm", "start" ]

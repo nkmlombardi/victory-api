@@ -12,6 +12,7 @@ module.exports = function(app) {
     // Base Endpoint
     app.route('/')                                              .get(function(req, res, next) { res.sendStatus(200); });
 
+    app.route('/authenticate')                                  .post(controllers.auth.isAuthenticated,     controllers.token.postToken);
 
     // OneLink Software
         // Client Resource
