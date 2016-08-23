@@ -7,12 +7,9 @@ var passport        = require('passport');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var database        = require('../../app/models')(settings);
+var database        = rootRequire('database/models')(settings);
 
 module.exports = function(app) {
-    // Serve static content
-    app.use(express.static(path.join(settings.path, 'public')));
-
     // Parse the body of requests
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));

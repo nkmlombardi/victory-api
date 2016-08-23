@@ -1,4 +1,4 @@
-var settings = require('../config')().settings;
+var settings = require('./index')().settings;
 var controllers = require('../app/controllers');
 var cache = require('apicache').options(settings.cache).middleware;
 

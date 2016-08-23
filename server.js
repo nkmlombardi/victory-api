@@ -1,3 +1,11 @@
+/*
+    Will allow dependencies to be defined from the root
+    of the project avoiding ../../../ calls.
+ */
+global.rootRequire = function(name) {
+    return require(__dirname + '/' + name);
+}
+
 // Global Dependencies
 var express     = require('express');
 var colors      = require('colors')
