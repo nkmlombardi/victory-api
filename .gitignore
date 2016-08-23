@@ -1,4 +1,4 @@
 # Files to be ignored by git
 node_modules/
 npm-debug.log
-.environment/
+.environment/.private.env
