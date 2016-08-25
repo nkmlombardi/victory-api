@@ -8,7 +8,7 @@ module.exports = function(settings) {
     var database = {
         sequelize: new Sequelize(settings.name, settings.user, settings.pass, {
             host: settings.host,
-            dialect: 'postgres',
+            dialect: settings.type,
             port: settings.port
         }),
         models: {
@@ -27,8 +27,17 @@ module.exports = function(settings) {
         }
     });
 
-    database.sequelize.sync().then(function() {
-        console.log('Models synced to database.');
+    database.sequelize.sync({ force: true }).then(function() {
+        console.log('Models force synced to database.');
+
+        // Seed database if in development mode
+        if (process.env.NODE_ENV === 'development') {
+            var seeder = require('../seeders');
+            seeder.down(database);
+            seeder.up(database);
+
+            console.log('Database Seeded.')
+        }
     }).catch(function(error) {
         console.log('Failed to sync to database: ', error);
     });

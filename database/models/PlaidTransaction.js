@@ -6,10 +6,10 @@ module.exports = function(Sequelize, DataTypes) {
             primaryKey: true
         },
         user_id: {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
             allowNull: false,
             references: {
-                model: 'User',
+                model: 'Users',
                 key: 'id'
             }
         },
@@ -17,7 +17,7 @@ module.exports = function(Sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             references: {
-                model: 'PlaidAccount',
+                model: 'PlaidAccounts',
                 key: 'plaid_id'
             }
         },
@@ -36,7 +36,7 @@ module.exports = function(Sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'PlaidCategory',
+                model: 'PlaidCategories',
                 key: 'plaid_id'
             }
         }

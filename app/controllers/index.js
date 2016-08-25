@@ -1,7 +1,5 @@
 module.exports = {
-    // OneLink Software
-    client:     require('./user'),
-
-    // Authentication
-    auth: require('./authentication')
+    user: require('./user'),
+    auth: require('./authentication'),
+    token: require('./token')
 };

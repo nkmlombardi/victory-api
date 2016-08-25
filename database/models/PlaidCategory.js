@@ -14,7 +14,8 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         timestamps: true,
         paranoid: true,
-        underscored: true
+        underscored: true,
+        tableName: 'PlaidCategories'
     }, {
         classMethods: {
             associate: function(models) {

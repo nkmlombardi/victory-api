@@ -9,6 +9,9 @@ var cache = require('apicache').options(settings.cache).middleware;
  */
 module.exports = function(app) {
 
+    app.route('/authenticate').post(controllers.auth.checkCredentials, controllers.token.postToken);
+
+
     // Base Endpoint
     app.route('/').get(function(req, res, next) {
         req.models.plaidToken.findAll()
@@ -17,13 +20,5 @@ module.exports = function(app) {
             }).error(function(error) {
                 res.send(error);
             });
-    });
-
-    app.route('/authenticate').post(function(req, res, next) {
-        req.models.AuthToken.create({
-            user_id: 1
-        }).then(function(token) {
-            res.json(token);
-        });
     });
 };

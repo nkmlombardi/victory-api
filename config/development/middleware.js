@@ -7,7 +7,7 @@ var passport        = require('passport');
 var morgan          = require('morgan');
 var bodyParser      = require('body-parser');
 var methodOverride  = require('method-override');
-var database        = require('../../app/models')(settings.database);
+var database        = require('../../database/models')(settings.database);
 
 module.exports = function(app) {
     // Serve static content
