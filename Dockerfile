@@ -22,6 +22,7 @@ RUN npm config --global set progress false && \
 # Make sure we are running the latest version of npm
 RUN npm install npm -g \
     --loglevel=warn
+RUN npm install -g nodemon
 
 # Create the directory we are going to install our app into, and make all
 # following RUN commands execute in that directory

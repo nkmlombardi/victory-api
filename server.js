@@ -24,9 +24,9 @@ config.middleware(app);
 routes(app);
 
 // Execute Server
-var server = app.listen(config.settings.port, function() {
+var server = app.listen(config.settings.node.port, function() {
     if (process.env.NODE_ENV != 'testing') {
-        console.log(('Listening on port ' + config.settings.port + ' in ' + process.env.NODE_ENV.toUpperCase() + ' mode.').green);
+        console.log(('Listening on port ' + config.settings.node.port + ' in ' + process.env.NODE_ENV.toUpperCase() + ' mode.').green);
     }
 
 }).on('error', function(e) {
@@ -42,5 +42,7 @@ server.endpoints = app._router.stack.filter(function(r) {
     }
     return;
 });
+
+console.log('blarg')
 
 module.exports = server;

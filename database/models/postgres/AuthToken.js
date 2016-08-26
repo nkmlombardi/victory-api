@@ -4,11 +4,11 @@ module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('AuthToken', {
         id: {
             type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDv4,
+            defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         user_id: {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.UUID,
             allowNull: false,
             references: {
                 model: 'User',

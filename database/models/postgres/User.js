@@ -8,7 +8,7 @@ module.exports = function(Sequelize, DataTypes) {
             primaryKey: true
         },
         email: {
-            type: DataTypes.UUIDV4,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 isEmail: true
@@ -16,7 +16,14 @@ module.exports = function(Sequelize, DataTypes) {
         },
         password: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            set: function(value) {
+                var salt = bcrypt.genSaltSync(10);
+                var encrypted = bcrypt.hashSync(value, salt);
+
+                this.setDataValue('password', encrypted);
+                this.setDataValue('salt', salt);
+            }
         },
         salt: {
             type: DataTypes.STRING,
@@ -25,22 +32,13 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         timestamps: true,
         paranoid: true,
-        underscored: true
-    }, {
+        underscored: true,
         classMethods: {
             associate: function(models) {
                 models.User.hasOne(models.AuthToken);
             }
         },
         instanceMethods: {
-            setPassword: function(password) {
-                return bcrypt.genSalt(10, function(err, salt) {
-                    return bcrypt.hash(password, salt, function(error, encrypted) {
-                        this.password = encrypted;
-                        this.salt = salt;
-                    });
-                });
-            },
             verifyPassword: function(password, callback) {
                 return bcrypt.compare(password, this.password, function(err, res) {
                     return callback(err, res);

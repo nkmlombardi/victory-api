@@ -9,6 +9,8 @@ var Promise = require("bluebird");
 
 module.exports = {
     getClientAll: function(req, res, next) {
+        console.log('We got this far')
+
         req.models.client.findAll().then(function(clients) {
             return res.json(clients);
         });

@@ -4,66 +4,46 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var BearerStrategy = require('passport-http-bearer').Strategy;
 
-passport.use(new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'pass'
-    },
-    function(username, password, callback) {
-        User.findOne({ username: username }, function(err, user) {
-            if (err) {
+passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true },
+    function(req, email, password, callback) {
+        req.models.User.findOne({ where: { email: email } })
+            .then(function(user) {
+                if (!user) { return callback(null, false); }
+
+                user.verifyPassword(password, function(err, isMatch) {
+                    // If error or password doesn't match
+                    if (err) { return callback(err); }
+                    if (!isMatch) { return callback(null, false); }
+
+                    // Success
+                    return callback(null, user);
+                });
+            }).error(function(error) {
                 return callback(err);
-            }
-
-            // No user found with that username
-            if (!user) {
-                return callback(null, false);
-            }
-
-            // Make sure the password is correct
-            user.verifyPassword(password, function(err, isMatch) {
-                if (err) {
-                    return callback(err);
-                }
-
-                // Password did not match
-                if (!isMatch) {
-                    return callback(null, false);
-                }
-
-                // Success
-                return callback(null, user);
             });
-        });
     }
 ));
 
+passport.use(new BearerStrategy({ passReqToCallback: true },
+    function(req, accessToken, callback) {
+        req.models.AuthToken.findOne({ where: { auth_token: accessToken }})
+            .then(function(token) {
+                if (!token) { return callback(null, false); }
 
-passport.use(new BearerStrategy(
-    function(accessToken, callback) {
-        Token.findOne({ value: accessToken }, function(err, token) {
-            if (err) {
-                return callback(err);
-            }
+                req.models.User.findOne({ where: { id: token.user_id }})
+                    .then(function(user) {
+                        if (!user) { return callback(null, false); }
 
-            // No token found
-            if (!token) {
-                return callback(null, false);
-            }
+                        // Simple example with no scope
+                        callback(null, user, { scope: '*' });
 
-            User.findOne({ _id: token.userId }, function(err, user) {
-                if (err) {
-                    return callback(err);
-                }
+                    }).error(function(error) {
+                        return callback(error);
+                    });
 
-                // No user found
-                if (!user) {
-                    return callback(null, false);
-                }
-
-                // Simple example with no scope
-                callback(null, user, { scope: '*' });
+            }).error(function(error) {
+                return callback(error);
             });
-        });
     }
 ));
 

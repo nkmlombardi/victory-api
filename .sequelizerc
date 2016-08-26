@@ -1,5 +1,4 @@
 var path = require('path');
-// var settings = require('./database/models').postgres;
 
 module.exports = {
     'config':           path.resolve('./database', 'config.js'),
