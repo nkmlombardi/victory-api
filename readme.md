@@ -22,9 +22,9 @@ MYSQL_PASS=onelink_dev
 
 # OneLink Postgres API Database
 POSTGRES_TYPE=postgres
-POSTGRES_HOST=127.0.0.1
+POSTGRES_HOST=172.18.0.2
 POSTGRES_PORT=5432
 POSTGRES_NAME=development
-POSTGRES_USER=admin
-POSTGRES_PASS=development
+POSTGRES_USER=development
+POSTGRES_PASSWORD=development
 ```
