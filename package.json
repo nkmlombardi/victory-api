@@ -22,7 +22,7 @@
     "pg": "^6.1.0",
     "plaid": "^1.0.10",
     "request": "^2.72.0",
-    "sequelize": "^4.0.0-1",
+    "sequelize": "^3.24.1",
     "sequelize-import": "^1.2.1"
   },
   "devDependencies": {

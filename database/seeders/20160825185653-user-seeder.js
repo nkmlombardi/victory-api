@@ -10,13 +10,7 @@ module.exports = {
                 email: 'adam.m.hogue@gmail.com',
                 password: 'apassword'
             }
-        ], { returning: true })
-            .success(function() {
-                console.log('Users inserted');
-            })
-            .error(function(error) {
-                console.log(error);
-            });
+        ]);
     },
 
     down: function(sequelize, models) {

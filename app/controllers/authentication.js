@@ -9,10 +9,6 @@ passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true
             .then(function(user) {
                 if (!user) { return callback(null, false); }
 
-                console.log(user);
-
-                user.setPassword('balls');
-
                 user.verifyPassword(password, function(err, isMatch) {
                     // If error or password doesn't match
                     if (err) { return callback(err); }
@@ -27,22 +23,24 @@ passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true
     }
 ));
 
-passport.use(new BearerStrategy(
-    function(accessToken, callback) {
-        Token.findOne({ value: accessToken }, function(err, token) {
-            // If errror or no token found
-            if (err) { return callback(err); }
-            if (!token) { return callback(null, false); }
-
-            User.findOne({ _id: token.userId }, function(err, user) {
-                // If error or no user found
+passport.use(new BearerStrategy({ passReqToCallback: true },
+    function(req, accessToken, callback) {
+        req.models.AuthToken.findOne({ auth_token: accessToken })
+            .then(function(err, token) {
+                // If error or no token found
                 if (err) { return callback(err); }
-                if (!user) { return callback(null, false); }
+                if (!token) { return callback(null, false); }
 
-                // Simple example with no scope
-                callback(null, user, { scope: '*' });
+                req.models.User.findOne({ id: token.user_id })
+                    .then(function(err, user) {
+                        // If error or no user found
+                        if (err) { return callback(err); }
+                        if (!user) { return callback(null, false); }
+
+                        // Simple example with no scope
+                        callback(null, user, { scope: '*' });
+                    });
             });
-        });
     }
 ));
 

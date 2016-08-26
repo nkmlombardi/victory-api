@@ -13,12 +13,7 @@ module.exports = function(app) {
 
 
     // Base Endpoint
-    app.route('/').get(function(req, res, next) {
-        req.models.plaidToken.findAll()
-            .then(function(users) {
-                res.json(users);
-            }).error(function(error) {
-                res.send(error);
-            });
+    app.route('/').get(controllers.auth.checkToken, function(req, res, next) {
+        res.json(req.user);
     });
 };
