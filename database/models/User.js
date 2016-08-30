@@ -27,6 +27,9 @@ module.exports = function(Sequelize, DataTypes) {
         },
         salt: {
             type: DataTypes.STRING
+        },
+        access_key: {
+            type: DataTypes.STRING
         }
     }, {
         timestamps: true,

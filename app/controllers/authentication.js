@@ -25,26 +25,26 @@ passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true
 
 passport.use(new BearerStrategy({ passReqToCallback: true },
     function(req, accessToken, callback) {
-        req.models.AuthToken.findOne({ auth_token: accessToken })
-            .then(function(err, token) {
-                // If error or no token found
-                if (err) { return callback(err); }
+        req.models.AuthToken.findOne({ where: { auth_token: accessToken }})
+            .then(function(token) {
                 if (!token) { return callback(null, false); }
 
-                req.models.User.findOne({ id: token.user_id })
-                    .then(function(err, user) {
-                        // If error or no user found
-                        if (err) { return callback(err); }
+                req.models.User.findOne({ where: { id: token.user_id }})
+                    .then(function(user) {
                         if (!user) { return callback(null, false); }
 
                         // Simple example with no scope
                         callback(null, user, { scope: '*' });
+
+                    }).error(function(error) {
+                        return callback(error);
                     });
+
+            }).error(function(error) {
+                return callback(error);
             });
     }
 ));
 
-module.exports = {
-    checkCredentials: passport.authenticate(['local'], { session: false }),
-    checkToken: passport.authenticate('bearer', { session: false })
-};
+exports.isAuthenticated = passport.authenticate(['local'], { session: false });
+exports.isBearerAuthenticated = passport.authenticate('bearer', { session: false });

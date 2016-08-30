@@ -1,13 +1,14 @@
-var path            = require('path');
-var express         = require('express');
-var helmet          = require('helmet');
-var settings        = require('./settings');
-var session         = require('express-session');
-var passport        = require('passport');
-var morgan          = require('morgan');
-var bodyParser      = require('body-parser');
-var methodOverride  = require('method-override');
-var database        = require('../../database/models')(settings.database);
+var path = require('path');
+var express = require('express');
+var helmet = require('helmet');
+var settings = require('./settings');
+var session = require('express-session');
+var passport = require('passport');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var database = require('../../database/models')(settings.database);
+var plaid = require('plaid');
 
 module.exports = function(app) {
     // Serve static content
@@ -15,7 +16,9 @@ module.exports = function(app) {
 
     // Parse the body of requests
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({ extended: true }));
+    app.use(bodyParser.urlencoded({
+        extended: true
+    }));
 
     // I have no idea what this does but it was in here
     app.use(methodOverride('X-HTTP-Method-Override'));
@@ -30,10 +33,18 @@ module.exports = function(app) {
     app.set('json spaces', 4);
 
     // Database Middleware
-    app.use(function (req, res, next) {
+    app.use(function(req, res, next) {
         req.models = database.models;
         next();
-    }),
+    });
+
+    app.use(function(req, res, next) {
+        req.plaid = new plaid.Client(
+            settings.plaid.client_id,
+            settings.plaid.secret_key,
+            settings.plaid.environment
+        );
+    })
 
     // Enable CORS to avoid Cross Domain Origin issues
     app.use(function(req, res, next) {
