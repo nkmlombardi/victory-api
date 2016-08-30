@@ -1,5 +1,10 @@
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('PlaidInstitution', {
+        id: {
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            primaryKey: true
+        },
         plaid_id: {
             type: DataTypes.STRING,
             allowNull: false,

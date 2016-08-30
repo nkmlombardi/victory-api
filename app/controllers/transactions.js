@@ -19,8 +19,13 @@ module.exports = {
 
     postTransaction: function(req, res, next) {
         req.models.PlaidTransaction.create({
-            email: req.body.email,
-            password: req.body.password
+            plaid_id: req.body.plaid_id,
+            user_id: req.body.user_id,
+            plaid_account_id: req.body.plaid_account_id,
+            name: req.body.name,
+            pending: req.body.pending,
+            category: req.body.category,
+            category_id: req.body.category_id
         }).then(function(transaction) {
             res.json(transaction);
         });
