@@ -15,7 +15,7 @@ module.exports = {
         client_id: process.env.PLAID_CLIENT_ID,
         secret_key: process.env.PLAID_SECRET_KEY,
         environment: process.env.PLAID_ENV
-    }
+    },
     keys: [
         'development'
     ],

@@ -7,7 +7,16 @@ module.exports = function(Sequelize, DataTypes) {
         },
         plaid_id: {
             type: DataTypes.STRING,
-            primaryKey: true
+            allowNull: false,
+            unique: true
+        },
+        plaid_item: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        plaid_user: {
+            type: DataTypes.STRING,
+            allowNull: false
         },
         user_id: {
             type: DataTypes.UUID,
@@ -24,16 +33,13 @@ module.exports = function(Sequelize, DataTypes) {
             allowNull: false
         },
         balance_available: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.DOUBLE
         },
         balance_current: {
-            type: DataTypes.INTEGER,
-            allowNull: false
+            type: DataTypes.DOUBLE
         },
         institution_type: {
-            type: DataTypes.STRING,
-            allowNull: false
+            type: DataTypes.STRING
         },
         type: {
             type: DataTypes.ENUM(
@@ -43,8 +49,7 @@ module.exports = function(Sequelize, DataTypes) {
                 "mortgage",
                 "brokerage",
                 "other"
-            ),
-            allowNull: false
+            )
         },
         subtype: {
             type: DataTypes.ENUM(
@@ -65,8 +70,7 @@ module.exports = function(Sequelize, DataTypes) {
                 "mutual_fund",
                 "prepaid",
                 "savings"
-            ),
-            allowNull: false
+            )
         }
     }, {
         timestamps: true,

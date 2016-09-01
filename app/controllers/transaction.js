@@ -1,5 +1,6 @@
 module.exports = {
     // Methods by an Administrator
+
     getTransactionAll: function(req, res, next) {
         req.models.PlaidTransaction.findAll()
             .then(function(transactions) {
@@ -31,17 +32,30 @@ module.exports = {
         });
     },
 
+
     // Methods run by a user on their own account
+
     /*
         Technically this method should never get called.
      */
     getSelfTransaction: function(req, res, next) {
         req.models.PlaidTransaction.findOne({
             where: {
+                id: req.params.id,
                 user_id: req.user.id
             }
         }).then(function(transaction) {
             res.json(transaction);
+        });
+    },
+
+    getSelfTransactionAll: function(req, res, next) {
+        req.models.PlaidTransaction.findAll({
+            where: {
+                user_id: req.user.id
+            }
+        }).then(function(transactions) {
+            res.json(transactions);
         });
     },
 
@@ -51,11 +65,10 @@ module.exports = {
         }, {
             fields: ['category_id'],
             where: {
-                id: id
+                id: req.params.id,
                 user_id: req.user.id
             }
-        });
-        .then(function(transaction) {
+        }).then(function(transaction) {
             res.json(transaction);
         });
     }

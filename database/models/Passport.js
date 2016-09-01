@@ -15,7 +15,7 @@ module.exports = function(Sequelize, DataTypes) {
         },
         auth_key: {
             type: DataTypes.UUID,
-            defaultValue: DataTypes.UUID.v4,
+            defaultValue: DataTypes.UUIDV4,
         },
         strategy: {
             type: DataTypes.STRING

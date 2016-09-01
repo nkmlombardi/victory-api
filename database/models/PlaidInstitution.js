@@ -8,7 +8,7 @@ module.exports = function(Sequelize, DataTypes) {
         plaid_id: {
             type: DataTypes.STRING,
             allowNull: false,
-            primaryKey: true
+            unique: true
         },
         user_id: {
             type: DataTypes.UUID,

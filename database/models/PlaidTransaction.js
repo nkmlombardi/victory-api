@@ -8,7 +8,7 @@ module.exports = function(Sequelize, DataTypes) {
         plaid_id: {
             type: DataTypes.STRING,
             allowNull: false,
-            primaryKey: true
+            unique: true
         },
         user_id: {
             type: DataTypes.UUID,
@@ -31,6 +31,12 @@ module.exports = function(Sequelize, DataTypes) {
         name: {
             type: DataTypes.STRING
         },
+        amount: {
+            type: DataTypes.INTEGER
+        },
+        date: {
+            type: DataTypes.DATEONLY
+        },
         pending: {
             type: DataTypes.BOOLEAN
         },
@@ -39,11 +45,10 @@ module.exports = function(Sequelize, DataTypes) {
         },
         category_id: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            references: {
-                model: 'PlaidCategories',
-                key: 'plaid_id'
-            }
+            // references: {
+            //     model: 'PlaidCategories',
+            //     key: 'plaid_id'
+            // }
         }
     }, {
         timestamps: true,

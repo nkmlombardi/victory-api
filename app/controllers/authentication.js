@@ -8,7 +8,6 @@ passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true
         req.models.User.findOne({ where: { email: email } })
             .then(function(user) {
                 if (!user) { return callback(null, false); }
-
                 user.verifyPassword(password, function(err, isMatch) {
                     // If error or password doesn't match
                     if (err) { return callback(err); }

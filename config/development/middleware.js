@@ -8,7 +8,9 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var database = require('../../database/models')(settings.database);
+var bluebird = require('bluebird');
 var plaid = require('plaid');
+bluebird.promisifyAll(plaid);
 
 module.exports = function(app) {
     // Serve static content
@@ -42,8 +44,9 @@ module.exports = function(app) {
         req.plaid = new plaid.Client(
             settings.plaid.client_id,
             settings.plaid.secret_key,
-            settings.plaid.environment
+            plaid.environments.tartan
         );
+        next();
     })
 
     // Enable CORS to avoid Cross Domain Origin issues

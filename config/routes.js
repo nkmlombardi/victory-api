@@ -1,5 +1,6 @@
 var settings = require('../config')().settings;
 var controllers = require('../app/controllers');
+var services = require('../app/services');
 var cache = require('apicache').options(settings.cache).middleware;
 
 
@@ -9,11 +10,17 @@ var cache = require('apicache').options(settings.cache).middleware;
  */
 module.exports = function(app) {
 
-    app.route('/authenticate').post(controllers.auth.checkCredentials, controllers.token.postToken);
+    app.route('/authenticate').post(controllers.auth.isAuthenticated, controllers.token.postSelfToken);
 
 
     // Base Endpoint
-    app.route('/').get(controllers.auth.checkToken, function(req, res, next) {
+    app.route('/').get(function(req, res, next) {
+        res.send('ok');
+    });
+
+    app.route('/bearer').get(controllers.auth.isBearerAuthenticated, function(req, res, next) {
         res.json(req.user);
     });
+
+    app.route('/plaid/transactions').post(controllers.auth.isBearerAuthenticated, controllers.user.postConnectSelfUser);
 };
