@@ -1,14 +1,14 @@
 module.exports = {
     // Methods by an Administrator
 
-    getTransactionAll: function(req, res, next) {
+    getAll: function(req, res, next) {
         req.models.PlaidTransaction.findAll()
             .then(function(transactions) {
                 res.json(transactions);
             });
     },
 
-    getTransaction: function(req, res, next) {
+    get: function(req, res, next) {
         req.models.PlaidTransaction.findOne({
             where: {
                 id: req.params.id
@@ -18,7 +18,7 @@ module.exports = {
         });
     },
 
-    postTransaction: function(req, res, next) {
+    post: function(req, res, next) {
         req.models.PlaidTransaction.create({
             plaid_id: req.body.plaid_id,
             user_id: req.body.user_id,
@@ -38,7 +38,7 @@ module.exports = {
     /*
         Technically this method should never get called.
      */
-    getSelfTransaction: function(req, res, next) {
+    getSelf: function(req, res, next) {
         req.models.PlaidTransaction.findOne({
             where: {
                 id: req.params.id,
@@ -49,7 +49,7 @@ module.exports = {
         });
     },
 
-    getSelfTransactionAll: function(req, res, next) {
+    getSelfAll: function(req, res, next) {
         req.models.PlaidTransaction.findAll({
             where: {
                 user_id: req.user.id
@@ -59,11 +59,20 @@ module.exports = {
         });
     },
 
-    patchSelfTransaction: function(req, res, next) {
-        req.models.PlaidTransaction.update({
-            category: req.body.category_id
-        }, {
-            fields: ['category_id'],
+    postSelf: function(req, res, next) {
+        req.models.PlaidTransaction.create(
+            req.body
+        ).then(function(account) {
+            res.json(account);
+        });
+    },
+
+    patchSelf: function(req, res, next) {
+        req.models.PlaidTransaction.update(req.body, {
+            fields: [
+                'category',
+                'category_id'
+            ],
             where: {
                 id: req.params.id,
                 user_id: req.user.id

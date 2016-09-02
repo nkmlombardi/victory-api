@@ -10,17 +10,31 @@ var cache = require('apicache').options(settings.cache).middleware;
  */
 module.exports = function(app) {
 
-    app.route('/authenticate').post(controllers.auth.isAuthenticated, controllers.token.postSelfToken);
+    /* Base Endpoint */
+    app.route('/').get(function(req, res, next) { res.send('ok'); });
 
+    /* Auth Token Resource */
+    app.route('/authenticate')
+        .post(controllers.auth.isCredential, controllers.token.postSelfToken);
 
-    // Base Endpoint
-    app.route('/').get(function(req, res, next) {
-        res.send('ok');
-    });
+    /* Transactions Resource */
+    app.route('/transactions/self')
+        .get(controllers.auth.isBearer, controllers.transaction.getSelfAll);
+    app.route('/transactions/self/:id')
+        .get(controllers.auth.isBearer, controllers.transaction.getSelf)
+        .patch(controllers.auth.isBearer, controllers.transaction.patchSelf);
 
-    app.route('/bearer').get(controllers.auth.isBearerAuthenticated, function(req, res, next) {
-        res.json(req.user);
-    });
+    /* Accounts Resource */
+    app.route('/accounts/self')
+        .get(controllers.auth.isBearer, controllers.account.getSelfAll);
+    app.route('/accounts/self/:id')
+        .get(controllers.auth.isBearer, controllers.account.getSelf)
+        .post(controllers.auth.isBearer, controllers.account.postSelf)
+        .patch(controllers.auth.isBearer, controllers.account.patchSelf);
 
-    app.route('/plaid/transactions').post(controllers.auth.isBearerAuthenticated, controllers.user.postConnectSelfUser);
+    /* Plaid Services */
+    app.route('/plaid/transactions')
+        .post(controllers.auth.isBearer, services.plaid.postSelfConnect);
+    app.route('/plaid/webhook')
+        .post(controllers.auth.isBearer, services.plaid.postWebhook);
 };

@@ -45,5 +45,5 @@ passport.use(new BearerStrategy({ passReqToCallback: true },
     }
 ));
 
-exports.isAuthenticated = passport.authenticate(['local'], { session: false });
-exports.isBearerAuthenticated = passport.authenticate('bearer', { session: false });
+exports.isCredential = passport.authenticate(['local'], { session: false });
+exports.isBearer = passport.authenticate('bearer', { session: false });

@@ -1,3 +1,3 @@
 module.exports = {
-    plaid: require('./plaidTransactions')
+    plaid: require('./plaid')
 };

@@ -12,6 +12,9 @@ module.exports = function(Sequelize, DataTypes) {
             allowNull: false,
             validate: {
                 isEmail: true
+            },
+            set: function(value) {
+                this.setDataValue('email', value.toLowerCase());
             }
         },
         password: {
@@ -47,6 +50,12 @@ module.exports = function(Sequelize, DataTypes) {
                 return bcrypt.compare(password, this.password, function(err, res) {
                     return callback(err, res);
                 });
+            },
+            getPublicAttributes: function() {
+                return {
+                    id: this.id,
+                    email: this.email
+                }
             }
         }
     });
