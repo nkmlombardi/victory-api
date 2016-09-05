@@ -4,9 +4,18 @@ module.exports = {
             user_id: req.user.id
         }).then(function(token) {
             res.json({
-                token: token,
-                user: req.user.getPublicAttributes()
+                data: {
+                    token: token.getPublicAttributes(),
+                    user: req.user.getPublicAttributes()
+                }
             });
+        }).catch(function(error) {
+            res.json({
+                error: {
+                    code: 500,
+                    message: error
+                }
+            })
         });
     },
 

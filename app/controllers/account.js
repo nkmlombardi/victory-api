@@ -1,22 +1,22 @@
 module.exports = {
     // Methods by an Administrator
 
-    getAll: function(req, res, next) {
-        req.models.PlaidAccount.findAll()
-            .then(function(account) {
-                res.json(account);
-            });
-    },
-
-    get: function(req, res, next) {
-        req.models.PlaidAccount.findOne({
-            where: {
-                id: req.params.id
-            }
-        }).then(function(account) {
-            res.json(account);
-        });
-    },
+    // getAll: function(req, res, next) {
+    //     req.models.PlaidAccount.findAll()
+    //         .then(function(account) {
+    //             res.json(account);
+    //         });
+    // },
+    //
+    // get: function(req, res, next) {
+    //     req.models.PlaidAccount.findOne({
+    //         where: {
+    //             id: req.params.id
+    //         }
+    //     }).then(function(account) {
+    //         res.json(account);
+    //     });
+    // },
 
     // post: function(req, res, next) {
     //     req.models.PlaidAccount.create({

@@ -5,6 +5,7 @@ var settings = require('./settings');
 var session = require('express-session');
 var passport = require('passport');
 var morgan = require('morgan');
+var cors = require('cors');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var database = require('../../database/models')(settings.database);
@@ -50,9 +51,10 @@ module.exports = function(app) {
     })
 
     // Enable CORS to avoid Cross Domain Origin issues
+    app.use(cors());
     app.use(function(req, res, next) {
-        res.header("Access-Control-Allow-Origin", req.headers.origin);
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, apikey");
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
         res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
         next();
     });
