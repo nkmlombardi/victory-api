@@ -48,7 +48,7 @@ module.exports = {
             password: req.body.password
         }, {
             list: true,
-            webhook: 'http://192.168.99.100:3000/plaid/webhook/' + req.user.id
+            webhook: req.plaid.webhook + req.user.id
         }, function(err, mfaRes, response) {
             // mfaRes.mfa is a list of send_methods
             req.plaid.stepConnectUser(mfaRes.access_token, null, {
@@ -96,8 +96,11 @@ module.exports = {
                                 })
                             ).then(function(transactions) {
                                 res.json({
-                                    accounts: accounts,
-                                    transactions: transactions
+                                    status: req.status.success,
+                                    data: {
+                                        accounts: accounts,
+                                        transactions: transactions
+                                    }
                                 });
                             });
                         });

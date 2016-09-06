@@ -33,7 +33,7 @@ module.exports = function(app) {
         .patch(controllers.auth.isBearer, controllers.account.patchSelf);
 
     /* Plaid Services */
-    app.route('/v1/plaid/transactions')
+    app.route('/v1/plaid/connect')
         .post(controllers.auth.isBearer, services.plaid.postSelfConnect);
     app.route('/v1/plaid/webhook')
         .post(controllers.auth.isBearer, services.plaid.postWebhook);

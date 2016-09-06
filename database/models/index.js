@@ -24,8 +24,10 @@ module.exports = function(settings) {
     Object.keys(database.models).forEach(function(modelName) {
         if ("associate" in database.models[modelName]) {
             database.models[modelName].associate(database.models);
+            console.log(modelName + ' associations generated.');
         }
     });
+
 
     database.sequelize.sync({ force: true }).then(function() {
         console.log('Models force synced to database.');

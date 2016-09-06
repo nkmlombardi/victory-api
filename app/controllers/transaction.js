@@ -45,7 +45,10 @@ module.exports = {
                 user_id: req.user.id
             }
         }).then(function(transaction) {
-            res.json(transaction);
+            res.json({
+                status: req.status.success,
+                data: transaction
+            });
         });
     },
 
@@ -53,17 +56,26 @@ module.exports = {
         req.models.PlaidTransaction.findAll({
             where: {
                 user_id: req.user.id
-            }
+            },
+            include: [
+                { model: req.models.PlaidAccount }
+            ]
         }).then(function(transactions) {
-            res.json(transactions);
+            res.json({
+                status: req.status.success,
+                data: transactions
+            });
         });
     },
 
     postSelf: function(req, res, next) {
         req.models.PlaidTransaction.create(
             req.body
-        ).then(function(account) {
-            res.json(account);
+        ).then(function(transaction) {
+            res.json({
+                status: req.status.success,
+                data: transaction
+            });
         });
     },
 
@@ -78,7 +90,10 @@ module.exports = {
                 user_id: req.user.id
             }
         }).then(function(transaction) {
-            res.json(transaction);
+            res.json({
+                status: req.status.success,
+                data: transaction
+            });
         });
     }
 };

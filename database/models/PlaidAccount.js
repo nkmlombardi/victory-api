@@ -75,12 +75,16 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         timestamps: true,
         paranoid: true,
-        underscored: true
-    }, {
+        underscored: true,
         classMethods: {
             associate: function(models) {
-                models.PlaidAccount.belongsTo(models.User);
-                models.PlaidAccount.hasMany(models.PlaidTransaction);
+                // models.PlaidAccount.belongsTo(models.User);
+                // models.PlaidAccount.hasMany(models.PlaidTransaction);
+
+                models.PlaidAccount.hasMany(models.PlaidTransaction, {
+                    as: 'transactions',
+                    foreignKey: 'plaid_account_id'
+                });
             }
         }
     });
