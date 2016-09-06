@@ -9,10 +9,11 @@ var Promise = require("bluebird");
 
 module.exports = {
     getClientAll: function(req, res, next) {
-        console.log('We got this far')
-
         req.models.client.findAll().then(function(clients) {
-            return res.json(clients);
+            return res.json({
+                status: req.status.success,
+                data: clients
+            });
         });
     },
 
@@ -27,15 +28,22 @@ module.exports = {
                     }
                 }
             }
-        }).then(function(data) {
-            res.json(data);
+        }).then(function(clientsTree) {
+            res.json({
+                status: req.status.success,
+                data: clientsTree
+            });
         });
     },
 
     getClient: function(req, res, next) {
-        req.models.client.findById(req.params.id).then(function(clients) {
-            return res.json(clients);
-        });
+        req.models.client.findById(req.params.id)
+            .then(function(client) {
+                return res.json({
+                    status: req.status.success,
+                    data: client
+                });
+            });
     },
 
     getClientTree: function(req, res, next) {
@@ -50,15 +58,21 @@ module.exports = {
                     }
                 }
             }
-        }).then(function(data) {
-            res.json(data);
+        }).then(function(clientTree) {
+            res.json({
+                status: req.status.success,
+                data: clientTree
+            });
         });
     },
 
     getClientProjects: function(req, res, next) {
         req.models.client.findById(req.params.id).then(function(client) {
             client.getProjects().then(function(projects) {
-                return res.json(projects);
+                return res.json({
+                    status: req.status.success,
+                    data: projects
+                });
             });
         });
     },
@@ -78,7 +92,10 @@ module.exports = {
                     }
                 }
             }).then(function(origins) {
-                res.json(origins);
+                res.json({
+                    status: req.status.success,
+                    data: origins
+                });
             });
         });
     },
@@ -95,7 +112,10 @@ module.exports = {
             type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
-            return res.json(projects);
+            return res.json({
+                status: req.status.success,
+                data: projects
+            });
         });
     },
 
@@ -113,7 +133,10 @@ module.exports = {
             type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
-            return res.json(projects);
+            return res.json({
+                status: req.status.success,
+                data: projects
+            });
         });
     },
 
@@ -133,7 +156,10 @@ module.exports = {
             type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
-            return res.json(projects);
+            return res.json({
+                status: req.status.success,
+                data: projects
+            });
         });
     }
 };
