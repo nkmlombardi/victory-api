@@ -34,6 +34,14 @@ module.exports = function(app) {
         next();
     }),
 
+    app.use(function(req, res, next) {
+        req.status = {
+            success: 'success',
+            error: 'error'
+        };
+        next();
+    });
+
     // Enable CORS to avoid Cross Domain Origin issues
     app.use(function(req, res, next) {
         res.header("Access-Control-Allow-Origin", req.headers.origin);
@@ -41,13 +49,6 @@ module.exports = function(app) {
         res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, OPTIONS");
         next();
     });
-
-    // Use express session support since OAuth2orize requires it
-    app.use(session({
-        secret: 'Super Secret Session Key',
-        saveUninitialized: true,
-        resave: true
-    }));
 
     // Use the passport package
     app.use(passport.initialize());
