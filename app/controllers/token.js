@@ -5,7 +5,7 @@ module.exports = {
         }).then(function(token) {
             res.json({
                 data: {
-                    token: token.getPublicAttributes(),
+                    token: token,
                     user: req.user.getPublicAttributes()
                 }
             });

@@ -31,15 +31,6 @@ module.exports = function(Sequelize, DataTypes) {
             associate: function(models) {
                 models.AuthToken.belongsTo(models.User);
             }
-        },
-        instanceMethods: {
-            getPublicAttributes: function() {
-                return {
-                    id: this.id,
-                    user_id: this.user_id,
-                    auth_token: this.auth_token
-                }
-            }
         }
     });
 };
