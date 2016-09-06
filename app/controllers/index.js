@@ -9,7 +9,6 @@ module.exports = {
     datacenter: require('./datacenter'),
     cluster:    require('./cluster'),
     server:     require('./server'),
-    user:       require('./user'),
 
     // Authentication
     auth:       require('./authentication'),
