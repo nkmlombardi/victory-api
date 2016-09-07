@@ -59,7 +59,6 @@ module.exports = function(Sequelize, DataTypes) {
                 // models.PlaidTransaction.belongsTo(models.User);
                 // models.PlaidTransaction.belongsTo(models.PlaidCategory);
                 models.PlaidTransaction.belongsTo(models.PlaidAccount, {
-                    as: 'account',
                     foreignKey: 'plaid_account_id',
                     targetKey: 'plaid_id'
                 });

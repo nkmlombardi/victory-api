@@ -20,6 +20,8 @@ module.exports = function(app) {
     /* Transactions Resource */
     app.route('/v1/transactions/self')
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAll);
+    app.route('/v1/transactions/self/accounts')
+        .get(controllers.auth.isBearer, controllers.transaction.getSelfAllWithAccounts);
     app.route('/v1/transactions/self/:id')
         .get(controllers.auth.isBearer, controllers.transaction.getSelf)
         .patch(controllers.auth.isBearer, controllers.transaction.patchSelf);

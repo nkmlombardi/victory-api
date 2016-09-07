@@ -81,10 +81,10 @@ module.exports = function(Sequelize, DataTypes) {
                 // models.PlaidAccount.belongsTo(models.User);
                 // models.PlaidAccount.hasMany(models.PlaidTransaction);
 
-                models.PlaidAccount.hasMany(models.PlaidTransaction, {
-                    as: 'transactions',
-                    foreignKey: 'plaid_account_id'
-                });
+                // models.PlaidAccount.hasMany(models.PlaidTransaction, {
+                //     as: 'transactions',
+                //     foreignKey: 'plaid_account_id'
+                // });
             }
         }
     });

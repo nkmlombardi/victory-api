@@ -56,6 +56,19 @@ module.exports = {
         req.models.PlaidTransaction.findAll({
             where: {
                 user_id: req.user.id
+            }
+        }).then(function(transactions) {
+            res.json({
+                status: req.status.success,
+                data: transactions
+            });
+        });
+    },
+
+    getSelfAllWithAccounts: function(req, res, next) {
+        req.models.PlaidTransaction.findAll({
+            where: {
+                user_id: req.user.id
             },
             include: [
                 { model: req.models.PlaidAccount }
