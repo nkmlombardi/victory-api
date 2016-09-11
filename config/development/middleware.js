@@ -12,6 +12,7 @@ var database = require('../../database/models')(settings.database);
 var bluebird = require('bluebird');
 var plaid = require('plaid');
 bluebird.promisifyAll(plaid);
+var errorHandler = require('../../app/services/error');
 
 module.exports = function(app) {
     // Serve static content
@@ -41,6 +42,7 @@ module.exports = function(app) {
             success: "success",
             error: "error"
         };
+        req.error = errorHandler;
         next();
     });
 

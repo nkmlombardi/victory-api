@@ -34,50 +34,62 @@ module.exports = {
 
 
     // Methods run by a user on their own account
-    getSelf: function(req, res, next) {
-        req.models.PlaidAccount.findOne({
-            where: {
-                id: req.params.id,
-                user_id: req.user.id
-            }
-        }).then(function(account) {
-            res.json(account);
-        });
-    },
+    // getSelf: function(req, res, next) {
+    //     req.models.PlaidAccount.findOne({
+    //         where: {
+    //             id: req.params.id,
+    //             user_id: req.user.id
+    //         }
+    //     }).then(function(account) {
+    //         res.json({
+    //             status: req.status.success,
+    //             data: account
+    //         });
+    //     });
+    // },
 
     getSelfAll: function(req, res, next) {
         req.models.PlaidAccount.findAll({
             where: {
                 user_id: req.user.id
             }
-        }).then(function(account) {
-            res.json(account);
+        }).then(function(accounts) {
+            res.json({
+                status: req.status.success,
+                data: accounts
+            });
         });
     },
 
-    postSelf: function(req, res, next) {
-        req.models.PlaidAccount.create(
-            req.body
-        ).then(function(account) {
-            res.json(account);
-        });
-    },
-
-    patchSelf: function(req, res, next) {
-        req.models.PlaidAccount.update(req.body, {
-            fields: [
-                'balance_available',
-                'balance_current',
-                'institution_type',
-                'type',
-                'subtype'
-            ],
-            where: {
-                id: req.params.id,
-                user_id: req.user.id
-            }
-        }).then(function(account) {
-            res.json(account);
-        });
-    }
+    // postSelf: function(req, res, next) {
+    //     req.models.PlaidAccount.create(
+    //         req.body
+    //     ).then(function(account) {
+    //         res.json({
+    //             status: req.status.success,
+    //             data: account
+    //         });
+    //     });
+    // },
+    //
+    // patchSelf: function(req, res, next) {
+    //     req.models.PlaidAccount.update(req.body, {
+    //         fields: [
+    //             'balance_available',
+    //             'balance_current',
+    //             'institution_type',
+    //             'type',
+    //             'subtype'
+    //         ],
+    //         where: {
+    //             id: req.params.id,
+    //             user_id: req.user.id
+    //         }
+    //     }).then(function(account) {
+    //         res.json({
+    //             status: req.status.success,
+    //             data: account
+    //         });
+    //     });
+    // }
 };

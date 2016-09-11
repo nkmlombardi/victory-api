@@ -85,6 +85,52 @@ module.exports = function(Sequelize, DataTypes) {
                 //     as: 'transactions',
                 //     foreignKey: 'plaid_account_id'
                 // });
+            },
+
+            // Take object from Plaid and map it to our model format
+            fromPlaidObject: function(account, user) {
+                return {
+                    plaid_id: account._id,
+                    plaid_item: account._item,
+                    plaid_user: account._user,
+                    user_id: user.id,
+                    name: account.meta.name,
+                    balance_available: account.balance.available,
+                    balance_current: account.balance.current,
+                    institution_type: account.institution_type,
+                    type: account.type,
+                    subtype: account.subtype
+                };
+            },
+
+            // Take array from Plaid and map it to our models format
+            fromPlaidArray: function(accounts, user) {
+                accounts.map(function(account) {
+                    return {
+                        plaid_id: account._id,
+                        plaid_item: account._item,
+                        plaid_user: account._user,
+                        user_id: user.id,
+                        name: account.meta.name,
+                        balance_available: account.balance.available,
+                        balance_current: account.balance.current,
+                        institution_type: account.institution_type,
+                        type: account.type,
+                        subtype: account.subtype
+                    };
+                });
+            },
+
+            upsertWithReturn: function(options) {
+                return this.findOrCreate(options).spread(function(row, created) {
+                    if (created) {
+                        return row;
+                    } else {
+                        return row.updateAttributes(options.defaults).then(function(updated) {
+                            return updated;
+                        });
+                    }
+                });
             }
         }
     });

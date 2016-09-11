@@ -22,21 +22,23 @@ module.exports = function(app) {
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAll);
     app.route('/v1/transactions/self/accounts')
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAllWithAccounts);
-    app.route('/v1/transactions/self/:id')
-        .get(controllers.auth.isBearer, controllers.transaction.getSelf)
-        .patch(controllers.auth.isBearer, controllers.transaction.patchSelf);
+    // app.route('/v1/transactions/self/:id')
+    //     .get(controllers.auth.isBearer, controllers.transaction.getSelf)
+    //     .patch(controllers.auth.isBearer, controllers.transaction.patchSelf);
 
     /* Accounts Resource */
     app.route('/v1/accounts/self')
         .get(controllers.auth.isBearer, controllers.account.getSelfAll);
-    app.route('/v1/accounts/self/:id')
-        .get(controllers.auth.isBearer, controllers.account.getSelf)
-        .post(controllers.auth.isBearer, controllers.account.postSelf)
-        .patch(controllers.auth.isBearer, controllers.account.patchSelf);
+    // app.route('/v1/accounts/self/:id')
+    //     .get(controllers.auth.isBearer, controllers.account.getSelf)
+    //     .post(controllers.auth.isBearer, controllers.account.postSelf)
+    //     .patch(controllers.auth.isBearer, controllers.account.patchSelf);
 
     /* Plaid Services */
     app.route('/v1/plaid/connect')
-        .post(controllers.auth.isBearer, services.plaid.postSelfConnect);
+        .post(controllers.auth.isBearer, services.plaid.connect);
+    app.route('/v1/plaid/exchange')
+        .post(controllers.auth.isBearer, services.plaid.exchange);
     app.route('/v1/plaid/webhook')
-        .post(controllers.auth.isBearer, services.plaid.postWebhook);
+        .post(controllers.auth.isBearer, services.plaid.webhook);
 };
