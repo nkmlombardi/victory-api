@@ -62,7 +62,29 @@ module.exports = function(Sequelize, DataTypes) {
                     foreignKey: 'plaid_account_id',
                     targetKey: 'plaid_id'
                 });
-            }
+            },
+
+            // Take object from Plaid and map it to our model format
+            fromPlaidObject: function(transaction, user) {
+                return {
+                    plaid_id: transaction._id,
+                    plaid_account_id: transaction._account,
+                    user_id: req.user.id,
+                    name: transaction.name,
+                    amount: transaction.amount,
+                    date: transaction.date,
+                    pending: transaction.pending,
+                    category: transaction.category,
+                    category_id: transaction.category_id
+                };
+            },
+
+            // Take array from Plaid and map it to our models format
+            fromPlaidArray: function(transactions, user) {
+                accounts.map(function(transaction) {
+                    return this.fromPlaidObject(transaction, user);
+                });
+            },
         }
     });
 };

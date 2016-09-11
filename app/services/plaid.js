@@ -63,37 +63,22 @@ module.exports = {
                     }, {
                         fields: ['access_token'],
                         where: { id: req.user.id }
+
+                    // Persist Plaid Accounts to database
                     }).then(function(user) {
                         req.models.PlaidAccount.bulkCreate(
-                            data.accounts.map(function(account) {
-                                return {
-                                    plaid_id: account._id,
-                                    plaid_item: account._item,
-                                    plaid_user: account._user,
-                                    user_id: req.user.id,
-                                    name: account.meta.name,
-                                    balance_available: account.balance.available,
-                                    balance_current: account.balance.current,
-                                    institution_type: account.institution_type,
-                                    type: account.type,
-                                    subtype: account.subtype
-                                }
-                            })
+                            req.models.PlaidAccount.fromPlaidArray(
+                                data.accounts, req.user
+                            )
+
+                        // Persist Plaid Transactions to database
                         ).then(function(accounts) {
                             req.models.PlaidTransaction.bulkCreate(
-                                data.transactions.map(function(transaction) {
-                                    return {
-                                        plaid_id: transaction._id,
-                                        plaid_account_id: transaction._account,
-                                        user_id: req.user.id,
-                                        name: transaction.name,
-                                        amount: transaction.amount,
-                                        date: transaction.date,
-                                        pending: transaction.pending,
-                                        category: transaction.category,
-                                        category_id: transaction.category_id
-                                    }
-                                })
+                                req.models.PlaidTransactions.fromPlaidArray(
+                                    data.transactions, req.user
+                                )
+
+                            // Return Accounts & Transactions
                             ).then(function(transactions) {
                                 res.json({
                                     status: req.status.success,
@@ -149,7 +134,9 @@ module.exports = {
                             where: {
                                 plaid_id: account._id
                             },
-                            defaults: req.models.PlaidAccount.fromPlaidObject(account, req.user)
+                            defaults: req.models.PlaidAccount.fromPlaidObject(
+                                account, req.user
+                            )
                         });
                     })).then(function(accounts) {
                         res.json({
