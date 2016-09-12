@@ -102,6 +102,7 @@ module.exports = {
     */
     exchange: function(req, res, next) {
         var public_token = req.body.public_token;
+        var returning = req.body.returning;
 
         // Exchange a public_token for a Plaid access_token
         req.plaid.exchangeToken(public_token, function(err, exchangeTokenRes) {
@@ -141,7 +142,9 @@ module.exports = {
                     })).then(function(accounts) {
                         res.json({
                             status: req.status.success,
-                            accounts: accounts
+                            data: (returning ? accounts : {
+                                updated: true
+                            })
                         });
                     });
                 });
