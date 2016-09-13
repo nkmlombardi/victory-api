@@ -1,4 +1,4 @@
-var treebuilder = require('../lib/treebuilder.twostep');
+var treebuilder = require('../lib/treebuilder/treebuilder.twostep');
 var Promise = require("bluebird");
 
 /*
@@ -9,12 +9,18 @@ var Promise = require("bluebird");
 
 module.exports = {
     getClientAll: function(req, res, next) {
-        req.models.client.findAll().then(function(clients) {
-            return res.json({
-                status: req.status.success,
-                data: clients
+        req.models.client.findAll()
+            .then(function(clients) {
+                return res.json({
+                    status: req.status.success,
+                    data: clients
+                });
+            }).error(function(error) {
+                return res.json({
+                    status: req.status.error,
+                    message: error
+                })
             });
-        });
     },
 
     getClientAllTree: function(req, res, next) {

@@ -1,5 +1,6 @@
 var settings = require('./index')().settings;
 var controllers = require('../app/controllers');
+var collectors = require('../app/collectors');
 var cache = require('apicache').options(settings.cache).middleware;
 
 
@@ -124,6 +125,7 @@ module.exports = function(app) {
             app.route('/v1/servers/:id/origins')                .get(controllers.auth.isBearerAuthenticated,      cache('1 hour'),    controllers.server.getServerOrigins);
             app.route('/v1/servers/:id/targets')                .get(controllers.auth.isBearerAuthenticated,      cache('1 hour'),    controllers.server.getServerTargets);
 
+
         // User Resource
         app.route('/v1/users')                                      .get(controllers.auth.isBearerAuthenticated,       cache('1 hour'),      controllers.user.getUsers);
         app.route('/v1/users/:id')                                 .get(controllers.auth.isBearerAuthenticated,       cache('1 hour'),      controllers.user.getUser);
@@ -131,5 +133,11 @@ module.exports = function(app) {
         app.route('/v1/users')                                      .post(controllers.auth.isBearerAuthenticated,       cache('1 hour'),      controllers.user.postUser);
         app.route('/v1/users/:id')                                 .patch(controllers.auth.isBearerAuthenticated,       cache('1 hour'),      controllers.user.patchUser);
         app.route('/v1/users/:id')                                 .delete(controllers.auth.isBearerAuthenticated,       cache('1 hour'),      controllers.user.deleteUser);
+
+
+        // Supercollector Endpoints
+        app.route('/collector/statuscake').post(collectors.statusCake.webhook);
+        // app.route('/collector/nagios').post(collectors.nagios);
+        // app.route('/collector/onelink').post(collectors.onelink);
 
 };
