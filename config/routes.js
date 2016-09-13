@@ -17,6 +17,11 @@ module.exports = function(app) {
     app.route('/v1/authenticate')
         .post(controllers.auth.isCredential, controllers.token.postSelfToken);
 
+
+    /* Users Endpoint */
+    app.route('/v1/users')
+        .post(controllers.user.postUser);
+
     /* Transactions Resource */
     app.route('/v1/transactions/self')
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAll);
