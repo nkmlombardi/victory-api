@@ -1,4 +1,4 @@
-var treebuilder = require('../lib/treebuilder.twostep');
+var treebuilder = require('../lib/treebuilder/treebuilder.twostep');
 var Promise = require("bluebird");
 
 module.exports = {

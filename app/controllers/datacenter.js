@@ -1,4 +1,4 @@
-var treebuilder = require('../lib/treebuilder.sync');
+var treebuilder = require('../lib/treebuilder/treebuilder.sync');
 var Promise = require("bluebird");
 
 module.exports = {

@@ -1,5 +1,6 @@
 var settings = require('./index')().settings;
 var controllers = require('../app/controllers');
+var collectors = require('../app/collectors');
 var cache = require('apicache').options(settings.cache).middleware;
 
 
@@ -123,5 +124,11 @@ module.exports = function(app) {
             app.route('/v1/servers/:id/projects')               .get(controllers.auth.isBearerAuthenticated,      cache('1 hour'),    controllers.server.getServerProjects);
             app.route('/v1/servers/:id/origins')                .get(controllers.auth.isBearerAuthenticated,      cache('1 hour'),    controllers.server.getServerOrigins);
             app.route('/v1/servers/:id/targets')                .get(controllers.auth.isBearerAuthenticated,      cache('1 hour'),    controllers.server.getServerTargets);
+
+
+    // Supercollector Endpoints
+        app.route('/collector/statuscake').post(collectors.statusCake.webhook);
+        // app.route('/collector/nagios').post(collectors.nagios);
+        // app.route('/collector/onelink').post(collectors.onelink);
 
 };

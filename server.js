@@ -7,15 +7,17 @@ global.rootRequire = function(name) {
 }
 
 // Global Dependencies
-var express     = require('express');
-var colors      = require('colors')
+var express = require('express');
+var colors = require('colors')
 
 // Configuration
-var config      = require('./config')();
-var routes      = require('./config/routes');
+var config = require('./config')();
+var routes = require('./config/routes');
 
 // Initialize Server
 var app = express();
+var httpServer = require('http').createServer(app);
+var io = require('socket.io')(httpServer);
 
 // Configure Middleware
 config.middleware(app);
@@ -24,7 +26,7 @@ config.middleware(app);
 routes(app);
 
 // Execute Server
-var server = app.listen(config.settings.node.port, function() {
+var server = httpServer.listen(config.settings.node.port, function() {
     if (process.env.NODE_ENV != 'testing') {
         console.log(('Listening on port ' + config.settings.node.port + ' in ' + process.env.NODE_ENV.toUpperCase() + ' mode.').green);
     }
@@ -42,7 +44,5 @@ server.endpoints = app._router.stack.filter(function(r) {
     }
     return;
 });
-
-console.log('blarg')
 
 module.exports = server;
