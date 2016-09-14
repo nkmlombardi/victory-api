@@ -69,7 +69,7 @@ module.exports = function(Sequelize, DataTypes) {
                 return {
                     plaid_id: transaction._id,
                     plaid_account_id: transaction._account,
-                    user_id: req.user.id,
+                    user_id: user.id,
                     name: transaction.name,
                     amount: transaction.amount,
                     date: transaction.date,
@@ -81,7 +81,7 @@ module.exports = function(Sequelize, DataTypes) {
 
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(transactions, user) {
-                accounts.map(function(transaction) {
+                transactions.map(function(transaction) {
                     return this.fromPlaidObject(transaction, user);
                 });
             },

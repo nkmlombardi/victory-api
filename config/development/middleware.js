@@ -19,10 +19,10 @@ module.exports = function(app) {
     app.use(express.static(path.join(settings.path, 'public')));
 
     // Parse the body of requests
-    app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
         extended: true
     }));
+    app.use(bodyParser.json());
 
     // I have no idea what this does but it was in here
     app.use(methodOverride('X-HTTP-Method-Override'));

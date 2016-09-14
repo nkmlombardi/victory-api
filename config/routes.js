@@ -11,7 +11,13 @@ var cache = require('apicache').options(settings.cache).middleware;
 module.exports = function(app) {
 
     /* Base Endpoint */
-    app.route('/').get(function(req, res, next) { res.send('ok'); });
+    app.route('/')
+        .get(function(req, res, next) {
+            res.send('ok');
+        })
+        .post(function(req, res, next) {
+            res.json(req.body);
+        });
 
     /* Auth Token Resource */
     app.route('/v1/authenticate')
@@ -44,6 +50,6 @@ module.exports = function(app) {
         .post(controllers.auth.isBearer, services.plaid.connect);
     app.route('/v1/plaid/exchange')
         .post(controllers.auth.isBearer, services.plaid.exchange);
-    app.route('/v1/plaid/webhook')
-        .post(controllers.auth.isBearer, services.plaid.webhook);
+    app.route('/v1/plaid/webhook/:id')
+        .post(services.plaid.webhook);
 };
