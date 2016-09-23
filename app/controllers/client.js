@@ -1,25 +1,20 @@
 var treebuilder = require('../lib/treebuilder/treebuilder.twostep');
-var Promise = require("bluebird");
-
-/*
-    This resource does not include an endpoint to retrieve the Client's relation
-    to Servers as there is no way to determine which Servers a Client exists on
-    within a group of servers behind a load balancer, AKA a Cluster.
-*/
 
 module.exports = {
     getClientAll: function(req, res, next) {
         req.models.client.findAll()
             .then(function(clients) {
-                return res.json({
-                    status: req.status.success,
-                    data: clients
-                });
+                return res.status(req.httpStatus.OK)
+                    .json({
+                        status: req.status.success,
+                        data: clients
+                    });
             }).error(function(error) {
-                return res.json({
-                    status: req.status.error,
-                    message: error
-                })
+                return res.status(req.httpStatus.INTERNAL_SERVER_ERROR)
+                    .json({
+                        status: req.status.error,
+                        message: error
+                    });
             });
     },
 
@@ -35,20 +30,22 @@ module.exports = {
                 }
             }
         }).then(function(clientsTree) {
-            res.json({
-                status: req.status.success,
-                data: clientsTree
-            });
+            res.status(req.httpStatus.OK)
+                .json({
+                    status: req.status.success,
+                    data: clientsTree
+                });
         });
     },
 
     getClient: function(req, res, next) {
         req.models.client.findById(req.params.id)
             .then(function(client) {
-                return res.json({
-                    status: req.status.success,
-                    data: client
-                });
+                return res.status(req.httpStatus.OK)
+                    .json({
+                        status: req.status.success,
+                        data: client
+                    });
             });
     },
 
@@ -65,20 +62,22 @@ module.exports = {
                 }
             }
         }).then(function(clientTree) {
-            res.json({
-                status: req.status.success,
-                data: clientTree
-            });
+            res.status(req.httpStatus.OK)
+                .json({
+                    status: req.status.success,
+                    data: clientTree
+                });
         });
     },
 
     getClientProjects: function(req, res, next) {
         req.models.client.findById(req.params.id).then(function(client) {
             client.getProjects().then(function(projects) {
-                return res.json({
-                    status: req.status.success,
-                    data: projects
-                });
+                return res.status(req.httpStatus.OK)
+                    .json({
+                        status: req.status.success,
+                        data: projects
+                    });
             });
         });
     },
@@ -98,10 +97,11 @@ module.exports = {
                     }
                 }
             }).then(function(origins) {
-                res.json({
-                    status: req.status.success,
-                    data: origins
-                });
+                res.status(req.httpStatus.OK)
+                    .json({
+                        status: req.status.success,
+                        data: origins
+                    });
             });
         });
     },
@@ -118,10 +118,11 @@ module.exports = {
             type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
-            return res.json({
-                status: req.status.success,
-                data: projects
-            });
+            return res.status(req.httpStatus.OK)
+                .json({
+                    status: req.status.success,
+                    data: projects
+                });
         });
     },
 
@@ -139,10 +140,11 @@ module.exports = {
             type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
-            return res.json({
-                status: req.status.success,
-                data: projects
-            });
+            return res.status(req.httpStatus.OK)
+                .json({
+                    status: req.status.success,
+                    data: projects
+                });
         });
     },
 
@@ -162,10 +164,11 @@ module.exports = {
             type: req.sequelize.QueryTypes.SELECT
 
         }).then(function(projects) {
-            return res.json({
-                status: req.status.success,
-                data: projects
-            });
+            return res.status(req.httpStatus.OK)
+                .json({
+                    status: req.status.success,
+                    data: projects
+                });
         });
     }
 };

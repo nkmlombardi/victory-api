@@ -3,7 +3,7 @@ module.exports = {
         req.models.AuthToken.create({
             user_id: req.user.id
         }).then(function(token) {
-            res.json({
+            res.status(req.httpStatus.ACCEPTED).json({
                 status: req.status.success,
                 data: token
             });

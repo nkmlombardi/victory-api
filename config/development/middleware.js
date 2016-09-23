@@ -1,13 +1,14 @@
-var path            = require('path');
-var express         = require('express');
-var helmet          = require('helmet');
-var settings        = require('./settings');
-var session         = require('express-session');
-var passport        = require('passport');
-var morgan          = require('morgan');
-var bodyParser      = require('body-parser');
-var methodOverride  = require('method-override');
-var database        = rootRequire('database/models')(settings);
+var path = require('path');
+var express = require('express');
+var helmet = require('helmet');
+var settings = require('./settings');
+var session = require('express-session');
+var passport = require('passport');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var database = rootRequire('database/models')(settings);
+var httpStatus = require('http-status');
 
 module.exports = function(app) {
     // Parse the body of requests
@@ -27,20 +28,21 @@ module.exports = function(app) {
     app.set('json spaces', 4);
 
     // Database Middleware
-    app.use(function (req, res, next) {
-        req.models = database.models;
-        req.connection = database.connection;
-        req.sequelize = database.sequelize;
-        next();
-    }),
-
     app.use(function(req, res, next) {
-        req.status = {
-            success: 'success',
-            error: 'error'
-        };
-        next();
-    });
+            req.models = database.models;
+            req.connection = database.connection;
+            req.sequelize = database.sequelize;
+            next();
+        }),
+
+        app.use(function(req, res, next) {
+            req.httpStatus = httpStatus;
+            req.status = {
+                success: 'success',
+                error: 'error'
+            };
+            next();
+        });
 
     // Enable CORS to avoid Cross Domain Origin issues
     app.use(function(req, res, next) {
