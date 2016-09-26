@@ -6,12 +6,12 @@ module.exports = function(Sequelize, DataTypes) {
             primaryKey: true
         },
         plaid_id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true
         },
         hierarchy: {
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false
         },
         type: {
@@ -21,11 +21,30 @@ module.exports = function(Sequelize, DataTypes) {
         timestamps: true,
         paranoid: true,
         underscored: true,
-        tableName: 'PlaidCategories'
-    }, {
+        tableName: 'PlaidCategories',
         classMethods: {
             associate: function(models) {
-                models.plaidToken.belongsTo(models.user);
+                // models.plaidToken.belongsTo(models.user);
+            },
+
+            // Take object from Plaid and map it to our model format
+            fromPlaidObject: function(category) {
+                return {
+                    plaid_id: category.id,
+                    hierarchy: category.hierarchy,
+                    type: category.type
+                };
+            },
+
+            // Take array from Plaid and map it to our models format
+            fromPlaidArray: function(categories) {
+                return categories.map(function(category) {
+                    return {
+                        plaid_id: category.id,
+                        hierarchy: category.hierarchy,
+                        type: category.type
+                    };
+                });
             }
         }
     });

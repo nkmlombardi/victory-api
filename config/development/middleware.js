@@ -13,6 +13,7 @@ var bluebird = require('bluebird');
 var plaid = require('plaid');
 bluebird.promisifyAll(plaid);
 var errorHandler = require('../../app/services/error');
+var httpStatus = require('http-status');
 
 module.exports = function(app) {
     // Serve static content
@@ -42,6 +43,7 @@ module.exports = function(app) {
             success: "success",
             error: "error"
         };
+        req.httpStatus = httpStatus;
         req.error = errorHandler;
         next();
     });

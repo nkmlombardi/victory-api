@@ -12,12 +12,8 @@ module.exports = function(app) {
 
     /* Base Endpoint */
     app.route('/')
-        .get(function(req, res, next) {
-            res.send('ok');
-        })
-        .post(function(req, res, next) {
-            res.json(req.body);
-        });
+        .get(function(req, res, next) { res.send('ok'); })
+        .post(function(req, res, next) { res.json(req.body); });
 
     /* Auth Token Resource */
     app.route('/v1/authenticate')
@@ -52,4 +48,9 @@ module.exports = function(app) {
         .post(controllers.auth.isBearer, services.plaid.exchange);
     app.route('/v1/plaid/webhook/:id')
         .post(services.plaid.webhook);
+
+    /* Category Resource */
+    app.route('/v1/categories/')
+        .get(controllers.auth.isBearer, controllers.category.getAll);
+
 };

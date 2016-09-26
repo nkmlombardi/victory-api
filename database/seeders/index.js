@@ -9,6 +9,7 @@ var seeders = function() {
     fs.readdirSync(__dirname).forEach(function(file) {
         /* If its the current file ignore it */
         if (file === 'index.js') return;
+        if (file === 'data') return;
 
         /* Store module with its name (from filename) */
         result[path.basename(file, '.js')] = require(path.join(__dirname, file));

@@ -105,7 +105,7 @@ module.exports = function(Sequelize, DataTypes) {
 
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(accounts, user) {
-                accounts.map(function(account) {
+                return accounts.map(function(account) {
                     return {
                         plaid_id: account._id,
                         plaid_item: account._item,

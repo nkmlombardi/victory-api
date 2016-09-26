@@ -3,7 +3,7 @@ module.exports = {
     user: require('./user'),
     account: require('./account'),
     transaction: require('./transaction'),
-
+    category: require('./category'),
 
     // Authentication Resources
     auth: require('./authentication'),
