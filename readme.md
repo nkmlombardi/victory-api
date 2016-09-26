@@ -1,5 +1,5 @@
-# Victory API
-This is a global Victory API that will be consumed by various internal and external applications.
+# Victory Financial Platform API
+This is a global Victory API that will be consumed by various internal and eventually external applications. The API pulls it's financial information from a service called Plaid.
 
 ## Getting Started
 #### Installation
