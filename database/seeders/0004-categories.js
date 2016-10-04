@@ -3,7 +3,7 @@ var fs = require('fs');
 
 module.exports = {
 
-    // up: function(sequelize, models, plaid) {
+    up: function(sequelize, models, plaid) {
     //     console.log('PlaidCategory Seeder called.');
     //
     //     plaidLib.getCategories(plaidLib.environments.tartan, function(error, response) {
@@ -13,25 +13,14 @@ module.exports = {
     //
     //         console.log(response);
     //
-    //         models.PlaidCategory.bulkCreate(
-    //             models.PlaidCategory.fromPlaidObject(
-    //                 response,
-    //                 '00000000-0000-0000-0000-000000000000'
-    //             )
-    //         ).then(function(categories) {
-    //             // Categories Persisted
-    //         });
+                models.PlaidCategory.bulkCreate(
+                    models.PlaidCategory.fromPlaidArray(
+                        JSON.parse(fs.readFileSync(__dirname + '/data/categories.json', 'utf8'))
+                    )
+                ).then(function(categories) {
+                    console.log('Categories persisted to database.');
+                });
     //     });
-    // },
-
-    up: function(sequelize, models, plaid) {
-        models.PlaidCategory.bulkCreate(
-            models.PlaidCategory.fromPlaidArray(
-                JSON.parse(fs.readFileSync(__dirname + '/data/categories.json', 'utf8'))
-            )
-        ).then(function(categories) {
-            console.log('Categories persisted to database.');
-        });
     },
 
     down: function(sequelize, models, plaid) {
