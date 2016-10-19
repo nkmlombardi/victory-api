@@ -52,5 +52,7 @@ module.exports = function(app) {
     /* Category Resource */
     app.route('/v1/categories/')
         .get(controllers.auth.isBearer, controllers.category.getAll);
+    app.route('/v1/categories/primary')
+        .get(controllers.auth.isBearer, controllers.category.getAllPrimary);
 
 };

@@ -32,7 +32,7 @@ module.exports = function(Sequelize, DataTypes) {
             type: DataTypes.STRING
         },
         amount: {
-            type: DataTypes.INTEGER
+            type: DataTypes.DOUBLE
         },
         date: {
             type: DataTypes.DATEONLY
