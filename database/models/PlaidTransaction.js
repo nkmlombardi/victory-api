@@ -7,8 +7,7 @@ module.exports = function(Sequelize, DataTypes) {
         },
         plaid_id: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+            allowNull: false
         },
         user_id: {
             type: DataTypes.UUID,
@@ -45,10 +44,10 @@ module.exports = function(Sequelize, DataTypes) {
         },
         category_id: {
             type: DataTypes.INTEGER,
-            // references: {
-            //     model: 'PlaidCategories',
-            //     key: 'plaid_id'
-            // }
+            references: {
+                model: 'PlaidCategories',
+                key: 'plaid_id'
+            }
         }
     }, {
         timestamps: true,
@@ -78,8 +77,6 @@ module.exports = function(Sequelize, DataTypes) {
                     category: transaction.category,
                     category_id: transaction.category_id
                 };
-
-                console.error('Transaction: ', transaction.amount);
             },
 
             // Take array from Plaid and map it to our models format

@@ -111,7 +111,7 @@ module.exports = function(Sequelize, DataTypes) {
                 }, this);
             },
 
-            upsertWithReturn: function(options) {
+            upsertArray: function(accounts, user) {
                 return this.findOrCreate(options).spread(function(row, created) {
                     if (created) {
                         return row;
@@ -121,7 +121,28 @@ module.exports = function(Sequelize, DataTypes) {
                         });
                     }
                 });
-            }
+
+            },
+
+            // upsertObject: function(account) {
+            //     return this.findOrCreate({
+            //         where: {
+            //             plaid_id: account.plaid_id
+            //         }
+            //     }).spread(function(account, created) {
+            //         if (account) {
+            //             return account;
+            //         }
+            //
+            //         return created;
+            //     })
+            // },
+            //
+            // upsertArray: function(accounts) {
+            //     return Promise.all(accounts.map(function(account) {
+            //         return this.upsertObject(account);
+            //     }, this));
+            // }
         }
     });
 };

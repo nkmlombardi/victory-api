@@ -29,6 +29,9 @@ module.exports = function(app) {
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAll);
     app.route('/v1/transactions/self/accounts')
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAllWithAccounts);
+    app.route('/v1/transactions/self/plaid')
+        .post(controllers.auth.isBearer, controllers.transaction.postPlaidTransactions);
+
     // app.route('/v1/transactions/self/:id')
     //     .get(controllers.auth.isBearer, controllers.transaction.getSelf)
     //     .patch(controllers.auth.isBearer, controllers.transaction.patchSelf);
@@ -38,6 +41,8 @@ module.exports = function(app) {
         .get(controllers.auth.isBearer, controllers.account.getSelfAll);
     app.route('/v1/accounts/self/transactions')
         .get(controllers.auth.isBearer, controllers.account.getSelfAllWithTransactions);
+    app.route('/v1/accounts/self/plaid')
+        .post(controllers.auth.isBearer, controllers.account.postPlaidAccounts);
     // app.route('/v1/accounts/self/:id')
     //     .get(controllers.auth.isBearer, controllers.account.getSelf)
     //     .post(controllers.auth.isBearer, controllers.account.postSelf)

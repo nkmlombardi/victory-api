@@ -1,0 +1,227 @@
+[{
+    "id": "a43095a2-8ac1-4794-85d6-d8f76ae50f8a",
+    "plaid_id": "0AZ0De04KqsreDgVwM1RSRYjyd8yXxSDQ8Zxn",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "XARE85EJqKsjxLp6XR8ocg8VakrkXpTXmRdOo",
+    "name": "ATM Withdrawal",
+    "amount": -200,
+    "date": "2014-07-21",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Withdrawal",
+        "ATM"
+    ],
+    "category_id": "21012002"
+}, {
+    "id": "30e979fd-3c82-4c99-9c28-4c36ace542da",
+    "plaid_id": "3mg4qV4JZycjewvKEzrLTYMzdr1MmvcO4Z3zX",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "XARE85EJqKsjxLp6XR8ocg8VakrkXpTXmRdOo",
+    "name": "Online Transfer from External Sav ...3092",
+    "amount": -240,
+    "date": "2014-07-24",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Account Transfer"
+    ],
+    "category_id": "21001000"
+}, {
+    "id": "57db1301-350b-4a13-8e43-70734064b64d",
+    "plaid_id": "KdDjmojBERUKx3JkDdO5IaRJdZeZKNuK4bnKJ1",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "pJPM4LMBNQFrOwp0jqEyTwyxJQrQbgU6kq37k",
+    "name": "Apple Store",
+    "amount": -2307.15,
+    "date": "2014-06-23",
+    "pending": false,
+    "category": [
+        "Shops",
+        "Computers and Electronics"
+    ],
+    "category_id": "19013000"
+}, {
+    "id": "c8fd2a46-c726-4838-915f-89736c073916",
+    "plaid_id": "DAE3Yo3wXgskjXV1JqBDIrDBVvjMLDCQ4rMQdR",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "name": "Gregorys Coffee",
+    "amount": -3.19,
+    "date": "2014-06-21",
+    "pending": false,
+    "category": [
+        "Food and Drink",
+        "Restaurants",
+        "Coffee Shop"
+    ],
+    "category_id": "13005043"
+}, {
+    "id": "e568db44-5df5-40d4-b27c-19a363d07274",
+    "plaid_id": "1vAj1Eja5BIn4R7V6Mp1hBPQgkryZRHryZ0rDY",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "name": "ATM Withdrawal",
+    "amount": -80,
+    "date": "2014-06-08",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Withdrawal",
+        "ATM"
+    ],
+    "category_id": "21012002"
+}, {
+    "id": "3991ae67-a954-4e07-b7d0-8dd21b9deecb",
+    "plaid_id": "zq7MLAM4N3cjeKvXP9YqtBJXvZeajJCkjQakYv",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "QPO8Jo8vdDHMepg41PBwckXm4KdK1yUdmXOwK",
+    "name": "Online Transfer from Chk ...1702",
+    "amount": 240,
+    "date": "2014-06-02",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Account Transfer"
+    ],
+    "category_id": "21001000"
+}, {
+    "id": "9b33c4aa-c5fc-43bc-aca6-c7950a959f03",
+    "plaid_id": "96d5AO5gLjC9EowVyn5OCBRjJR9LaOHJnBVJzd",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "name": "Online Transfer to Sav ...9606",
+    "amount": -240,
+    "date": "2014-06-01",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Account Transfer"
+    ],
+    "category_id": "21001000"
+}, {
+    "id": "e178e3f0-8dd9-432d-8583-38f1acc2d074",
+    "plaid_id": "VK0EQ5Ea13u9Qwzm6nA8CNaze8gdJoCJvx6JDO",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "name": "Interest Payment",
+    "amount": 0.93,
+    "date": "2014-05-17",
+    "pending": false,
+    "category": [
+        "Interest"
+    ],
+    "category_id": "15000000"
+}, {
+    "id": "54a5b1c5-406b-47fa-8128-d74ef1ea2165",
+    "plaid_id": "aJPEm5EVqxF6yk8K5nPeFbDpnPR57wI3xMR3pP",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "pJPM4LMBNQFrOwp0jqEyTwyxJQrQbgU6kq37k",
+    "name": "Golden Crepes",
+    "amount": -12.74,
+    "date": "2014-05-12",
+    "pending": false
+}, {
+    "id": "7590cf93-53b1-4251-a85a-b732a75416ef",
+    "plaid_id": "moPE4dE1yMHJX5pmRzwrcvpQqPdDnZHEKPREYL",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "name": "Krankies Coffee",
+    "amount": -7.23,
+    "date": "2014-05-09",
+    "pending": false,
+    "category": [
+        "Food and Drink",
+        "Restaurants",
+        "Coffee Shop"
+    ],
+    "category_id": "13005043"
+}, {
+    "id": "52aeb2c6-c4f4-48c7-a9cf-8f18c4bda865",
+    "plaid_id": "P1xJboJA5Ls31gJrMQEBU5dZD3NmPrH5R6g5jL",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "pJPM4LMBNQFrOwp0jqEyTwyxJQrQbgU6kq37k",
+    "name": "Banana Republic",
+    "amount": -118.23,
+    "date": "2014-04-26",
+    "pending": false,
+    "category": [
+        "Shops",
+        "Digital Purchase"
+    ],
+    "category_id": "19019000"
+}, {
+    "id": "8e97ad4e-c155-4c11-b8c7-d381e6bfe36b",
+    "plaid_id": "dRBp95pEwZfMXENvpw3YHY43VNK4LVSP7RkPpA",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "name": "Venmo Cashout 18375552",
+    "amount": 800,
+    "date": "2014-04-20",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Third Party",
+        "Venmo"
+    ],
+    "category_id": "21010001"
+}, {
+    "id": "d8c64384-e6cc-41b9-8d09-ad46d07d5393",
+    "plaid_id": "moPE4dE1yMHJX5pmRzwrcvpkxdopLxtEKPREYo",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "name": "Venmo Payment 16991172",
+    "amount": -120,
+    "date": "2014-04-19",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Third Party",
+        "Venmo"
+    ],
+    "category_id": "21010001"
+}, {
+    "id": "53619335-524c-4cf9-99ea-5afc2906602b",
+    "plaid_id": "JmN0JX0q5EcaQJM9ZbOwUYyyp607m4u3PR63Vn",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "pJPM4LMBNQFrOwp0jqEyTwyxJQrQbgU6kq37k",
+    "name": "Octane Coffee Bar and Lounge",
+    "amount": -5.32,
+    "date": "2014-04-17",
+    "pending": false,
+    "category": [
+        "Food and Drink",
+        "Restaurants",
+        "Coffee Shop"
+    ],
+    "category_id": "13005043"
+}, {
+    "id": "4e5a5126-85dc-40e9-aed7-54fe53006a1c",
+    "plaid_id": "4r0aBVa85Kt3BDPk10a4U5OD3XKjE7Hzxpez6B",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "pJPM4LMBNQFrOwp0jqEyTwyxJQrQbgU6kq37k",
+    "name": "Papa Johns Pizza",
+    "amount": -28.57,
+    "date": "2014-04-11",
+    "pending": false,
+    "category": [
+        "Food and Drink",
+        "Restaurants",
+        "Pizza"
+    ],
+    "category_id": "13005012"
+}, {
+    "id": "e8e36092-0b1a-49c9-8ef3-001525a7f70f",
+    "plaid_id": "eJXpMzpR65FP4RYno6yjhBDxgkM6pXC9RKM9o3",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "plaid_account_id": "QPO8Jo8vdDHMepg41PBwckXm4KdK1yUdmXOwK",
+    "name": "Company Payroll",
+    "amount": 3042.44,
+    "date": "2014-03-27",
+    "pending": false,
+    "category": [
+        "Transfer",
+        "Payroll"
+    ],
+    "category_id": "21009000"
+}]

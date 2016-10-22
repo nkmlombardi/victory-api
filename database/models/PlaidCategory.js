@@ -6,7 +6,7 @@ module.exports = function(Sequelize, DataTypes) {
             primaryKey: true
         },
         plaid_id: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             allowNull: false,
             unique: true
         },

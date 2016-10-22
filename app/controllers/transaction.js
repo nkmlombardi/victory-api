@@ -31,6 +31,19 @@ module.exports = {
         });
     },
 
+    postPlaidTransactions: function(req, res, next) {
+        req.models.PlaidTransaction.bulkCreate(
+            req.models.PlaidTransaction.fromPlaidArray(
+                req.body, req.user
+            )
+        ).then(function(transactions) {
+            return res.json({
+                status: req.status.success,
+                data: transactions
+            })
+        })
+    }
+
     // patchSelf: function(req, res, next) {
     //     req.models.PlaidTransaction.update(req.body, {
     //         fields: [

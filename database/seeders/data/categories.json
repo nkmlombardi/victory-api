@@ -1,100 +1,115 @@
 [{
-    "id": "10000000",
+    "id": "4e4b28d4-91c4-4bde-a7b6-00b4ddc26754",
+    "plaid_id": "10000000",
     "hierarchy": [
         "Bank Fees"
     ],
     "type": "special"
 }, {
-    "id": "10001000",
+    "id": "f17bb8f9-b940-4e37-98f5-ddf854ca3fe8",
+    "plaid_id": "10001000",
     "hierarchy": [
         "Bank Fees",
         "Overdraft"
     ],
     "type": "special"
 }, {
-    "id": "10002000",
+    "id": "987276a7-fd57-4eca-bb5e-acd775907795",
+    "plaid_id": "10002000",
     "hierarchy": [
         "Bank Fees",
         "ATM"
     ],
     "type": "special"
 }, {
-    "id": "10003000",
+    "id": "11e79561-2c7e-42de-b9b2-0ebfaebcadc3",
+    "plaid_id": "10003000",
     "hierarchy": [
         "Bank Fees",
         "Late Payment"
     ],
     "type": "special"
 }, {
-    "id": "10004000",
+    "id": "3373551f-bae0-4ad0-be1e-f32e8ab2e935",
+    "plaid_id": "10004000",
     "hierarchy": [
         "Bank Fees",
         "Fraud Dispute"
     ],
     "type": "special"
 }, {
-    "id": "10005000",
+    "id": "8ec94214-3631-4c63-91a5-7874aa64730e",
+    "plaid_id": "10005000",
     "hierarchy": [
         "Bank Fees",
         "Foreign Transaction"
     ],
     "type": "special"
 }, {
-    "id": "10006000",
+    "id": "95ecb603-21ea-445d-819a-05b34e4faf0b",
+    "plaid_id": "10006000",
     "hierarchy": [
         "Bank Fees",
         "Wire Transfer"
     ],
     "type": "special"
 }, {
-    "id": "10007000",
+    "id": "17383a6d-2932-43d0-91f6-131d27d88c4a",
+    "plaid_id": "10007000",
     "hierarchy": [
         "Bank Fees",
         "Insufficient Funds"
     ],
     "type": "special"
 }, {
-    "id": "10008000",
+    "id": "e42576d7-0862-422f-be1c-9981c8919aed",
+    "plaid_id": "10008000",
     "hierarchy": [
         "Bank Fees",
         "Cash Advance"
     ],
     "type": "special"
 }, {
-    "id": "10009000",
+    "id": "deca9e1d-fabc-4c4c-b8ef-66e63a828d11",
+    "plaid_id": "10009000",
     "hierarchy": [
         "Bank Fees",
         "Excess Activity"
     ],
     "type": "special"
 }, {
-    "id": "11000000",
+    "id": "d5df84c4-b274-4543-9ab2-2b1c03481e9d",
+    "plaid_id": "11000000",
     "hierarchy": [
         "Cash Advance"
     ],
     "type": "special"
 }, {
-    "id": "12000000",
+    "id": "e17a57bf-dac5-432c-a4fc-11b68917d0b9",
+    "plaid_id": "12000000",
     "hierarchy": [
         "Community"
     ],
     "type": "place"
 }, {
-    "id": "12001000",
+    "id": "a9e6fe70-cc81-40c8-9e2c-06550dc91907",
+    "plaid_id": "12001000",
     "hierarchy": [
         "Community",
         "Animal Shelter"
     ],
     "type": "place"
 }, {
-    "id": "12002000",
+    "id": "82a71a8b-450b-4478-978c-b6f7df900c54",
+    "plaid_id": "12002000",
     "hierarchy": [
         "Community",
         "Assisted Living Services"
     ],
     "type": "place"
 }, {
-    "id": "12002001",
+    "id": "d4b93a33-13f3-4685-9c40-b0f6ab777358",
+    "plaid_id": "12002001",
     "hierarchy": [
         "Community",
         "Assisted Living Services",
@@ -102,7 +117,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12002002",
+    "id": "db63b6b5-63f6-473e-a184-b972773452e5",
+    "plaid_id": "12002002",
     "hierarchy": [
         "Community",
         "Assisted Living Services",
@@ -110,49 +126,56 @@
     ],
     "type": "place"
 }, {
-    "id": "12003000",
+    "id": "86e4d82c-3126-48fe-8c8c-78fe9d799994",
+    "plaid_id": "12003000",
     "hierarchy": [
         "Community",
         "Cemetery"
     ],
     "type": "place"
 }, {
-    "id": "12004000",
+    "id": "7170187e-1d9f-4731-ae27-b5c02382b733",
+    "plaid_id": "12004000",
     "hierarchy": [
         "Community",
         "Courts"
     ],
     "type": "place"
 }, {
-    "id": "12005000",
+    "id": "91b00755-6da8-4bea-b651-0500c6fa1e97",
+    "plaid_id": "12005000",
     "hierarchy": [
         "Community",
         "Day Care and Preschools"
     ],
     "type": "place"
 }, {
-    "id": "12006000",
+    "id": "cc2bd32f-cdd9-4569-9df0-efa30bb03a0b",
+    "plaid_id": "12006000",
     "hierarchy": [
         "Community",
         "Disabled Persons Services"
     ],
     "type": "place"
 }, {
-    "id": "12007000",
+    "id": "cdf89069-9dcb-4104-a49f-d957c8c146af",
+    "plaid_id": "12007000",
     "hierarchy": [
         "Community",
         "Drug and Alcohol Services"
     ],
     "type": "place"
 }, {
-    "id": "12008000",
+    "id": "eb21430d-7162-418e-a966-aed00b33a250",
+    "plaid_id": "12008000",
     "hierarchy": [
         "Community",
         "Education"
     ],
     "type": "place"
 }, {
-    "id": "12008001",
+    "id": "c95aa195-7cf7-4473-b8bc-6d832f90479d",
+    "plaid_id": "12008001",
     "hierarchy": [
         "Community",
         "Education",
@@ -160,7 +183,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008002",
+    "id": "26857132-7ae0-48d5-86d3-cbd5acbe695a",
+    "plaid_id": "12008002",
     "hierarchy": [
         "Community",
         "Education",
@@ -168,7 +192,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008003",
+    "id": "38193b17-8105-40fe-8588-fd821533e894",
+    "plaid_id": "12008003",
     "hierarchy": [
         "Community",
         "Education",
@@ -176,7 +201,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008004",
+    "id": "9a12ebf4-656b-4f38-8481-ad6f3515dd0e",
+    "plaid_id": "12008004",
     "hierarchy": [
         "Community",
         "Education",
@@ -184,7 +210,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008005",
+    "id": "fac13460-40ea-46a1-ad97-e43994860ea6",
+    "plaid_id": "12008005",
     "hierarchy": [
         "Community",
         "Education",
@@ -192,7 +219,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008006",
+    "id": "2b94f935-2ad6-4e5c-84f4-3a03677c8876",
+    "plaid_id": "12008006",
     "hierarchy": [
         "Community",
         "Education",
@@ -200,7 +228,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008007",
+    "id": "6a8b8367-9ed5-4762-a5ee-5bb1a4445377",
+    "plaid_id": "12008007",
     "hierarchy": [
         "Community",
         "Education",
@@ -208,7 +237,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008008",
+    "id": "d2bed8c3-b7f7-49a2-927b-24ba90d95fc7",
+    "plaid_id": "12008008",
     "hierarchy": [
         "Community",
         "Education",
@@ -216,7 +246,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008009",
+    "id": "e1c60deb-309f-4c41-9307-6c1e81692dc3",
+    "plaid_id": "12008009",
     "hierarchy": [
         "Community",
         "Education",
@@ -224,7 +255,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008010",
+    "id": "4ad4aed4-402a-4a9a-9aa1-c1bcf8b66eb7",
+    "plaid_id": "12008010",
     "hierarchy": [
         "Community",
         "Education",
@@ -232,7 +264,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12008011",
+    "id": "52eb7d7d-661d-40c1-a193-b248fb07b7d4",
+    "plaid_id": "12008011",
     "hierarchy": [
         "Community",
         "Education",
@@ -240,35 +273,40 @@
     ],
     "type": "place"
 }, {
-    "id": "12009000",
+    "id": "610bdd09-2f28-4b50-96e7-b6ce64fd542f",
+    "plaid_id": "12009000",
     "hierarchy": [
         "Community",
         "Government Departments and Agencies"
     ],
     "type": "place"
 }, {
-    "id": "12010000",
+    "id": "a66677d2-3e1c-44e8-be8e-d510d0533357",
+    "plaid_id": "12010000",
     "hierarchy": [
         "Community",
         "Government Lobbyists"
     ],
     "type": "place"
 }, {
-    "id": "12011000",
+    "id": "6fd730ae-bb87-41a0-a3f4-203af214756b",
+    "plaid_id": "12011000",
     "hierarchy": [
         "Community",
         "Housing Assistance and Shelters"
     ],
     "type": "place"
 }, {
-    "id": "12012000",
+    "id": "b4a93c4e-a45f-4e9f-8dab-64187bff99b6",
+    "plaid_id": "12012000",
     "hierarchy": [
         "Community",
         "Law Enforcement"
     ],
     "type": "place"
 }, {
-    "id": "12012001",
+    "id": "93d24e79-8c2d-443e-8c94-ab62bec3d5bf",
+    "plaid_id": "12012001",
     "hierarchy": [
         "Community",
         "Law Enforcement",
@@ -276,7 +314,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12012002",
+    "id": "cecbfae4-a165-4e19-83ef-012b8b414748",
+    "plaid_id": "12012002",
     "hierarchy": [
         "Community",
         "Law Enforcement",
@@ -284,7 +323,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12012003",
+    "id": "2de7f309-5e64-466b-945f-46c0c54c7cfc",
+    "plaid_id": "12012003",
     "hierarchy": [
         "Community",
         "Law Enforcement",
@@ -292,28 +332,32 @@
     ],
     "type": "place"
 }, {
-    "id": "12013000",
+    "id": "7a5169ce-f618-4e64-a036-868484324770",
+    "plaid_id": "12013000",
     "hierarchy": [
         "Community",
         "Libraries"
     ],
     "type": "place"
 }, {
-    "id": "12014000",
+    "id": "89542677-d260-4123-be3b-56bb5f4eb7f7",
+    "plaid_id": "12014000",
     "hierarchy": [
         "Community",
         "Military"
     ],
     "type": "place"
 }, {
-    "id": "12015000",
+    "id": "cc37fbc4-130a-4e2f-9b4a-8ccd532fc9d2",
+    "plaid_id": "12015000",
     "hierarchy": [
         "Community",
         "Organizations and Associations"
     ],
     "type": "place"
 }, {
-    "id": "12015001",
+    "id": "db0afadb-f046-41da-a663-f0a011930ba1",
+    "plaid_id": "12015001",
     "hierarchy": [
         "Community",
         "Organizations and Associations",
@@ -321,7 +365,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12015002",
+    "id": "c95adb8d-665e-4f8c-8a22-ac2b940513b3",
+    "plaid_id": "12015002",
     "hierarchy": [
         "Community",
         "Organizations and Associations",
@@ -329,7 +374,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12015003",
+    "id": "d8df98db-fec8-4423-b262-3c71b3a78a0f",
+    "plaid_id": "12015003",
     "hierarchy": [
         "Community",
         "Organizations and Associations",
@@ -337,28 +383,32 @@
     ],
     "type": "place"
 }, {
-    "id": "12016000",
+    "id": "18cb95b7-b138-4384-8cf9-7b44cae90acb",
+    "plaid_id": "12016000",
     "hierarchy": [
         "Community",
         "Post Offices"
     ],
     "type": "place"
 }, {
-    "id": "12017000",
+    "id": "7d6e91ec-a39f-4c38-aaef-651ca1aaf67e",
+    "plaid_id": "12017000",
     "hierarchy": [
         "Community",
         "Public and Social Services"
     ],
     "type": "place"
 }, {
-    "id": "12018000",
+    "id": "86441acb-cd18-4777-bd12-67529c51606f",
+    "plaid_id": "12018000",
     "hierarchy": [
         "Community",
         "Religious"
     ],
     "type": "place"
 }, {
-    "id": "12018001",
+    "id": "b377ae05-b039-4c9c-9226-f8a5a9d57fbb",
+    "plaid_id": "12018001",
     "hierarchy": [
         "Community",
         "Religious",
@@ -366,7 +416,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12018002",
+    "id": "d8bf014a-2bb9-448b-80de-807fe65ba96c",
+    "plaid_id": "12018002",
     "hierarchy": [
         "Community",
         "Religious",
@@ -374,7 +425,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12018003",
+    "id": "777009bd-c6e3-4bc6-8390-0fde8bc54069",
+    "plaid_id": "12018003",
     "hierarchy": [
         "Community",
         "Religious",
@@ -382,7 +434,8 @@
     ],
     "type": "place"
 }, {
-    "id": "12018004",
+    "id": "96877100-56ce-4c17-85b0-dc339724a6ce",
+    "plaid_id": "12018004",
     "hierarchy": [
         "Community",
         "Religious",
@@ -390,14 +443,16 @@
     ],
     "type": "place"
 }, {
-    "id": "12019000",
+    "id": "1aa9703d-8c0e-47c0-98fb-c25c12326351",
+    "plaid_id": "12019000",
     "hierarchy": [
         "Community",
         "Senior Citizen Services"
     ],
     "type": "place"
 }, {
-    "id": "12019001",
+    "id": "165e5fa8-7338-4c19-98cd-0d8f2c6236b9",
+    "plaid_id": "12019001",
     "hierarchy": [
         "Community",
         "Senior Citizen Services",
@@ -405,20 +460,23 @@
     ],
     "type": "place"
 }, {
-    "id": "13000000",
+    "id": "aa85074f-0f16-4331-80e1-9bd5e495f2bd",
+    "plaid_id": "13000000",
     "hierarchy": [
         "Food and Drink"
     ],
     "type": "place"
 }, {
-    "id": "13001000",
+    "id": "2e521bbc-8aae-4bf2-8d40-358e92da8b3b",
+    "plaid_id": "13001000",
     "hierarchy": [
         "Food and Drink",
         "Bar"
     ],
     "type": "place"
 }, {
-    "id": "13001001",
+    "id": "6d5a5232-2379-48c6-960c-e563acc637f6",
+    "plaid_id": "13001001",
     "hierarchy": [
         "Food and Drink",
         "Bar",
@@ -426,7 +484,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13001002",
+    "id": "5e91f5cb-1eed-4c15-ba6e-ddab55796a7d",
+    "plaid_id": "13001002",
     "hierarchy": [
         "Food and Drink",
         "Bar",
@@ -434,7 +493,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13001003",
+    "id": "4ed910e2-4243-49fb-a20d-2afe14b07e4c",
+    "plaid_id": "13001003",
     "hierarchy": [
         "Food and Drink",
         "Bar",
@@ -442,28 +502,32 @@
     ],
     "type": "place"
 }, {
-    "id": "13002000",
+    "id": "a285f507-db5d-475d-8af8-741b9b67ba03",
+    "plaid_id": "13002000",
     "hierarchy": [
         "Food and Drink",
         "Breweries"
     ],
     "type": "place"
 }, {
-    "id": "13003000",
+    "id": "28ab0131-cc53-4431-b81a-3912f997752b",
+    "plaid_id": "13003000",
     "hierarchy": [
         "Food and Drink",
         "Internet Cafes"
     ],
     "type": "place"
 }, {
-    "id": "13004000",
+    "id": "d4a7b15a-7691-4bf6-953e-18ffb7480cb0",
+    "plaid_id": "13004000",
     "hierarchy": [
         "Food and Drink",
         "Nightlife"
     ],
     "type": "place"
 }, {
-    "id": "13004001",
+    "id": "8060bb8a-b527-4009-bb23-bf1fbdb86855",
+    "plaid_id": "13004001",
     "hierarchy": [
         "Food and Drink",
         "Nightlife",
@@ -471,7 +535,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13004002",
+    "id": "7953dde8-0f5d-4881-8e5a-06fe1705ed20",
+    "plaid_id": "13004002",
     "hierarchy": [
         "Food and Drink",
         "Nightlife",
@@ -479,7 +544,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13004003",
+    "id": "297bcb0c-e410-4878-b0e6-ce06c3e2e41e",
+    "plaid_id": "13004003",
     "hierarchy": [
         "Food and Drink",
         "Nightlife",
@@ -487,7 +553,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13004004",
+    "id": "424a6a47-ed9a-48b4-acfa-bde5de2d16a2",
+    "plaid_id": "13004004",
     "hierarchy": [
         "Food and Drink",
         "Nightlife",
@@ -495,7 +562,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13004005",
+    "id": "05cb82c8-5a79-41b0-a85e-1dfeb96265dc",
+    "plaid_id": "13004005",
     "hierarchy": [
         "Food and Drink",
         "Nightlife",
@@ -503,7 +571,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13004006",
+    "id": "8cfed437-9062-4a87-97d5-0e9e02c2dfc1",
+    "plaid_id": "13004006",
     "hierarchy": [
         "Food and Drink",
         "Nightlife",
@@ -511,14 +580,16 @@
     ],
     "type": "place"
 }, {
-    "id": "13005000",
+    "id": "6b1ba4e9-2e9b-4352-92d6-19b28cda1074",
+    "plaid_id": "13005000",
     "hierarchy": [
         "Food and Drink",
         "Restaurants"
     ],
     "type": "place"
 }, {
-    "id": "13005001",
+    "id": "2f7a099e-c2c8-4d3e-9d01-580fddae6b61",
+    "plaid_id": "13005001",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -526,7 +597,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005002",
+    "id": "659e6078-b640-44e0-bf38-a014cf8554cb",
+    "plaid_id": "13005002",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -534,7 +606,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005003",
+    "id": "99d156f5-b684-4fdc-8c4b-4a4f6a7c438c",
+    "plaid_id": "13005003",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -542,7 +615,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005004",
+    "id": "51f3b464-8e3c-4661-aa73-c2fb74782498",
+    "plaid_id": "13005004",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -550,7 +624,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005005",
+    "id": "df54443f-735c-48d1-b86a-5cb29c1e0f79",
+    "plaid_id": "13005005",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -558,7 +633,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005006",
+    "id": "31a37ecb-e133-4d9f-b112-49c677e84321",
+    "plaid_id": "13005006",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -566,7 +642,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005007",
+    "id": "5b2f6afa-07ae-479f-998e-509b37200d47",
+    "plaid_id": "13005007",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -574,7 +651,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005008",
+    "id": "d2bfc4a2-5089-433b-bff0-735f91748b00",
+    "plaid_id": "13005008",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -582,7 +660,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005009",
+    "id": "7d67c5aa-e0a6-4a5a-bc7c-79cfa41a89ca",
+    "plaid_id": "13005009",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -590,7 +669,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005010",
+    "id": "ff7ac7b7-21f3-47db-905d-61067800d8cb",
+    "plaid_id": "13005010",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -598,7 +678,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005011",
+    "id": "bd5cc9ca-14e1-4096-9456-1d5170644f48",
+    "plaid_id": "13005011",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -606,7 +687,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005012",
+    "id": "5fe64caa-799c-4924-b046-bb63b2ad1f58",
+    "plaid_id": "13005012",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -614,7 +696,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005013",
+    "id": "13ca5eee-aee0-4757-af3b-003b37583235",
+    "plaid_id": "13005013",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -622,7 +705,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005014",
+    "id": "91f3db51-dbc7-41f2-aeaa-7132afc8c36b",
+    "plaid_id": "13005014",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -630,7 +714,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005015",
+    "id": "dc84e6c4-d542-44c9-872d-c03e8a007178",
+    "plaid_id": "13005015",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -638,7 +723,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005016",
+    "id": "97cbd321-baab-4b0e-8664-c95468cefe47",
+    "plaid_id": "13005016",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -646,7 +732,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005017",
+    "id": "1af866d7-6403-451a-88cb-42d252027afe",
+    "plaid_id": "13005017",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -654,7 +741,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005018",
+    "id": "1958559e-c594-4d32-a723-28030bcf8375",
+    "plaid_id": "13005018",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -662,7 +750,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005019",
+    "id": "57b75e3c-7017-4fc4-ac45-5c9237150d3c",
+    "plaid_id": "13005019",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -670,7 +759,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005020",
+    "id": "bbd8822d-b81e-4ce1-8cae-4592b0403eba",
+    "plaid_id": "13005020",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -678,7 +768,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005021",
+    "id": "5963455a-0efc-4b27-b8be-c36f18b6f0f1",
+    "plaid_id": "13005021",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -686,7 +777,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005022",
+    "id": "cc3525fc-aeb8-4c5e-8a59-3512ad130340",
+    "plaid_id": "13005022",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -694,7 +786,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005023",
+    "id": "3c048db8-91ac-43bb-95a6-6ac8bc08960d",
+    "plaid_id": "13005023",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -702,7 +795,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005024",
+    "id": "97e9d068-ea7d-4b93-9c75-fcacc0a8ab8a",
+    "plaid_id": "13005024",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -710,7 +804,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005025",
+    "id": "76179dcb-c673-4dc1-a848-8a7aa00478aa",
+    "plaid_id": "13005025",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -718,7 +813,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005026",
+    "id": "4e7649be-17ae-45a8-93b8-82ceb0947b5c",
+    "plaid_id": "13005026",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -726,7 +822,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005027",
+    "id": "10ca6924-9035-4e18-bd04-ea239b12364a",
+    "plaid_id": "13005027",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -734,7 +831,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005028",
+    "id": "a3091086-3b8f-4f80-b58d-4fe0e4cca9f3",
+    "plaid_id": "13005028",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -742,7 +840,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005029",
+    "id": "041b4dc7-c5a0-49f0-9752-122f64050c91",
+    "plaid_id": "13005029",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -750,7 +849,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005030",
+    "id": "69a82a47-5a3d-4b2c-9553-0b78bb2dfa75",
+    "plaid_id": "13005030",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -758,7 +858,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005031",
+    "id": "d407e7dc-3d47-41e0-9dec-c75e5f0dbca3",
+    "plaid_id": "13005031",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -766,7 +867,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005032",
+    "id": "dbea43af-d0de-4c5d-8411-2139982f86f9",
+    "plaid_id": "13005032",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -774,7 +876,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005033",
+    "id": "25ceaac8-34f4-44d8-b4a3-561bb060b584",
+    "plaid_id": "13005033",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -782,7 +885,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005034",
+    "id": "9384cefa-f03c-4437-8a1e-0919c3069817",
+    "plaid_id": "13005034",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -790,7 +894,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005035",
+    "id": "9604983f-f1e3-4e36-83e9-529049014714",
+    "plaid_id": "13005035",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -798,7 +903,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005036",
+    "id": "af7c0deb-4c45-44a7-a2c4-bb4b18a8f76e",
+    "plaid_id": "13005036",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -806,7 +912,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005037",
+    "id": "32d80eec-98a0-4ce0-9aaa-8469ea773889",
+    "plaid_id": "13005037",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -814,7 +921,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005038",
+    "id": "171ec119-9e87-422c-9c93-7293f353c88d",
+    "plaid_id": "13005038",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -822,7 +930,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005039",
+    "id": "2c2e3630-187a-471a-a18d-b4b5fe6c7bc8",
+    "plaid_id": "13005039",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -830,7 +939,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005040",
+    "id": "657540c7-de10-4f91-a0a5-1fc0e6ce9480",
+    "plaid_id": "13005040",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -838,7 +948,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005041",
+    "id": "2f1639ec-915c-4301-accb-3af9711ca9d1",
+    "plaid_id": "13005041",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -846,7 +957,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005042",
+    "id": "d6c988ad-6583-46b1-845a-60f474f762f0",
+    "plaid_id": "13005042",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -854,7 +966,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005043",
+    "id": "78be6582-0909-436d-b8d7-33806bb889a5",
+    "plaid_id": "13005043",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -862,7 +975,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005044",
+    "id": "37578a81-1e3e-4fbc-afd8-ec727474259b",
+    "plaid_id": "13005044",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -870,7 +984,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005045",
+    "id": "1b432a58-7a3b-436a-8910-b0084652bb19",
+    "plaid_id": "13005045",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -878,7 +993,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005046",
+    "id": "e14240e7-ae6c-497c-8a77-48671d95d465",
+    "plaid_id": "13005046",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -886,7 +1002,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005047",
+    "id": "2ced4a0f-0f99-4724-886b-1682ac40ddb1",
+    "plaid_id": "13005047",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -894,7 +1011,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005048",
+    "id": "de088d8c-a2ba-4779-ab55-7af4691c108b",
+    "plaid_id": "13005048",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -902,7 +1020,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005049",
+    "id": "0138c658-84a7-4fa6-9382-89185bf23f8d",
+    "plaid_id": "13005049",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -910,7 +1029,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005050",
+    "id": "8dd9478d-51b9-4300-8bf8-eacc2c72d7cf",
+    "plaid_id": "13005050",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -918,7 +1038,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005051",
+    "id": "26e5cb4a-c790-4ced-93cd-5adf605de41b",
+    "plaid_id": "13005051",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -926,7 +1047,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005052",
+    "id": "a944bd43-13c2-4daa-a095-791c84293435",
+    "plaid_id": "13005052",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -934,7 +1056,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005053",
+    "id": "7f192f88-141f-47ce-9eb1-c7fc0c35285f",
+    "plaid_id": "13005053",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -942,7 +1065,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005054",
+    "id": "89ed3de8-a09b-465e-b399-bd09ae4d49d0",
+    "plaid_id": "13005054",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -950,7 +1074,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005055",
+    "id": "72fde213-3529-4336-9250-ee8a1c42b61d",
+    "plaid_id": "13005055",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -958,7 +1083,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005056",
+    "id": "02fe1d99-a0e0-4d0f-9eb8-8dc13638bb12",
+    "plaid_id": "13005056",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -966,7 +1092,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005057",
+    "id": "ec427d72-adcd-428c-8e86-417b757b53fe",
+    "plaid_id": "13005057",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -974,7 +1101,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005058",
+    "id": "13700bfe-fb42-4b6d-843f-0b61fb45ccc5",
+    "plaid_id": "13005058",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -982,7 +1110,8 @@
     ],
     "type": "place"
 }, {
-    "id": "13005059",
+    "id": "d2808024-72ab-4efa-bf96-c680a99e63bf",
+    "plaid_id": "13005059",
     "hierarchy": [
         "Food and Drink",
         "Restaurants",
@@ -990,20 +1119,23 @@
     ],
     "type": "place"
 }, {
-    "id": "14000000",
+    "id": "534a2939-4284-48d1-99f9-39e04711c0fd",
+    "plaid_id": "14000000",
     "hierarchy": [
         "Healthcare"
     ],
     "type": "place"
 }, {
-    "id": "14001000",
+    "id": "51ea7920-b1cd-44b1-b1e8-2c7373ba417c",
+    "plaid_id": "14001000",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services"
     ],
     "type": "place"
 }, {
-    "id": "14001001",
+    "id": "d78feaf8-d219-4e31-944e-db8e1a0ac3cd",
+    "plaid_id": "14001001",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1011,7 +1143,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001002",
+    "id": "6ffaad7a-f46a-42f9-9cef-7ef6136f3957",
+    "plaid_id": "14001002",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1019,7 +1152,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001003",
+    "id": "c3ad97be-0340-4b7e-b013-22feb623f0ae",
+    "plaid_id": "14001003",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1027,7 +1161,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001004",
+    "id": "30f1258a-f9bc-4988-bda4-a58e59fe2439",
+    "plaid_id": "14001004",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1035,7 +1170,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001005",
+    "id": "f1a1616a-72c3-473c-bc19-dd1b14bd0c02",
+    "plaid_id": "14001005",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1043,7 +1179,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001006",
+    "id": "88ecc2d2-1645-4c23-a4cd-d574babb4210",
+    "plaid_id": "14001006",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1051,7 +1188,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001007",
+    "id": "864ddfb5-a3e4-47b9-9e0f-09b5dbb3e983",
+    "plaid_id": "14001007",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1059,7 +1197,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001008",
+    "id": "297dceec-d65e-438b-81e1-254f7c48218d",
+    "plaid_id": "14001008",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1067,7 +1206,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001009",
+    "id": "21297768-661e-42b9-b2e3-d7e940c4631e",
+    "plaid_id": "14001009",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1075,7 +1215,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001010",
+    "id": "7476aad5-aa11-4840-aa88-4c5587b95ae4",
+    "plaid_id": "14001010",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1083,7 +1224,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001011",
+    "id": "9675ccae-b757-4e9c-a5df-6cd300e7677b",
+    "plaid_id": "14001011",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1091,7 +1233,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001012",
+    "id": "c2a76bb7-27f4-411b-9939-1aac7fb5a550",
+    "plaid_id": "14001012",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1099,7 +1242,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001013",
+    "id": "1a963888-fe05-4128-b60f-7b0c167f33ed",
+    "plaid_id": "14001013",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1107,7 +1251,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001014",
+    "id": "64bcf628-5a00-4bab-983f-9a90333fa743",
+    "plaid_id": "14001014",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1115,7 +1260,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001015",
+    "id": "e2d0155a-fac7-4474-a6ea-499abdfa560b",
+    "plaid_id": "14001015",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1123,7 +1269,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001016",
+    "id": "b4c31ab1-ccbb-4f9c-a17c-23a6eb300e90",
+    "plaid_id": "14001016",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1131,7 +1278,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14001017",
+    "id": "a8eb0780-0861-4fb5-8f72-748bf396a2d9",
+    "plaid_id": "14001017",
     "hierarchy": [
         "Healthcare",
         "Healthcare Services",
@@ -1139,14 +1287,16 @@
     ],
     "type": "place"
 }, {
-    "id": "14002000",
+    "id": "232dae67-cef9-45e3-9260-3e4ccced2fe8",
+    "plaid_id": "14002000",
     "hierarchy": [
         "Healthcare",
         "Physicians"
     ],
     "type": "place"
 }, {
-    "id": "14002001",
+    "id": "d0cac4e8-7073-4f5e-890b-9b23b70222ea",
+    "plaid_id": "14002001",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1154,7 +1304,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002002",
+    "id": "550df061-792c-45af-b612-4ba878248b08",
+    "plaid_id": "14002002",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1162,7 +1313,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002003",
+    "id": "213b71aa-b291-4397-bf03-9cacdbd427de",
+    "plaid_id": "14002003",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1170,7 +1322,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002004",
+    "id": "ac4d46c7-256b-45f6-8e97-c663af7f18ea",
+    "plaid_id": "14002004",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1178,7 +1331,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002005",
+    "id": "3ad32d86-3c1e-4610-b970-c6c39f1d6b34",
+    "plaid_id": "14002005",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1186,7 +1340,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002006",
+    "id": "a8fd1dea-87c8-4c81-9a6a-309ae48e28e1",
+    "plaid_id": "14002006",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1194,7 +1349,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002007",
+    "id": "7f31c56a-9ed7-4b0e-8d2a-6e8c6d2af541",
+    "plaid_id": "14002007",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1202,7 +1358,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002008",
+    "id": "2f7e6dff-8551-4293-9c3a-2231c1fc37a9",
+    "plaid_id": "14002008",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1210,7 +1367,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002009",
+    "id": "8979c89a-0c3a-49b9-b803-1f2884f95b09",
+    "plaid_id": "14002009",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1218,7 +1376,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002010",
+    "id": "fb762a62-fb4b-43c5-8153-057bcbddce5b",
+    "plaid_id": "14002010",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1226,7 +1385,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002011",
+    "id": "27ab10ce-4730-44b6-869b-b8379dbcebbb",
+    "plaid_id": "14002011",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1234,7 +1394,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002012",
+    "id": "087ecdc8-1cc8-4f85-a045-e6de5262d641",
+    "plaid_id": "14002012",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1242,7 +1403,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002013",
+    "id": "e8c83728-7eb2-48de-8d7e-70c3be32dd1c",
+    "plaid_id": "14002013",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1250,7 +1412,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002014",
+    "id": "9998bb4d-b6de-442d-8a65-ba78e2298027",
+    "plaid_id": "14002014",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1258,7 +1421,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002015",
+    "id": "ab6e1b6f-51ab-4b9b-a85d-85bda1017671",
+    "plaid_id": "14002015",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1266,7 +1430,16 @@
     ],
     "type": "place"
 }, {
-    "id": "14002016",
+    "id": "996c15c2-abff-464b-a6aa-c43f1432139c",
+    "plaid_id": "18038000",
+    "hierarchy": [
+        "Service",
+        "Media Production"
+    ],
+    "type": "place"
+}, {
+    "id": "d82cba06-2d84-4a4f-852e-b904726d7382",
+    "plaid_id": "14002016",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1274,7 +1447,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002017",
+    "id": "c104f51e-d3bc-4448-944d-915113fa8d52",
+    "plaid_id": "14002017",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1282,7 +1456,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002018",
+    "id": "1465c479-8f67-496b-a271-bcfc61eca351",
+    "plaid_id": "14002018",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1290,7 +1465,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002019",
+    "id": "3b161492-bd8e-4138-ab37-a5cc01894913",
+    "plaid_id": "14002019",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1298,7 +1474,8 @@
     ],
     "type": "place"
 }, {
-    "id": "14002020",
+    "id": "b089f2c2-903f-4148-a542-67c2b40d8c0c",
+    "plaid_id": "14002020",
     "hierarchy": [
         "Healthcare",
         "Physicians",
@@ -1306,67 +1483,77 @@
     ],
     "type": "place"
 }, {
-    "id": "15000000",
+    "id": "f0f14514-b624-4823-9fd0-9a735f193d39",
+    "plaid_id": "15000000",
     "hierarchy": [
         "Interest"
     ],
     "type": "special"
 }, {
-    "id": "15001000",
+    "id": "8171c80c-6a42-4330-b9b8-a87682e10c90",
+    "plaid_id": "15001000",
     "hierarchy": [
         "Interest",
         "Interest Earned"
     ],
     "type": "special"
 }, {
-    "id": "15002000",
+    "id": "53ef2d4c-7cf3-4961-ad29-7a005210a199",
+    "plaid_id": "15002000",
     "hierarchy": [
         "Interest",
         "Interest Charged"
     ],
     "type": "special"
 }, {
-    "id": "16000000",
+    "id": "a7285be3-2363-495d-b125-6273f484e7a6",
+    "plaid_id": "16000000",
     "hierarchy": [
         "Payment"
     ],
     "type": "special"
 }, {
-    "id": "16001000",
+    "id": "01d06ac0-84c8-486e-9829-c1c58f1874e8",
+    "plaid_id": "16001000",
     "hierarchy": [
         "Payment",
         "Credit Card"
     ],
     "type": "special"
 }, {
-    "id": "16002000",
+    "id": "0a416c41-6767-4672-ac6a-89ca0c29aeff",
+    "plaid_id": "16002000",
     "hierarchy": [
         "Payment",
         "Rent"
     ],
     "type": "special"
 }, {
-    "id": "16003000",
+    "id": "c5bd9811-a791-4854-8313-82e019670d7a",
+    "plaid_id": "16003000",
     "hierarchy": [
         "Payment",
         "Loan"
     ],
     "type": "special"
 }, {
-    "id": "17000000",
+    "id": "45f86061-79c9-4870-a763-1f2735bdccbd",
+    "plaid_id": "17000000",
     "hierarchy": [
         "Recreation"
     ],
     "type": "place"
 }, {
-    "id": "17001000",
+    "id": "9b4afb78-ad6e-46eb-86d6-0b89a765bf97",
+    "plaid_id": "17001000",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment"
     ],
     "type": "place"
 }, {
-    "id": "17001001",
+    "id": "f5fa20ad-dbbb-4e72-a5d6-0f7c9612a77a",
+    "plaid_id": "17001001",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1374,7 +1561,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001002",
+    "id": "9098ec77-f995-4a75-a903-1ff6d26f47a4",
+    "plaid_id": "17001002",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1382,7 +1570,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001003",
+    "id": "e2600ec0-75c4-4272-a8f1-9481b9e23c1b",
+    "plaid_id": "17001003",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1390,7 +1579,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001004",
+    "id": "a2116fdd-45b7-4619-9f1d-7b955289eb02",
+    "plaid_id": "17001004",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1398,7 +1588,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001005",
+    "id": "95636fa9-701f-4d19-b3dc-0864764037e7",
+    "plaid_id": "17001005",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1406,7 +1597,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001006",
+    "id": "db263b0e-6602-4964-bd9a-0e66a8a9d676",
+    "plaid_id": "17001006",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1414,7 +1606,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001007",
+    "id": "496719d1-48ab-4373-b0d4-82bee33ed108",
+    "plaid_id": "17001007",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1422,7 +1615,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001008",
+    "id": "c1b600b9-80c7-4672-a6b9-6910faf1d06e",
+    "plaid_id": "17001008",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1430,7 +1624,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001009",
+    "id": "14fb6425-1344-4414-a486-4a99cfec0330",
+    "plaid_id": "17001009",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1438,7 +1633,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001010",
+    "id": "e0d57d7f-484a-41e6-b234-8026ea9647f1",
+    "plaid_id": "17001010",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1446,7 +1642,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001011",
+    "id": "e2d3f10e-36cc-4a72-b418-1ebc4fa84bb3",
+    "plaid_id": "17001011",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1454,7 +1651,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001012",
+    "id": "b2a8455d-5158-4019-b8e7-722a33fb2835",
+    "plaid_id": "17001012",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1462,7 +1660,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001013",
+    "id": "081ae6e8-9ff5-45a9-ba42-bf82ce6b7577",
+    "plaid_id": "17001013",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1470,7 +1669,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001014",
+    "id": "637e8a49-1ea7-48e7-b515-94b9b3074c01",
+    "plaid_id": "17001014",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1478,7 +1678,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001015",
+    "id": "60ca523c-4616-4fe2-860c-5c418da355ef",
+    "plaid_id": "17001015",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1486,7 +1687,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001016",
+    "id": "126739a7-68dd-495a-ade8-7cec260bd4ff",
+    "plaid_id": "17001016",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1494,7 +1696,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001017",
+    "id": "d6f7d73a-661a-46b5-b376-ee19eedb1094",
+    "plaid_id": "17001017",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1502,7 +1705,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001018",
+    "id": "a8bde854-af88-4914-ba1f-5bef99c59b68",
+    "plaid_id": "17001018",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1510,7 +1714,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17001019",
+    "id": "b5b32645-8a43-437c-a1a9-e3de0bd26390",
+    "plaid_id": "17001019",
     "hierarchy": [
         "Recreation",
         "Arts and Entertainment",
@@ -1518,161 +1723,184 @@
     ],
     "type": "place"
 }, {
-    "id": "17002000",
+    "id": "99bf9d4d-7036-4a71-9d64-1edb4fddbd3b",
+    "plaid_id": "17002000",
     "hierarchy": [
         "Recreation",
         "Athletic Fields"
     ],
     "type": "place"
 }, {
-    "id": "17003000",
+    "id": "80772eb0-fafc-43d7-b874-8777b8c26513",
+    "plaid_id": "17003000",
     "hierarchy": [
         "Recreation",
         "Baseball"
     ],
     "type": "place"
 }, {
-    "id": "17004000",
+    "id": "b37aba76-b48a-41dd-9b2f-c3cc842e4023",
+    "plaid_id": "17004000",
     "hierarchy": [
         "Recreation",
         "Basketball"
     ],
     "type": "place"
 }, {
-    "id": "17005000",
+    "id": "22fdb46f-e97b-46e6-85b1-6c1baf8dd2ec",
+    "plaid_id": "17005000",
     "hierarchy": [
         "Recreation",
         "Batting Cages"
     ],
     "type": "place"
 }, {
-    "id": "17006000",
+    "id": "f95ed2fc-8966-4953-a56f-e3ca3c321352",
+    "plaid_id": "17006000",
     "hierarchy": [
         "Recreation",
         "Boating"
     ],
     "type": "place"
 }, {
-    "id": "17007000",
+    "id": "c253452d-34e3-4255-b03c-ebb92743eb18",
+    "plaid_id": "17007000",
     "hierarchy": [
         "Recreation",
         "Campgrounds and RV Parks"
     ],
     "type": "place"
 }, {
-    "id": "17008000",
+    "id": "5e6725aa-f1f9-4cd7-af1e-16d4526c9763",
+    "plaid_id": "17008000",
     "hierarchy": [
         "Recreation",
         "Canoes and Kayaks"
     ],
     "type": "place"
 }, {
-    "id": "17009000",
+    "id": "d9409cf4-9703-4396-af06-a52f714074f8",
+    "plaid_id": "17009000",
     "hierarchy": [
         "Recreation",
         "Combat Sports"
     ],
     "type": "place"
 }, {
-    "id": "17010000",
+    "id": "bb32766e-105f-4e04-a6ce-80509ad996ce",
+    "plaid_id": "17010000",
     "hierarchy": [
         "Recreation",
         "Cycling"
     ],
     "type": "place"
 }, {
-    "id": "17011000",
+    "id": "dec887e7-d1cc-4988-bd98-821cadd0b3bb",
+    "plaid_id": "17011000",
     "hierarchy": [
         "Recreation",
         "Dance"
     ],
     "type": "place"
 }, {
-    "id": "17012000",
+    "id": "50bc04dd-3ef3-4411-b0a6-82b722574dc2",
+    "plaid_id": "17012000",
     "hierarchy": [
         "Recreation",
         "Equestrian"
     ],
     "type": "place"
 }, {
-    "id": "17013000",
+    "id": "1c4d068a-522f-4889-bbef-ec884b2d17c7",
+    "plaid_id": "17013000",
     "hierarchy": [
         "Recreation",
         "Football"
     ],
     "type": "place"
 }, {
-    "id": "17014000",
+    "id": "3c0b0e4c-775e-4f70-941d-0d45c8c327f2",
+    "plaid_id": "17014000",
     "hierarchy": [
         "Recreation",
         "Go Carts"
     ],
     "type": "place"
 }, {
-    "id": "17015000",
+    "id": "7aeebffd-4259-47e8-8707-e41b2ee0c0bc",
+    "plaid_id": "17015000",
     "hierarchy": [
         "Recreation",
         "Golf"
     ],
     "type": "place"
 }, {
-    "id": "17016000",
+    "id": "ccd4a8df-85b9-4b5e-be75-9fa9a87faa5f",
+    "plaid_id": "17016000",
     "hierarchy": [
         "Recreation",
         "Gun Ranges"
     ],
     "type": "place"
 }, {
-    "id": "17017000",
+    "id": "65cabb37-7cbf-4e67-b8ca-41b8ed15159e",
+    "plaid_id": "17017000",
     "hierarchy": [
         "Recreation",
         "Gymnastics"
     ],
     "type": "place"
 }, {
-    "id": "17018000",
+    "id": "85dd55cf-3241-4358-81ac-76a201b460ad",
+    "plaid_id": "17018000",
     "hierarchy": [
         "Recreation",
         "Gyms and Fitness Centers"
     ],
     "type": "place"
 }, {
-    "id": "17019000",
+    "id": "a776480c-1d3d-44f3-aa31-5a1147e31ca2",
+    "plaid_id": "17019000",
     "hierarchy": [
         "Recreation",
         "Hiking"
     ],
     "type": "place"
 }, {
-    "id": "17020000",
+    "id": "f754b0e2-786b-4e86-b288-b69555d6d31d",
+    "plaid_id": "17020000",
     "hierarchy": [
         "Recreation",
         "Hockey"
     ],
     "type": "place"
 }, {
-    "id": "17021000",
+    "id": "6a491d95-c441-4737-9b37-1c0dc8ff793a",
+    "plaid_id": "17021000",
     "hierarchy": [
         "Recreation",
         "Hot Air Balloons"
     ],
     "type": "place"
 }, {
-    "id": "17022000",
+    "id": "7758ea2b-7075-4719-ab64-dd8448f2d2df",
+    "plaid_id": "17022000",
     "hierarchy": [
         "Recreation",
         "Hunting and Fishing"
     ],
     "type": "place"
 }, {
-    "id": "17023000",
+    "id": "ba93d615-aec7-4869-918f-e3e106b204a5",
+    "plaid_id": "17023000",
     "hierarchy": [
         "Recreation",
         "Landmarks"
     ],
     "type": "place"
 }, {
-    "id": "17023001",
+    "id": "66e47d7e-158f-409f-bfc8-06f89a5f3adb",
+    "plaid_id": "17023001",
     "hierarchy": [
         "Recreation",
         "Landmarks",
@@ -1680,7 +1908,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17023002",
+    "id": "8f1de158-568f-49cd-ac2f-fbc4c58c74d8",
+    "plaid_id": "17023002",
     "hierarchy": [
         "Recreation",
         "Landmarks",
@@ -1688,7 +1917,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17023003",
+    "id": "b63bb81a-8e4b-430b-be93-e09ae748abfe",
+    "plaid_id": "17023003",
     "hierarchy": [
         "Recreation",
         "Landmarks",
@@ -1696,7 +1926,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17023004",
+    "id": "3c2dd449-65d5-434a-8f68-b96cdd57fa7e",
+    "plaid_id": "17023004",
     "hierarchy": [
         "Recreation",
         "Landmarks",
@@ -1704,21 +1935,24 @@
     ],
     "type": "place"
 }, {
-    "id": "17024000",
+    "id": "363550bd-3459-45f1-8b48-6055717599be",
+    "plaid_id": "17024000",
     "hierarchy": [
         "Recreation",
         "Miniature Golf"
     ],
     "type": "place"
 }, {
-    "id": "17025000",
+    "id": "07e1253f-1e53-4c6a-95b4-0b162c51ed4b",
+    "plaid_id": "17025000",
     "hierarchy": [
         "Recreation",
         "Outdoors"
     ],
     "type": "place"
 }, {
-    "id": "17025001",
+    "id": "86068e0b-c515-42cd-9915-fb8e577b6b30",
+    "plaid_id": "17025001",
     "hierarchy": [
         "Recreation",
         "Outdoors",
@@ -1726,7 +1960,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17025002",
+    "id": "86a74251-f1d8-4714-a630-6dcb32185229",
+    "plaid_id": "17025002",
     "hierarchy": [
         "Recreation",
         "Outdoors",
@@ -1734,7 +1969,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17025003",
+    "id": "dea3f5f4-7456-49a7-892b-28e436fedc78",
+    "plaid_id": "17025003",
     "hierarchy": [
         "Recreation",
         "Outdoors",
@@ -1742,7 +1978,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17025004",
+    "id": "84998c3d-0e2b-479a-ba03-63c098171fd9",
+    "plaid_id": "17025004",
     "hierarchy": [
         "Recreation",
         "Outdoors",
@@ -1750,7 +1987,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17025005",
+    "id": "c89b093f-b3b9-4886-9465-557faec36089",
+    "plaid_id": "17025005",
     "hierarchy": [
         "Recreation",
         "Outdoors",
@@ -1758,21 +1996,24 @@
     ],
     "type": "place"
 }, {
-    "id": "17026000",
+    "id": "ea2ae3b1-6868-4cc0-9de0-2494883e3ad2",
+    "plaid_id": "17026000",
     "hierarchy": [
         "Recreation",
         "Paintball"
     ],
     "type": "place"
 }, {
-    "id": "17027000",
+    "id": "e413dc13-a901-4724-80aa-db84fbc341af",
+    "plaid_id": "17027000",
     "hierarchy": [
         "Recreation",
         "Parks"
     ],
     "type": "place"
 }, {
-    "id": "17027001",
+    "id": "82cb3cab-61d6-46cb-959a-4ce06e242f47",
+    "plaid_id": "17027001",
     "hierarchy": [
         "Recreation",
         "Parks",
@@ -1780,7 +2021,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17027002",
+    "id": "899bc0dd-4f4a-48ae-86b7-654b8be18069",
+    "plaid_id": "17027002",
     "hierarchy": [
         "Recreation",
         "Parks",
@@ -1788,7 +2030,8 @@
     ],
     "type": "place"
 }, {
-    "id": "17027003",
+    "id": "822fda02-649e-4ad1-af45-a8210b70fb4d",
+    "plaid_id": "17027003",
     "hierarchy": [
         "Recreation",
         "Parks",
@@ -1796,167 +2039,191 @@
     ],
     "type": "place"
 }, {
-    "id": "17028000",
+    "id": "8930cdc7-651e-41cb-9345-71d4969e1acf",
+    "plaid_id": "17028000",
     "hierarchy": [
         "Recreation",
         "Personal Trainers"
     ],
     "type": "place"
 }, {
-    "id": "17029000",
+    "id": "aeb33a30-cb14-4f7f-a95f-86b29c2fc085",
+    "plaid_id": "17029000",
     "hierarchy": [
         "Recreation",
         "Race Tracks"
     ],
     "type": "place"
 }, {
-    "id": "17030000",
+    "id": "bb7f52d3-3cd3-4fc0-ad5f-a6c32a7702e9",
+    "plaid_id": "17030000",
     "hierarchy": [
         "Recreation",
         "Racquet Sports"
     ],
     "type": "place"
 }, {
-    "id": "17031000",
+    "id": "f06c4817-36e6-47f4-85a9-cfa8811727e4",
+    "plaid_id": "17031000",
     "hierarchy": [
         "Recreation",
         "Racquetball"
     ],
     "type": "place"
 }, {
-    "id": "17032000",
+    "id": "2053ba73-ab62-47c3-a940-9d1002a88d02",
+    "plaid_id": "17032000",
     "hierarchy": [
         "Recreation",
         "Rafting"
     ],
     "type": "place"
 }, {
-    "id": "17033000",
+    "id": "2eec5c6d-af79-4c2c-8a13-7fa683e11be7",
+    "plaid_id": "17033000",
     "hierarchy": [
         "Recreation",
         "Recreation Centers"
     ],
     "type": "place"
 }, {
-    "id": "17034000",
+    "id": "347b0b66-6539-4e86-b28b-4f53012d4881",
+    "plaid_id": "17034000",
     "hierarchy": [
         "Recreation",
         "Rock Climbing"
     ],
     "type": "place"
 }, {
-    "id": "17035000",
+    "id": "c18581b2-c29b-4031-aa6a-1f66a3d1e3d3",
+    "plaid_id": "17035000",
     "hierarchy": [
         "Recreation",
         "Running"
     ],
     "type": "place"
 }, {
-    "id": "17036000",
+    "id": "1d27d3e9-7be0-4ae1-aac6-6bd784af6b48",
+    "plaid_id": "17036000",
     "hierarchy": [
         "Recreation",
         "Scuba Diving"
     ],
     "type": "place"
 }, {
-    "id": "17037000",
+    "id": "48c5087d-2a81-4e36-8dc1-2c5b7c757bbd",
+    "plaid_id": "17037000",
     "hierarchy": [
         "Recreation",
         "Skating"
     ],
     "type": "place"
 }, {
-    "id": "17038000",
+    "id": "c4be581c-87b3-4197-a7c3-ee07c3c590d6",
+    "plaid_id": "17038000",
     "hierarchy": [
         "Recreation",
         "Skydiving"
     ],
     "type": "place"
 }, {
-    "id": "17039000",
+    "id": "a17f1c83-029f-46e5-a25c-0f48752762b0",
+    "plaid_id": "17039000",
     "hierarchy": [
         "Recreation",
         "Snow Sports"
     ],
     "type": "place"
 }, {
-    "id": "17040000",
+    "id": "19df914c-4018-4274-984a-69d9ab97e0db",
+    "plaid_id": "17040000",
     "hierarchy": [
         "Recreation",
         "Soccer"
     ],
     "type": "place"
 }, {
-    "id": "17041000",
+    "id": "2828d2f9-7913-45b9-b2a8-9a8ca7b08bf2",
+    "plaid_id": "17041000",
     "hierarchy": [
         "Recreation",
         "Sports and Recreation Camps"
     ],
     "type": "place"
 }, {
-    "id": "17042000",
+    "id": "bd5d0db8-e469-4f71-8236-f908b726001d",
+    "plaid_id": "17042000",
     "hierarchy": [
         "Recreation",
         "Sports Clubs"
     ],
     "type": "place"
 }, {
-    "id": "17043000",
+    "id": "e16195fd-8ea8-4af8-9b8b-c676ce2a7eff",
+    "plaid_id": "17043000",
     "hierarchy": [
         "Recreation",
         "Stadiums and Arenas"
     ],
     "type": "place"
 }, {
-    "id": "17044000",
+    "id": "7a6580e9-92d4-4352-bb4f-05c4e0c33851",
+    "plaid_id": "17044000",
     "hierarchy": [
         "Recreation",
         "Swimming"
     ],
     "type": "place"
 }, {
-    "id": "17045000",
+    "id": "162fe6d7-89b6-4393-808e-60f978b09712",
+    "plaid_id": "17045000",
     "hierarchy": [
         "Recreation",
         "Tennis"
     ],
     "type": "place"
 }, {
-    "id": "17046000",
+    "id": "d79d76c8-925a-481d-8bf3-af1666eb7f0d",
+    "plaid_id": "17046000",
     "hierarchy": [
         "Recreation",
         "Water Sports"
     ],
     "type": "place"
 }, {
-    "id": "17047000",
+    "id": "58b15b11-29a4-4d0f-8f4e-de49f23c8e38",
+    "plaid_id": "17047000",
     "hierarchy": [
         "Recreation",
         "Yoga and Pilates"
     ],
     "type": "place"
 }, {
-    "id": "17048000",
+    "id": "ba0dc34c-ddfe-4202-8e59-10f93535a36d",
+    "plaid_id": "17048000",
     "hierarchy": [
         "Recreation",
         "Zoo"
     ],
     "type": "place"
 }, {
-    "id": "18000000",
+    "id": "237dfc35-d6bf-43e1-af24-931d57211c9b",
+    "plaid_id": "18000000",
     "hierarchy": [
         "Service"
     ],
     "type": "place"
 }, {
-    "id": "18001000",
+    "id": "65f27910-e69a-485e-8728-d8525ce434d8",
+    "plaid_id": "18001000",
     "hierarchy": [
         "Service",
         "Advertising and Marketing"
     ],
     "type": "place"
 }, {
-    "id": "18001001",
+    "id": "3706fb18-e73f-445e-a67e-c36f585f5f2e",
+    "plaid_id": "18001001",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -1964,7 +2231,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001002",
+    "id": "45df3980-cf5d-4819-9844-867d33a171e9",
+    "plaid_id": "18001002",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -1972,7 +2240,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001003",
+    "id": "20a433f3-5fe0-43f7-a63b-fc25e4f597b3",
+    "plaid_id": "18001003",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -1980,7 +2249,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001004",
+    "id": "42f08d7f-4563-484b-9fda-83f29146b1e7",
+    "plaid_id": "18001004",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -1988,7 +2258,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001005",
+    "id": "1381c59a-597a-4973-a277-48991edcb9d3",
+    "plaid_id": "18001005",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -1996,7 +2267,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001006",
+    "id": "606f233c-c3ec-4deb-96f1-5746e6451806",
+    "plaid_id": "18001006",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -2004,7 +2276,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001007",
+    "id": "8d82bb55-041b-4959-86ec-f1e2cb99204f",
+    "plaid_id": "18001007",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -2012,7 +2285,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001008",
+    "id": "920f3578-d7ab-4e00-b9e6-b5ddb3c4d2f9",
+    "plaid_id": "18001008",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -2020,7 +2294,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001009",
+    "id": "688f1fb4-9456-4e25-a29e-e083eaab89ae",
+    "plaid_id": "18001009",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -2028,7 +2303,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18001010",
+    "id": "9eaf069b-b95e-4fd7-b8e5-b81693810566",
+    "plaid_id": "18001010",
     "hierarchy": [
         "Service",
         "Advertising and Marketing",
@@ -2036,35 +2312,40 @@
     ],
     "type": "place"
 }, {
-    "id": "18003000",
+    "id": "503d2dbf-e1af-4dfa-9d7b-6d3ebf5fc118",
+    "plaid_id": "18003000",
     "hierarchy": [
         "Service",
         "Art Restoration"
     ],
     "type": "place"
 }, {
-    "id": "18004000",
+    "id": "b115286c-8526-4a53-b0eb-75e68c3dba37",
+    "plaid_id": "18004000",
     "hierarchy": [
         "Service",
         "Audiovisual"
     ],
     "type": "place"
 }, {
-    "id": "18005000",
+    "id": "a9500055-77f7-474a-a28b-22f424fa1c94",
+    "plaid_id": "18005000",
     "hierarchy": [
         "Service",
         "Automation and Control Systems"
     ],
     "type": "place"
 }, {
-    "id": "18006000",
+    "id": "8d84e4c8-3f7e-4589-82c7-83c6296b353d",
+    "plaid_id": "18006000",
     "hierarchy": [
         "Service",
         "Automotive"
     ],
     "type": "place"
 }, {
-    "id": "18006001",
+    "id": "01294ca5-e3d1-4aed-8d3f-cf1ca7e4c153",
+    "plaid_id": "18006001",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2072,7 +2353,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006002",
+    "id": "c4623bf9-1536-47b3-b38b-ea5ebe58c196",
+    "plaid_id": "18006002",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2080,7 +2362,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006003",
+    "id": "c18a6a38-b56d-441d-b666-e1a70e2e5d79",
+    "plaid_id": "18006003",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2088,7 +2371,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006004",
+    "id": "c6b48925-c689-4640-a374-fd7bd2532c0b",
+    "plaid_id": "18006004",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2096,7 +2380,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006005",
+    "id": "6828aa09-c03e-456c-9f15-0c0d3101f2f5",
+    "plaid_id": "18006005",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2104,7 +2389,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006006",
+    "id": "7f9c01eb-2ded-4771-b7cd-d784ffa64f82",
+    "plaid_id": "18006006",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2112,7 +2398,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006007",
+    "id": "8ab4f603-f0ed-4b69-a1b7-a8659cf3e248",
+    "plaid_id": "18006007",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2120,7 +2407,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006008",
+    "id": "5a1a5549-eb28-458f-9b16-b579d18c4a86",
+    "plaid_id": "18006008",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2128,7 +2416,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18006009",
+    "id": "849ec860-c697-4efd-924b-082b5d21329c",
+    "plaid_id": "18006009",
     "hierarchy": [
         "Service",
         "Automotive",
@@ -2136,21 +2425,24 @@
     ],
     "type": "place"
 }, {
-    "id": "18007000",
+    "id": "bfac697e-b3a4-4e53-a690-aa1fe3459b39",
+    "plaid_id": "18007000",
     "hierarchy": [
         "Service",
         "Business and Strategy Consulting"
     ],
     "type": "place"
 }, {
-    "id": "18008000",
+    "id": "854c8416-c755-48d3-825f-06b2891a465b",
+    "plaid_id": "18008000",
     "hierarchy": [
         "Service",
         "Business Services"
     ],
     "type": "place"
 }, {
-    "id": "18008001",
+    "id": "23df05b5-8365-46b7-a3ed-d3f92d9f304b",
+    "plaid_id": "18008001",
     "hierarchy": [
         "Service",
         "Business Services",
@@ -2158,35 +2450,40 @@
     ],
     "type": "place"
 }, {
-    "id": "18009000",
+    "id": "6ac4e17b-87e3-4c78-b570-8c71291c482b",
+    "plaid_id": "18009000",
     "hierarchy": [
         "Service",
         "Cable"
     ],
     "type": "special"
 }, {
-    "id": "18010000",
+    "id": "42dfa74b-67a8-4f9d-8a0b-80fe27686304",
+    "plaid_id": "18010000",
     "hierarchy": [
         "Service",
         "Chemicals and Gasses"
     ],
     "type": "place"
 }, {
-    "id": "18011000",
+    "id": "9a069198-91d1-4c51-8429-50079c3d695f",
+    "plaid_id": "18011000",
     "hierarchy": [
         "Service",
         "Cleaning"
     ],
     "type": "place"
 }, {
-    "id": "18012000",
+    "id": "40d5306e-2818-4de9-98af-f2db492aa9cf",
+    "plaid_id": "18012000",
     "hierarchy": [
         "Service",
         "Computers"
     ],
     "type": "place"
 }, {
-    "id": "18012001",
+    "id": "ceb5cc74-4359-4617-98ed-ab6b6962a707",
+    "plaid_id": "18012001",
     "hierarchy": [
         "Service",
         "Computers",
@@ -2194,7 +2491,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18012002",
+    "id": "b7667f72-12d1-4468-994e-5c6ed426210c",
+    "plaid_id": "18012002",
     "hierarchy": [
         "Service",
         "Computers",
@@ -2202,14 +2500,16 @@
     ],
     "type": "place"
 }, {
-    "id": "18013000",
+    "id": "f2469386-0211-44cd-adf7-8514a31655e6",
+    "plaid_id": "18013000",
     "hierarchy": [
         "Service",
         "Construction"
     ],
     "type": "place"
 }, {
-    "id": "18013001",
+    "id": "ede1dbb5-156b-4a0f-9d74-72bab7bb8577",
+    "plaid_id": "18013001",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2217,7 +2517,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013002",
+    "id": "fbb3b109-b39c-4439-8448-f3c15fdad536",
+    "plaid_id": "18013002",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2225,7 +2526,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013003",
+    "id": "e9652d8f-4c13-4fbd-9249-117a22810f7f",
+    "plaid_id": "18013003",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2233,7 +2535,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013004",
+    "id": "f9ca02b8-1c32-4f57-9388-1e534350721d",
+    "plaid_id": "18013004",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2241,7 +2544,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013005",
+    "id": "a8a015c5-1909-4991-ad1b-eabc73936458",
+    "plaid_id": "18013005",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2249,7 +2553,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013006",
+    "id": "264b174e-a629-47ba-8ae3-e3d841b5c670",
+    "plaid_id": "18013006",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2257,7 +2562,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013007",
+    "id": "a9b44f1d-8121-49cb-ade6-a416aacdbbfd",
+    "plaid_id": "18013007",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2265,7 +2571,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013008",
+    "id": "81d3863a-8b44-4e6f-937c-ee8a90996f70",
+    "plaid_id": "18013008",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2273,7 +2580,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013009",
+    "id": "1c91e517-4518-44da-aa3b-878614bafda4",
+    "plaid_id": "18013009",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2281,7 +2589,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18013010",
+    "id": "a3e463a6-7069-4b9d-b987-facf4d8701da",
+    "plaid_id": "18013010",
     "hierarchy": [
         "Service",
         "Construction",
@@ -2289,42 +2598,48 @@
     ],
     "type": "place"
 }, {
-    "id": "18014000",
+    "id": "d8eae942-3407-425e-96f9-3ddaa384633e",
+    "plaid_id": "18014000",
     "hierarchy": [
         "Service",
         "Credit Counseling and Bankruptcy Services"
     ],
     "type": "place"
 }, {
-    "id": "18015000",
+    "id": "089a97c5-590a-4fe1-97a1-caf71d3a1622",
+    "plaid_id": "18015000",
     "hierarchy": [
         "Service",
         "Dating and Escort"
     ],
     "type": "place"
 }, {
-    "id": "18016000",
+    "id": "8a411f6b-e3ae-4eda-9bb1-dfd20e46107a",
+    "plaid_id": "18016000",
     "hierarchy": [
         "Service",
         "Employment Agencies"
     ],
     "type": "place"
 }, {
-    "id": "18017000",
+    "id": "4577d00f-f7b8-4ae8-8b48-bb3fd7120d71",
+    "plaid_id": "18017000",
     "hierarchy": [
         "Service",
         "Engineering"
     ],
     "type": "place"
 }, {
-    "id": "18018000",
+    "id": "73c74a38-4e56-433f-93d3-76760b1b665f",
+    "plaid_id": "18018000",
     "hierarchy": [
         "Service",
         "Entertainment"
     ],
     "type": "place"
 }, {
-    "id": "18018001",
+    "id": "23023b63-f3ea-459b-9c5b-976626f65889",
+    "plaid_id": "18018001",
     "hierarchy": [
         "Service",
         "Entertainment",
@@ -2332,21 +2647,24 @@
     ],
     "type": "place"
 }, {
-    "id": "18019000",
+    "id": "4d8f87b1-8a9b-4ce1-91b1-a238c812fc6f",
+    "plaid_id": "18019000",
     "hierarchy": [
         "Service",
         "Events and Event Planning"
     ],
     "type": "place"
 }, {
-    "id": "18020000",
+    "id": "2820c075-9769-438b-8133-8471a5b68813",
+    "plaid_id": "18020000",
     "hierarchy": [
         "Service",
         "Financial"
     ],
     "type": "place"
 }, {
-    "id": "18020001",
+    "id": "a0c35c8d-2692-4d1f-a4dd-edbf81edb6c8",
+    "plaid_id": "18020001",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2354,7 +2672,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020002",
+    "id": "4c4a911e-6302-4a3e-88aa-c65e35b1009e",
+    "plaid_id": "18020002",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2362,7 +2681,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020003",
+    "id": "1127d118-5d6d-48fd-b2ef-bbde243f8987",
+    "plaid_id": "18020003",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2370,7 +2690,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020004",
+    "id": "16828da9-3ac0-42d7-a990-4488a28d5bec",
+    "plaid_id": "18020004",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2378,7 +2699,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020005",
+    "id": "9b82e4d5-103d-4f1c-b0d7-ee72de52aa3f",
+    "plaid_id": "18020005",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2386,7 +2708,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020006",
+    "id": "16ea5fcc-674e-4aeb-871a-ee7198a72d53",
+    "plaid_id": "18020006",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2394,7 +2717,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020007",
+    "id": "bf0c932b-f1cf-41d5-8bdf-367b6183b4dc",
+    "plaid_id": "18020007",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2402,7 +2726,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020008",
+    "id": "a91d00b9-dafa-4337-b5c4-ab912e117bdf",
+    "plaid_id": "18020008",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2410,7 +2735,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020009",
+    "id": "fed744fd-3440-4800-aec2-55178d50e725",
+    "plaid_id": "18020009",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2418,7 +2744,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020010",
+    "id": "e7792778-7772-4d78-a41e-a2a40c2e7b71",
+    "plaid_id": "18020010",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2426,7 +2753,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020011",
+    "id": "35ab089a-f9fa-4da1-ad71-5379fb793f87",
+    "plaid_id": "18020011",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2434,7 +2762,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020012",
+    "id": "a9474ff8-485c-4dfb-8f2e-bc1554463009",
+    "plaid_id": "18020012",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2442,7 +2771,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020013",
+    "id": "d73dcdde-c0d7-4d79-a6ca-ea4ccc48b274",
+    "plaid_id": "18020013",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2450,7 +2780,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18020014",
+    "id": "9f4ab6b6-b556-4352-8688-3f3b3d854929",
+    "plaid_id": "18020014",
     "hierarchy": [
         "Service",
         "Financial",
@@ -2458,14 +2789,16 @@
     ],
     "type": "place"
 }, {
-    "id": "18021000",
+    "id": "ca3a76bc-7663-4dc4-bb6e-a77f48e5d151",
+    "plaid_id": "18021000",
     "hierarchy": [
         "Service",
         "Food and Beverage"
     ],
     "type": "place"
 }, {
-    "id": "18021001",
+    "id": "b35e3aa3-7fc7-468f-b46c-03ccc1c7a879",
+    "plaid_id": "18021001",
     "hierarchy": [
         "Service",
         "Food and Beverage",
@@ -2473,7 +2806,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18021002",
+    "id": "93b913a1-df5d-4646-b839-e21371878aaf",
+    "plaid_id": "18021002",
     "hierarchy": [
         "Service",
         "Food and Beverage",
@@ -2481,28 +2815,32 @@
     ],
     "type": "place"
 }, {
-    "id": "18022000",
+    "id": "a2fb6a22-48e6-409b-a48c-b01f39c4a8ef",
+    "plaid_id": "18022000",
     "hierarchy": [
         "Service",
         "Funeral Services"
     ],
     "type": "place"
 }, {
-    "id": "18023000",
+    "id": "1daa5457-576c-4e11-9774-c28e3b6b59e1",
+    "plaid_id": "18023000",
     "hierarchy": [
         "Service",
         "Geological"
     ],
     "type": "place"
 }, {
-    "id": "18024000",
+    "id": "dfaa4cfc-1853-41d7-b9a5-9cb8d9e74bcd",
+    "plaid_id": "18024000",
     "hierarchy": [
         "Service",
         "Home Improvement"
     ],
     "type": "place"
 }, {
-    "id": "18024001",
+    "id": "058776a1-c24c-4019-acf9-e8dc4b59fa88",
+    "plaid_id": "18024001",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2510,7 +2848,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024002",
+    "id": "0848be74-c04d-489b-9d0d-be57ba6372f6",
+    "plaid_id": "18024002",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2518,7 +2857,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024003",
+    "id": "7163fadb-116f-4d55-a071-27bf06a65845",
+    "plaid_id": "18024003",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2526,7 +2866,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024004",
+    "id": "7f2b9e3d-a203-4015-801c-9100d690ffff",
+    "plaid_id": "18024004",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2534,7 +2875,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024005",
+    "id": "8d5f2376-75dc-4900-9108-57fc65b962a7",
+    "plaid_id": "18024005",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2542,7 +2884,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024006",
+    "id": "9e3ea89d-2b19-44ad-895f-591f2dd99231",
+    "plaid_id": "18024006",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2550,7 +2893,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024007",
+    "id": "5d5b4719-c781-4451-92fa-7af441d0776f",
+    "plaid_id": "18024007",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2558,7 +2902,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024008",
+    "id": "0014ee33-232a-4edd-80cb-3104d061e20c",
+    "plaid_id": "18024008",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2566,7 +2911,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024009",
+    "id": "b1c46671-5415-4e60-b135-f938a8149afe",
+    "plaid_id": "18024009",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2574,7 +2920,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024010",
+    "id": "ba658c54-9737-46bc-8138-1de0ae78ac73",
+    "plaid_id": "18024010",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2582,7 +2929,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024011",
+    "id": "475089ab-308c-4365-b874-0d6ca2acd40e",
+    "plaid_id": "18024011",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2590,7 +2938,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024012",
+    "id": "6141b309-4ad6-4be9-af8a-818fdfd38fbe",
+    "plaid_id": "18024012",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2598,7 +2947,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024013",
+    "id": "0a7fc84f-b267-42b0-813f-05b500420cf3",
+    "plaid_id": "18024013",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2606,7 +2956,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024014",
+    "id": "18a2d1b0-367d-4ab8-b8a0-42c6780e083a",
+    "plaid_id": "18024014",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2614,7 +2965,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024015",
+    "id": "6b31e473-e39d-41cf-ba74-1d44657f3644",
+    "plaid_id": "18024015",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2622,7 +2974,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024016",
+    "id": "214dd833-862d-44e8-8f1b-b2ec79c01588",
+    "plaid_id": "18024016",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2630,7 +2983,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024017",
+    "id": "f79efc2a-97d5-4ce2-98eb-3e3d1b1032fe",
+    "plaid_id": "18024017",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2638,7 +2992,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024018",
+    "id": "b9debffb-59ff-439e-bb6a-4df391812adf",
+    "plaid_id": "18024018",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2646,7 +3001,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024019",
+    "id": "c58677b2-5534-445d-bbb2-8af460d6c89f",
+    "plaid_id": "18024019",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2654,7 +3010,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024020",
+    "id": "2fa793c8-bf15-4348-8494-6e346b808146",
+    "plaid_id": "18024020",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2662,7 +3019,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024021",
+    "id": "17d7ed6d-2ced-40fa-b38a-d2dba34eeca4",
+    "plaid_id": "18024021",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2670,7 +3028,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024022",
+    "id": "4e23dce7-e6a5-4e52-a8d4-5fef035150b6",
+    "plaid_id": "18024022",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2678,7 +3037,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024023",
+    "id": "aaef113e-6a8d-4903-9314-0c8b8e310c57",
+    "plaid_id": "18024023",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2686,7 +3046,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024024",
+    "id": "6ff8bfd5-94d4-4782-b244-7f7a9e87227b",
+    "plaid_id": "18024024",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2694,7 +3055,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024025",
+    "id": "1f76419f-cf17-4512-9916-65bf8b53fcc3",
+    "plaid_id": "18024025",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2702,7 +3064,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024026",
+    "id": "c5cd04e3-462f-45ec-a862-d522909c779b",
+    "plaid_id": "18024026",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2710,7 +3073,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18024027",
+    "id": "fdac02b3-af29-43ed-9cef-508969a77136",
+    "plaid_id": "18024027",
     "hierarchy": [
         "Service",
         "Home Improvement",
@@ -2718,98 +3082,112 @@
     ],
     "type": "place"
 }, {
-    "id": "18025000",
+    "id": "d6718fa6-0a40-42b9-b553-bd9bbc788031",
+    "plaid_id": "18025000",
     "hierarchy": [
         "Service",
         "Household"
     ],
     "type": "place"
 }, {
-    "id": "18026000",
+    "id": "c0cf538a-8103-4dde-82e4-9de7bd64a142",
+    "plaid_id": "18026000",
     "hierarchy": [
         "Service",
         "Human Resources"
     ],
     "type": "place"
 }, {
-    "id": "18027000",
+    "id": "c1e1bea5-d004-44d4-b94c-754eaa391f75",
+    "plaid_id": "18027000",
     "hierarchy": [
         "Service",
         "Immigration"
     ],
     "type": "place"
 }, {
-    "id": "18028000",
+    "id": "b7698fa6-9f66-41db-b62f-8b8ed9726aef",
+    "plaid_id": "18028000",
     "hierarchy": [
         "Service",
         "Import and Export"
     ],
     "type": "place"
 }, {
-    "id": "18029000",
+    "id": "24c367d0-2345-427d-9012-94f731bbea7b",
+    "plaid_id": "18029000",
     "hierarchy": [
         "Service",
         "Industrial Machinery and Vehicles"
     ],
     "type": "place"
 }, {
-    "id": "18030000",
+    "id": "a2dff950-d840-4652-b380-fb806975a7fd",
+    "plaid_id": "18030000",
     "hierarchy": [
         "Service",
         "Insurance"
     ],
     "type": "special"
 }, {
-    "id": "18031000",
+    "id": "7a16d703-03fa-45a2-8b46-f1e5b4f9d370",
+    "plaid_id": "18031000",
     "hierarchy": [
         "Service",
         "Internet Services"
     ],
     "type": "digital"
 }, {
-    "id": "18032000",
+    "id": "616e4485-1f1c-45da-8534-cbcc03114438",
+    "plaid_id": "18032000",
     "hierarchy": [
         "Service",
         "Leather"
     ],
     "type": "place"
 }, {
-    "id": "18033000",
+    "id": "8c05c038-bd5f-491b-94b3-89346950ab98",
+    "plaid_id": "18033000",
     "hierarchy": [
         "Service",
         "Legal"
     ],
     "type": "place"
 }, {
-    "id": "18034000",
+    "id": "abcb4ba9-a66c-43cb-8c23-dfb5afdc876c",
+    "plaid_id": "18034000",
     "hierarchy": [
         "Service",
         "Logging and Sawmills"
     ],
     "type": "place"
 }, {
-    "id": "18035000",
+    "id": "4e8cc425-747d-4cee-b1ae-1e6f47a14633",
+    "plaid_id": "18035000",
     "hierarchy": [
         "Service",
         "Machine Shops"
     ],
     "type": "place"
 }, {
-    "id": "18036000",
+    "id": "e907797f-20fb-484f-9e15-8fc16ce58dc5",
+    "plaid_id": "18036000",
     "hierarchy": [
         "Service",
         "Management"
     ],
     "type": "place"
 }, {
-    "id": "18037000",
+    "id": "36bafa16-3d66-44a9-9dce-4620feb24639",
+    "plaid_id": "18037000",
     "hierarchy": [
         "Service",
         "Manufacturing"
     ],
     "type": "place"
 }, {
-    "id": "18037001",
+    "id": "01abc6e6-afc4-4822-a814-1ff192ba932c",
+    "plaid_id": "18037001",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2817,7 +3195,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037002",
+    "id": "d02c0ddc-f248-40e9-8689-0220b62ee66e",
+    "plaid_id": "18037002",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2825,7 +3204,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037003",
+    "id": "cd162212-e3c0-46c5-9be0-42f17a5372aa",
+    "plaid_id": "18037003",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2833,7 +3213,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037004",
+    "id": "ec2042ed-2ded-4a62-9cc4-d6ceb9b0e4fc",
+    "plaid_id": "18037004",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2841,7 +3222,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037005",
+    "id": "578f40c4-7599-487f-bfb3-882b50b040e1",
+    "plaid_id": "18037005",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2849,7 +3231,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037006",
+    "id": "e4d0e467-b86f-4dba-a75f-6a1d7cc9cf04",
+    "plaid_id": "18037006",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2857,7 +3240,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037007",
+    "id": "7be5a316-bb12-43a3-b22a-d417f19c3383",
+    "plaid_id": "18037007",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2865,7 +3249,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037008",
+    "id": "4a4adf7f-6bdd-4373-93b6-3934f48723ed",
+    "plaid_id": "18037008",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2873,7 +3258,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037009",
+    "id": "b22ddafb-d4fe-4c72-939d-ee2570db37f8",
+    "plaid_id": "18037009",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2881,7 +3267,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037010",
+    "id": "b0dcf6d0-8b69-4c26-92b6-436705ff85c7",
+    "plaid_id": "18037010",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2889,7 +3276,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037011",
+    "id": "fc3b2878-5f95-4b84-9d49-19f4590bc2ec",
+    "plaid_id": "18037011",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2897,7 +3285,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037012",
+    "id": "607b955c-9005-421c-96c4-d74753451d95",
+    "plaid_id": "18037012",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2905,7 +3294,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037013",
+    "id": "a19926c0-f498-43d6-8d13-cd97bca0427c",
+    "plaid_id": "18037013",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2913,7 +3303,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037014",
+    "id": "30ae8305-9b81-485d-bbea-ac30fcfae137",
+    "plaid_id": "18037014",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2921,7 +3312,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037015",
+    "id": "eb0619c0-1cc9-4f41-9f87-d3205db5e9d2",
+    "plaid_id": "18037015",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2929,7 +3321,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037016",
+    "id": "b15a0f88-816d-457f-aaa0-c7d89407a85f",
+    "plaid_id": "18037016",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2937,7 +3330,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037017",
+    "id": "0252ba94-7b9b-4f20-879b-b31516d6956c",
+    "plaid_id": "18037017",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2945,7 +3339,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037018",
+    "id": "26f09bcd-139f-449f-845f-422af7c96f88",
+    "plaid_id": "18037018",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2953,7 +3348,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037019",
+    "id": "2935e6c0-0977-428c-8d7d-3531b0e2eb04",
+    "plaid_id": "18037019",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2961,7 +3357,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18037020",
+    "id": "4eee6965-7564-4709-b8d5-1bd65af19ad2",
+    "plaid_id": "18037020",
     "hierarchy": [
         "Service",
         "Manufacturing",
@@ -2969,28 +3366,24 @@
     ],
     "type": "place"
 }, {
-    "id": "18038000",
-    "hierarchy": [
-        "Service",
-        "Media Production"
-    ],
-    "type": "place"
-}, {
-    "id": "18039000",
+    "id": "a7f31819-db5a-4818-8e49-a394738a3057",
+    "plaid_id": "18039000",
     "hierarchy": [
         "Service",
         "Metals"
     ],
     "type": "place"
 }, {
-    "id": "18040000",
+    "id": "e9f75a4f-db74-4bdc-ab82-8d1770973bd0",
+    "plaid_id": "18040000",
     "hierarchy": [
         "Service",
         "Mining"
     ],
     "type": "place"
 }, {
-    "id": "18040001",
+    "id": "b33bdf33-2861-458a-b6a2-5fa0baee60c0",
+    "plaid_id": "18040001",
     "hierarchy": [
         "Service",
         "Mining",
@@ -2998,7 +3391,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18040002",
+    "id": "7df1c983-b949-4cd6-9efa-4a4e404b13c5",
+    "plaid_id": "18040002",
     "hierarchy": [
         "Service",
         "Mining",
@@ -3006,7 +3400,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18040003",
+    "id": "36cc5ac7-db95-4f6b-a007-fe24851fb60d",
+    "plaid_id": "18040003",
     "hierarchy": [
         "Service",
         "Mining",
@@ -3014,42 +3409,48 @@
     ],
     "type": "place"
 }, {
-    "id": "18041000",
+    "id": "b6cb8bae-bfd0-4ceb-9c95-7276bced5b8f",
+    "plaid_id": "18041000",
     "hierarchy": [
         "Service",
         "News Reporting"
     ],
     "type": "place"
 }, {
-    "id": "18042000",
+    "id": "c9ea7668-4567-43d4-be40-57db4f55f559",
+    "plaid_id": "18042000",
     "hierarchy": [
         "Service",
         "Oil and Gas"
     ],
     "type": "place"
 }, {
-    "id": "18043000",
+    "id": "eb1c4ba2-ab54-4a6b-9154-42c4de01eee4",
+    "plaid_id": "18043000",
     "hierarchy": [
         "Service",
         "Packaging"
     ],
     "type": "place"
 }, {
-    "id": "18044000",
+    "id": "2fe6ad00-598a-4576-9b86-05e4b396de49",
+    "plaid_id": "18044000",
     "hierarchy": [
         "Service",
         "Paper"
     ],
     "type": "place"
 }, {
-    "id": "18045000",
+    "id": "eb8176cc-45ba-4ff7-a052-87e41eefe472",
+    "plaid_id": "18045000",
     "hierarchy": [
         "Service",
         "Personal Care"
     ],
     "type": "place"
 }, {
-    "id": "18045001",
+    "id": "072c650f-f4b6-4173-aaa4-a96276547181",
+    "plaid_id": "18045001",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3057,7 +3458,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045002",
+    "id": "6f96d894-b98f-495a-b2b1-2cfd174be546",
+    "plaid_id": "18045002",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3065,7 +3467,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045003",
+    "id": "19a941a6-f781-4884-a72b-0eaf50c7db5f",
+    "plaid_id": "18045003",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3073,7 +3476,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045004",
+    "id": "956ca33e-cab7-446e-83ca-b0e099e88a58",
+    "plaid_id": "18045004",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3081,7 +3485,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045005",
+    "id": "96f713d6-150a-49ef-a9ed-2cd35c305a3f",
+    "plaid_id": "18045005",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3089,7 +3494,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045006",
+    "id": "f4282f7d-804d-4858-8442-3baed26958a9",
+    "plaid_id": "18045006",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3097,7 +3503,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045007",
+    "id": "25fef00b-ef54-4fdc-85ac-960f91db5819",
+    "plaid_id": "18045007",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3105,7 +3512,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045008",
+    "id": "690f1626-8408-4914-92af-1b236ee9aebb",
+    "plaid_id": "18045008",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3113,7 +3521,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045009",
+    "id": "88da293e-264c-436e-a970-dba7bd296633",
+    "plaid_id": "18045009",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3121,7 +3530,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18045010",
+    "id": "252b0431-c8f5-45d3-8e58-23dc086cba43",
+    "plaid_id": "18045010",
     "hierarchy": [
         "Service",
         "Personal Care",
@@ -3129,42 +3539,48 @@
     ],
     "type": "place"
 }, {
-    "id": "18046000",
+    "id": "ae684256-1cb4-4358-9360-b980b132c6cc",
+    "plaid_id": "18046000",
     "hierarchy": [
         "Service",
         "Petroleum"
     ],
     "type": "place"
 }, {
-    "id": "18047000",
+    "id": "ea239c9c-8591-4c20-b457-5923c20d9450",
+    "plaid_id": "18047000",
     "hierarchy": [
         "Service",
         "Photography"
     ],
     "type": "place"
 }, {
-    "id": "18048000",
+    "id": "5522b8de-d6fe-4f26-a417-fdc7be400a1d",
+    "plaid_id": "18048000",
     "hierarchy": [
         "Service",
         "Plastics"
     ],
     "type": "place"
 }, {
-    "id": "18049000",
+    "id": "a453e6df-f16d-4bac-95de-98164db81410",
+    "plaid_id": "18049000",
     "hierarchy": [
         "Service",
         "Rail"
     ],
     "type": "place"
 }, {
-    "id": "18050000",
+    "id": "a58aa732-a887-466f-9fd9-e4a05ec82a54",
+    "plaid_id": "18050000",
     "hierarchy": [
         "Service",
         "Real Estate"
     ],
     "type": "place"
 }, {
-    "id": "18050001",
+    "id": "fb077fb4-1294-4055-b9a3-d9e35df74bbf",
+    "plaid_id": "18050001",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3172,7 +3588,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050002",
+    "id": "de617d19-561e-4d57-9cb7-33f56207b0fb",
+    "plaid_id": "18050002",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3180,7 +3597,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050003",
+    "id": "f335a202-ec83-4827-9c23-3bdd6ff888b0",
+    "plaid_id": "18050003",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3188,7 +3606,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050004",
+    "id": "ac591e57-eeed-4813-a59b-1e9528f24a20",
+    "plaid_id": "18050004",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3196,7 +3615,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050005",
+    "id": "a6065072-eb40-400b-ad3e-51c2a9408a94",
+    "plaid_id": "18050005",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3204,7 +3624,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050006",
+    "id": "c7fc4b40-1ad4-4c8d-b554-41722a5c6df3",
+    "plaid_id": "18050006",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3212,7 +3633,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050007",
+    "id": "0f58da43-b0c9-4a5a-857a-c2ac95554fbe",
+    "plaid_id": "18050007",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3220,7 +3642,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050008",
+    "id": "0e1c2415-952a-41ab-85fb-bc248b23bb52",
+    "plaid_id": "18050008",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3228,7 +3651,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050009",
+    "id": "0e41e368-1758-4021-8448-76fd7b3966ca",
+    "plaid_id": "18050009",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3236,7 +3660,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18050010",
+    "id": "baa5a09c-35e2-430c-bfd6-e7bd8727695c",
+    "plaid_id": "18050010",
     "hierarchy": [
         "Service",
         "Real Estate",
@@ -3244,133 +3669,152 @@
     ],
     "type": "special"
 }, {
-    "id": "18051000",
+    "id": "69fcf7d5-9a7b-464b-8436-c5c465ff49ed",
+    "plaid_id": "18051000",
     "hierarchy": [
         "Service",
         "Refrigeration and Ice"
     ],
     "type": "place"
 }, {
-    "id": "18052000",
+    "id": "3673e158-7ea6-4f58-821e-95b8c46579e8",
+    "plaid_id": "18052000",
     "hierarchy": [
         "Service",
         "Renewable Energy"
     ],
     "type": "place"
 }, {
-    "id": "18053000",
+    "id": "0e75c2e1-96b0-40fa-aa98-b1e7f89818ec",
+    "plaid_id": "18053000",
     "hierarchy": [
         "Service",
         "Repair Services"
     ],
     "type": "place"
 }, {
-    "id": "18054000",
+    "id": "82eb5e97-a39e-4803-9f79-0f773515ce3c",
+    "plaid_id": "18054000",
     "hierarchy": [
         "Service",
         "Research"
     ],
     "type": "place"
 }, {
-    "id": "18055000",
+    "id": "00094c2c-3d74-489f-8ed3-e96c6cf38cbb",
+    "plaid_id": "18055000",
     "hierarchy": [
         "Service",
         "Rubber"
     ],
     "type": "place"
 }, {
-    "id": "18056000",
+    "id": "dad966bb-d773-4f27-87ff-919ee7cd5261",
+    "plaid_id": "18056000",
     "hierarchy": [
         "Service",
         "Scientific"
     ],
     "type": "place"
 }, {
-    "id": "18057000",
+    "id": "871584ba-70ca-460d-903c-6ed13a41f959",
+    "plaid_id": "18057000",
     "hierarchy": [
         "Service",
         "Security and Safety"
     ],
     "type": "place"
 }, {
-    "id": "18058000",
+    "id": "32606c26-b4d6-43a0-b444-82bb0cb8e261",
+    "plaid_id": "18058000",
     "hierarchy": [
         "Service",
         "Shipping and Freight"
     ],
     "type": "place"
 }, {
-    "id": "18059000",
+    "id": "0a6e7223-f97c-435a-9bf0-e247c33feb61",
+    "plaid_id": "18059000",
     "hierarchy": [
         "Service",
         "Software Development"
     ],
     "type": "place"
 }, {
-    "id": "18060000",
+    "id": "c57fc0a8-d501-49b6-8ce6-1c94e30b194e",
+    "plaid_id": "18060000",
     "hierarchy": [
         "Service",
         "Storage"
     ],
     "type": "place"
 }, {
-    "id": "18061000",
+    "id": "e0980b05-d451-4ac1-bbc7-84fcb5f7fee5",
+    "plaid_id": "18061000",
     "hierarchy": [
         "Service",
         "Subscription"
     ],
     "type": "place"
 }, {
-    "id": "18062000",
+    "id": "bd77a83f-85bc-4810-a87c-ae27f4e290e6",
+    "plaid_id": "18062000",
     "hierarchy": [
         "Service",
         "Tailors"
     ],
     "type": "place"
 }, {
-    "id": "18063000",
+    "id": "2c0e1ab7-aba0-46f7-9cc4-2dcb20cbcc4c",
+    "plaid_id": "18063000",
     "hierarchy": [
         "Service",
         "Telecommunication Services"
     ],
     "type": "place"
 }, {
-    "id": "18064000",
+    "id": "1dbbe03d-ea82-4994-9cbd-82e693e6a9e4",
+    "plaid_id": "18064000",
     "hierarchy": [
         "Service",
         "Textiles"
     ],
     "type": "place"
 }, {
-    "id": "18065000",
+    "id": "1ad3fcf6-d6d6-4c70-a4e3-6ca271d68dc6",
+    "plaid_id": "18065000",
     "hierarchy": [
         "Service",
         "Tourist Information and Services"
     ],
     "type": "place"
 }, {
-    "id": "18066000",
+    "id": "5b7936ca-c03d-4323-a65b-edd4ec9078b8",
+    "plaid_id": "18066000",
     "hierarchy": [
         "Service",
         "Transportation"
     ],
     "type": "place"
 }, {
-    "id": "18067000",
+    "id": "bb443287-0b45-4f03-bf5a-fc31013a5a54",
+    "plaid_id": "18067000",
     "hierarchy": [
         "Service",
         "Travel Agents and Tour Operators"
     ],
     "type": "place"
 }, {
-    "id": "18068000",
+    "id": "cfe780d1-6fa2-4447-9db8-c4054fd09168",
+    "plaid_id": "18068000",
     "hierarchy": [
         "Service",
         "Utilities"
     ],
     "type": "special"
 }, {
-    "id": "18068001",
+    "id": "b3533369-be38-4306-a451-39c86d97c696",
+    "plaid_id": "18068001",
     "hierarchy": [
         "Service",
         "Utilities",
@@ -3378,7 +3822,8 @@
     ],
     "type": "special"
 }, {
-    "id": "18068002",
+    "id": "abba9780-6a94-41b4-8b97-402883278595",
+    "plaid_id": "18068002",
     "hierarchy": [
         "Service",
         "Utilities",
@@ -3386,7 +3831,8 @@
     ],
     "type": "special"
 }, {
-    "id": "18068003",
+    "id": "f2ca5154-28b3-4fde-9eba-593dbfd7048e",
+    "plaid_id": "18068003",
     "hierarchy": [
         "Service",
         "Utilities",
@@ -3394,7 +3840,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18068004",
+    "id": "bd2b6c92-5d92-49f2-be15-dce1bda00039",
+    "plaid_id": "18068004",
     "hierarchy": [
         "Service",
         "Utilities",
@@ -3402,7 +3849,8 @@
     ],
     "type": "special"
 }, {
-    "id": "18068005",
+    "id": "0ade9f63-54a6-4915-a3c0-dab8283bac74",
+    "plaid_id": "18068005",
     "hierarchy": [
         "Service",
         "Utilities",
@@ -3410,42 +3858,48 @@
     ],
     "type": "special"
 }, {
-    "id": "18069000",
+    "id": "4ac4a48b-bb81-4ab8-b9e5-5f3c3f7f13bc",
+    "plaid_id": "18069000",
     "hierarchy": [
         "Service",
         "Veterinarians"
     ],
     "type": "place"
 }, {
-    "id": "18070000",
+    "id": "aa3cbe19-7d4a-46a2-abc5-cb0951960d1b",
+    "plaid_id": "18070000",
     "hierarchy": [
         "Service",
         "Water and Waste Management"
     ],
     "type": "place"
 }, {
-    "id": "18071000",
+    "id": "897d783f-6e31-4279-ae84-af4302b41121",
+    "plaid_id": "18071000",
     "hierarchy": [
         "Service",
         "Web Design and Development"
     ],
     "type": "place"
 }, {
-    "id": "18072000",
+    "id": "e35b921c-2287-4631-a7b9-3b6101f6a300",
+    "plaid_id": "18072000",
     "hierarchy": [
         "Service",
         "Welding"
     ],
     "type": "place"
 }, {
-    "id": "18073000",
+    "id": "1d35c792-d38e-4761-b889-9f427cb2be0d",
+    "plaid_id": "18073000",
     "hierarchy": [
         "Service",
         "Agriculture and Forestry"
     ],
     "type": "place"
 }, {
-    "id": "18073001",
+    "id": "98960ba6-5a89-4ea6-a4f8-503d0848b273",
+    "plaid_id": "18073001",
     "hierarchy": [
         "Service",
         "Agriculture and Forestry",
@@ -3453,7 +3907,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18073002",
+    "id": "997fee14-99b5-4600-81c1-6e43d9fdfebe",
+    "plaid_id": "18073002",
     "hierarchy": [
         "Service",
         "Agriculture and Forestry",
@@ -3461,7 +3916,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18073003",
+    "id": "1ca70c8e-b92a-4ad3-b629-477dde01fded",
+    "plaid_id": "18073003",
     "hierarchy": [
         "Service",
         "Agriculture and Forestry",
@@ -3469,7 +3925,8 @@
     ],
     "type": "place"
 }, {
-    "id": "18073004",
+    "id": "4e893987-7d54-46a8-a118-ebe793693ab1",
+    "plaid_id": "18073004",
     "hierarchy": [
         "Service",
         "Agriculture and Forestry",
@@ -3477,55 +3934,63 @@
     ],
     "type": "place"
 }, {
-    "id": "18074000",
+    "id": "5ae27c06-0d1a-4760-80a8-388348d1f4dc",
+    "plaid_id": "18074000",
     "hierarchy": [
         "Service",
         "Art and Graphic Design"
     ],
     "type": "place"
 }, {
-    "id": "19000000",
+    "id": "e56c6e11-24a8-4c13-870c-9a9aeceb1250",
+    "plaid_id": "19000000",
     "hierarchy": [
         "Shops"
     ],
     "type": "place"
 }, {
-    "id": "19001000",
+    "id": "c1f8c25f-865e-4e0d-8f0a-a04a67a143e4",
+    "plaid_id": "19001000",
     "hierarchy": [
         "Shops",
         "Adult"
     ],
     "type": "place"
 }, {
-    "id": "19002000",
+    "id": "6c3e35f7-bfa1-4e2e-9eca-a5e904004645",
+    "plaid_id": "19002000",
     "hierarchy": [
         "Shops",
         "Antiques"
     ],
     "type": "place"
 }, {
-    "id": "19003000",
+    "id": "0c7fbd18-7d8b-4999-80bf-cd8d6f6b7d76",
+    "plaid_id": "19003000",
     "hierarchy": [
         "Shops",
         "Arts and Crafts"
     ],
     "type": "place"
 }, {
-    "id": "19004000",
+    "id": "e31513b0-803d-478a-8ea4-dcb4788d09fd",
+    "plaid_id": "19004000",
     "hierarchy": [
         "Shops",
         "Auctions"
     ],
     "type": "place"
 }, {
-    "id": "19005000",
+    "id": "cb46189d-2044-44c1-8b33-1605165864c1",
+    "plaid_id": "19005000",
     "hierarchy": [
         "Shops",
         "Automotive"
     ],
     "type": "place"
 }, {
-    "id": "19005001",
+    "id": "26086c8d-d04b-486d-b94c-c54cfac7078b",
+    "plaid_id": "19005001",
     "hierarchy": [
         "Shops",
         "Automotive",
@@ -3533,7 +3998,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19005002",
+    "id": "38bcffde-ae30-4fd4-91b0-343db7570686",
+    "plaid_id": "19005002",
     "hierarchy": [
         "Shops",
         "Automotive",
@@ -3541,7 +4007,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19005003",
+    "id": "177b32a2-8f4e-4d64-8d2d-30757e1b501d",
+    "plaid_id": "19005003",
     "hierarchy": [
         "Shops",
         "Automotive",
@@ -3549,7 +4016,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19005004",
+    "id": "a55b56f3-9901-4491-838f-ce97bd991c60",
+    "plaid_id": "19005004",
     "hierarchy": [
         "Shops",
         "Automotive",
@@ -3557,7 +4025,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19005005",
+    "id": "8e36a3e0-178e-4042-91b9-851b5cefbc7a",
+    "plaid_id": "19005005",
     "hierarchy": [
         "Shops",
         "Automotive",
@@ -3565,7 +4034,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19005006",
+    "id": "5052cb4b-10a8-4ca0-9a3d-ebb0c3a9c429",
+    "plaid_id": "19005006",
     "hierarchy": [
         "Shops",
         "Automotive",
@@ -3573,7 +4043,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19005007",
+    "id": "83b0597e-96a4-4871-89af-a4fb6ab6d729",
+    "plaid_id": "19005007",
     "hierarchy": [
         "Shops",
         "Automotive",
@@ -3581,56 +4052,64 @@
     ],
     "type": "place"
 }, {
-    "id": "19006000",
+    "id": "102f762b-3e36-4925-88bc-0822038e0cab",
+    "plaid_id": "19006000",
     "hierarchy": [
         "Shops",
         "Beauty Products"
     ],
     "type": "place"
 }, {
-    "id": "19007000",
+    "id": "52bd1e2b-e4d7-4825-a063-b8e6b89a769c",
+    "plaid_id": "19007000",
     "hierarchy": [
         "Shops",
         "Bicycles"
     ],
     "type": "place"
 }, {
-    "id": "19008000",
+    "id": "9b0aa777-0045-47ce-9c74-a25e80f9e955",
+    "plaid_id": "19008000",
     "hierarchy": [
         "Shops",
         "Boat Dealers"
     ],
     "type": "place"
 }, {
-    "id": "19009000",
+    "id": "eabe845b-04d3-4ad9-a2e3-d63a8d45205a",
+    "plaid_id": "19009000",
     "hierarchy": [
         "Shops",
         "Bookstores"
     ],
     "type": "place"
 }, {
-    "id": "19010000",
+    "id": "f0ff3a71-270e-430e-9c3c-5691fd69091b",
+    "plaid_id": "19010000",
     "hierarchy": [
         "Shops",
         "Cards and Stationery"
     ],
     "type": "place"
 }, {
-    "id": "19011000",
+    "id": "4a2740aa-141d-483c-bc00-834628aac401",
+    "plaid_id": "19011000",
     "hierarchy": [
         "Shops",
         "Children"
     ],
     "type": "place"
 }, {
-    "id": "19012000",
+    "id": "57189c5d-b52b-4ea7-97c0-d08efb2d3024",
+    "plaid_id": "19012000",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories"
     ],
     "type": "place"
 }, {
-    "id": "19012001",
+    "id": "d74836a7-d85c-48d1-9d15-75040a1251a5",
+    "plaid_id": "19012001",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3638,7 +4117,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19012002",
+    "id": "763ba13d-4e5b-4036-af7c-d1c346e5dd9a",
+    "plaid_id": "19012002",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3646,7 +4126,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19012003",
+    "id": "2e527020-6817-4bfa-a782-0c85b6470b66",
+    "plaid_id": "19012003",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3654,7 +4135,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19012004",
+    "id": "d58a7547-55c1-4954-9773-59e0d3e6881a",
+    "plaid_id": "19012004",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3662,7 +4144,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19012005",
+    "id": "f3882432-7b82-47fc-95f4-671b853cd9a3",
+    "plaid_id": "19012005",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3670,7 +4153,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19012006",
+    "id": "fd4de315-b186-4ab0-8484-f4c577b368c8",
+    "plaid_id": "19012006",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3678,7 +4162,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19012007",
+    "id": "a15dacf0-dd7d-4a62-a820-0a7b7d84caf8",
+    "plaid_id": "19012007",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3686,7 +4171,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19012008",
+    "id": "21bc36d8-75db-494f-b7f3-2509344b1715",
+    "plaid_id": "19012008",
     "hierarchy": [
         "Shops",
         "Clothing and Accessories",
@@ -3694,14 +4180,16 @@
     ],
     "type": "place"
 }, {
-    "id": "19013000",
+    "id": "439d6ca3-bf25-41df-8f8d-ef6b54be5b93",
+    "plaid_id": "19013000",
     "hierarchy": [
         "Shops",
         "Computers and Electronics"
     ],
     "type": "place"
 }, {
-    "id": "19013001",
+    "id": "7554ddce-e442-4622-8798-c4976206e58c",
+    "plaid_id": "19013001",
     "hierarchy": [
         "Shops",
         "Computers and Electronics",
@@ -3709,7 +4197,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19013002",
+    "id": "e62cee9d-4017-4e74-98ba-2ac308f010a0",
+    "plaid_id": "19013002",
     "hierarchy": [
         "Shops",
         "Computers and Electronics",
@@ -3717,7 +4206,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19013003",
+    "id": "4518b6fe-a02c-4eae-a4e9-fa7f63796ef9",
+    "plaid_id": "19013003",
     "hierarchy": [
         "Shops",
         "Computers and Electronics",
@@ -3725,91 +4215,104 @@
     ],
     "type": "place"
 }, {
-    "id": "19014000",
+    "id": "2ba510f5-c3a4-4c7c-882f-2b5eaef53e98",
+    "plaid_id": "19014000",
     "hierarchy": [
         "Shops",
         "Construction Supplies"
     ],
     "type": "place"
 }, {
-    "id": "19015000",
+    "id": "0ddc75f3-f53b-4ae6-a9d9-f06e390688a9",
+    "plaid_id": "19015000",
     "hierarchy": [
         "Shops",
         "Convenience Stores"
     ],
     "type": "place"
 }, {
-    "id": "19016000",
+    "id": "62c03388-daba-4c8e-a3a0-f6a952818464",
+    "plaid_id": "19016000",
     "hierarchy": [
         "Shops",
         "Costumes"
     ],
     "type": "place"
 }, {
-    "id": "19017000",
+    "id": "b506d18e-77f9-4179-aec4-116fe5b89bc3",
+    "plaid_id": "19017000",
     "hierarchy": [
         "Shops",
         "Dance and Music"
     ],
     "type": "place"
 }, {
-    "id": "19018000",
+    "id": "31240724-c921-4015-a0cb-691865042f3d",
+    "plaid_id": "19018000",
     "hierarchy": [
         "Shops",
         "Department Stores"
     ],
     "type": "place"
 }, {
-    "id": "19019000",
+    "id": "e1b2c149-f0cf-4c80-90c8-794e1cd7bb92",
+    "plaid_id": "19019000",
     "hierarchy": [
         "Shops",
         "Digital Purchase"
     ],
     "type": "digital"
 }, {
-    "id": "19020000",
+    "id": "cd2e721e-0146-4d5d-8f70-9e6958c64ec8",
+    "plaid_id": "19020000",
     "hierarchy": [
         "Shops",
         "Discount Stores"
     ],
     "type": "place"
 }, {
-    "id": "19021000",
+    "id": "70711bb1-0862-4c8f-b239-d9f02ab82531",
+    "plaid_id": "19021000",
     "hierarchy": [
         "Shops",
         "Electrical Equipment"
     ],
     "type": "place"
 }, {
-    "id": "19022000",
+    "id": "5029ce05-580a-4468-aa12-ad124f840916",
+    "plaid_id": "19022000",
     "hierarchy": [
         "Shops",
         "Equipment Rental"
     ],
     "type": "place"
 }, {
-    "id": "19023000",
+    "id": "4a46f2f9-2390-4b16-958c-971f9a1ceb86",
+    "plaid_id": "19023000",
     "hierarchy": [
         "Shops",
         "Flea Markets"
     ],
     "type": "place"
 }, {
-    "id": "19024000",
+    "id": "fbf106a7-a745-4455-b9e5-c71b1603a769",
+    "plaid_id": "19024000",
     "hierarchy": [
         "Shops",
         "Florists"
     ],
     "type": "place"
 }, {
-    "id": "19025000",
+    "id": "0e4a45a8-ca04-4309-ab70-b3aabd111857",
+    "plaid_id": "19025000",
     "hierarchy": [
         "Shops",
         "Food and Beverage Store"
     ],
     "type": "place"
 }, {
-    "id": "19025001",
+    "id": "1cd8a096-fa8f-4df0-abe0-b95da7ef45c2",
+    "plaid_id": "19025001",
     "hierarchy": [
         "Shops",
         "Food and Beverage Store",
@@ -3817,7 +4320,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19025002",
+    "id": "d10c6fbd-e7a0-438e-91b5-c45becc1304f",
+    "plaid_id": "19025002",
     "hierarchy": [
         "Shops",
         "Food and Beverage Store",
@@ -3825,7 +4329,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19025003",
+    "id": "e284655a-14a9-47ff-8d4e-42e2f7fb9113",
+    "plaid_id": "19025003",
     "hierarchy": [
         "Shops",
         "Food and Beverage Store",
@@ -3833,7 +4338,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19025004",
+    "id": "5f4aff5f-e3e3-4d2c-9c89-1261f61e8408",
+    "plaid_id": "19025004",
     "hierarchy": [
         "Shops",
         "Food and Beverage Store",
@@ -3841,112 +4347,128 @@
     ],
     "type": "place"
 }, {
-    "id": "19026000",
+    "id": "1c919aac-b307-4819-925e-d9d0b6a98a3b",
+    "plaid_id": "19026000",
     "hierarchy": [
         "Shops",
         "Fuel Dealer"
     ],
     "type": "place"
 }, {
-    "id": "19027000",
+    "id": "77a546d9-30d5-414c-bc29-d1a07a6f3636",
+    "plaid_id": "19027000",
     "hierarchy": [
         "Shops",
         "Furniture and Home Decor"
     ],
     "type": "place"
 }, {
-    "id": "19028000",
+    "id": "f386f816-7446-48a8-8d0f-5053c9785afc",
+    "plaid_id": "19028000",
     "hierarchy": [
         "Shops",
         "Gift and Novelty"
     ],
     "type": "place"
 }, {
-    "id": "19029000",
+    "id": "f88c1dbb-0cdb-41f0-93dc-d2568ba377ff",
+    "plaid_id": "19029000",
     "hierarchy": [
         "Shops",
         "Glasses and Optometrist"
     ],
     "type": "place"
 }, {
-    "id": "19030000",
+    "id": "a0d2b7fa-45fd-40c3-9230-6a83b2313a1e",
+    "plaid_id": "19030000",
     "hierarchy": [
         "Shops",
         "Hardware Store"
     ],
     "type": "place"
 }, {
-    "id": "19031000",
+    "id": "af096af2-e43c-4b41-b71b-c31f69623456",
+    "plaid_id": "19031000",
     "hierarchy": [
         "Shops",
         "Hobby and Collectibles"
     ],
     "type": "place"
 }, {
-    "id": "19032000",
+    "id": "12e36f58-e6e8-4e23-94d1-fa79060b7088",
+    "plaid_id": "19032000",
     "hierarchy": [
         "Shops",
         "Industrial Supplies"
     ],
     "type": "place"
 }, {
-    "id": "19033000",
+    "id": "628229a4-8d2e-4908-a29e-e97b86825a35",
+    "plaid_id": "19033000",
     "hierarchy": [
         "Shops",
         "Jewelry and Watches"
     ],
     "type": "place"
 }, {
-    "id": "19034000",
+    "id": "d4239858-ce7c-4da4-a378-b4b086c884ed",
+    "plaid_id": "19034000",
     "hierarchy": [
         "Shops",
         "Luggage"
     ],
     "type": "place"
 }, {
-    "id": "19035000",
+    "id": "fe2e5cc3-2ea5-460e-a321-4eeee1b92f0b",
+    "plaid_id": "19035000",
     "hierarchy": [
         "Shops",
         "Marine Supplies"
     ],
     "type": "place"
 }, {
-    "id": "19036000",
+    "id": "a40ff19f-3f77-47f8-aba7-ff88ffbd3dd7",
+    "plaid_id": "19036000",
     "hierarchy": [
         "Shops",
         "Music, Video and DVD"
     ],
     "type": "place"
 }, {
-    "id": "19037000",
+    "id": "e2cf1bb0-9891-4ee3-998f-cf1749f13644",
+    "plaid_id": "19037000",
     "hierarchy": [
         "Shops",
         "Musical Instruments"
     ],
     "type": "place"
 }, {
-    "id": "19038000",
+    "id": "21c58956-4703-479e-9a87-77eb1f74ba75",
+    "plaid_id": "19038000",
     "hierarchy": [
         "Shops",
         "Newsstands"
     ],
     "type": "place"
 }, {
-    "id": "19039000",
+    "id": "d7705b18-f98a-4c1f-b711-4f53bc76919d",
+    "plaid_id": "19039000",
     "hierarchy": [
         "Shops",
         "Office Supplies"
     ],
     "type": "place"
 }, {
-    "id": "19040000",
+    "id": "9ceec3c1-3717-40e7-aa49-874496fb7367",
+    "plaid_id": "19040000",
     "hierarchy": [
         "Shops",
         "Outlet"
     ],
     "type": "place"
 }, {
-    "id": "19040001",
+    "id": "693a3e5a-e386-4b1a-b0d0-96eb537b6703",
+    "plaid_id": "19040001",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -3954,7 +4476,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19040002",
+    "id": "b7b6deb5-eba6-4cce-8199-6e7ef7d7655b",
+    "plaid_id": "19040002",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -3962,7 +4485,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19040003",
+    "id": "ad136c2e-e099-433e-922e-04725e620319",
+    "plaid_id": "19040003",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -3970,7 +4494,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19040004",
+    "id": "052a9ec8-76bd-419a-9b12-45030b3ba612",
+    "plaid_id": "19040004",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -3978,7 +4503,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19040005",
+    "id": "14516c3e-481c-451f-98fe-44b9b59fc101",
+    "plaid_id": "19040005",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -3986,7 +4512,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19040006",
+    "id": "342cc0fb-0804-47ae-9903-79f149d59cac",
+    "plaid_id": "19040006",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -3994,7 +4521,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19040007",
+    "id": "21696863-7c81-4209-b3c7-2e4b3e2a2173",
+    "plaid_id": "19040007",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -4002,7 +4530,8 @@
     ],
     "type": "place"
 }, {
-    "id": "19040008",
+    "id": "4fcf373f-24c1-40d3-9b2e-9a73880b051f",
+    "plaid_id": "19040008",
     "hierarchy": [
         "Shops",
         "Outlet",
@@ -4010,180 +4539,206 @@
     ],
     "type": "place"
 }, {
-    "id": "19041000",
+    "id": "8a44a2ed-db28-4177-b483-94b3651e7d78",
+    "plaid_id": "19041000",
     "hierarchy": [
         "Shops",
         "Pawn Shops"
     ],
     "type": "place"
 }, {
-    "id": "19042000",
+    "id": "364b423c-7b60-475e-b891-7fac35ca9b98",
+    "plaid_id": "19042000",
     "hierarchy": [
         "Shops",
         "Pets"
     ],
     "type": "place"
 }, {
-    "id": "19043000",
+    "id": "cfa72c49-f062-46a8-9aad-210a4838b792",
+    "plaid_id": "19043000",
     "hierarchy": [
         "Shops",
         "Pharmacies"
     ],
     "type": "place"
 }, {
-    "id": "19044000",
+    "id": "3a26db25-f768-4fc7-9291-41a4c7c39601",
+    "plaid_id": "19044000",
     "hierarchy": [
         "Shops",
         "Photos and Frames"
     ],
     "type": "place"
 }, {
-    "id": "19045000",
+    "id": "f90ac3b3-06aa-4254-a4cd-2b8800d5c97f",
+    "plaid_id": "19045000",
     "hierarchy": [
         "Shops",
         "Shopping Centers and Malls"
     ],
     "type": "place"
 }, {
-    "id": "19046000",
+    "id": "fb82a2d2-e164-45d3-85a2-ec58996c2105",
+    "plaid_id": "19046000",
     "hierarchy": [
         "Shops",
         "Sporting Goods"
     ],
     "type": "place"
 }, {
-    "id": "19047000",
+    "id": "23ee5a70-2cfe-415a-b15a-18fe7a1672d8",
+    "plaid_id": "19047000",
     "hierarchy": [
         "Shops",
         "Supermarkets and Groceries"
     ],
     "type": "place"
 }, {
-    "id": "19048000",
+    "id": "8252cf2c-1ba4-4231-87d0-7f5511e270d5",
+    "plaid_id": "19048000",
     "hierarchy": [
         "Shops",
         "Tobacco"
     ],
     "type": "place"
 }, {
-    "id": "19049000",
+    "id": "e1fbccf3-eb4d-4d2b-bfab-f21edb15a8da",
+    "plaid_id": "19049000",
     "hierarchy": [
         "Shops",
         "Toys"
     ],
     "type": "place"
 }, {
-    "id": "19050000",
+    "id": "d944faec-d373-4a90-84e2-faac56d5eca2",
+    "plaid_id": "19050000",
     "hierarchy": [
         "Shops",
         "Vintage and Thrift"
     ],
     "type": "place"
 }, {
-    "id": "19051000",
+    "id": "4935def5-0166-40dc-80f9-6a6308b5f8e5",
+    "plaid_id": "19051000",
     "hierarchy": [
         "Shops",
         "Warehouses and Wholesale Stores"
     ],
     "type": "place"
 }, {
-    "id": "19052000",
+    "id": "3ff624a1-6612-454b-ba6b-0135dda242de",
+    "plaid_id": "19052000",
     "hierarchy": [
         "Shops",
         "Wedding and Bridal"
     ],
     "type": "place"
 }, {
-    "id": "19053000",
+    "id": "7e17c093-54f7-4ad0-a8fe-0acc5249cd0f",
+    "plaid_id": "19053000",
     "hierarchy": [
         "Shops",
         "Wholesale"
     ],
     "type": "place"
 }, {
-    "id": "19054000",
+    "id": "97a0839b-854e-410f-b74e-ce4f2f328f45",
+    "plaid_id": "19054000",
     "hierarchy": [
         "Shops",
         "Lawn and Garden"
     ],
     "type": "place"
 }, {
-    "id": "20000000",
+    "id": "9959ce8e-f13f-46d9-a3e5-29099e0f17b5",
+    "plaid_id": "20000000",
     "hierarchy": [
         "Tax"
     ],
     "type": "special"
 }, {
-    "id": "20001000",
+    "id": "7a525d1c-5b70-4a07-bc0f-b1f36e89c705",
+    "plaid_id": "20001000",
     "hierarchy": [
         "Tax",
         "Refund"
     ],
     "type": "special"
 }, {
-    "id": "20002000",
+    "id": "f079c9fa-d8fa-478d-8bf8-4550276670ac",
+    "plaid_id": "20002000",
     "hierarchy": [
         "Tax",
         "Payment"
     ],
     "type": "special"
 }, {
-    "id": "21000000",
+    "id": "49446a2e-83a1-4f47-b720-db3a78b441bf",
+    "plaid_id": "21000000",
     "hierarchy": [
         "Transfer"
     ],
     "type": "special"
 }, {
-    "id": "21001000",
+    "id": "e81b3119-ee8d-4dd9-b2bc-0d399675f10d",
+    "plaid_id": "21001000",
     "hierarchy": [
         "Transfer",
         "Internal Account Transfer"
     ],
     "type": "special"
 }, {
-    "id": "21002000",
+    "id": "58f82480-c45e-4ea8-b1fe-14278259f24d",
+    "plaid_id": "21002000",
     "hierarchy": [
         "Transfer",
         "ACH"
     ],
     "type": "special"
 }, {
-    "id": "21003000",
+    "id": "b812bce1-82ee-4408-9976-0c5b0f60e44c",
+    "plaid_id": "21003000",
     "hierarchy": [
         "Transfer",
         "Billpay"
     ],
     "type": "special"
 }, {
-    "id": "21004000",
+    "id": "44df40b1-4a76-42b6-ae14-517bac3f7212",
+    "plaid_id": "21004000",
     "hierarchy": [
         "Transfer",
         "Check"
     ],
     "type": "special"
 }, {
-    "id": "21005000",
+    "id": "37996fb3-d560-4690-be99-d2ece52598c8",
+    "plaid_id": "21005000",
     "hierarchy": [
         "Transfer",
         "Credit"
     ],
     "type": "special"
 }, {
-    "id": "21006000",
+    "id": "78472f77-015f-45d1-b232-e32c8c4230cc",
+    "plaid_id": "21006000",
     "hierarchy": [
         "Transfer",
         "Debit"
     ],
     "type": "special"
 }, {
-    "id": "21007000",
+    "id": "d0bfe845-f013-4af9-b020-c2a6f32cefa3",
+    "plaid_id": "21007000",
     "hierarchy": [
         "Transfer",
         "Deposit"
     ],
     "type": "special"
 }, {
-    "id": "21007001",
+    "id": "c2c5e1a3-ea16-483f-975f-099a87d9ff3f",
+    "plaid_id": "21007001",
     "hierarchy": [
         "Transfer",
         "Deposit",
@@ -4191,7 +4746,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21007002",
+    "id": "2a66649c-4ab3-4b87-976c-9b0f85f4f807",
+    "plaid_id": "21007002",
     "hierarchy": [
         "Transfer",
         "Deposit",
@@ -4199,21 +4755,24 @@
     ],
     "type": "special"
 }, {
-    "id": "21008000",
+    "id": "f6395692-f919-4305-9f79-c6900aba096d",
+    "plaid_id": "21008000",
     "hierarchy": [
         "Transfer",
         "Keep the Change Savings Program"
     ],
     "type": "special"
 }, {
-    "id": "21009000",
+    "id": "c0ecacd7-6a7b-45e4-8e72-caa629918a8e",
+    "plaid_id": "21009000",
     "hierarchy": [
         "Transfer",
         "Payroll"
     ],
     "type": "special"
 }, {
-    "id": "21009001",
+    "id": "8afe64ec-2371-48ad-9be5-dd7dcccc80a9",
+    "plaid_id": "21009001",
     "hierarchy": [
         "Transfer",
         "Payroll",
@@ -4221,14 +4780,16 @@
     ],
     "type": "special"
 }, {
-    "id": "21010000",
+    "id": "2355f80e-5f16-4661-9fc5-f70a8d39a0fe",
+    "plaid_id": "21010000",
     "hierarchy": [
         "Transfer",
         "Third Party"
     ],
     "type": "special"
 }, {
-    "id": "21010001",
+    "id": "17b26fa3-1cb8-4efa-bfa9-b6d3e2301cfd",
+    "plaid_id": "21010001",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4236,7 +4797,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010002",
+    "id": "6552e9d0-ebd8-4a95-9900-820fee5105df",
+    "plaid_id": "21010002",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4244,7 +4806,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010003",
+    "id": "8e397f88-9936-44c2-bb2d-da337c16e883",
+    "plaid_id": "21010003",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4252,7 +4815,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010004",
+    "id": "2bc7d442-4c99-40f2-8bdb-a5c79056e018",
+    "plaid_id": "21010004",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4260,7 +4824,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010005",
+    "id": "1167b2ec-1cbc-4487-84cd-6e86a04f61a0",
+    "plaid_id": "21010005",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4268,7 +4833,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010006",
+    "id": "6ed97347-d652-410c-bd85-1027d4f28af8",
+    "plaid_id": "21010006",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4276,7 +4842,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010007",
+    "id": "d1b61607-d55c-47c2-8c2b-0589570a48f1",
+    "plaid_id": "21010007",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4284,7 +4851,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010008",
+    "id": "69fef4d7-cf18-44ed-8433-8ef0e360d3da",
+    "plaid_id": "21010008",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4292,7 +4860,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010009",
+    "id": "ef1fc0b5-a425-4e1e-a9e5-cb6b832ea53c",
+    "plaid_id": "21010009",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4300,7 +4869,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010010",
+    "id": "bc6f879c-12e3-4fd2-8ac0-5604f5597541",
+    "plaid_id": "21010010",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4308,7 +4878,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21010011",
+    "id": "f72f253c-979e-4321-a0e1-7b4141530b37",
+    "plaid_id": "21010011",
     "hierarchy": [
         "Transfer",
         "Third Party",
@@ -4316,21 +4887,24 @@
     ],
     "type": "special"
 }, {
-    "id": "21011000",
+    "id": "4929dd98-cad8-47eb-90ef-de3985751325",
+    "plaid_id": "21011000",
     "hierarchy": [
         "Transfer",
         "Wire"
     ],
     "type": "special"
 }, {
-    "id": "21012000",
+    "id": "2a497add-3728-47b9-ac9a-84ccd918cca7",
+    "plaid_id": "21012000",
     "hierarchy": [
         "Transfer",
         "Withdrawal"
     ],
     "type": "special"
 }, {
-    "id": "21012001",
+    "id": "6db48a8a-4aab-4084-8717-233abc835943",
+    "plaid_id": "21012001",
     "hierarchy": [
         "Transfer",
         "Withdrawal",
@@ -4338,7 +4912,8 @@
     ],
     "type": "special"
 }, {
-    "id": "21012002",
+    "id": "479818ba-7909-436d-9c80-6161a736a656",
+    "plaid_id": "21012002",
     "hierarchy": [
         "Transfer",
         "Withdrawal",
@@ -4346,62 +4921,71 @@
     ],
     "type": "special"
 }, {
-    "id": "21013000",
+    "id": "7a55dea2-df70-42b0-8627-b69446c9d1df",
+    "plaid_id": "21013000",
     "hierarchy": [
         "Transfer",
         "Save As You Go"
     ],
     "type": "special"
 }, {
-    "id": "22000000",
+    "id": "db6eb8c7-f931-4727-87c5-06a1f55cd880",
+    "plaid_id": "22000000",
     "hierarchy": [
         "Travel"
     ],
     "type": "place"
 }, {
-    "id": "22001000",
+    "id": "a2cfe465-c57f-46a5-8420-1512e57fd392",
+    "plaid_id": "22001000",
     "hierarchy": [
         "Travel",
         "Airlines and Aviation Services"
     ],
     "type": "special"
 }, {
-    "id": "22002000",
+    "id": "97253e00-0e86-4e2d-9b18-bd8b22bc0fae",
+    "plaid_id": "22002000",
     "hierarchy": [
         "Travel",
         "Airports"
     ],
     "type": "place"
 }, {
-    "id": "22003000",
+    "id": "9613c9d6-fdb5-4148-af10-8ee72c441afc",
+    "plaid_id": "22003000",
     "hierarchy": [
         "Travel",
         "Boat"
     ],
     "type": "place"
 }, {
-    "id": "22004000",
+    "id": "abf8cb58-c9c0-45a7-a02e-cc8c89bcec70",
+    "plaid_id": "22004000",
     "hierarchy": [
         "Travel",
         "Bus Stations"
     ],
     "type": "place"
 }, {
-    "id": "22005000",
+    "id": "46ac1f54-eedf-4831-b80d-649db3199acf",
+    "plaid_id": "22005000",
     "hierarchy": [
         "Travel",
         "Car and Truck Rentals"
     ],
     "type": "place"
 }, {
-    "id": "22006000",
+    "id": "2e4e0cb7-261e-4877-9312-2e247824230a",
+    "plaid_id": "22006000",
     "hierarchy": [
         "Travel",
         "Car Service"
     ],
     "type": "place"
 }, {
-    "id": "22006001",
+    "id": "919a196a-7ca3-4987-a9f1-661fce913266",
+    "plaid_id": "22006001",
     "hierarchy": [
         "Travel",
         "Car Service",
@@ -4409,49 +4993,56 @@
     ],
     "type": "special"
 }, {
-    "id": "22007000",
+    "id": "51295cdd-dc13-4abd-a481-5d08a105c341",
+    "plaid_id": "22007000",
     "hierarchy": [
         "Travel",
         "Charter Buses"
     ],
     "type": "place"
 }, {
-    "id": "22008000",
+    "id": "1411f918-498e-49f0-8b1b-33e762a57dd8",
+    "plaid_id": "22008000",
     "hierarchy": [
         "Travel",
         "Cruises"
     ],
     "type": "special"
 }, {
-    "id": "22009000",
+    "id": "978a1b13-b73c-40b2-9053-95d372b1d81c",
+    "plaid_id": "22009000",
     "hierarchy": [
         "Travel",
         "Gas Stations"
     ],
     "type": "place"
 }, {
-    "id": "22010000",
+    "id": "9c436921-f269-4312-9f33-0773135260af",
+    "plaid_id": "22010000",
     "hierarchy": [
         "Travel",
         "Heliports"
     ],
     "type": "place"
 }, {
-    "id": "22011000",
+    "id": "ef8292f7-411e-4556-81e4-b293139c747a",
+    "plaid_id": "22011000",
     "hierarchy": [
         "Travel",
         "Limos and Chauffeurs"
     ],
     "type": "place"
 }, {
-    "id": "22012000",
+    "id": "03f1f99c-f4eb-4ff1-8867-daa312478875",
+    "plaid_id": "22012000",
     "hierarchy": [
         "Travel",
         "Lodging"
     ],
     "type": "place"
 }, {
-    "id": "22012001",
+    "id": "734ef502-72cf-40a2-97a7-7331f2849eef",
+    "plaid_id": "22012001",
     "hierarchy": [
         "Travel",
         "Lodging",
@@ -4459,7 +5050,8 @@
     ],
     "type": "place"
 }, {
-    "id": "22012002",
+    "id": "230daa09-d950-42b0-a295-1226747d8d68",
+    "plaid_id": "22012002",
     "hierarchy": [
         "Travel",
         "Lodging",
@@ -4467,7 +5059,8 @@
     ],
     "type": "place"
 }, {
-    "id": "22012003",
+    "id": "4f04393e-3b3e-4e57-8876-60d4678098b6",
+    "plaid_id": "22012003",
     "hierarchy": [
         "Travel",
         "Lodging",
@@ -4475,7 +5068,8 @@
     ],
     "type": "place"
 }, {
-    "id": "22012004",
+    "id": "a4cd8fd0-62d3-497f-b4c2-76668838d860",
+    "plaid_id": "22012004",
     "hierarchy": [
         "Travel",
         "Lodging",
@@ -4483,7 +5077,8 @@
     ],
     "type": "place"
 }, {
-    "id": "22012005",
+    "id": "1a2fa4fd-26a6-40d8-ba7c-e3a09a98d871",
+    "plaid_id": "22012005",
     "hierarchy": [
         "Travel",
         "Lodging",
@@ -4491,7 +5086,8 @@
     ],
     "type": "place"
 }, {
-    "id": "22012006",
+    "id": "13594f0d-e926-40d9-aa88-2257485007c0",
+    "plaid_id": "22012006",
     "hierarchy": [
         "Travel",
         "Lodging",
@@ -4499,42 +5095,48 @@
     ],
     "type": "place"
 }, {
-    "id": "22013000",
+    "id": "e56cbd6d-d086-4701-91ab-40e0982ef90f",
+    "plaid_id": "22013000",
     "hierarchy": [
         "Travel",
         "Parking"
     ],
     "type": "place"
 }, {
-    "id": "22014000",
+    "id": "664a5f9c-759f-49a5-9bd4-014d5c4dbf3f",
+    "plaid_id": "22014000",
     "hierarchy": [
         "Travel",
         "Public Transportation Services"
     ],
     "type": "place"
 }, {
-    "id": "22015000",
+    "id": "64d4ade5-01eb-46b4-ad8c-dfbe4723f4c1",
+    "plaid_id": "22015000",
     "hierarchy": [
         "Travel",
         "Rail"
     ],
     "type": "place"
 }, {
-    "id": "22016000",
+    "id": "60115a6d-633f-45d6-9505-c872b21232f9",
+    "plaid_id": "22016000",
     "hierarchy": [
         "Travel",
         "Taxi"
     ],
     "type": "special"
 }, {
-    "id": "22017000",
+    "id": "706e5cf5-4186-4910-9ac4-07a8df81d99d",
+    "plaid_id": "22017000",
     "hierarchy": [
         "Travel",
         "Tolls and Fees"
     ],
     "type": "special"
 }, {
-    "id": "22018000",
+    "id": "ee32c91f-be3a-4a22-a800-56ba4c95b0cc",
+    "plaid_id": "22018000",
     "hierarchy": [
         "Travel",
         "Transportation Centers"
