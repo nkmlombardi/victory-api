@@ -81,10 +81,11 @@ module.exports = function(Sequelize, DataTypes) {
                 // models.PlaidAccount.belongsTo(models.User);
                 // models.PlaidAccount.hasMany(models.PlaidTransaction);
 
-                // models.PlaidAccount.hasMany(models.PlaidTransaction, {
-                //     as: 'transactions',
-                //     foreignKey: 'plaid_account_id'
-                // });
+                models.PlaidAccount.hasMany(models.PlaidTransaction, {
+                    foreignKey: 'plaid_account_id',
+                    targetKey: 'plaid_id',
+                    as: 'transactions'
+                });
             },
 
             // Take object from Plaid and map it to our model format
@@ -106,19 +107,8 @@ module.exports = function(Sequelize, DataTypes) {
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(accounts, user) {
                 return accounts.map(function(account) {
-                    return {
-                        plaid_id: account._id,
-                        plaid_item: account._item,
-                        plaid_user: account._user,
-                        user_id: user.id,
-                        name: account.meta.name,
-                        balance_available: account.balance.available,
-                        balance_current: account.balance.current,
-                        institution_type: account.institution_type,
-                        type: account.type,
-                        subtype: account.subtype
-                    };
-                });
+                    return this.fromPlaidObject(account, user);
+                }, this);
             },
 
             upsertWithReturn: function(options) {

@@ -10,10 +10,10 @@ module.exports = function(Sequelize, DataTypes) {
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
-            references: {
-                model: 'Users',
-                key: 'id'
-            }
+            // references: {
+            //     model: 'Users',
+            //     key: 'id'
+            // }
         },
         auth_token: {
             type: DataTypes.STRING,

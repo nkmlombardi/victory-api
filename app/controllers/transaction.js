@@ -19,7 +19,8 @@ module.exports = {
             },
             include: [
                 {
-                    model: req.models.PlaidAccount
+                    model: req.models.PlaidAccount,
+                    as: 'account'
                 }
             ]
         }).then(function(transactions) {

@@ -36,6 +36,8 @@ module.exports = function(app) {
     /* Accounts Resource */
     app.route('/v1/accounts/self')
         .get(controllers.auth.isBearer, controllers.account.getSelfAll);
+    app.route('/v1/accounts/self/transactions')
+        .get(controllers.auth.isBearer, controllers.account.getSelfAllWithTransactions);
     // app.route('/v1/accounts/self/:id')
     //     .get(controllers.auth.isBearer, controllers.account.getSelf)
     //     .post(controllers.auth.isBearer, controllers.account.postSelf)

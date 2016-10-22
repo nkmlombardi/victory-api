@@ -61,6 +61,25 @@ module.exports = {
         });
     },
 
+    getSelfAllWithTransactions: function(req, res, next) {
+        req.models.PlaidAccount.findAll({
+            where: {
+                user_id: req.user.id
+            },
+            include: [
+                {
+                    model: req.models.PlaidTransaction,
+                    as: 'transactions'
+                }
+            ]
+        }).then(function(accounts) {
+            res.json({
+                status: req.status.success,
+                data: accounts
+            });
+        });
+    },
+
     // postSelf: function(req, res, next) {
     //     req.models.PlaidAccount.create(
     //         req.body

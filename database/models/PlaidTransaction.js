@@ -60,7 +60,8 @@ module.exports = function(Sequelize, DataTypes) {
                 // models.PlaidTransaction.belongsTo(models.PlaidCategory);
                 models.PlaidTransaction.belongsTo(models.PlaidAccount, {
                     foreignKey: 'plaid_account_id',
-                    targetKey: 'plaid_id'
+                    targetKey: 'plaid_id',
+                    as: 'account'
                 });
             },
 
@@ -71,19 +72,21 @@ module.exports = function(Sequelize, DataTypes) {
                     plaid_account_id: transaction._account,
                     user_id: user.id,
                     name: transaction.name,
-                    amount: transaction.amount,
+                    amount: (transaction.amount * -1),
                     date: transaction.date,
                     pending: transaction.pending,
                     category: transaction.category,
                     category_id: transaction.category_id
                 };
+
+                console.error('Transaction: ', transaction.amount);
             },
 
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(transactions, user) {
                 return transactions.map(function(transaction) {
                     return this.fromPlaidObject(transaction, user);
-                });
+                }, this);
             },
         }
     });
