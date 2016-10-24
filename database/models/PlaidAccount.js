@@ -81,11 +81,11 @@ module.exports = function(Sequelize, DataTypes) {
                 // models.PlaidAccount.belongsTo(models.User);
                 // models.PlaidAccount.hasMany(models.PlaidTransaction);
 
-                models.PlaidAccount.hasMany(models.PlaidTransaction, {
-                    foreignKey: 'plaid_account_id',
-                    targetKey: 'plaid_id',
-                    as: 'transactions'
-                });
+                // models.PlaidAccount.hasMany(models.PlaidTransaction, {
+                //     foreignKey: 'plaid_account_id',
+                //     targetKey: 'plaid_id',
+                //     as: 'transactions'
+                // });
             },
 
             // Take object from Plaid and map it to our model format

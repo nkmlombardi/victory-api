@@ -9,7 +9,8 @@ module.exports = function(settings) {
         sequelize: new Sequelize(settings.name, settings.user, settings.pass, {
             host: settings.host,
             dialect: settings.type,
-            port: settings.port
+            port: settings.port,
+            logging: false
         }),
         models: {
             // Models are loaded in below

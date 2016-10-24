@@ -1,6 +1,7 @@
 var path = require('path');
 var fs = require('fs');
 var plaid = require('plaid');
+var Promise = require('bluebird');
 
 // Accumulate seed files
 var seeders = function() {
@@ -12,7 +13,8 @@ var seeders = function() {
         if (file === 'data') return;
 
         /* Store module with its name (from filename) */
-        result[path.basename(file, '.js')] = require(path.join(__dirname, file));
+        // result[path.basename(file, '.js')] = require(path-.join(__dirname, file));
+        result.push(require(path.join(__dirname, file)));
     });
 
     return result;
@@ -26,15 +28,23 @@ var plaidClient = new plaid.Client(
 
 module.exports = {
     up: function(database) {
-        Object.keys(seeders).forEach(function(name) {
-            console.log('Seeding :: ', name);
+        Promise.each(seeders, function(seeder, index) {
+            return seeder.up(database.sequelize, database.models, plaidClient)
+                .catch(function(error) {
+                    console.error(seeders[index], ' seeder error: ', error);
+                });
+        }, {
+            concurrency: 1
+        }).then(function(data) {
+            return console.log('Persisted all models successfully.');
 
-            seeders[name].up(database.sequelize, database.models, plaidClient);
+        }).catch(function(error) {
+            return console.error('Promise Map Error: ', error);
         });
     },
     down: function(database) {
         seeders.forEach(function(seeder, index) {
-            console.log('Unseeding :: ', seeders[i]);
+            // console.log('Unseeding :: ', seeders[i]);
 
             seeder.down(database.sequelize, database.models, plaidClient);
         });
