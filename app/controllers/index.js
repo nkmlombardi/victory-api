@@ -4,6 +4,8 @@ module.exports = {
     account: require('./account'),
     transaction: require('./transaction'),
     category: require('./category'),
+    scenario: require('./scenario'),
+    budget: require('./budget'),
 
     // Authentication Resources
     auth: require('./authentication'),

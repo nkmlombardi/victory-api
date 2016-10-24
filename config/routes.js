@@ -15,6 +15,7 @@ module.exports = function(app) {
         .get(function(req, res, next) { res.send('ok'); })
         .post(function(req, res, next) { res.json(req.body); });
 
+
     /* Auth Token Resource */
     app.route('/v1/authenticate')
         .post(controllers.auth.isCredential, controllers.token.postSelfToken);
@@ -24,6 +25,7 @@ module.exports = function(app) {
     app.route('/v1/users')
         .post(controllers.user.postUser);
 
+
     /* Transactions Resource */
     app.route('/v1/transactions/self')
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAll);
@@ -32,9 +34,6 @@ module.exports = function(app) {
     app.route('/v1/transactions/self/plaid')
         .post(controllers.auth.isBearer, controllers.transaction.postPlaidTransactions);
 
-    // app.route('/v1/transactions/self/:id')
-    //     .get(controllers.auth.isBearer, controllers.transaction.getSelf)
-    //     .patch(controllers.auth.isBearer, controllers.transaction.patchSelf);
 
     /* Accounts Resource */
     app.route('/v1/accounts/self')
@@ -43,10 +42,7 @@ module.exports = function(app) {
         .get(controllers.auth.isBearer, controllers.account.getSelfAllWithTransactions);
     app.route('/v1/accounts/self/plaid')
         .post(controllers.auth.isBearer, controllers.account.postPlaidAccounts);
-    // app.route('/v1/accounts/self/:id')
-    //     .get(controllers.auth.isBearer, controllers.account.getSelf)
-    //     .post(controllers.auth.isBearer, controllers.account.postSelf)
-    //     .patch(controllers.auth.isBearer, controllers.account.patchSelf);
+
 
     /* Plaid Services */
     app.route('/v1/plaid/connect')
@@ -56,10 +52,21 @@ module.exports = function(app) {
     app.route('/v1/plaid/webhook/:id')
         .post(services.plaid.webhook);
 
+
     /* Category Resource */
     app.route('/v1/categories/')
         .get(controllers.auth.isBearer, controllers.category.getAll);
     app.route('/v1/categories/primary')
         .get(controllers.auth.isBearer, controllers.category.getAllPrimary);
+
+
+    /* Scenario Resource */
+    app.route('/v1/scenarios/self')
+        .get(controllers.auth.isBearer, controllers.scenario.getSelfAll);
+
+
+    /* Budget Resource */
+    app.route('/v1/budgets/self')
+        .get(controllers.auth.isBearer, controllers.budget.getSelfAll);
 
 };

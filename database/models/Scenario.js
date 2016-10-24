@@ -5,8 +5,13 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        user: {
-            type: DataTypes.UUID
+        user_id: {
+            type: DataTypes.UUID,
+            allowNull: false,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
         }
     }, {
         timestamps: true,
