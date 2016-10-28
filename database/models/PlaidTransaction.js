@@ -62,7 +62,13 @@ module.exports = function(Sequelize, DataTypes) {
                     targetKey: 'plaid_id',
                     as: 'account'
                 });
-            },
+
+                models.PlaidTransaction.belongsTo(models.PlaidCategory, {
+                        foreignKey: 'category_id',
+                        targetKey: 'plaid_id',
+                        as: 'PlaidCategory'
+                    });
+                },
 
             // Take object from Plaid and map it to our model format
             fromPlaidObject: function(transaction, user) {

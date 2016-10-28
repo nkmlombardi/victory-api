@@ -63,7 +63,12 @@ module.exports = function(app) {
     /* Scenario Resource */
     app.route('/v1/scenarios/self')
         .get(controllers.auth.isBearer, controllers.scenario.getSelfAll);
-
+    app.route('/v1/scenarios/self/budgets')
+        .get(controllers.auth.isBearer, controllers.scenario.getSelfAllWithBudgets);
+    app.route('/v1/scenarios/self/category')
+        .get(controllers.auth.isBearer, controllers.scenario.getSelfAllWithCategory);
+    app.route('/v1/scenarios/self/transactions')
+        .get(controllers.auth.isBearer, controllers.scenario.getSelfAllWithTransactions);
 
     /* Budget Resource */
     app.route('/v1/budgets/self')
