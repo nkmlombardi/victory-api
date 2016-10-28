@@ -1,5 +1,5 @@
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('PlaidCategory', {
+    return Sequelize.define('Category', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -21,19 +21,19 @@ module.exports = function(Sequelize, DataTypes) {
         timestamps: true,
         paranoid: true,
         underscored: true,
-        tableName: 'PlaidCategories',
+        tableName: 'Categories',
         classMethods: {
             associate: function(models) {
-                models.PlaidCategory.hasMany(models.PlaidTransaction, {
-                    foreignKey: 'category_id',
-                    targetKey: 'plaid_id',
-                    as: 'transactions'
-                });
-
-                models.PlaidCategory.hasMany(models.Budget, {
-                    foreignKey: 'category_id',
-                    as: 'budgets'
-                });
+                // models.PlaidCategory.hasMany(models.PlaidTransaction, {
+                //     foreignKey: 'category_id',
+                //     targetKey: 'plaid_id',
+                //     as: 'transactions'
+                // });
+                //
+                // models.PlaidCategory.hasMany(models.Budget, {
+                //     foreignKey: 'category_id',
+                //     as: 'budgets'
+                // });
             },
 
             // Take object from Plaid and map it to our model format

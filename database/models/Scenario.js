@@ -12,6 +12,10 @@ module.exports = function(Sequelize, DataTypes) {
                 model: 'Users',
                 key: 'id'
             }
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         timestamps: true,
@@ -19,9 +23,10 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                // models.Budget.belongsTo(models.PlaidCategory);
-                // models.Budget.hasMany(models.Budget);
-                // models.Budget.belongsTo(models.User);
+                models.Scenario.hasMany(models.Budget, {
+                    foreignKey: 'scenario_id',
+                    as: 'budgets'
+                });
             }
         }
     });

@@ -24,32 +24,55 @@ module.exports = function(req, res, next) {
             where: { id: req.user.id }
         }).then(function(user) {
 
-            // Retrieve user's accounts with token
-            req.plaid.getAuthUser(access_token, function(err, authRes) {
-                if (err != null) { /* Handle Error */ }
+            req.plaid.getConnectUser(access_token, function(error, response) {
+                if (!response) {
+                    return console.log('Not sure what happened here...');
+                }
 
-                // An array of accounts for this user, containing account
-                // names, balances, and account and routing numbers.
-                var accounts = authRes.accounts;
+                if (error) {
+                    return console.log('Plaid Error: ', error);
+                }
 
-                // Generate promises and resolve all
-                Promise.all(accounts.map(function(account) {
-                    return req.models.PlaidAccount.upsertWithReturn({
-                        where: {
-                            plaid_id: account._id
-                        },
-                        defaults: req.models.PlaidAccount.fromPlaidObject(
-                            account, req.user
-                        )
+                if (response.accounts) {
+                    Promise.all(response.accounts.map(function(account) {
+                        return req.models.PlaidAccount.upsertWithReturn({
+                            where: {
+                                plaid_id: account._id
+                            },
+                            defaults: req.models.PlaidAccount.fromPlaidObject(
+                                account, req.user
+                            )
+                        });
+                    })).then(function(accounts) {
+                        if (!response.transactions) {
+                            return res.json({
+                                status: req.status.success,
+                                data: (returning ? accounts : {
+                                    updated: true
+                                })
+                            });
+                        }
+
+                        req.models.PlaidTransaction.bulkCreate(
+                            req.models.PlaidTransaction.fromPlaidArray(
+                                response.transactions, req.user
+                            )
+                        ).then(function(transactions) {
+                            console.log('EXCHANGE: ', {
+                                transactions: transactions,
+                                accounts: accounts
+                            });
+
+                            return res.json({
+                                status: req.status.success,
+                                data: {
+                                    accounts: accounts,
+                                    transactions: transactions
+                                }
+                            });
+                        });
                     });
-                })).then(function(accounts) {
-                    res.json({
-                        status: req.status.success,
-                        data: (returning ? accounts : {
-                            updated: true
-                        })
-                    });
-                });
+                }
             });
         });
     });

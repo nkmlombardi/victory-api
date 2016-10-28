@@ -4,6 +4,10 @@
  * verification code is sent to the user's device. We are creating a
  * PlaidAccount entry and adding the access key to the User model.
  */
+
+// TODO: This endpoint needs to have logic written in to handle non-MFA accounts. 
+// A simple if statement and some optimization.
+
 module.exports = function(req, res, next) {
     req.plaid.addConnectUser(req.body.type, {
         username: req.body.username,

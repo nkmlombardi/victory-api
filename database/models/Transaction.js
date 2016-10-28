@@ -1,15 +1,12 @@
 var moment = require('moment');
 
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('PlaidTransaction', {
+    return Sequelize.define('Transaction', {
+        // ID, Keys, Foreign Keys
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
-        },
-        plaid_id: {
-            type: DataTypes.STRING,
-            allowNull: false
         },
         user_id: {
             type: DataTypes.UUID,
@@ -19,12 +16,28 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
-        plaid_account_id: {
-            type: DataTypes.STRING,
+        account_id: {
+            type: DataTypes.UUID,
             allowNull: false,
             references: {
+                model: 'Accounts',
+                key: 'id'
+            }
+        },
+        category_id: {
+            type: DataTypes.UUID,
+            references: {
+                model: 'Categories',
+                key: 'id'
+            }
+        },
+        plaid_id: {
+            type: DataTypes.UUID,
+            allowNull: false,
+            unique: true,
+            references: {
                 model: 'PlaidAccounts',
-                key: 'plaid_id'
+                key: 'id'
             }
         },
 
@@ -43,13 +56,6 @@ module.exports = function(Sequelize, DataTypes) {
         },
         category: {
             type: DataTypes.ARRAY(DataTypes.STRING)
-        },
-        category_id: {
-            type: DataTypes.INTEGER,
-            references: {
-                model: 'PlaidCategories',
-                key: 'plaid_id'
-            }
         }
     }, {
         timestamps: true,
@@ -57,31 +63,28 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                models.PlaidTransaction.belongsTo(models.PlaidCategory, {
-                    foreignKey: 'category_id',
-                    targetKey: 'plaid_id',
-                    as: 'PlaidCategory'
-                });
-
-                models.PlaidTransaction.belongsTo(models.PlaidAccount, {
-                    foreignKey: 'plaid_account_id',
-                    targetKey: 'plaid_id',
-                    as: 'account'
-                });
+                // models.PlaidTransaction.belongsTo(models.PlaidCategory, {
+                //     foreignKey: 'category_id',
+                //     targetKey: 'plaid_id',
+                //     as: 'PlaidCategory'
+                // });
+                //
+                // models.PlaidTransaction.belongsTo(models.PlaidAccount, {
+                //     foreignKey: 'plaid_account_id',
+                //     targetKey: 'plaid_id',
+                //     as: 'account'
+                // });
             },
 
             // Take object from Plaid and map it to our model format
             fromPlaidObject: function(transaction, user) {
                 return {
-                    plaid_id: transaction._id,
-                    plaid_account_id: transaction._account,
                     user_id: user.id,
+                    plaid_id: transaction._id,
                     name: transaction.name,
                     amount: (transaction.amount * -1),
                     date: moment().format(transaction.date),
-                    pending: transaction.pending,
-                    category: transaction.category,
-                    category_id: transaction.category_id
+                    pending: transaction.pending
                 };
             },
 

@@ -1,22 +1,18 @@
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('PlaidAccount', {
+    return Sequelize.define('Account', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
         plaid_id: {
-            type: DataTypes.STRING,
+            type: DataTypes.UUID,
             allowNull: false,
-            unique: true
-        },
-        plaid_item: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        plaid_user: {
-            type: DataTypes.STRING,
-            allowNull: false
+            unique: true,
+            references: {
+                model: 'PlaidAccounts',
+                key: 'id'
+            }
         },
         user_id: {
             type: DataTypes.UUID,
@@ -92,8 +88,6 @@ module.exports = function(Sequelize, DataTypes) {
             fromPlaidObject: function(account, user) {
                 return {
                     plaid_id: account._id,
-                    plaid_item: account._item,
-                    plaid_user: account._user,
                     user_id: user.id,
                     name: account.meta.name,
                     balance_available: account.balance.available,
@@ -109,40 +103,7 @@ module.exports = function(Sequelize, DataTypes) {
                 return accounts.map(function(account) {
                     return this.fromPlaidObject(account, user);
                 }, this);
-            },
-
-            upsertWithReturn: function(options) {
-                return this.findOrCreate(options).spread(function(row, created) {
-                    if (created) {
-                        return row;
-                    } else {
-                        return row.updateAttributes(options.defaults).then(function(updated) {
-                            return updated;
-                        });
-                    }
-                });
-
-            },
-
-            // upsertObject: function(account) {
-            //     return this.findOrCreate({
-            //         where: {
-            //             plaid_id: account.plaid_id
-            //         }
-            //     }).spread(function(account, created) {
-            //         if (account) {
-            //             return account;
-            //         }
-            //
-            //         return created;
-            //     })
-            // },
-            //
-            // upsertArray: function(accounts) {
-            //     return Promise.all(accounts.map(function(account) {
-            //         return this.upsertObject(account);
-            //     }, this));
-            // }
+            }
         }
     });
 };
