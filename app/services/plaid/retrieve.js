@@ -7,6 +7,7 @@ module.exports = function(options, callback) {
     var token = options.token;
     var count = options.count;
 
+    // Retrieve latest transaction for a User
     return models.PlaidTransaction.findOne({
         where: { user_id: user.id },
         order: [['created_at', 'DESC']],

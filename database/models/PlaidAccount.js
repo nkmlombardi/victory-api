@@ -78,14 +78,7 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                // models.PlaidAccount.belongsTo(models.User);
-                // models.PlaidAccount.hasMany(models.PlaidTransaction);
 
-                // models.PlaidAccount.hasMany(models.PlaidTransaction, {
-                //     foreignKey: 'plaid_account_id',
-                //     targetKey: 'plaid_id',
-                //     as: 'transactions'
-                // });
             },
 
             // Take object from Plaid and map it to our model format
@@ -121,28 +114,7 @@ module.exports = function(Sequelize, DataTypes) {
                         });
                     }
                 });
-
-            },
-
-            // upsertObject: function(account) {
-            //     return this.findOrCreate({
-            //         where: {
-            //             plaid_id: account.plaid_id
-            //         }
-            //     }).spread(function(account, created) {
-            //         if (account) {
-            //             return account;
-            //         }
-            //
-            //         return created;
-            //     })
-            // },
-            //
-            // upsertArray: function(accounts) {
-            //     return Promise.all(accounts.map(function(account) {
-            //         return this.upsertObject(account);
-            //     }, this));
-            // }
+            }
         }
     });
 };

@@ -7,9 +7,12 @@ module.exports = function(req, res, next) {
     var public_token = req.body.public_token;
     var returning = req.body.returning;
 
+    console.log('Public Token: ', public_token);
+    console.log('Returning: ', returning);
+
     // Exchange a public_token for a Plaid access_token
     req.plaid.exchangeToken(public_token, function(err, exchangeTokenRes) {
-        if (err != null) { /* Handle Error */ }
+        if (err) { console.error('Plaid error exchanging public token for access token', err); }
 
         // This is your Plaid access token - store somewhere persistent
         // The access_token can be used to make Plaid API calls to
@@ -25,52 +28,58 @@ module.exports = function(req, res, next) {
         }).then(function(user) {
 
             req.plaid.getConnectUser(access_token, function(error, response) {
-                if (!response) {
-                    return console.log('Not sure what happened here...');
-                }
+                if (!response) { return console.log('Plaid error no response object was returned empty.', response, error); }
+                if (error) { return console.log('Plaid error getting accounts and transactions: ', error); }
 
-                if (error) {
-                    return console.log('Plaid Error: ', error);
-                }
+                // console.log('Response.accounts: ', response.accounts);
+                // console.log('Response.transactions: ', response.transactions);
 
                 if (response.accounts) {
                     Promise.all(response.accounts.map(function(account) {
-                        return req.models.PlaidAccount.upsertWithReturn({
+                        return req.models.Account.upsertWithReturn({
                             where: {
                                 plaid_id: account._id
                             },
-                            defaults: req.models.PlaidAccount.fromPlaidObject(
+                            defaults: req.models.Account.fromPlaidObject(
                                 account, req.user
                             )
                         });
                     })).then(function(accounts) {
-                        if (!response.transactions) {
+                        console.log(accounts);
+
+                        // if (!response.transactions) {
                             return res.json({
                                 status: req.status.success,
-                                data: (returning ? accounts : {
-                                    updated: true
-                                })
+                                data: accounts
                             });
-                        }
+                        // }
 
-                        req.models.PlaidTransaction.bulkCreate(
-                            req.models.PlaidTransaction.fromPlaidArray(
-                                response.transactions, req.user
-                            )
-                        ).then(function(transactions) {
-                            console.log('EXCHANGE: ', {
-                                transactions: transactions,
-                                accounts: accounts
-                            });
-
-                            return res.json({
-                                status: req.status.success,
-                                data: {
-                                    accounts: accounts,
-                                    transactions: transactions
-                                }
-                            });
-                        });
+                        // var trans = req.models.Transaction.fromPlaidArray(
+                        //     response.transactions,
+                        //     { account: req.models.Account, category: req.models.Category },
+                        //     { user: req.user }
+                        // );
+                        //
+                        // console.log('unplaidifed: ', trans);
+                        //
+                        // // Inject transactions into database
+                        // req.models.Transaction.bulkCreate(
+                        //     req.models.Transaction.fromPlaidArray(
+                        //         response.transactions,
+                        //         { account: req.models.Account, category: req.models.Category },
+                        //         { user: req.user }
+                        //     )
+                        // ).then(function(transactions) {
+                        //     console.log('Transactions persist response:', transactions);
+                        //
+                        //     return res.json({
+                        //         status: req.status.success,
+                        //         data: {
+                        //             accounts: accounts,
+                        //             transactions: transactions
+                        //         }
+                        //     });
+                        // });
                     });
                 }
             });

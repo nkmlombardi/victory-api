@@ -1,4 +1,5 @@
 var moment = require('moment');
+var Promise = require('bluebird');
 
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('Transaction', {
@@ -10,7 +11,7 @@ module.exports = function(Sequelize, DataTypes) {
         },
         user_id: {
             type: DataTypes.UUID,
-            allowNull: false,
+            // allowNull: false,
             references: {
                 model: 'Users',
                 key: 'id'
@@ -53,45 +54,67 @@ module.exports = function(Sequelize, DataTypes) {
         },
         pending: {
             type: DataTypes.BOOLEAN
-        },
-        category: {
-            type: DataTypes.ARRAY(DataTypes.STRING)
         }
     }, {
         timestamps: true,
         paranoid: true,
         underscored: true,
         classMethods: {
-            associate: function(models) {
-                // models.PlaidTransaction.belongsTo(models.PlaidCategory, {
-                //     foreignKey: 'category_id',
-                //     targetKey: 'plaid_id',
-                //     as: 'PlaidCategory'
-                // });
-                //
-                // models.PlaidTransaction.belongsTo(models.PlaidAccount, {
-                //     foreignKey: 'plaid_account_id',
-                //     targetKey: 'plaid_id',
-                //     as: 'account'
-                // });
-            },
+            associate: function(models) { },
 
             // Take object from Plaid and map it to our model format
-            fromPlaidObject: function(transaction, user) {
-                return {
-                    user_id: user.id,
-                    plaid_id: transaction._id,
-                    name: transaction.name,
-                    amount: (transaction.amount * -1),
-                    date: moment().format(transaction.date),
-                    pending: transaction.pending
-                };
+            fromPlaidObject: async function(transaction, models, instances) {
+                // console.log('Checking Values: ', transaction._account, transaction.category_id);
+                // return await Promise.props({
+                //     account: models.account.findOne({
+                //         where: {
+                //             plaid_id: transaction._account,
+                //             user_id: instances.user.id
+                //         },
+                //         attributes: ['id']
+                //     }),
+                //     category: category: models.category.findOne({
+                //         where: { plaid_id: transaction.category_id },
+                //         attributes: ['id']
+                //     })
+                // }).then(function(resolved) {
+                    console.log('User: ', instances.user.id);
+
+                    var [account, category] = await Promise.all([
+                        models.account.findOne({
+                            where: {
+                                plaid_id: transaction._account,
+                                user_id: instances.user.id
+                            },
+                            attributes: ['id']
+                        })
+                        // models.category.findOne({
+                        //     where: { plaid_id: transaction.category_id },
+                        //     attributes: ['id']
+                        // })
+                    ]);
+
+                    // console.log('Account ID: ', account);
+
+                    return {
+                        user_id: instances.user.id,
+                        account_id: account.id,
+                        category_id: 0,
+                        plaid_id: transaction._id,
+                        name: transaction.name,
+                        amount: (transaction.amount * -1),
+                        date: moment().format(transaction.date),
+                        pending: transaction.pending
+                    };
+                // }).catch(function(error) {
+                //     return console.error('Database error querying for account or category during Plaid -> Database mapping: ', error);
+                // });
             },
 
             // Take array from Plaid and map it to our models format
-            fromPlaidArray: function(transactions, user) {
+            fromPlaidArray: function(transactions, models, instances) {
                 return transactions.map(function(transaction) {
-                    return this.fromPlaidObject(transaction, user);
+                    return this.fromPlaidObject(transaction, models, instances);
                 }, this);
             },
         }

@@ -6,13 +6,13 @@ module.exports = function(Sequelize, DataTypes) {
             primaryKey: true
         },
         plaid_id: {
-            type: DataTypes.UUID,
+            type: DataTypes.STRING,
             allowNull: false,
             unique: true,
-            references: {
-                model: 'PlaidAccounts',
-                key: 'id'
-            }
+            // references: {
+            //     model: 'PlaidAccounts',
+            //     key: 'id'
+            // }
         },
         user_id: {
             type: DataTypes.UUID,
@@ -73,16 +73,7 @@ module.exports = function(Sequelize, DataTypes) {
         paranoid: true,
         underscored: true,
         classMethods: {
-            associate: function(models) {
-                // models.PlaidAccount.belongsTo(models.User);
-                // models.PlaidAccount.hasMany(models.PlaidTransaction);
-
-                // models.PlaidAccount.hasMany(models.PlaidTransaction, {
-                //     foreignKey: 'plaid_account_id',
-                //     targetKey: 'plaid_id',
-                //     as: 'transactions'
-                // });
-            },
+            associate: function(models) { },
 
             // Take object from Plaid and map it to our model format
             fromPlaidObject: function(account, user) {
@@ -103,6 +94,18 @@ module.exports = function(Sequelize, DataTypes) {
                 return accounts.map(function(account) {
                     return this.fromPlaidObject(account, user);
                 }, this);
+            },
+
+            upsertWithReturn: function(options) {
+                return this.findOrCreate(options).spread(function(row, created) {
+                    if (created) {
+                        return row;
+                    } else {
+                        return row.updateAttributes(options.defaults).then(function(updated) {
+                            return updated;
+                        });
+                    }
+                });
             }
         }
     });
