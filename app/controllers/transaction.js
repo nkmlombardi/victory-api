@@ -43,22 +43,4 @@ module.exports = {
             })
         })
     }
-
-    // patchSelf: function(req, res, next) {
-    //     req.models.PlaidTransaction.update(req.body, {
-    //         fields: [
-    //             'category',
-    //             'category_id'
-    //         ],
-    //         where: {
-    //             id: req.params.id,
-    //             user_id: req.user.id
-    //         }
-    //     }).then(function(transaction) {
-    //         res.json({
-    //             status: req.status.success,
-    //             data: transaction
-    //         });
-    //     });
-    // }
 };

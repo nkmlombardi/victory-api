@@ -11,7 +11,7 @@ module.exports = function(Sequelize, DataTypes) {
         },
         user_id: {
             type: DataTypes.UUID,
-            // allowNull: false,
+            allowNull: false,
             references: {
                 model: 'Users',
                 key: 'id'
@@ -64,51 +64,31 @@ module.exports = function(Sequelize, DataTypes) {
 
             // Take object from Plaid and map it to our model format
             fromPlaidObject: async function(transaction, models, instances) {
-                // console.log('Checking Values: ', transaction._account, transaction.category_id);
-                // return await Promise.props({
-                //     account: models.account.findOne({
-                //         where: {
-                //             plaid_id: transaction._account,
-                //             user_id: instances.user.id
-                //         },
-                //         attributes: ['id']
-                //     }),
-                //     category: category: models.category.findOne({
-                //         where: { plaid_id: transaction.category_id },
-                //         attributes: ['id']
-                //     })
-                // }).then(function(resolved) {
-                    console.log('User: ', instances.user.id);
+                var account = await models.account.findOne({
+                    where: {
+                        plaid_id: transaction._account,
+                        user_id: instances.user.id
+                    },
+                    attributes: ['id']
+                });
 
-                    var [account, category] = await Promise.all([
-                        models.account.findOne({
-                            where: {
-                                plaid_id: transaction._account,
-                                user_id: instances.user.id
-                            },
-                            attributes: ['id']
-                        })
-                        // models.category.findOne({
-                        //     where: { plaid_id: transaction.category_id },
-                        //     attributes: ['id']
-                        // })
-                    ]);
+                var category = await models.category.findOne({
+                    where: { plaid_id: transaction.category_id },
+                    attributes: ['id']
+                });
 
-                    // console.log('Account ID: ', account);
+                console.log('Account & Category: ', account, category);
 
-                    return {
-                        user_id: instances.user.id,
-                        account_id: account.id,
-                        category_id: 0,
-                        plaid_id: transaction._id,
-                        name: transaction.name,
-                        amount: (transaction.amount * -1),
-                        date: moment().format(transaction.date),
-                        pending: transaction.pending
-                    };
-                // }).catch(function(error) {
-                //     return console.error('Database error querying for account or category during Plaid -> Database mapping: ', error);
-                // });
+                return {
+                    user_id: await instances.user.id,
+                    account_id: account.id,
+                    category_id: category.id,
+                    plaid_id: transaction._id,
+                    name: transaction.name,
+                    amount: (transaction.amount * -1),
+                    date: moment().format(transaction.date),
+                    pending: transaction.pending
+                };
             },
 
             // Take array from Plaid and map it to our models format
