@@ -1,48 +1,45 @@
 var moment = require('moment');
 
-module.exports = function(options, callback) {
-    var models = options.models;
-    var plaid = options.plaid;
-    var user = options.user;
-    var token = options.token;
-    var count = options.count;
-
-    // Retrieve latest transaction for a User
-    return models.PlaidTransaction.findOne({
-        where: { user_id: user.id },
+/**
+ * [retrieveTransactions description]
+ * @param  {[type]}  models  [description]
+ * @param  {[type]}  plaid   [description]
+ * @param  {[type]}  user_id [description]
+ * @param  {[type]}  token   [description]
+ * @return {Promise}         [description]
+ */
+var retrieveTransactions = async function(models, plaid, user_id, token) {
+    var latestTransaction = await models.Transaction.findOne({
+        where: { user_id: user_id },
         order: [['created_at', 'DESC']],
         attributes: ['created_at', 'user_id']
+    })
 
-    // Retrieve all transactions since that date from Plaid
-    }).then(function(transaction) {
-        var gteDate = moment(transaction.created_at).format("MM/DD/YY");
+    var transactionsResponse = await plaid.getConnectUserAsync(token, {
+        pending: true,
+        gte: moment(latestTransaction.created_at).format("MM/DD/YY")
+    })
 
-        return plaid.getConnectUser(token, {
-            pending: true,
-            gte: gteDate
+    if (transactionsResponse.transactions.length === 0) {
+        return {
+            status: 'unmodified',
+            message: 'No new transactions to retrieve.',
+            transactions: []
+        }
+    }
 
-        // Persist new transactions to database
-        }, function(error, plaidResponse) {
-            if (error) { return console.log('Plaid Error: ', error); }
+    var transactions = await models.Transaction.bulkCreate(
+        models.Transaction.fromPlaidArray(
+            transactionsResponse.transactions,
+            user_id
+        )
+    )
 
-            if (typeof count !== 'undefined' && count !== plaidResponse.transactions.length) {
-                return console.error('Expected ' + count + ' but got ' + plaidResponse.transactions.length + ' transactions!');
-            }
-
-            // Check if new transactions exist
-            if (plaidResponse.transactions.length === 0) {
-                return callback({
-                    status: 'unmodified',
-                    message: 'No new transactions to retrieve.',
-                    transactions: []
-                });
-            }
-
-            return callback({
-                status: 'success',
-                message: 'New transactions retrieved.',
-                payload: plaidResponse
-            });
-        });
-    });
+    return {
+        status: 'success',
+        message: 'New transactions retrieved.',
+        payload: transactionsResponse.transactions
+    }
 };
+
+module.exports = retrieveTransactions;
