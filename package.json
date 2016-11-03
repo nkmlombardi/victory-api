@@ -2,6 +2,17 @@
     "name": "victory-api",
     "description": "API for the Victory platform.",
     "version": "0.0.1",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "clear && nodemon --exec npm run babel-node -- ./server.js",
+        "babel-node": "babel-node --presets=es2017",
+        "babel-version": "babel --version"
+    },
+    "babel": {
+        "presets": [
+            "es2017"
+        ]
+    },
     "dependencies": {
         "apicache": "0.0.14",
         "bcryptjs": "^2.3.0",
@@ -39,16 +50,5 @@
         "babel-preset-es2017": "^6.16.0",
         "eslint": "^3.9.1",
         "mz": "^2.4.0"
-    },
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "clear && nodemon --exec npm run babel-node -- ./server.js",
-        "babel-node": "babel-node --presets=es2017",
-        "babel-version": "babel --version"
-    },
-    "babel": {
-        "presets": [
-            "es2017"
-        ]
     }
 }
