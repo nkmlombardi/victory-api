@@ -61,14 +61,26 @@ module.exports = function(Sequelize, DataTypes) {
         paranoid: true,
         underscored: true,
         classMethods: {
-            associate: function(models) { },
+            associate: function(models) {
+                models.Transaction.belongsTo(models.Account, {
+                    as: 'account'
+                });
+
+                models.Transaction.belongsTo(models.Category, {
+                    as: 'category'
+                });
+
+                models.Transaction.belongsTo(models.User, {
+                    as: 'user'
+                });
+            },
 
             // Take object from Plaid and map it to our model format
             fromPlaidObject: function(transaction, user_id, accounts, categories) {
                 return {
                     user_id: user_id,
                     account_id: accounts[transaction._account],
-                    category_id: categories[transaction.category],
+                    category_id: categories[transaction.category_id],
                     plaid_id: transaction._id,
                     name: transaction.name,
                     amount: (transaction.amount * -1),
