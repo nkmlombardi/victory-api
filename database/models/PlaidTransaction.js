@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('PlaidTransaction', {
         id: {
@@ -55,8 +57,12 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                // models.PlaidTransaction.belongsTo(models.User);
-                // models.PlaidTransaction.belongsTo(models.PlaidCategory);
+                models.PlaidTransaction.belongsTo(models.PlaidCategory, {
+                    foreignKey: 'category_id',
+                    targetKey: 'plaid_id',
+                    as: 'PlaidCategory'
+                });
+
                 models.PlaidTransaction.belongsTo(models.PlaidAccount, {
                     foreignKey: 'plaid_account_id',
                     targetKey: 'plaid_id',
@@ -72,7 +78,7 @@ module.exports = function(Sequelize, DataTypes) {
                     user_id: user.id,
                     name: transaction.name,
                     amount: (transaction.amount * -1),
-                    date: transaction.date,
+                    date: moment().format(transaction.date),
                     pending: transaction.pending,
                     category: transaction.category,
                     category_id: transaction.category_id
