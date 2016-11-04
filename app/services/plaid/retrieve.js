@@ -29,7 +29,7 @@ var retrieveTransactions = async function(models, plaid, user_id, token) {
     }
 
     var transactions = await models.Transaction.bulkCreate(
-        models.Transaction.fromPlaidArray(
+        await models.Transaction.fromPlaidArray(
             transactionsResponse.transactions,
             user_id
         )

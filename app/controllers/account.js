@@ -1,6 +1,6 @@
 module.exports = {
     getSelfAll: function(req, res, next) {
-        req.models.PlaidAccount.findAll({
+        req.models.Account.findAll({
             where: {
                 user_id: req.user.id
             }
@@ -13,13 +13,13 @@ module.exports = {
     },
 
     getSelfAllWithTransactions: function(req, res, next) {
-        req.models.PlaidAccount.findAll({
+        req.models.Account.findAll({
             where: {
                 user_id: req.user.id
             },
             include: [
                 {
-                    model: req.models.PlaidTransaction,
+                    model: req.models.Transaction,
                     as: 'transactions'
                 }
             ]
@@ -32,8 +32,8 @@ module.exports = {
     },
 
     postPlaidAccounts: function(req, res, next) {
-        req.models.PlaidAccount.bulkCreate(
-            req.models.PlaidAccount.fromPlaidArray(
+        req.models.Account.bulkCreate(
+            req.models.Account.fromPlaidArray(
                 req.body, req.user
             )
         ).then(function(accounts) {
@@ -41,6 +41,13 @@ module.exports = {
                 status: req.status.success,
                 data: accounts
             })
-        })
+        }).catch(function(error) {
+            console.error('Error persisting plaid accounts: ', error);
+
+            return res.json({
+                status: req.status.error,
+                data: error
+            });
+        });
     }
 };

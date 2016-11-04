@@ -32,14 +32,12 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
+        // Intentionally not setting this to unique in the
+        // case of shared accounts
         plaid_id: {
-            type: DataTypes.UUID,
-            allowNull: false,
-            unique: true,
-            references: {
-                model: 'PlaidAccounts',
-                key: 'id'
-            }
+            type: DataTypes.STRING,
+            allowNull: false
         },
 
         // Attributes
@@ -54,6 +52,9 @@ module.exports = function(Sequelize, DataTypes) {
         },
         pending: {
             type: DataTypes.BOOLEAN
+        },
+        plaid_raw: {
+            type: DataTypes.JSON
         }
     }, {
         timestamps: true,
@@ -63,40 +64,26 @@ module.exports = function(Sequelize, DataTypes) {
             associate: function(models) { },
 
             // Take object from Plaid and map it to our model format
-            fromPlaidObject: async function(transaction, models, instances) {
-                var account = await models.account.findOne({
-                    where: {
-                        plaid_id: transaction._account,
-                        user_id: instances.user.id
-                    },
-                    attributes: ['id']
-                });
-
-                var category = await models.category.findOne({
-                    where: { plaid_id: transaction.category_id },
-                    attributes: ['id']
-                });
-
-                console.log('Account & Category: ', account, category);
-
+            fromPlaidObject: function(transaction, user_id, accounts, categories) {
                 return {
-                    user_id: await instances.user.id,
-                    account_id: account.id,
-                    category_id: category.id,
+                    user_id: user_id,
+                    account_id: accounts[transaction._account],
+                    category_id: categories[transaction.category],
                     plaid_id: transaction._id,
                     name: transaction.name,
                     amount: (transaction.amount * -1),
-                    date: moment().format(transaction.date),
-                    pending: transaction.pending
+                    date: moment(transaction.date).format(),
+                    pending: transaction.pending,
+                    plaid_raw: transaction
                 };
             },
 
             // Take array from Plaid and map it to our models format
-            fromPlaidArray: function(transactions, models, instances) {
+            fromPlaidArray: function(transactions, user_id, accounts, categories) {
                 return transactions.map(function(transaction) {
-                    return this.fromPlaidObject(transaction, models, instances);
+                    return this.fromPlaidObject(transaction, user_id, accounts, categories);
                 }, this);
-            },
+            }
         }
     });
 };

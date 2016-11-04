@@ -44,6 +44,13 @@ module.exports = function(Sequelize, DataTypes) {
                     type: category.type
                 };
             },
+            
+            createPlaidMap: function(categories) {
+                return categories.map(function(map, category) {
+                    map[category.plaid_id] = category.id;
+                    return map;
+                }, {});
+            },
 
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(categories) {

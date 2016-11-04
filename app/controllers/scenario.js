@@ -41,7 +41,7 @@ module.exports = {
                     model: req.models.Budget,
                     as: 'budgets',
                     include: {
-                        model: req.models.PlaidCategory,
+                        model: req.models.Category,
                         as: 'category'
                     }
                 }
@@ -64,10 +64,10 @@ module.exports = {
                     model: req.models.Budget,
                     as: 'budgets',
                     include: {
-                        model: req.models.PlaidCategory,
+                        model: req.models.Category,
                         as: 'category',
                         include: {
-                            model: req.models.PlaidTransaction,
+                            model: req.models.Transaction,
                             as: 'transactions'
                         }
                     }

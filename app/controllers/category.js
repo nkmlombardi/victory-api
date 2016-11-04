@@ -1,6 +1,6 @@
 module.exports = {
     getAll: function(req, res, next) {
-        req.models.PlaidCategory.findAll()
+        req.models.Category.findAll()
             .then(function(categories) {
                 res.json({
                     status: req.status.success,
@@ -10,7 +10,7 @@ module.exports = {
     },
 
     getAllPrimary: function(req, res, next) {
-        req.models.PlaidCategory.findAll()
+        req.models.Category.findAll()
             .then(function(categories) {
                 res.json({
                     status: req.status.success,

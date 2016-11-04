@@ -5,14 +5,12 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
+        // Intentionally not setting this to unique in the
+        // case of shared accounts
         plaid_id: {
             type: DataTypes.STRING,
-            allowNull: false,
-            unique: true,
-            // references: {
-            //     model: 'PlaidAccounts',
-            //     key: 'id'
-            // }
+            allowNull: false
         },
         user_id: {
             type: DataTypes.UUID,
@@ -67,6 +65,9 @@ module.exports = function(Sequelize, DataTypes) {
                 "prepaid",
                 "savings"
             )
+        },
+        plaid_raw: {
+            type: DataTypes.JSON
         }
     }, {
         timestamps: true,
@@ -85,7 +86,8 @@ module.exports = function(Sequelize, DataTypes) {
                     balance_current: account.balance.current,
                     institution_type: account.institution_type,
                     type: account.type,
-                    subtype: account.subtype
+                    subtype: account.subtype,
+                    plaid_raw: account
                 };
             },
 
@@ -94,6 +96,13 @@ module.exports = function(Sequelize, DataTypes) {
                 return accounts.map(function(account) {
                     return this.fromPlaidObject(account, user);
                 }, this);
+            },
+
+            createPlaidMap: function(accounts) {
+                return accounts.reduce(function(map, account) {
+                    map[account.plaid_id] = account.id;
+                    return map;
+                }, {});
             },
 
             upsertWithReturn: function(options) {
