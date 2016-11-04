@@ -28,6 +28,8 @@ module.exports = function(app) {
     /* Transactions Resource */
     app.route('/v1/transactions/self')
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAll);
+    app.route('/v1/transactions/self/all')
+        .get(controllers.auth.isBearer, controllers.transaction.getSelfAllWithAll);
     app.route('/v1/transactions/self/accounts')
         .get(controllers.auth.isBearer, controllers.transaction.getSelfAllWithAccounts);
     app.route('/v1/transactions/self/plaid')
@@ -57,6 +59,8 @@ module.exports = function(app) {
         .get(controllers.auth.isBearer, controllers.category.getAll);
     app.route('/v1/categories/primary')
         .get(controllers.auth.isBearer, controllers.category.getAllPrimary);
+    app.route('/v1/categories/self/transactions')
+        .get(controllers.auth.isBearer, controllers.category.getAllWithTransactions);
 
 
     /* Scenario Resource */
@@ -72,5 +76,7 @@ module.exports = function(app) {
     /* Budget Resource */
     app.route('/v1/budgets/self')
         .get(controllers.auth.isBearer, controllers.budget.getSelfAll);
+    app.route('/v1/budgets/self/transactions')
+        .get(controllers.auth.isBearer, controllers.budget.getSelfAllWithTransactions);
 
 };

@@ -24,7 +24,6 @@ module.exports = function(Sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 models.Scenario.hasMany(models.Budget, {
-                    foreignKey: 'scenario_id',
                     as: 'budgets'
                 });
             }

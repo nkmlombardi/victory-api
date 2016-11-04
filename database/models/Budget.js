@@ -38,13 +38,17 @@ module.exports = function(Sequelize, DataTypes) {
         classMethods: {
             associate: function(models) {
                 models.Budget.belongsTo(models.Category, {
-                    foreignKey: 'category_id',
                     as: 'category'
                 });
 
                 models.Budget.belongsTo(models.Scenario, {
-                    foreignKey: 'scenario_id',
-                    targetKey: 'id'
+                    as: 'scenario'
+                });
+
+                models.Budget.hasMany(models.Transaction, {
+                    foriegnKey: 'category_id',
+                    targetKey: 'category_id',
+                    as: 'transactions'
                 });
             }
         }

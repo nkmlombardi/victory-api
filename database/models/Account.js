@@ -74,7 +74,11 @@ module.exports = function(Sequelize, DataTypes) {
         paranoid: true,
         underscored: true,
         classMethods: {
-            associate: function(models) { },
+            associate: function(models) {
+                models.Account.hasMany(models.Transaction, {
+                    as: 'transactions'
+                });
+            },
 
             // Take object from Plaid and map it to our model format
             fromPlaidObject: function(account, user) {

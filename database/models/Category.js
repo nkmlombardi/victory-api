@@ -24,16 +24,13 @@ module.exports = function(Sequelize, DataTypes) {
         tableName: 'Categories',
         classMethods: {
             associate: function(models) {
-                // models.PlaidCategory.hasMany(models.PlaidTransaction, {
-                //     foreignKey: 'category_id',
-                //     targetKey: 'plaid_id',
-                //     as: 'transactions'
-                // });
-                //
-                // models.PlaidCategory.hasMany(models.Budget, {
-                //     foreignKey: 'category_id',
-                //     as: 'budgets'
-                // });
+                models.Category.hasMany(models.Transaction, {
+                    as: 'transactions'
+                });
+
+                models.Category.hasMany(models.Budget, {
+                    as: 'budgets'
+                });
             },
 
             // Take object from Plaid and map it to our model format
@@ -44,9 +41,9 @@ module.exports = function(Sequelize, DataTypes) {
                     type: category.type
                 };
             },
-            
+
             createPlaidMap: function(categories) {
-                return categories.map(function(map, category) {
+                return categories.reduce(function(map, category) {
                     map[category.plaid_id] = category.id;
                     return map;
                 }, {});

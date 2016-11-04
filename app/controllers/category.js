@@ -9,6 +9,23 @@ module.exports = {
             });
     },
 
+    getAllWithTransactions: function(req, res, next) {
+        req.models.Category.findAll({
+            include: {
+                model: req.models.Transaction,
+                as: 'transactions',
+                where: {
+                    user_id: req.user.id
+                }
+            }
+        }).then(function(categories) {
+            res.json({
+                status: req.status.success,
+                data: categories
+            });
+        });
+    },
+
     getAllPrimary: function(req, res, next) {
         req.models.Category.findAll()
             .then(function(categories) {

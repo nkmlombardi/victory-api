@@ -1,7 +1,8 @@
 [{
-    "id": "73eb681f-1959-460a-ab12-239d4da33f2b",
+    "id": "67012286-820d-473f-bf0d-cd6dafa196bf",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "6ce61974-e858-41d3-a61c-63f8848a7829",
+    "category_id": "479818ba-7909-436d-9c80-6161a736a656",
     "plaid_id": "0AZ0De04KqsreDgVwM1RSRYjyd8yXxSDQ8Zxn",
     "name": "ATM Withdrawal",
     "amount": -200,
@@ -37,12 +38,13 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "692854fc-92e7-42c6-9bf1-4a93b8832c32",
+    "id": "8f70f9f8-1ef9-4fe6-b310-8f6bf07701ee",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "6ce61974-e858-41d3-a61c-63f8848a7829",
+    "category_id": "e81b3119-ee8d-4dd9-b2bc-0d399675f10d",
     "plaid_id": "3mg4qV4JZycjewvKEzrLTYMzdr1MmvcO4Z3zX",
     "name": "Online Transfer from External Sav ...3092",
     "amount": -240,
@@ -71,12 +73,13 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "a50f60da-fe54-4c66-83e0-84f48ed80d8f",
+    "id": "19e501d5-2046-499c-a0a1-ab6faf9f733b",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "a234601c-f64c-4477-bfbc-d4e2cd5b1848",
+    "category_id": "439d6ca3-bf25-41df-8f8d-ef6b54be5b93",
     "plaid_id": "KdDjmojBERUKx3JkDdO5IaRJdZeZKNuK4bnKJ1",
     "name": "Apple Store",
     "amount": -2307.15,
@@ -113,12 +116,13 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "0383f0ff-e2b7-418e-ad87-2ba59c2e7bdb",
+    "id": "756d2953-5e62-4171-a90b-7c5df069d806",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "category_id": "78be6582-0909-436d-b8d7-33806bb889a5",
     "plaid_id": "DAE3Yo3wXgskjXV1JqBDIrDBVvjMLDCQ4rMQdR",
     "name": "Gregorys Coffee",
     "amount": -3.19,
@@ -156,12 +160,13 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "8dc02ac3-f7eb-4871-96d7-20a14ce201f7",
+    "id": "7b9a78ad-c7cb-41c1-b593-df1c46485736",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "category_id": "479818ba-7909-436d-9c80-6161a736a656",
     "plaid_id": "1vAj1Eja5BIn4R7V6Mp1hBPQgkryZRHryZ0rDY",
     "name": "ATM Withdrawal",
     "amount": -80,
@@ -197,12 +202,13 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "d7f0c63d-bee7-4b3e-a8ef-d01c7414af8d",
+    "id": "cd72777a-6d83-470f-99ec-4f1b1ce421df",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "555963ab-4b2c-49bd-9cde-4c869d927807",
+    "category_id": "e81b3119-ee8d-4dd9-b2bc-0d399675f10d",
     "plaid_id": "zq7MLAM4N3cjeKvXP9YqtBJXvZeajJCkjQakYv",
     "name": "Online Transfer from Chk ...1702",
     "amount": 240,
@@ -231,12 +237,13 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "5a0fbc89-a1ea-438e-a763-3c38188430c7",
+    "id": "7d10db95-ec99-48fc-9c32-d94d469d296f",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "category_id": "e81b3119-ee8d-4dd9-b2bc-0d399675f10d",
     "plaid_id": "96d5AO5gLjC9EowVyn5OCBRjJR9LaOHJnBVJzd",
     "name": "Online Transfer to Sav ...9606",
     "amount": -240,
@@ -265,12 +272,13 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "72c3a33b-8e02-47ae-9f23-097a990e8776",
+    "id": "0cbf1417-d2d5-45f3-8119-a3c93f889860",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "category_id": "f0f14514-b624-4823-9fd0-9a735f193d39",
     "plaid_id": "VK0EQ5Ea13u9Qwzm6nA8CNaze8gdJoCJvx6JDO",
     "name": "Interest Payment",
     "amount": 0.93,
@@ -298,10 +306,10 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "8cd0223a-d64f-4435-95de-d2de2d0745de",
+    "id": "d4bf720b-1106-4db5-b102-4ca9c8345897",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "a234601c-f64c-4477-bfbc-d4e2cd5b1848",
     "plaid_id": "aJPEm5EVqxF6yk8K5nPeFbDpnPR57wI3xMR3pP",
@@ -339,12 +347,13 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "885be3f4-ecf8-4279-a473-10de78d90ee0",
+    "id": "0578b132-8746-451d-8f0b-1cd8a92dbe35",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "category_id": "78be6582-0909-436d-b8d7-33806bb889a5",
     "plaid_id": "moPE4dE1yMHJX5pmRzwrcvpQqPdDnZHEKPREYL",
     "name": "Krankies Coffee",
     "amount": -7.23,
@@ -382,12 +391,13 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "d7219799-04bf-4546-9bda-f912f6b98a47",
+    "id": "da7e593b-c9bb-473f-952e-b490b9f104a6",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "a234601c-f64c-4477-bfbc-d4e2cd5b1848",
+    "category_id": "e1b2c149-f0cf-4c80-90c8-794e1cd7bb92",
     "plaid_id": "P1xJboJA5Ls31gJrMQEBU5dZD3NmPrH5R6g5jL",
     "name": "Banana Republic",
     "amount": -118.23,
@@ -416,12 +426,13 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "0ac14cab-96d3-4001-bf69-bbe735e70db3",
+    "id": "f0f8cce3-5700-4b4f-b5de-271ad2b32dce",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "category_id": "17b26fa3-1cb8-4efa-bfa9-b6d3e2301cfd",
     "plaid_id": "dRBp95pEwZfMXENvpw3YHY43VNK4LVSP7RkPpA",
     "name": "Venmo Cashout 18375552",
     "amount": 800,
@@ -451,12 +462,13 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "76447363-2241-41ba-9072-5e4e9d8c8d0d",
+    "id": "e023881b-90b2-4b69-95c1-2ec02f389287",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "category_id": "17b26fa3-1cb8-4efa-bfa9-b6d3e2301cfd",
     "plaid_id": "moPE4dE1yMHJX5pmRzwrcvpkxdopLxtEKPREYo",
     "name": "Venmo Payment 16991172",
     "amount": -120,
@@ -486,12 +498,13 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "91f8e6b9-498f-417e-99da-60b7cb64ebe1",
+    "id": "8ecff252-cc98-404c-9126-aa028aba6577",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "a234601c-f64c-4477-bfbc-d4e2cd5b1848",
+    "category_id": "78be6582-0909-436d-b8d7-33806bb889a5",
     "plaid_id": "JmN0JX0q5EcaQJM9ZbOwUYyyp607m4u3PR63Vn",
     "name": "Octane Coffee Bar and Lounge",
     "amount": -5.32,
@@ -529,12 +542,13 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "11cb74f1-2a7c-4c2d-9882-43326160bbe0",
+    "id": "e50eb41d-163e-45bb-a450-561fd189bd74",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "a234601c-f64c-4477-bfbc-d4e2cd5b1848",
+    "category_id": "5fe64caa-799c-4924-b046-bb63b2ad1f58",
     "plaid_id": "4r0aBVa85Kt3BDPk10a4U5OD3XKjE7Hzxpez6B",
     "name": "Papa Johns Pizza",
     "amount": -28.57,
@@ -578,12 +592,13 @@
             "name": 0.2
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }, {
-    "id": "e5855575-29e8-48fe-882e-70ea8507b958",
+    "id": "f49878d7-d0a8-4d2d-80a3-c52342afd8d5",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "account_id": "555963ab-4b2c-49bd-9cde-4c869d927807",
+    "category_id": "c0ecacd7-6a7b-45e4-8e72-caa629918a8e",
     "plaid_id": "eJXpMzpR65FP4RYno6yjhBDxgkM6pXC9RKM9o3",
     "name": "Company Payroll",
     "amount": 3042.44,
@@ -612,6 +627,6 @@
             "name": 1
         }
     },
-    "created_at": "2016-11-04T02:18:02.329Z",
-    "updated_at": "2016-11-04T02:18:02.329Z"
+    "created_at": "2016-11-04T03:08:18.729Z",
+    "updated_at": "2016-11-04T03:08:18.729Z"
 }]

@@ -12,6 +12,27 @@ module.exports = {
         });
     },
 
+    getSelfAllWithAll: function(req, res, next) {
+        req.models.Transaction.findAll({
+            where: {
+                user_id: req.user.id
+            },
+            include: [
+                {
+                    model: req.models.Account,
+                    as: 'account'
+                }, {
+                    model: req.models.Category,
+                    as: 'category'
+                }
+            ]
+        }).then(function(transactions) {
+            res.json({
+                status: req.status.success,
+                data: transactions
+            });
+        });
+    },
 
     getSelfAllWithAccounts: function(req, res, next) {
         req.models.Transaction.findAll({
@@ -63,16 +84,15 @@ module.exports = {
                         attributes: ['id', 'plaid_id']
                     })
                 ),
-                req.models.Category.createPlaidMap(
+                await req.models.Category.createPlaidMap(
                     await req.models.Category.findAll({
-                        attributes: [
-                            'id',
-                            'plaid_id'
-                        ]
+                        attributes: ['id', 'plaid_id']
                     })
                 )
             )
         ).then(function(transactions) {
+            console.log('Cat Check: ', transactions[0].category_id);
+
             return res.json({
                 status: req.status.success,
                 data: transactions

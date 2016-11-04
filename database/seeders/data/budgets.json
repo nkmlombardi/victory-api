@@ -3,4 +3,9 @@
     "category_id": "aa85074f-0f16-4331-80e1-9bd5e495f2bd",
     "scenario_id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
     "allowance": 0
+}, {
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "category_id": "78be6582-0909-436d-b8d7-33806bb889a5",
+    "scenario_id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
+    "allowance": 0
 }]

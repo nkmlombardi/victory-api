@@ -1,9 +1,7 @@
 module.exports = {
     getSelfAll: function(req, res, next) {
         req.models.Scenario.findAll({
-            where: {
-                user_id: req.user.id
-            }
+            where: { user_id: req.user.id }
         }).then(function(data) {
             res.json({
                 status: req.status.success,
@@ -14,15 +12,13 @@ module.exports = {
 
     getSelfAllWithBudgets: function(req, res, next) {
         req.models.Scenario.findAll({
-            where: {
-                user_id: req.user.id
-            },
-            include: [
-                {
-                    model: req.models.Budget,
-                    as: 'budgets'
-                }
-            ]
+            where: { user_id: req.user.id },
+
+            include: {
+                model: req.models.Budget,
+                as: 'budgets',
+                where: { user_id: req.user.id }
+            }
         }).then(function(data) {
             res.json({
                 status: req.status.success,
@@ -33,19 +29,18 @@ module.exports = {
 
     getSelfAllWithCategory: function(req, res, next) {
         req.models.Scenario.findAll({
-            where: {
-                user_id: req.user.id
-            },
-            include: [
-                {
-                    model: req.models.Budget,
-                    as: 'budgets',
-                    include: {
-                        model: req.models.Category,
-                        as: 'category'
-                    }
+            where: { user_id: req.user.id },
+
+            include: {
+                model: req.models.Budget,
+                as: 'budgets',
+                where: { user_id: req.user.id },
+
+                include: {
+                    model: req.models.Category,
+                    as: 'category'
                 }
-            ]
+            }
         }).then(function(data) {
             res.json({
                 status: req.status.success,
@@ -56,23 +51,24 @@ module.exports = {
 
     getSelfAllWithTransactions: function(req, res, next) {
         req.models.Scenario.findAll({
-            where: {
-                user_id: req.user.id
-            },
-            include: [
-                {
-                    model: req.models.Budget,
-                    as: 'budgets',
+            where: { user_id: req.user.id },
+
+            include: {
+                model: req.models.Budget,
+                as: 'budgets',
+                where: { user_id: req.user.id },
+
+                include: {
+                    model: req.models.Category,
+                    as: 'category',
+
                     include: {
-                        model: req.models.Category,
-                        as: 'category',
-                        include: {
-                            model: req.models.Transaction,
-                            as: 'transactions'
-                        }
+                        model: req.models.Transaction,
+                        as: 'transactions',
+                        where: { user_id: req.user.id }
                     }
                 }
-            ]
+            }
         }).then(function(data) {
             res.json({
                 status: req.status.success,
