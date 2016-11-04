@@ -12,6 +12,10 @@ module.exports = function(Sequelize, DataTypes) {
                 model: 'Users',
                 key: 'id'
             }
+        },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         timestamps: true,

@@ -5,10 +5,9 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        plaid_id: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
+        plaid_raw: {
+            type: DataTypes.JSON,
+            allowNull: true
         },
         user_id: {
             type: DataTypes.UUID,
@@ -25,8 +24,7 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         timestamps: true,
         paranoid: true,
-        underscored: true
-    }, {
+        underscored: true,
         classMethods: {
             associate: function(models) {
                 models.PlaidToken.belongsTo(models.User);

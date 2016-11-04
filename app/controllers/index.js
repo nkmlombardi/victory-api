@@ -7,7 +7,10 @@ module.exports = {
     scenario: require('./scenario'),
     budget: require('./budget'),
 
-    // Authentication Resources
+    // Services
+    plaid: require('./plaid'),
+
+    // Authentication
     auth: require('./authentication'),
     token: require('./token')
 };

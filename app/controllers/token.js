@@ -13,15 +13,5 @@ module.exports = {
         }).catch(function(error) {
             return req.errorHandler(error, req, res);
         });
-    },
-
-    // deleteSelfToken: function(req, res, next) {
-    //     req.models.AuthToken.destroy({
-    //         where: {
-    //             user_id: req.user.id
-    //         }
-    //     }).then(function(token) {
-    //         res.json(user);
-    //     });
-    // }
+    }
 };

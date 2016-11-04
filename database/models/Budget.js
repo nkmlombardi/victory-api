@@ -16,7 +16,7 @@ module.exports = function(Sequelize, DataTypes) {
         category_id: {
             type: DataTypes.UUID,
             references: {
-                model: 'PlaidCategories',
+                model: 'Categories',
                 key: 'id'
             }
         },
@@ -37,7 +37,7 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                models.Budget.belongsTo(models.PlaidCategory, {
+                models.Budget.belongsTo(models.Category, {
                     foreignKey: 'category_id',
                     as: 'category'
                 });

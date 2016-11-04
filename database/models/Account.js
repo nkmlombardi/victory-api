@@ -1,20 +1,14 @@
 module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('PlaidAccount', {
+    return Sequelize.define('Account', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
+        // Intentionally not setting this to unique in the
+        // case of shared accounts
         plaid_id: {
-            type: DataTypes.STRING,
-            allowNull: false,
-            unique: true
-        },
-        plaid_item: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-        plaid_user: {
             type: DataTypes.STRING,
             allowNull: false
         },
@@ -71,29 +65,29 @@ module.exports = function(Sequelize, DataTypes) {
                 "prepaid",
                 "savings"
             )
+        },
+        plaid_raw: {
+            type: DataTypes.JSON
         }
     }, {
         timestamps: true,
         paranoid: true,
         underscored: true,
         classMethods: {
-            associate: function(models) {
-
-            },
+            associate: function(models) { },
 
             // Take object from Plaid and map it to our model format
             fromPlaidObject: function(account, user) {
                 return {
                     plaid_id: account._id,
-                    plaid_item: account._item,
-                    plaid_user: account._user,
                     user_id: user.id,
                     name: account.meta.name,
                     balance_available: account.balance.available,
                     balance_current: account.balance.current,
                     institution_type: account.institution_type,
                     type: account.type,
-                    subtype: account.subtype
+                    subtype: account.subtype,
+                    plaid_raw: account
                 };
             },
 
@@ -102,6 +96,13 @@ module.exports = function(Sequelize, DataTypes) {
                 return accounts.map(function(account) {
                     return this.fromPlaidObject(account, user);
                 }, this);
+            },
+
+            createPlaidMap: function(accounts) {
+                return accounts.reduce(function(map, account) {
+                    map[account.plaid_id] = account.id;
+                    return map;
+                }, {});
             },
 
             upsertWithReturn: function(options) {

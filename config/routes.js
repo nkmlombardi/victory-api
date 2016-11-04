@@ -1,6 +1,5 @@
 var settings = require('../config')().settings;
 var controllers = require('../app/controllers');
-var services = require('../app/services');
 var cache = require('apicache').options(settings.cache).middleware;
 
 
@@ -46,11 +45,11 @@ module.exports = function(app) {
 
     /* Plaid Services */
     app.route('/v1/plaid/connect')
-        .post(controllers.auth.isBearer, services.plaid.connect);
+        .post(controllers.auth.isBearer, controllers.plaid.postConnect);
     app.route('/v1/plaid/exchange')
-        .post(controllers.auth.isBearer, services.plaid.exchange);
+        .post(controllers.auth.isBearer, controllers.plaid.postExchange);
     app.route('/v1/plaid/webhook/:id')
-        .post(services.plaid.webhook);
+        .post(/*   Unauthenticated    */ controllers.plaid.postWebhook);
 
 
     /* Category Resource */
