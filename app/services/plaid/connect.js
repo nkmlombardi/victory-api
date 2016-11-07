@@ -29,38 +29,48 @@ var connectUser = async function(models, plaid, user_id, type, username, passwor
 
     } catch(error) {
         console.error('Plaid error connecting user account: ', error);
+
         return {
             status: 'error',
             data: error
         }
+    }
 
-    } finally {
-        var data;
-
-        if (connectResponse.mfa) {
-            var mfaResponse = plaid.stepConnectUserAsync(
-                connectResponse.access_token,
-                null,
-                { send_method: connectResponse.mfa[0] }
-            );
-
-            // This should be the actual code from the user, will have to figure this out later
-            data = await plaid.stepConnectUserAsync(connectResponse.access_token, '1234');
-        } else {
-            data = connectResponse;
+    // Return MFA response so user can make followup request and provide the
+    // MFA code that was sent to their email or phone
+    if (!connectResponse || connectResponse.hasOwnProperty('mfa')) {
+        console.log('Connect Response: ', connectResponse);
+        
+        return {
+            status: 'success',
+            data: (connectResponse ? connectResponse : {
+                message: 'For some reason Plaid connect returned no response.'
+            })
         }
+    }
 
+    try {
         // Inject access token into database
         var token = await models.PlaidToken.create({
-            plaid_raw: JSON.stringify(connectResponse),
+            plaid_raw: connectResponse,
             user_id: user_id,
             access_token: connectResponse.access_token
         });
 
+    } catch(error) {
+        console.error('Database error injecting PlaidToken: ', error);
+
         return {
-            status: 'success',
-            data: token
+            status: 'error',
+            data: error
         }
+    }
+
+    console.log('GEN TOKEN: ', token)
+
+    return {
+        status: 'success',
+        data: token
     }
 };
 

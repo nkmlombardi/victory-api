@@ -12,60 +12,30 @@
 var exchangeToken = async function(models, plaid, user_id, public_token) {
     var result = { status: null, data: null };
 
+
     try {
         var exchangeResponse = await plaid.exchangeTokenAsync(public_token);
 
         var token = await models.PlaidToken.create({
-            plaid_raw: JSON.stringify(exchangeResponse),
+            plaid_raw: exchangeResponse,
             user_id: user_id,
-            access_token: await exchangeResponse.access_token
+            access_token: await exchangeResponse.access_token,
+            public_token: public_token
         });
 
     } catch(error) {
         console.error('Plaid error exchanging public for access token: ', error);
 
-        result.status = 'erorr';
-        result.data = error;
-
-    } finally {
-        console.log('Exchange Response: ', exchangeResponse);
-        console.log('Token Created: ', token);
-
-        result.status = 'success';
-        result.data = token;
+        return {
+            status: 'error',
+            data: error
+        }
     }
 
-    return await result;
-};
-
-var exchangeToken2 = function(models, plaid, user_id, public_token) {
-    console.log('Exchange token called.');
-
-    plaid.exchangeTokenAsync(public_token)
-        .then(function(response) {
-            console.log('Exchange Response: ', response);
-
-            models.PlaidToken.create({
-                plaid_raw: JSON.stringify(response),
-                user_id: user_id,
-                access_token: response.access_token
-
-            }).then(function(token) {
-                console.log('Token Created: ', token);
-
-                return {
-                    status: 'success',
-                    data: token
-                }
-            });
-        }).catch(function(error) {
-            console.error('Plaid error exchanging public for access token: ', error);
-
-            return {
-                status: 'error',
-                data: error
-            }
-        });
+    return {
+        status: 'success',
+        data: token
+    }
 };
 
 module.exports = exchangeToken;

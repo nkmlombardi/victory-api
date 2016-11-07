@@ -17,6 +17,10 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+        public_token: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         access_token: {
             type: DataTypes.STRING,
             allowNull: false

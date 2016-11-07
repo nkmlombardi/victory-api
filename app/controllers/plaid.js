@@ -5,11 +5,11 @@ module.exports = {
      * Creates a user in the Plaid database via their bank account information.
      * An access token is returned.
      *
-     * TODO: This endpoint currently returns an empty response. It's also not
+     * TODO: This endpoint currently only works for MFA accounts. It's also not
      * being used and thus is being belayed for other more important efforts.
      */
-    postConnect: function(req, res, next) {
-        var response = plaidService.connect(
+    postConnect: async function(req, res, next) {
+        var response = await plaidService.connect(
             req.models,
             req.plaid,
             req.user.id,
@@ -39,9 +39,7 @@ module.exports = {
             req.body.public_token
         );
 
-        console.log('postExchange response: ', response);
-
-        // Return success and generated PlaidToken
+        // Return status and generated PlaidToken
         return res.json({
             status: response.status,
             data: response.data
