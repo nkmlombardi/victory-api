@@ -27,5 +27,5 @@ module.exports = function(Sequelize, DataTypes) {
         timestamps: true,
         paranoid: true,
         underscored: true
-    });
-};
+    })
+}

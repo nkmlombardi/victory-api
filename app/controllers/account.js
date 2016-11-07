@@ -8,8 +8,8 @@ module.exports = {
             res.json({
                 status: req.status.success,
                 data: accounts
-            });
-        });
+            })
+        })
     },
 
     getSelfAllWithTransactions: function(req, res, next) {
@@ -27,8 +27,8 @@ module.exports = {
             res.json({
                 status: req.status.success,
                 data: accounts
-            });
-        });
+            })
+        })
     },
 
     postPlaidAccounts: function(req, res, next) {
@@ -42,12 +42,12 @@ module.exports = {
                 data: accounts
             })
         }).catch(function(error) {
-            console.error('Error persisting plaid accounts: ', error);
+            console.error('Error persisting plaid accounts: ', error)
 
             return res.json({
                 status: req.status.error,
                 data: error
-            });
-        });
+            })
+        })
     }
-};
+}

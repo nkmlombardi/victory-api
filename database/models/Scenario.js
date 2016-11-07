@@ -25,8 +25,8 @@ module.exports = function(Sequelize, DataTypes) {
             associate: function(models) {
                 models.Scenario.hasMany(models.Budget, {
                     as: 'budgets'
-                });
+                })
             }
         }
-    });
-};
+    })
+}

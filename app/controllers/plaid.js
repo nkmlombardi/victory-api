@@ -1,4 +1,4 @@
-var plaidService = require('../services/plaid');
+var plaidService = require('../services/plaid')
 
 module.exports = {
     /**
@@ -16,13 +16,13 @@ module.exports = {
             req.body.type,
             req.body.username,
             req.body.password
-        );
+        )
 
         // Return success and generated PlaidToken
         return res.json({
             status: response.status,
             data: response.data
-        });
+        })
     },
 
 
@@ -37,16 +37,16 @@ module.exports = {
             req.plaid,
             req.user.id,
             req.body.public_token
-        );
+        )
 
         // Return status and generated PlaidToken
         return res.json({
             status: response.status,
             data: response.data
-        });
+        })
     },
 
     postWebhook: function(req, res, next) {
 
     }
-};
+}

@@ -1,4 +1,4 @@
-var settings = require('../config')().settings;
+var settings = require('../config')().settings
 
 /**
  * Fetches all of Plaid's categories that are attached to transactions that they
@@ -9,15 +9,15 @@ var settings = require('../config')().settings;
  * @return {[type]}                 Categories injected into database
  */
 var getCategories = async function(models, plaid, user_id) {
-    var categoriesResponse = await plaid.getCategoriesAsync(settings.plaid.environment);
+    var categoriesResponse = await plaid.getCategoriesAsync(settings.plaid.environment)
     var categories = await req.models.PlaidCategory.bulkCreate(
         await req.models.PlaidCategory.fromPlaidObject(categoriesResponse)
-    );
+    )
 
     return {
         status: 'success',
         data: categories
     }
-};
+}
 
-module.exports = getCategories;
+module.exports = getCategories

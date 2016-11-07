@@ -10,7 +10,7 @@ module.exports = {
                 return res.status(400).json({
                     status: req.status.error,
                     message: 'Email is already registered in the system.'
-                });
+                })
             }
 
             // Create the new user
@@ -21,8 +21,8 @@ module.exports = {
                 return res.json({
                     status: req.status.success,
                     data: user
-                });
-            });
-        });
+                })
+            })
+        })
     }
-};
+}

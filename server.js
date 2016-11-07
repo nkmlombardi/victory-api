@@ -1,43 +1,43 @@
 // Global Variables
-var env = require('node-env-file');
-env(__dirname + '/.environment/.public.env');
-env(__dirname + '/.environment/.private.env');
+var env = require('node-env-file')
+env(__dirname + '/.environment/.public.env')
+env(__dirname + '/.environment/.private.env')
 
 // Global Dependencies
-var express = require('express');
+var express = require('express')
 var colors = require('colors')
 
 // Configuration
-var config = require('./config')();
-var routes = require('./config/routes');
+var config = require('./config')()
+var routes = require('./config/routes')
 
 // Initialize Server
-var app = express();
+var app = express()
 
 // Configure Middleware
-config.middleware(app);
+config.middleware(app)
 
 // Initialize Routes
-routes(app);
+routes(app)
 
 // Execute Server
 var server = app.listen(config.settings.port, function() {
     if (process.env.NODE_ENV != 'testing') {
-        console.log(('Listening on port ' + config.settings.port + ' in ' + process.env.NODE_ENV.toUpperCase() + ' mode.').green);
+        console.log(('Listening on port ' + config.settings.port + ' in ' + process.env.NODE_ENV.toUpperCase() + ' mode.').green)
     }
 
 }).on('error', function(e) {
     if (e.code == 'EADDRINUSE') {
-        console.log('Address in use. Is the server already running?'.red);
+        console.log('Address in use. Is the server already running?'.red)
     }
-});
+})
 
 // For Testing
 server.endpoints = app._router.stack.filter(function(r) {
     if (r.route && r.route.path) {
-        return r.route.path;
+        return r.route.path
     }
-    return;
-});
+    return
+})
 
-module.exports = server;
+module.exports = server

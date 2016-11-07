@@ -94,27 +94,27 @@ module.exports = function(Sequelize, DataTypes) {
                     institution_type: account.institution_type,
                     type: account.type,
                     subtype: account.subtype
-                };
+                }
             },
 
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(accounts, user) {
                 return accounts.map(function(account) {
-                    return this.fromPlaidObject(account, user);
-                }, this);
+                    return this.fromPlaidObject(account, user)
+                }, this)
             },
 
             upsertWithReturn: function(options) {
                 return this.findOrCreate(options).spread(function(row, created) {
                     if (created) {
-                        return row;
+                        return row
                     } else {
                         return row.updateAttributes(options.defaults).then(function(updated) {
-                            return updated;
-                        });
+                            return updated
+                        })
                     }
-                });
+                })
             }
         }
-    });
-};
+    })
+}

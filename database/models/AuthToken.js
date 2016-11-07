@@ -1,4 +1,4 @@
-var crypto = require('crypto');
+var crypto = require('crypto')
 
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('AuthToken', {
@@ -19,7 +19,7 @@ module.exports = function(Sequelize, DataTypes) {
             type: DataTypes.STRING,
             allowNull: false,
             defaultValue: function() {
-                return crypto.randomBytes(32).toString('hex');
+                return crypto.randomBytes(32).toString('hex')
             }
         }
     }, {
@@ -28,8 +28,8 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                models.AuthToken.belongsTo(models.User);
+                models.AuthToken.belongsTo(models.User)
             }
         }
-    });
-};
+    })
+}

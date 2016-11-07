@@ -26,11 +26,11 @@ module.exports = function(Sequelize, DataTypes) {
             associate: function(models) {
                 models.Category.hasMany(models.Transaction, {
                     as: 'transactions'
-                });
+                })
 
                 models.Category.hasMany(models.Budget, {
                     as: 'budgets'
-                });
+                })
             },
 
             // Take object from Plaid and map it to our model format
@@ -39,14 +39,14 @@ module.exports = function(Sequelize, DataTypes) {
                     plaid_id: category.id,
                     hierarchy: category.hierarchy,
                     type: category.type
-                };
+                }
             },
 
             createPlaidMap: function(categories) {
                 return categories.reduce(function(map, category) {
-                    map[category.plaid_id] = category.id;
-                    return map;
-                }, {});
+                    map[category.plaid_id] = category.id
+                    return map
+                }, {})
             },
 
             // Take array from Plaid and map it to our models format
@@ -56,9 +56,9 @@ module.exports = function(Sequelize, DataTypes) {
                         plaid_id: category.id,
                         hierarchy: category.hierarchy,
                         type: category.type
-                    };
-                });
+                    }
+                })
             }
         }
-    });
-};
+    })
+}

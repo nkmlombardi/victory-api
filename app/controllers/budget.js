@@ -8,8 +8,8 @@ module.exports = {
             res.json({
                 status: req.status.success,
                 data: data
-            });
-        });
+            })
+        })
     },
 
     getSelfAllWithTransactions: function(req, res, next) {
@@ -25,7 +25,7 @@ module.exports = {
             res.json({
                 status: req.status.success,
                 data: data
-            });
-        });
+            })
+        })
     }
-};
+}

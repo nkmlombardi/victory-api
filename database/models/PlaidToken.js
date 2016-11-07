@@ -31,8 +31,8 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                models.PlaidToken.belongsTo(models.User);
+                models.PlaidToken.belongsTo(models.User)
             }
         }
-    });
-};
+    })
+}

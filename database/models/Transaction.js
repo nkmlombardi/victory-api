@@ -1,5 +1,5 @@
-var moment = require('moment');
-var Promise = require('bluebird');
+var moment = require('moment')
+var Promise = require('bluebird')
 
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('Transaction', {
@@ -64,15 +64,15 @@ module.exports = function(Sequelize, DataTypes) {
             associate: function(models) {
                 models.Transaction.belongsTo(models.Account, {
                     as: 'account'
-                });
+                })
 
                 models.Transaction.belongsTo(models.Category, {
                     as: 'category'
-                });
+                })
 
                 models.Transaction.belongsTo(models.User, {
                     as: 'user'
-                });
+                })
             },
 
             // Take object from Plaid and map it to our model format
@@ -87,15 +87,15 @@ module.exports = function(Sequelize, DataTypes) {
                     date: moment(transaction.date).format(),
                     pending: transaction.pending,
                     plaid_raw: transaction
-                };
+                }
             },
 
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(transactions, user_id, accounts, categories) {
                 return transactions.map(function(transaction) {
-                    return this.fromPlaidObject(transaction, user_id, accounts, categories);
-                }, this);
+                    return this.fromPlaidObject(transaction, user_id, accounts, categories)
+                }, this)
             }
         }
-    });
-};
+    })
+}

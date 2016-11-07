@@ -77,7 +77,7 @@ module.exports = function(Sequelize, DataTypes) {
             associate: function(models) {
                 models.Account.hasMany(models.Transaction, {
                     as: 'transactions'
-                });
+                })
             },
 
             // Take object from Plaid and map it to our model format
@@ -92,34 +92,34 @@ module.exports = function(Sequelize, DataTypes) {
                     type: account.type,
                     subtype: account.subtype,
                     plaid_raw: account
-                };
+                }
             },
 
             // Take array from Plaid and map it to our models format
             fromPlaidArray: function(accounts, user) {
                 return accounts.map(function(account) {
-                    return this.fromPlaidObject(account, user);
-                }, this);
+                    return this.fromPlaidObject(account, user)
+                }, this)
             },
 
             createPlaidMap: function(accounts) {
                 return accounts.reduce(function(map, account) {
-                    map[account.plaid_id] = account.id;
-                    return map;
-                }, {});
+                    map[account.plaid_id] = account.id
+                    return map
+                }, {})
             },
 
             upsertWithReturn: function(options) {
                 return this.findOrCreate(options).spread(function(row, created) {
                     if (created) {
-                        return row;
+                        return row
                     } else {
                         return row.updateAttributes(options.defaults).then(function(updated) {
-                            return updated;
-                        });
+                            return updated
+                        })
                     }
-                });
+                })
             }
         }
-    });
-};
+    })
+}

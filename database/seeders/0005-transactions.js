@@ -1,8 +1,8 @@
-var fs = require('fs');
+var fs = require('fs')
 
 module.exports = {
     up: function(sequelize, models, plaid) {
-        console.log('Transaction Model Seeder called.');
+        console.log('Transaction Model Seeder called.')
 
         return models.Transaction.bulkCreate(
             JSON.parse(fs.readFileSync(__dirname + '/data/transactions.json', 'utf8'))
@@ -10,6 +10,6 @@ module.exports = {
     },
 
     down: function(sequelize, models, plaid) {
-        return models.Transaction.truncate();
+        return models.Transaction.truncate()
     }
-};
+}

@@ -1,4 +1,4 @@
-var path = require('path');
+var path = require('path')
 
 module.exports = {
     path: path.normalize(path.join(__dirname, '..')),
@@ -22,6 +22,6 @@ module.exports = {
     cache: {
         debug: true
     }
-};
+}
 
-console.log('Development settings loaded.');
+console.log('Development settings loaded.')

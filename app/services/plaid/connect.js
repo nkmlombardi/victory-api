@@ -25,10 +25,10 @@ var connectUser = async function(models, plaid, user_id, type, username, passwor
         }, {
             list: true,
             webhook: plaid.webhook + user_id
-        });
+        })
 
     } catch(error) {
-        console.error('Plaid error connecting user account: ', error);
+        console.error('Plaid error connecting user account: ', error)
 
         return {
             status: 'error',
@@ -39,8 +39,8 @@ var connectUser = async function(models, plaid, user_id, type, username, passwor
     // Return MFA response so user can make followup request and provide the
     // MFA code that was sent to their email or phone
     if (!connectResponse || connectResponse.hasOwnProperty('mfa')) {
-        console.log('Connect Response: ', connectResponse);
-        
+        console.log('Connect Response: ', connectResponse)
+
         return {
             status: 'success',
             data: (connectResponse ? connectResponse : {
@@ -55,10 +55,10 @@ var connectUser = async function(models, plaid, user_id, type, username, passwor
             plaid_raw: connectResponse,
             user_id: user_id,
             access_token: connectResponse.access_token
-        });
+        })
 
     } catch(error) {
-        console.error('Database error injecting PlaidToken: ', error);
+        console.error('Database error injecting PlaidToken: ', error)
 
         return {
             status: 'error',
@@ -72,6 +72,6 @@ var connectUser = async function(models, plaid, user_id, type, username, passwor
         status: 'success',
         data: token
     }
-};
+}
 
-module.exports = connectUser;
+module.exports = connectUser

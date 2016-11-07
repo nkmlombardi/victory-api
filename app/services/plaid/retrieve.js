@@ -1,4 +1,4 @@
-var moment = require('moment');
+var moment = require('moment')
 
 /**
  * [retrieveTransactions description]
@@ -40,6 +40,6 @@ var retrieveTransactions = async function(models, plaid, user_id, token) {
         message: 'New transactions retrieved.',
         payload: transactionsResponse.transactions
     }
-};
+}
 
-module.exports = retrieveTransactions;
+module.exports = retrieveTransactions

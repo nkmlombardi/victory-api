@@ -1,7 +1,7 @@
-var retrieveNewTransactions = require('./retrieve');
+var retrieveNewTransactions = require('./retrieve')
 
 module.exports = function(req, res, next) {
-    console.log('Webhook Controller!', req.body);
+    console.log('Webhook Controller!', req.body)
 
     req.models.User.findOne({
         where: {
@@ -12,16 +12,16 @@ module.exports = function(req, res, next) {
         switch(req.body.code) {
             // Initial Transaction Webhook
             case 0:
-                console.log('Initial Transaction Webhook');
-                console.log(req.body);
-                break;
+                console.log('Initial Transaction Webhook')
+                console.log(req.body)
+                break
 
 
             // Historical Transaction Webhook
             case 1:
-                console.log('Historical Transaction Webhook');
-                console.log(req.body);
-                break;
+                console.log('Historical Transaction Webhook')
+                console.log(req.body)
+                break
 
 
             // Normal Transaction Webhook
@@ -36,7 +36,7 @@ module.exports = function(req, res, next) {
                     if (response.status === 'error') {
                         res.status(500).json({
                             message: 'Failed to pull new transactions.'
-                        });
+                        })
                     }
 
                     if (response.status === 'success') {
@@ -51,44 +51,44 @@ module.exports = function(req, res, next) {
                             return res.status(200).json({
                                 status: req.status.success,
                                 message: 'New transactions persisted to database.'
-                            });
-                        });
+                            })
+                        })
                     }
 
                     return res.status(200).json({
                         status: req.status.success,
                         message: response.message
-                    });
+                    })
 
-                    // TODO: io.socket.emit(response);
-                });
-                break;
+                    // TODO: io.socket.emit(response)
+                })
+                break
 
             // Removed Transaction Webhook
             case 3:
-                console.log('Removed Transaction Webhook');
-                console.log(req.body);
-                break;
+                console.log('Removed Transaction Webhook')
+                console.log(req.body)
+                break
 
 
             // User's Webhook Updated
             case 4:
-                console.log('User\'s Webhook Updated');
-                console.log(req.body);
-                break;
+                console.log('User\'s Webhook Updated')
+                console.log(req.body)
+                break
 
 
             // Error Response Webhook Example
             default:
-                console.log('Error Response Webhook Example');
-                console.log(req.body);
-                break;
+                console.log('Error Response Webhook Example')
+                console.log(req.body)
+                break
 
         }
     }).error(function(error) {
         res.status(404).json({
             status: req.status.error,
             message: 'Webhook posted for user that does not exist.'
-        });
+        })
     })
-};
+}

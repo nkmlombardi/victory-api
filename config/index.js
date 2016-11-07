@@ -19,5 +19,5 @@ module.exports = function() {
         // }
     }
 
-    return environment[process.env.NODE_ENV];
-};
+    return environment[process.env.NODE_ENV]
+}

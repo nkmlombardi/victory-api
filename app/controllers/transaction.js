@@ -8,8 +8,8 @@ module.exports = {
             res.json({
                 status: req.status.success,
                 data: transactions
-            });
-        });
+            })
+        })
     },
 
     getSelfAllWithAll: function(req, res, next) {
@@ -30,8 +30,8 @@ module.exports = {
             res.json({
                 status: req.status.success,
                 data: transactions
-            });
-        });
+            })
+        })
     },
 
     getSelfAllWithAccounts: function(req, res, next) {
@@ -49,8 +49,8 @@ module.exports = {
             res.json({
                 status: req.status.success,
                 data: transactions
-            });
-        });
+            })
+        })
     },
 
 
@@ -66,7 +66,7 @@ module.exports = {
      * model method, there were weird issues with promises and I just couldn't
      * get it to work.
      *
-     * TL;DR: Here be dragons.
+     * TLDR: Here be dragons.
      *
      * @param  {[type]}   req  [description]
      * @param  {[type]}   res  [description]
@@ -91,20 +91,20 @@ module.exports = {
                 )
             )
         ).then(function(transactions) {
-            console.log('Cat Check: ', transactions[0].category_id);
+            console.log('Cat Check: ', transactions[0].category_id)
 
             return res.json({
                 status: req.status.success,
                 data: transactions
-            });
+            })
 
         }).catch(function(error) {
-            console.error('Error persisting plaid transactions: ', error);
+            console.error('Error persisting plaid transactions: ', error)
 
             return res.json({
                 status: req.status.error,
                 data: error
-            });
-        });
+            })
+        })
     }
-};
+}

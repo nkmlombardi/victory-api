@@ -9,9 +9,9 @@ module.exports = {
                     token: token,
                     user: req.user.getPublicAttributes()
                 }
-            });
+            })
         }).catch(function(error) {
-            return req.errorHandler(error, req, res);
-        });
+            return req.errorHandler(error, req, res)
+        })
     }
-};
+}

@@ -28,12 +28,12 @@ module.exports = function(Sequelize, DataTypes) {
                     foreignKey: 'category_id',
                     targetKey: 'plaid_id',
                     as: 'transactions'
-                });
+                })
 
                 models.PlaidCategory.hasMany(models.Budget, {
                     foreignKey: 'category_id',
                     as: 'budgets'
-                });
+                })
             },
 
             // Take object from Plaid and map it to our model format
@@ -42,7 +42,7 @@ module.exports = function(Sequelize, DataTypes) {
                     plaid_id: category.id,
                     hierarchy: category.hierarchy,
                     type: category.type
-                };
+                }
             },
 
             // Take array from Plaid and map it to our models format
@@ -52,9 +52,9 @@ module.exports = function(Sequelize, DataTypes) {
                         plaid_id: category.id,
                         hierarchy: category.hierarchy,
                         type: category.type
-                    };
-                });
+                    }
+                })
             }
         }
-    });
-};
+    })
+}

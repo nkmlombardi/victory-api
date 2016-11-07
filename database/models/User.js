@@ -1,4 +1,4 @@
-var bcrypt = require('bcryptjs');
+var bcrypt = require('bcryptjs')
 
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('User', {
@@ -14,18 +14,18 @@ module.exports = function(Sequelize, DataTypes) {
                 isEmail: true
             },
             set: function(value) {
-                this.setDataValue('email', value.toLowerCase());
+                this.setDataValue('email', value.toLowerCase())
             }
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
             set: function(value) {
-                var salt = bcrypt.genSaltSync(10);
-                var encrypted = bcrypt.hashSync(value, salt);
+                var salt = bcrypt.genSaltSync(10)
+                var encrypted = bcrypt.hashSync(value, salt)
 
-                this.setDataValue('password', encrypted);
-                this.setDataValue('salt', salt);
+                this.setDataValue('password', encrypted)
+                this.setDataValue('salt', salt)
             }
         },
         salt: {
@@ -42,22 +42,22 @@ module.exports = function(Sequelize, DataTypes) {
             associate: function(models) {
                 models.User.hasOne(models.PlaidToken, {
                     as: 'plaid_token'
-                });
+                })
 
                 models.User.hasMany(models.Account, {
                     as: 'accounts'
-                });
+                })
 
                 models.User.hasMany(models.Transaction, {
                     as: 'transactions'
-                });
+                })
             }
         },
         instanceMethods: {
             verifyPassword: function(password, callback) {
                 return bcrypt.compare(password, this.password, function(err, res) {
-                    return callback(err, res);
-                });
+                    return callback(err, res)
+                })
             },
             getPublicAttributes: function() {
                 return {
@@ -66,5 +66,5 @@ module.exports = function(Sequelize, DataTypes) {
                 }
             }
         }
-    });
-};
+    })
+}
