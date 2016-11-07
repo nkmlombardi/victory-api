@@ -1,3 +1,4 @@
 module.exports = {
-    plaid: require('./plaid')
+    plaid: require('./plaid'),
+    authentication: require('./authentication')
 }

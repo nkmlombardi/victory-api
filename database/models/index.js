@@ -23,7 +23,7 @@ module.exports = function(settings) {
     })
 
     Object.keys(database.models).forEach(function(modelName) {
-        if ("associate" in database.models[modelName]) {
+        if ('associate' in database.models[modelName]) {
             database.models[modelName].associate(database.models)
             console.log(modelName + ' associations generated.')
         }

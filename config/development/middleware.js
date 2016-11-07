@@ -11,13 +11,13 @@ var methodOverride = require('method-override')
 var database = require('../../database/models')(settings.database)
 var bluebird = require('bluebird')
 var plaid = require('plaid')
-bluebird.promisifyAll(plaid)
-var errorHandler = require('../../app/services/error')
 var httpStatus = require('http-status')
 
 module.exports = function(app) {
+    bluebird.promisifyAll(plaid)
+
     // Handle unhandled promise errors
-    bluebird.onPossiblyUnhandledRejection(function(error){
+    bluebird.onPossiblyUnhandledRejection(function(error) {
         throw error
     })
 
@@ -49,7 +49,6 @@ module.exports = function(app) {
             error: "error"
         }
         req.httpStatus = httpStatus
-        req.error = errorHandler
         next()
     })
 

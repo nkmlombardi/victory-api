@@ -30,9 +30,6 @@ module.exports = function(Sequelize, DataTypes) {
         },
         salt: {
             type: DataTypes.STRING
-        },
-        access_token: {
-            type: DataTypes.STRING
         }
     }, {
         timestamps: true,

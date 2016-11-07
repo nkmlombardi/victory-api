@@ -1,49 +1,47 @@
-// Load required packages
-var passport = require('passport')
-var LocalStrategy = require('passport-local').Strategy
-var BearerStrategy = require('passport-http-bearer').Strategy
-
-passport.use(new LocalStrategy({ usernameField: 'email', passReqToCallback: true },
-    function(req, email, password, callback) {
-        req.models.User.findOne({ where: { email: email } })
-            .then(function(user) {
-                if (!user) { return callback(null, false) }
-                user.verifyPassword(password, function(err, isMatch) {
-                    // If error or password doesn't match
-                    if (err) { return callback(err) }
-                    if (!isMatch) { return callback(null, false) }
-
-                    // Success
-                    return callback(null, user)
-                })
-            }).error(function(error) {
-                return callback(err)
+module.exports = {
+    /**
+     * Create new Passport login via a local authentication strategy. This
+     * endpoint verifies the credentials provided against an existing user in
+     * the database. If the credentials are invalid, an error is returned and
+     * a Passport authentication is not created.
+     *
+     * @param  {[type]}   req  [description]
+     * @param  {[type]}   res  [description]
+     * @param  {Function} next [description]
+     * @return {[type]}        [description]
+     */
+    postSelfPassport: async function(req, res, next) {
+        if (!req.strategy) {
+            console.error('API error, there was an an attempt to generate ' +
+                'a passport authentication without a strategy')
+            return res.json({
+                status: req.status.error,
+                data: {
+                    message: 'API error, there was an an attempt to generate ' +
+                        'a passport authentication without a strategy.'
+                }
             })
-    }
-))
+        }
 
-passport.use(new BearerStrategy({ passReqToCallback: true },
-    function(req, accessToken, callback) {
-        req.models.AuthToken.findOne({ where: { auth_token: accessToken }})
-            .then(function(token) {
-                if (!token) { return callback(null, false) }
-
-                req.models.User.findOne({ where: { id: token.user_id }})
-                    .then(function(user) {
-                        if (!user) { return callback(null, false) }
-
-                        // Simple example with no scope
-                        callback(null, user, { scope: '*' })
-
-                    }).error(function(error) {
-                        return callback(error)
-                    })
-
-            }).error(function(error) {
-                return callback(error)
+        try {
+            var passport = await req.models.Passport.create({
+                user_id: req.user.id,
+                strategy: req.strategy
             })
-    }
-))
+        } catch(error) {
+            console.error('Database error trying to generate a new Passport: ', error)
+            return res.json({
+                status: req.status.error,
+                data: error
+            })
+        }
 
-exports.isCredential = passport.authenticate(['local'], { session: false })
-exports.isBearer = passport.authenticate('bearer', { session: false })
+        res.json({
+            status: req.status.success,
+            data: {
+                token: passport,
+                user: req.user.getPublicAttributes()
+            }
+        })
+    }
+}

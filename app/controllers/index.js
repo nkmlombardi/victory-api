@@ -8,9 +8,6 @@ module.exports = {
     budget: require('./budget'),
 
     // Services
-    plaid: require('./plaid'),
-
-    // Authentication
-    auth: require('./authentication'),
-    token: require('./token')
+    authentication: require('./authentication'),
+    plaid: require('./plaid')
 }

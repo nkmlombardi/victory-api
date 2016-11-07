@@ -1,3 +1,5 @@
+var crypto = require('crypto')
+
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('Passport', {
         id: {
@@ -13,9 +15,12 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
-        auth_key: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+        auth_token: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            defaultValue: function() {
+                return crypto.randomBytes(32).toString('hex')
+            }
         },
         strategy: {
             type: DataTypes.STRING
@@ -23,8 +28,7 @@ module.exports = function(Sequelize, DataTypes) {
     }, {
         timestamps: true,
         paranoid: true,
-        underscored: true
-    }, {
+        underscored: true,
         classMethods: {
             associate: function(models) {
                 models.Passport.belongsTo(models.User)
