@@ -31,13 +31,15 @@ module.exports = {
      * service, for an access token that can be used to make requests on behalf
      * of a user for their financial information.
      */
-    postExchange: function(req, res, next) {
-        var response = plaidService.exchange(
+    postExchange: async function(req, res, next) {
+        var response = await plaidService.exchange(
             req.models,
             req.plaid,
             req.user.id,
             req.body.public_token
         );
+
+        console.log('postExchange response: ', response);
 
         // Return success and generated PlaidToken
         return res.json({

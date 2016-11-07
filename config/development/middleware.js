@@ -16,6 +16,11 @@ var errorHandler = require('../../app/services/error');
 var httpStatus = require('http-status');
 
 module.exports = function(app) {
+    // Handle unhandled promise errors
+    bluebird.onPossiblyUnhandledRejection(function(error){
+        throw error;
+    });
+
     // Serve static content
     app.use(express.static(path.join(settings.path, 'public')));
 
