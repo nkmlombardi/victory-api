@@ -57,6 +57,10 @@ module.exports = function(app) {
         .post(services.authentication.isBearer, controllers.plaid.postConnect)
     app.route('/v1/plaid/exchange')
         .post(services.authentication.isBearer, controllers.plaid.postExchange)
+    app.route('/v1/plaid/accounts')
+        .post(services.authentication.isBearer, controllers.plaid.postRetrieveAccounts)
+    app.route('/v1/plaid/transactions')
+        .post(services.authentication.isBearer, controllers.plaid.postRetrieveTransactions)
     app.route('/v1/plaid/webhook/:id')
         .post( /*   Unauthenticated    */ controllers.plaid.postWebhook)
 

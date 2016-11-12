@@ -48,5 +48,36 @@ module.exports = {
 
     postWebhook: function(req, res, next) {
 
+    },
+
+    postRetrieveAccounts: async function(req, res, next) {
+        var response = await plaidService.accounts(
+            req.models,
+            req.plaid,
+            req.user.id,
+            req.user.access_token
+        )
+
+        return res.json({
+            status: response.status,
+            data: response.data
+        })
+    },
+
+    postRetrieveTransactions: async function(req, res, next) {
+        var response = await plaidService.transactions(
+            req.models,
+            req.plaid,
+            req.user.id,
+            await req.user.getPlaidTokens()
+        )
+
+        console.log('getPlaidTokens: ', await req.user.getPlaidTokens())
+        console.log('Transactions Service Response: ', response)
+
+        return res.json({
+            status: response.status,
+            data: response.data
+        })
     }
 }

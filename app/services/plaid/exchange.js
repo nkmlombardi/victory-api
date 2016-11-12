@@ -10,9 +10,8 @@
  * @return {[type]}                 The token that was created by the exchange process
  */
 var exchangeToken = async function(models, plaid, user_id, public_token) {
-    var result = { status: null, data: null }
-
-
+    console.log('exchangeToken service called: ', public_token)
+    
     try {
         var exchangeResponse = await plaid.exchangeTokenAsync(public_token)
 

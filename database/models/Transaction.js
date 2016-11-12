@@ -95,6 +95,27 @@ module.exports = function(Sequelize, DataTypes) {
                 return transactions.map(function(transaction) {
                     return this.fromPlaidObject(transaction, user_id, accounts, categories)
                 }, this)
+            },
+
+            upsertObject: function(options) {
+                return this.findOrCreate(options).spread(function(row, created) {
+                    if (created) {
+                        return row
+                    } else {
+                        return row.updateAttributes(options.defaults).then(function(updated) {
+                            return updated
+                        })
+                    }
+                })
+            },
+
+            upsertArray: async function(accounts, options) {
+                return await accounts.map(async function(account) {
+                    return await this.upsertObject({
+                        where: options.where,
+                        defaults: account
+                    })
+                })
             }
         }
     })

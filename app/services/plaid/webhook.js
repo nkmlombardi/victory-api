@@ -1,4 +1,4 @@
-var retrieveNewTransactions = require('./retrieve')
+var getTransactions = require('./transactions')
 
 module.exports = function(req, res, next) {
     console.log('Webhook Controller!', req.body)
@@ -26,42 +26,42 @@ module.exports = function(req, res, next) {
 
             // Normal Transaction Webhook
             case 2:
-                retrieveNewTransactions({
-                    models: req.models,
-                    plaid: req.plaid,
-                    user: user,
-                    token: req.body.access_token,
-                    count: req.body.total_transactions
-                }, function(response) {
-                    if (response.status === 'error') {
-                        res.status(500).json({
-                            message: 'Failed to pull new transactions.'
-                        })
-                    }
-
-                    if (response.status === 'success') {
-                        // Inject new Transaction rows
-                        req.models.PlaidTransaction.bulkCreate(
-                            req.models.PlaidTransaction.fromPlaidArray(
-                                response.transactions, { id: user.id }
-                            )
-
-                        // Return success && transactions
-                        ).then(function(transactions) {
-                            return res.status(200).json({
-                                status: req.status.success,
-                                message: 'New transactions persisted to database.'
-                            })
-                        })
-                    }
-
-                    return res.status(200).json({
-                        status: req.status.success,
-                        message: response.message
-                    })
-
-                    // TODO: io.socket.emit(response)
-                })
+                // retrieveNewTransactions({
+                //     models: req.models,
+                //     plaid: req.plaid,
+                //     user: user,
+                //     token: req.body.access_token,
+                //     count: req.body.total_transactions
+                // }, function(response) {
+                //     if (response.status === 'error') {
+                //         res.status(500).json({
+                //             message: 'Failed to pull new transactions.'
+                //         })
+                //     }
+                //
+                //     if (response.status === 'success') {
+                //         // Inject new Transaction rows
+                //         req.models.PlaidTransaction.bulkCreate(
+                //             req.models.PlaidTransaction.fromPlaidArray(
+                //                 response.transactions, { id: user.id }
+                //             )
+                //
+                //         // Return success && transactions
+                //         ).then(function(transactions) {
+                //             return res.status(200).json({
+                //                 status: req.status.success,
+                //                 message: 'New transactions persisted to database.'
+                //             })
+                //         })
+                //     }
+                //
+                //     return res.status(200).json({
+                //         status: req.status.success,
+                //         message: response.message
+                //     })
+                //
+                //     // TODO: io.socket.emit(response)
+                // })
                 break
 
             // Removed Transaction Webhook

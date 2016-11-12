@@ -109,7 +109,7 @@ module.exports = function(Sequelize, DataTypes) {
                 }, {})
             },
 
-            upsertWithReturn: function(options) {
+            upsertObject: function(options) {
                 return this.findOrCreate(options).spread(function(row, created) {
                     if (created) {
                         return row
@@ -118,6 +118,15 @@ module.exports = function(Sequelize, DataTypes) {
                             return updated
                         })
                     }
+                })
+            },
+
+            upsertArray: async function(accounts, options) {
+                return await accounts.map(async function(account) {
+                    return await this.upsertObject({
+                        where: options.where,
+                        defaults: account
+                    })
                 })
             }
         }

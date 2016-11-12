@@ -37,8 +37,8 @@ module.exports = function(Sequelize, DataTypes) {
         underscored: true,
         classMethods: {
             associate: function(models) {
-                models.User.hasOne(models.PlaidToken, {
-                    as: 'plaid_token'
+                models.User.hasMany(models.PlaidToken, {
+                    as: 'PlaidTokens'
                 })
 
                 models.User.hasMany(models.Account, {
@@ -56,10 +56,17 @@ module.exports = function(Sequelize, DataTypes) {
                     return callback(err, res)
                 })
             },
-            getPublicAttributes: function() {
+            publicAttributes: function() {
                 return {
                     id: this.id,
                     email: this.email
+                }
+            }
+        },
+        scopes: {
+            public: {
+                attributes: {
+                    exclude: ['password', 'salt']
                 }
             }
         }

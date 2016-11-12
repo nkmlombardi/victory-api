@@ -40,7 +40,7 @@ module.exports = {
             status: req.status.success,
             data: {
                 token: passport,
-                user: req.user.getPublicAttributes()
+                user: req.user.publicAttributes()
             }
         })
     }

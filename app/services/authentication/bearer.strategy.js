@@ -17,7 +17,7 @@ passport.use(new strategy({ passReqToCallback: true },
         if (!token) { return callback(null, false); }
 
         try {
-            var user = await req.models.User.findOne({
+            var user = await req.models.User.scope('public').findOne({
                 where: {
                     id: token.user_id
                 }

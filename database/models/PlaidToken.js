@@ -5,10 +5,6 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        plaid_raw: {
-            type: DataTypes.JSON,
-            allowNull: true
-        },
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -24,6 +20,16 @@ module.exports = function(Sequelize, DataTypes) {
         access_token: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        last_account_pull: {
+            type: DataTypes.DATE
+        },
+        last_transaction_pull: {
+            type: DataTypes.DATE
+        },
+        plaid_raw: {
+            type: DataTypes.JSON,
+            allowNull: true
         }
     }, {
         timestamps: true,
