@@ -2,7 +2,7 @@ var fs = require('fs')
 
 module.exports = {
     up: function(sequelize, models, plaid) {
-        console.log('Passport Model Seeder called.')
+        console.log('Passport Model Seeder called.'.italic)
 
         return models.Passport.bulkCreate(
             JSON.parse(fs.readFileSync(__dirname + '/data/passports.json', 'utf8'))

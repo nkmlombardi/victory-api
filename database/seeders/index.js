@@ -36,7 +36,7 @@ module.exports = {
         }, {
             concurrency: 1
         }).then(function(data) {
-            return console.log('Persisted all models successfully.')
+            return console.log('Persisted all models successfully.'.green)
 
         }).catch(function(error) {
             return console.error('Promise Map Error: ', error)
