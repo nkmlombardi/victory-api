@@ -46,16 +46,29 @@ module.exports = {
         })
     },
 
+
     postWebhook: function(req, res, next) {
 
     },
 
-    postRetrieveAccounts: async function(req, res, next) {
+
+    getRetrieveAccounts: async function(req, res, next) {
+        var tokens = await req.user.getPlaidTokens()
+
+        if (!tokens || tokens.length === 0) {
+            return res.json({
+                status: req.status.error,
+                data: {
+                    message: 'User has no associated tokens on the Plaid system.'
+                }
+            })
+        }
+
         var response = await plaidService.accounts(
             req.models,
             req.plaid,
             req.user.id,
-            req.user.access_token
+            tokens
         )
 
         return res.json({
@@ -64,20 +77,41 @@ module.exports = {
         })
     },
 
-    postRetrieveTransactions: async function(req, res, next) {
+
+    /**
+     * Iterate through each of the User's PlaidTokens and retrieve the inject the
+     * transactions for each of them. Returns all transactions to the requester
+     * afterwards.
+     *
+     * TODO: Currently not working as intended. Always makes requests to Plaid
+     * using a date range based on the PlaidToken. The Plaid demo account doesn't
+     * have recent transactions, so this is difficult to test. Will need to return
+     * to this later.
+     */
+    getRetrieveTransactions: async function(req, res, next) {
+        var tokens = await req.user.getPlaidTokens()
+
+        if (!tokens || tokens.length === 0) {
+            return res.json({
+                status: req.status.error,
+                data: {
+                    message: 'User has no associated tokens on the Plaid system.'
+                }
+            })
+        }
+
         var response = await plaidService.transactions(
             req.models,
             req.plaid,
             req.user.id,
-            await req.user.getPlaidTokens()
+            tokens
         )
 
-        console.log('getPlaidTokens: ', await req.user.getPlaidTokens())
-        console.log('Transactions Service Response: ', response)
+        console.log(response)
 
         return res.json({
-            status: response.status,
-            data: response.data
+            status: req.status.success,
+            data: response
         })
     }
 }

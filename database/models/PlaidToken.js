@@ -22,10 +22,12 @@ module.exports = function(Sequelize, DataTypes) {
             allowNull: false
         },
         last_account_pull: {
-            type: DataTypes.DATE
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
         },
         last_transaction_pull: {
-            type: DataTypes.DATE
+            type: DataTypes.DATE,
+            defaultValue: DataTypes.NOW
         },
         plaid_raw: {
             type: DataTypes.JSON,

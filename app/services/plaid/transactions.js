@@ -16,6 +16,12 @@ var retrieveTransactions = async function(models, plaid, user_id, plaid_tokens) 
                 gte: moment(token.last_transaction_pull).format("MM/DD/YY")
             })
 
+            if (plaidResponse.transactions.length === 0) {
+                return []
+            }
+
+            console.log('Did this happen?')
+
             var transactions = await models.Transaction.upsertArray(
                 await models.Transaction.fromPlaidArray(
                     plaidResponse.transactions,
@@ -28,7 +34,12 @@ var retrieveTransactions = async function(models, plaid, user_id, plaid_tokens) 
 
         token.update({ last_transaction_pull: moment().format() })
 
-        return transactions
+        console.log('Did this happen?2')
+
+        return {
+            status: 'success',
+            data: transactions
+        }
     })
 }
 

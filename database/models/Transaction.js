@@ -48,7 +48,7 @@ module.exports = function(Sequelize, DataTypes) {
             type: DataTypes.DOUBLE
         },
         date: {
-            type: DataTypes.DATEONLY
+            type: DataTypes.DATE
         },
         pending: {
             type: DataTypes.BOOLEAN
