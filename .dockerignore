@@ -1,8 +1,0 @@
-.gitignore
-.git
-.editorconfig
-.environment
-docker-compose.yml
-Dockerfile
-readme.md
-cifs56f9

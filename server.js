@@ -1,3 +1,8 @@
+if (process.env.NODE_ENV === undefined) {
+    require('dotenv').config({ path: '.environment/.private.env' });
+    require('dotenv').config({ path: '.environment/.public.env' });
+}
+
 /*
     Will allow dependencies to be defined from the root
     of the project avoiding ../../../ calls.
