@@ -37,33 +37,33 @@ module.exports = function(Sequelize, DataTypes) {
         },
         type: {
             type: DataTypes.ENUM(
-                "credit",
-                "depository",
-                "loan",
-                "mortgage",
-                "brokerage",
-                "other"
+                'credit',
+                'depository',
+                'loan',
+                'mortgage',
+                'brokerage',
+                'other'
             )
         },
         subtype: {
             type: DataTypes.ENUM(
-                "auto",
-                "brokerage",
-                "cash management",
-                "cd",
-                "certificate of deposit",
-                "checking",
-                "credit card",
-                "credit",
-                "home",
-                "installment",
-                "ira",
-                "line of credit",
-                "loan",
-                "mortgage",
-                "mutual_fund",
-                "prepaid",
-                "savings"
+                'auto',
+                'brokerage',
+                'cash management',
+                'cd',
+                'certificate of deposit',
+                'checking',
+                'credit card',
+                'credit',
+                'home',
+                'installment',
+                'ira',
+                'line of credit',
+                'loan',
+                'mortgage',
+                'mutual_fund',
+                'prepaid',
+                'savings'
             )
         },
         plaid_raw: {

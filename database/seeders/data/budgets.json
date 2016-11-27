@@ -1,11 +1,50 @@
 [{
+    "id": "292b49f3-247f-4189-abc2-69ee8c009f60",
     "user_id": "00000000-0000-0000-0000-000000000000",
-    "category_id": "aa85074f-0f16-4331-80e1-9bd5e495f2bd",
+    "category_id": "e81b3119-ee8d-4dd9-b2bc-0d399675f10d",
     "scenario_id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
-    "allowance": 0
+    "allowance": -200.00
 }, {
+    "id": "c88c5bf1-fc3c-412f-afc0-16c067590b1a",
     "user_id": "00000000-0000-0000-0000-000000000000",
     "category_id": "78be6582-0909-436d-b8d7-33806bb889a5",
     "scenario_id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
-    "allowance": 0
+    "allowance": -40.00
+}, {
+    "id": "46fabdf3-0293-478f-bca4-f365f54a131b",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "category_id": "439d6ca3-bf25-41df-8f8d-ef6b54be5b93",
+    "scenario_id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
+    "allowance": -4000.00
+}, {
+    "id": "e3f70927-988b-4824-b567-fb128e239ae6",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "category_id": "a58aa732-a887-466f-9fd9-e4a05ec82a54",
+    "scenario_id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
+    "allowance": -300.00
+}, {
+    "id": "d09a8b72-e648-49aa-b322-a59df2be22ad",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "category_id": "a7285be3-2363-495d-b125-6273f484e7a6",
+    "scenario_id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
+    "allowance": 4400.00,
+    "type": "income"
+}, {
+    "id": "9edce3d7-e598-45d0-8dbc-657a4076be5b",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "category_id": "e81b3119-ee8d-4dd9-b2bc-0d399675f10d",
+    "scenario_id": "a044fcc8-848a-4468-a918-90fbe6b8c99a",
+    "allowance": -280.00
+}, {
+    "id": "f9da4a54-6335-4eeb-b1c6-c661cf531a08",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "category_id": "78be6582-0909-436d-b8d7-33806bb889a5",
+    "scenario_id": "a044fcc8-848a-4468-a918-90fbe6b8c99a",
+    "allowance": -23.00
+}, {
+    "id": "08197a65-2d42-4d05-b5b3-57bea181e767",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "category_id": "439d6ca3-bf25-41df-8f8d-ef6b54be5b93",
+    "scenario_id": "a044fcc8-848a-4468-a918-90fbe6b8c99a",
+    "allowance": -3000.00
 }]

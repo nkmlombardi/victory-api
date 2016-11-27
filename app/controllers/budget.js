@@ -18,8 +18,12 @@ module.exports = {
                 user_id: req.user.id
             },
             include: {
-                model: req.models.Transaction,
-                as: 'transactions'
+                model: req.models.Category,
+                as: 'category',
+                include: {
+                    model: req.models.Transaction,
+                    as: 'transactions'
+                }
             }
         }).then(function(data) {
             res.json({

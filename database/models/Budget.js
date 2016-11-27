@@ -27,9 +27,20 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+        type: {
+            type: DataTypes.ENUM(
+                'income',
+                'expense'
+            ),
+            defaultValue: 'expense'
+        },
         allowance: {
             type: DataTypes.DOUBLE,
             defaultValue: 0
+        },
+        color: {
+            type: DataTypes.STRING,
+            defaultValue: '#46c35f'
         }
     }, {
         timestamps: true,

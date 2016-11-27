@@ -55,16 +55,12 @@ module.exports = {
             include: {
                 model: req.models.Budget,
                 as: 'budgets',
-                where: { user_id: req.user.id },
-
                 include: {
                     model: req.models.Category,
                     as: 'category',
-
                     include: {
                         model: req.models.Transaction,
-                        as: 'transactions',
-                        where: { user_id: req.user.id }
+                        as: 'transactions'
                     }
                 }
             }
