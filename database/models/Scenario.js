@@ -19,7 +19,8 @@ module.exports = function(Sequelize, DataTypes) {
         },
         image: {
             type: DataTypes.STRING,
-            allowNull: true
+            allowNull: true,
+            defaultValue: 'finance.png'
         },
         color: {
             type: DataTypes.STRING,
