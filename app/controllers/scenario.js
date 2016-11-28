@@ -52,6 +52,7 @@ module.exports = {
     getSelfAllWithTransactions: function(req, res, next) {
         req.models.Scenario.findAll({
             where: { user_id: req.user.id },
+            order: [['created_at', 'DESC']],
             include: {
                 model: req.models.Budget,
                 as: 'budgets',
@@ -73,6 +74,20 @@ module.exports = {
         })
     },
 
+    getSelf: function(req, res, next) {
+        req.models.Scenario.findOne({
+            where: {
+                id: req.params.id,
+                user_id: req.user.id
+            }
+        }).then(function(data) {
+            res.json({
+                status: req.status.success,
+                data: data
+            })
+        })
+    },
+
     postSelf: function(req, res, next) {
         req.models.Scenario.create({
             user_id: req.user.id,
@@ -83,6 +98,30 @@ module.exports = {
                 status: req.status.success,
                 data: scenario
             })
+        })
+    },
+
+    putSelf: function(req, res, next) {
+        req.models.Scenario.findOne({
+            where: {
+                id: req.params.id,
+                user_id: req.user.id
+            }
+        }).then(function(scenario) {
+            if (scenario) {
+                scenario.updateAttributes(req.body)
+                    .then(function(scenario) {
+                        return res.json({
+                            status: req.status.success,
+                            data: scenario
+                        })
+                    })
+            } else {
+                res.json({
+                    status: req.status.error,
+                    message: 'Scenario does not exist or does not belong to requesting user.'
+                })
+            }
         })
     }
 }
