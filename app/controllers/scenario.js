@@ -1,3 +1,5 @@
+var moment = require('moment')
+
 module.exports = {
     getSelfAll: function(req, res, next) {
         req.models.Scenario.findAll({
@@ -56,12 +58,25 @@ module.exports = {
             include: {
                 model: req.models.Budget,
                 as: 'budgets',
+                required: false,
+
                 include: {
                     model: req.models.Category,
                     as: 'category',
+                    required: false,
+
                     include: {
                         model: req.models.Transaction,
-                        as: 'transactions'
+                        as: 'transactions',
+                        required: false,
+                        where: {
+                            created_at: {
+                                $between: [
+                                    moment(req.query.startDate).format(),
+                                    moment(req.query.endDate).format()
+                                ]
+                            }
+                        }
                     }
                 }
             }
