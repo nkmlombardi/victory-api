@@ -100,5 +100,7 @@ module.exports = function(app) {
         .get(services.authentication.isBearer, controllers.budget.getSelf)
         .put(services.authentication.isBearer, controllers.budget.putSelf)
         .delete(services.authentication.isBearer, controllers.budget.deleteSelf)
+    app.route('/v1/budgets/self/:id/transactions')
+        .get(services.authentication.isBearer, controllers.budget.getSelfWithTransactions)
 
 }

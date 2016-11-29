@@ -47,6 +47,28 @@ module.exports = {
         })
     },
 
+    getSelfWithTransactions: function(req, res, next) {
+        req.models.Budget.findOne({
+            where: {
+                id: req.params.id,
+                user_id: req.user.id
+            },
+            include: {
+                model: req.models.Category,
+                as: 'category',
+                include: {
+                    model: req.models.Transaction,
+                    as: 'transactions'
+                }
+            }
+        }).then(function(data) {
+            res.json({
+                status: req.status.success,
+                data: data
+            })
+        })
+    },
+
     postSelf: function(req, res, next) {
         req.models.Budget.create({
             user_id: req.user.id,
