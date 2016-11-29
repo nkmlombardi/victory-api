@@ -87,12 +87,18 @@ module.exports = function(app) {
     app.route('/v1/scenarios/self/:id')
         .get(services.authentication.isBearer, controllers.scenario.getSelf)
         .put(services.authentication.isBearer, controllers.scenario.putSelf)
+        .delete(services.authentication.isBearer, controllers.scenario.deleteSelf)
 
 
     /* Budget Resource */
     app.route('/v1/budgets/self')
         .get(services.authentication.isBearer, controllers.budget.getSelfAll)
+        .post(services.authentication.isBearer, controllers.budget.postSelf)
     app.route('/v1/budgets/self/transactions')
         .get(services.authentication.isBearer, controllers.budget.getSelfAllWithTransactions)
+    app.route('/v1/budgets/self/:id')
+        .get(services.authentication.isBearer, controllers.budget.getSelf)
+        .put(services.authentication.isBearer, controllers.budget.putSelf)
+        .delete(services.authentication.isBearer, controllers.budget.deleteSelf)
 
 }

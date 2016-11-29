@@ -123,5 +123,19 @@ module.exports = {
                 })
             }
         })
+    },
+
+    deleteSelf: function(req, res, next) {
+        req.models.Scenario.destroy({
+            where: {
+                id: req.params.id,
+                user_id: req.user.id
+            }
+        }).then(function(data) {
+            res.json({
+                status: req.status.success,
+                data: data
+            })
+        })
     }
 }
