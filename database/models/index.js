@@ -9,7 +9,15 @@ module.exports = function(database) {
     Object.keys(database.models).forEach(function(modelName) {
         if ('associate' in database.models[modelName]) {
             database.models[modelName].associate(database.models)
-            console.log(modelName.yellow + ' relations linked.')
+
+            // Spacing trick for console output
+            var spaces = ''
+            var spacesCount = (14 - modelName.length)
+            for (var i = 0; i < spacesCount; i++) {
+                spaces = spaces.concat(' ')
+            }
+
+            console.log(modelName.yellow + spaces + 'relations linked')
         }
     })
 }

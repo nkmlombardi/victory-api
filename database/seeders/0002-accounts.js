@@ -2,7 +2,7 @@ var fs = require('fs')
 
 module.exports = {
     up: function(sequelize, models, plaid) {
-        console.log('Acount Model Seeder called.'.italic)
+        console.log('Acount'.magenta +  '        model seeded')
 
         return models.Account.bulkCreate(
             JSON.parse(fs.readFileSync(__dirname + '/data/accounts.json', 'utf8'))

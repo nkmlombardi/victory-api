@@ -2,7 +2,7 @@ var fs = require('fs')
 
 module.exports = {
     up: function(sequelize, models, plaid) {
-        console.log('Category Model Seeder called.'.italic)
+        console.log('Category'.magenta +  '      model seeded')
 
         return models.Category.bulkCreate(
             JSON.parse(fs.readFileSync(__dirname + '/data/categories.json', 'utf8'))

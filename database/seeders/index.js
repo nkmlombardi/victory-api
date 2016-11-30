@@ -27,7 +27,7 @@ var plaidClient = new plaid.Client(
 
 module.exports = {
     up: function(database) {
-        Promise.each(seeders, function(seeder, index) {
+        return Promise.each(seeders, function(seeder, index) {
             return seeder.up(database.sequelize, database.models, plaidClient)
                 .catch(function(error) {
                     console.error(seeders[index], ' seeder error: ', error)

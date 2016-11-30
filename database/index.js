@@ -39,7 +39,7 @@ module.exports = function(settings) {
             process.env.NODE_ENV === 'development'
         )
     }
-    
+
     // Import models(tables) into database
     models(database)
 
@@ -50,11 +50,12 @@ module.exports = function(settings) {
         // We don't want to be seeding in a production environment
         if (database.doSeed) {
             seeder.down(database)
-            seeder.up(database)
+            seeder.up(database).then(function() {
+                console.log('Database' + ' seeded'.red + ' with data')
+            })
         }
 
-
-        console.log('Models ' + (database.doSync ? 'force synced'.red : 'soft synced'.green) + ' and' + (database.doSeed ? ' seeded'.red : ' not seeded'.green) + ' to database.')
+        console.log('Database' + (database.doSync ? ' force synced'.red : ' soft synced'.green) + ' with models')
     }).catch(function(error) {
         console.log('Failed to sync to database: '.red, error)
     })

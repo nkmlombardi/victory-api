@@ -22,9 +22,7 @@ routes(app)
 
 // Execute Server
 var server = app.listen(config.settings.port, function() {
-    if (process.env.NODE_ENV != 'testing') {
-        console.log(('Listening on port ' + config.settings.port.blue + ' in a ' + process.env.NODE_ENV.blue + ' environment.'))
-    }
+    console.log('Listening on port ' + config.settings.port.blue + ' in a ' + process.env.NODE_ENV.blue + ' environment.')
 
 }).on('error', function(e) {
     if (e.code == 'EADDRINUSE') {
