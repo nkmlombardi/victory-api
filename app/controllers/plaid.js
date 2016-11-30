@@ -72,8 +72,8 @@ module.exports = {
         )
 
         return res.json({
-            status: response.status,
-            data: response.data
+            status: req.status.success,
+            data: response
         })
     },
 

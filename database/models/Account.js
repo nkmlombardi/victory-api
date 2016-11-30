@@ -81,10 +81,10 @@ module.exports = function(Sequelize, DataTypes) {
             },
 
             // Take object from Plaid and map it to our model format
-            fromPlaidObject: function(account, user) {
+            fromPlaidObject: function(account, user_id) {
                 return {
+                    user_id: user_id,
                     plaid_id: account._id,
-                    user_id: user.id,
                     name: account.meta.name,
                     balance_available: account.balance.available,
                     balance_current: account.balance.current,
@@ -96,9 +96,9 @@ module.exports = function(Sequelize, DataTypes) {
             },
 
             // Take array from Plaid and map it to our models format
-            fromPlaidArray: function(accounts, user) {
+            fromPlaidArray: function(accounts, user_id) {
                 return accounts.map(function(account) {
-                    return this.fromPlaidObject(account, user)
+                    return this.fromPlaidObject(account, user_id)
                 }, this)
             },
 
@@ -110,7 +110,7 @@ module.exports = function(Sequelize, DataTypes) {
             },
 
             upsertObject: function(options) {
-                return this.findOrCreate(options).spread(function(row, created) {
+                return this.findOrCreate(options).spread(async function(row, created) {
                     if (created) {
                         return row
                     } else {
@@ -127,7 +127,7 @@ module.exports = function(Sequelize, DataTypes) {
                         where: options.where,
                         defaults: account
                     })
-                })
+                }, this)
             }
         }
     })

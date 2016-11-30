@@ -1,6 +1,13 @@
 module.exports = {
     getAll: function(req, res, next) {
-        req.models.Category.findAll()
+        var query = {}
+        if (req.query.attributes) {
+            query = {
+                attributes: req.query.attributes
+            }
+        }
+
+        req.models.Category.findAll(query)
             .then(function(categories) {
                 res.json({
                     status: req.status.success,
@@ -10,11 +17,13 @@ module.exports = {
     },
 
     getAllWithTransactions: function(req, res, next) {
+        var isRequired = req.query.required || false
+
         req.models.Category.findAll({
             include: {
                 model: req.models.Transaction,
                 as: 'transactions',
-                required: false,
+                required: isRequired,
                 where: {
                     user_id: req.user.id
                 }

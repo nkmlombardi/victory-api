@@ -67,7 +67,7 @@ module.exports = function(app) {
 
     /* Category Resource */
     app.route('/v1/categories/')
-        .get(services.authentication.isBearer, controllers.category.getAll)
+        .get(services.authentication.isBearer, cache('30 minutes'), controllers.category.getAll)
     app.route('/v1/categories/primary')
         .get(services.authentication.isBearer, controllers.category.getAllPrimary)
     app.route('/v1/categories/self/transactions')
