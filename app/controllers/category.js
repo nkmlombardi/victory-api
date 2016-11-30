@@ -14,6 +14,7 @@ module.exports = {
             include: {
                 model: req.models.Transaction,
                 as: 'transactions',
+                required: false,
                 where: {
                     user_id: req.user.id
                 }
