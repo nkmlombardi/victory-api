@@ -77,10 +77,10 @@ module.exports = {
             scenario_id: req.body.scenario_id,
             type: req.body.type,
             allowance: req.body.allowance
-        }).then(function(scenario) {
+        }).then(function(budget) {
             return res.json({
                 status: req.status.success,
-                data: scenario
+                data: budget
             })
         })
     },
@@ -90,16 +90,29 @@ module.exports = {
             where: {
                 id: req.params.id,
                 user_id: req.user.id
+            },
+            include: {
+                model: req.models.Category,
+                as: 'category',
+                required: false,
+                include: {
+                    model: req.models.Transaction,
+                    as: 'transactions',
+                    required: false
+                }
             }
         }).then(function(budget) {
+            var category = budget.category
+
             if (budget) {
-                budget.updateAttributes(req.body)
-                    .then(function(budget) {
-                        return res.json({
-                            status: req.status.success,
-                            data: budget
-                        })
+                budget.updateAttributes(req.body).then(function(budget) {
+                    budget.category = category
+
+                    return res.json({
+                        status: req.status.success,
+                        data: budget
                     })
+                })
             } else {
                 res.json({
                     status: req.status.error,
