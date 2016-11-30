@@ -1,13 +1,23 @@
 module.exports = function() {
 
+    /**
+     * Each configuration is a function which must be executed for their
+     * middleware and settings to be returned. This is being done because we
+     * don't want to instantiate any of the other configuration files at all,
+     * unless they are the environment that is set in the .environment file
+     */
     var environment = {
-        // production: {
-        //     middleware:     require('./production/middleware'),
-        //     settings:       require('./production/settings')
-        // },
-        development: {
-            middleware:     require('./development/middleware'),
-            settings:       require('./development/settings')
+        production: function() {
+            return {
+                middleware:     require('./production/middleware'),
+                settings:       require('./production/settings')
+            }
+        },
+        development: function() {
+            return {
+                middleware:     require('./development/middleware'),
+                settings:       require('./development/settings')
+            }
         },
         // testing: {
         //     middleware:     require('./testing/middleware'),
@@ -19,5 +29,5 @@ module.exports = function() {
         // }
     }
 
-    return environment[process.env.NODE_ENV]
+    return environment[process.env.NODE_ENV]()
 }

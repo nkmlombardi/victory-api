@@ -70,7 +70,7 @@ module.exports = {
                         as: 'transactions',
                         required: false,
                         where: {
-                            created_at: {
+                            date: {
                                 $between: [
                                     moment(req.query.startDate).format(),
                                     moment(req.query.endDate).format()

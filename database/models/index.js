@@ -1,22 +1,6 @@
-var fs = require('fs')
-var path = require('path')
-var sequelize = require('sequelize')
 var simport = require('sequelize-import')
 
-module.exports = function(settings) {
-    // Create Sequelize database connection
-    var database = {
-        sequelize: new sequelize(settings.name, settings.user, settings.pass, {
-            host: settings.host,
-            dialect: settings.type,
-            port: settings.port,
-            logging: false
-        }),
-        models: {
-            // Models are loaded in below
-        }
-    }
-
+module.exports = function(database) {
     // Load in database models
     database.models = simport(__dirname, database.sequelize, {
         exclude: ['index.js']
@@ -25,25 +9,7 @@ module.exports = function(settings) {
     Object.keys(database.models).forEach(function(modelName) {
         if ('associate' in database.models[modelName]) {
             database.models[modelName].associate(database.models)
-            console.log(modelName + ' relations linked.')
+            console.log(modelName.yellow + ' relations linked.')
         }
     })
-
-
-    database.sequelize.sync({ force: true }).then(function() {
-        console.log('Models force synced to database.'.green)
-
-        // Seed database if in development mode
-        if (process.env.NODE_ENV === 'development') {
-            var seeder = require('../seeders')
-            seeder.down(database)
-            seeder.up(database)
-
-            console.log('Database Seeded.')
-        }
-    }).catch(function(error) {
-        console.log('Failed to sync to database: '.red, error)
-    })
-
-    return database
 }

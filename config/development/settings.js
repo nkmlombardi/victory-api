@@ -16,9 +16,6 @@ module.exports = {
         secret_key: process.env.PLAID_SECRET_KEY,
         environment: process.env.PLAID_ENV
     },
-    keys: [
-        'development'
-    ],
     cache: {
         debug: true
     }

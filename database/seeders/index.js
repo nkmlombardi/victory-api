@@ -13,7 +13,6 @@ var seeders = function() {
         if (file === 'data') return
 
         /* Store module with its name (from filename) */
-        // result[path.basename(file, '.js')] = require(path-.join(__dirname, file))
         result.push(require(path.join(__dirname, file)))
     })
 
@@ -44,8 +43,6 @@ module.exports = {
     },
     down: function(database) {
         seeders.forEach(function(seeder, index) {
-            // console.log('Unseeding :: ', seeders[i])
-
             seeder.down(database.sequelize, database.models, plaidClient)
         })
     }
