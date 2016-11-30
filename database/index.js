@@ -39,10 +39,7 @@ module.exports = function(settings) {
             process.env.NODE_ENV === 'development'
         )
     }
-
-    console.log('Force Sync: '.blue, database.doSync)
-    console.log('Seed: '.blue, database.doSeed)
-
+    
     // Import models(tables) into database
     models(database)
 
