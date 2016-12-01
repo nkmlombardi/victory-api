@@ -1,3 +1,5 @@
+var moment = require('moment')
+
 module.exports = {
     getSelfAll: function(req, res, next) {
         req.models.Transaction.findAll({
@@ -13,17 +15,42 @@ module.exports = {
     },
 
     getSelfAllWithAll: function(req, res, next) {
+        var parameters = {
+            user_id: req.user.id
+        }
+
+        if (req.query.startDate && req.query.endDate) {
+            parameters.date = {
+                $between: [
+                    moment(req.query.startDate).format(),
+                    moment(req.query.endDate).format()
+                ]
+            }
+        }
+
         req.models.Transaction.findAll({
-            where: {
-                user_id: req.user.id
-            },
+            where: parameters,
             include: [
                 {
                     model: req.models.Account,
-                    as: 'account'
+                    as: 'account',
+                    required: false
                 }, {
                     model: req.models.Category,
-                    as: 'category'
+                    as: 'category',
+                    required: false,
+                    include: {
+                        model: req.models.Budget,
+                        as: 'budgets',
+                        where: { user_id: req.user.id },
+                        required: false,
+                        include: {
+                            model: req.models.Scenario,
+                            as: 'scenario',
+                            where: { user_id: req.user.id },
+                            required: false
+                        }
+                    }
                 }
             ]
         }).then(function(transactions) {

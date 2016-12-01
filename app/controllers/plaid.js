@@ -32,17 +32,30 @@ module.exports = {
      * of a user for their financial information.
      */
     postExchange: async function(req, res, next) {
-        var response = await plaidService.exchange(
+        var tokenResponse = await plaidService.exchange(
             req.models,
             req.plaid,
             req.user.id,
             req.body.public_token
         )
 
+        var accountsResponse = await plaidService.accounts(
+            req.models,
+            req.plaid,
+            req.user.id,
+
+            // Array of single token to retrieve accounts for
+            [tokenResponse.data]
+        )
+        
         // Return status and generated PlaidToken
         return res.json({
-            status: response.status,
-            data: response.data
+            status: req.status.success,
+            token: tokenResponse.data,
+
+            // accountsResponse returns an array of accoutRequests, we only
+            // want the first one because we only sent one token
+            data: accountsResponse[0].data
         })
     },
 
