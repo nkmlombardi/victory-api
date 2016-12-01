@@ -106,7 +106,8 @@ module.exports = {
     postSelf: function(req, res, next) {
         req.models.Scenario.create({
             user_id: req.user.id,
-            name: req.body.name
+            name: req.body.name,
+            color: req.body.color
 
         }).then(function(scenario) {
             return res.json({
