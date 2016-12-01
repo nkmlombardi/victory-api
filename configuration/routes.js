@@ -1,6 +1,6 @@
-var settings = require('../config')().settings
-var controllers = require('../app/controllers')
-var services = require('../app/services')
+var settings = require('../configuration')().settings
+var controllers = require('../controllers')
+var services = require('../services')
 var cache = require('apicache').options(settings.cache).middleware
 
 /**

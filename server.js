@@ -8,8 +8,8 @@ var express = require('express')
 var colors = require('colors')
 
 // Configuration
-var config = require('./config')()
-var routes = require('./config/routes')
+var config = require('./configuration')()
+var routes = require('./configuration/routes')
 
 // Initialize Server
 var app = express()
