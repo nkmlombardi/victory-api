@@ -32,6 +32,11 @@ module.exports = {
      * of a user for their financial information.
      */
     postExchange: async function(req, res, next) {
+
+        // Now that the user has provided their bank account login information
+        // on the client side directly to plaid, we are given a public token
+        // that we can use to exchange with the plaid api for a more "private"
+        // access_token that we shouldn't be sharing with anyone.
         var tokenResponse = await plaidService.exchange(
             req.models,
             req.plaid,
@@ -39,6 +44,8 @@ module.exports = {
             req.body.public_token
         )
 
+        // Now that we've generated a PlaidToken, let's utilize the plaid
+        // accounts service to retrieve Accounts associated with the PlaidToken.
         var accountsResponse = await plaidService.accounts(
             req.models,
             req.plaid,
@@ -47,7 +54,18 @@ module.exports = {
             // Array of single token to retrieve accounts for
             [tokenResponse.data]
         )
-        
+
+        // We simply want to query for Transactions and inject them, we don't
+        // want to hang the request while waiting for them.
+        plaidService.transactions(
+            req.models,
+            req.plaid,
+            req.user.id,
+
+            // Array of single token to retrieve Accounts for
+            [tokenResponse.data]
+        )
+
         // Return status and generated PlaidToken
         return res.json({
             status: req.status.success,

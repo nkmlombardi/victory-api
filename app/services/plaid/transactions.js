@@ -26,9 +26,6 @@ var retrieveTransactions = async function(models, plaid, user_id, plaid_tokens) 
             }
 
             var plaidResponse = await plaid.getConnectUserAsync(token.access_token, requestObject)
-
-            console.log('Plaid Transaction Response: ', plaidResponse)
-
             var transactions = []
 
             // Only bother running the inject method if we actually have transactions
@@ -88,8 +85,6 @@ var retrieveTransactions = async function(models, plaid, user_id, plaid_tokens) 
                 data: error
             }
         }
-
-        console.log('upsertArray Response: ', transactions)
 
         token.update({ last_transaction_pull: moment().format() })
 
