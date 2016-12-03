@@ -1,3 +1,5 @@
+var moment = require('moment')
+
 module.exports = {
     getAll: function(req, res, next) {
         var query = {}
@@ -19,14 +21,25 @@ module.exports = {
     getAllWithTransactions: function(req, res, next) {
         var isRequired = req.query.required || false
 
+        var parameters = {
+            user_id: req.user.id
+        }
+
+        if (req.query.startDate && req.query.endDate) {
+            parameters.date = {
+                $between: [
+                    moment(req.query.startDate).format(),
+                    moment(req.query.endDate).format()
+                ]
+            }
+        }
+
         req.models.Category.findAll({
             include: {
                 model: req.models.Transaction,
                 as: 'transactions',
                 required: isRequired,
-                where: {
-                    user_id: req.user.id
-                }
+                where: parameters
             }
         }).then(function(categories) {
             res.json({
