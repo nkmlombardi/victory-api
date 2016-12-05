@@ -37,6 +37,15 @@ module.exports = function(Sequelize, DataTypes) {
         allowance: {
             type: DataTypes.DOUBLE,
             defaultValue: 0
+        },
+
+        // MILLISECONDS
+        interval: {
+            type: DataTypes.JSON,
+            defaultValue: {
+                text: 'Monthly',
+                value: 2678400000
+            }
         }
     }, {
         timestamps: true,
