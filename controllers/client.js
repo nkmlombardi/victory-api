@@ -1,4 +1,4 @@
-var treebuilder = require('../lib/treebuilder/treebuilder.twostep');
+var treebuilder = require('../services/treebuilder');
 
 module.exports = {
     getClientAll: function(req, res, next) {
