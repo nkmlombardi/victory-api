@@ -1,9 +1,15 @@
+/**
+ * Takes in a relational query, as well as the resources that are
+ * to be linked together in a tree format, and zips them together.
+ *
+ * @param  {[type]} data      should only contain ID's
+ * @param  {[type]} datasets  should contain all resources that will be referenced
+ * @return {[type]}           fully linked tree
+ */
 module.exports = function(data, datasets, levels, resources, tree) {
-    levels = levels || Object.keys(data[0])
-    resources = resources || levels.map(function(x) {
-        return x.replace('_id', 's')
-    })
-    tree = tree || []
+    levels      = levels || Object.keys(data[0])
+    resources   = resources || levels.map(function(x) { return x.replace('_id', 's') })
+    tree        = tree || []
 
     // For each data row, loop through the expected levels traversing the output tree
     data.forEach(function(d) {
@@ -24,48 +30,27 @@ module.exports = function(data, datasets, levels, resources, tree) {
 
             // Add a branch if it isn't there
             if (isNaN(index)) {
-                var newResource = {
-                    [levels[depth]]: d[property]
-                }
+                var newResource = { [levels[depth]]: d[property] }
 
                 // Search through the dataset for an object that has a matching ID
-                function findResource(params) {
-                    return new Promise(function(resolve, reject) {
-                        // Validate injected parameters
-                        if (!params.resources) {
-                            return reject(Error('No resources parameter passed in to function.'))
+                var resource = function(resources, reference, attribute) {
+                    for (var i = 0; i < resources.length; i++) {
+                        if (resources[i][attribute] === reference[attribute]) {
+                            return resources[i]
                         }
-                        if (!params.reference) {
-                            return reject(Error('No reference parameter passed in to function.'))
-                        }
-                        if (!params.property) {
-                            return reject(Error('No property parameter passed in to function.'))
-                        }
+                    }
 
-                        // Iterate through resource searching for a matching ID
-                        for (var i = 0; i < params.resources.length; i++) {
-                            if (params.resources[i][params.property] === params.reference[params.property]) {
-                                return resolve(params.resources[i])
-                            }
-                        }
+                    return false
+                }(datasets[[resources[depth]]], newResource, levels[depth])
 
-                        return reject(Error('No matching resource based on property found. Invalid ID in relational map.'))
-                    })
-                }
-
-                findResource({
-                    resources: datasets[[resources[depth]]],
-                    reference: newResource,
-                    property: levels[depth]
-
-                }).then(function(resource) {
+                // Copy properties to the tree object we are iterating on
+                if (resource) {
                     for (var property in resource) {
                         newResource[property] = resource[property]
                     }
+                } else {
 
-                }).catch(function(error) {
-                    console.log(error)
-                })
+                }
 
                 // Check for end of resources before adding new subtree
                 if (depth < levels.length - 1) {

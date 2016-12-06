@@ -1,174 +1,103 @@
-var treebuilder = require('../services/treebuilder');
+var Promise = require('bluebird')
+var treebuilder = require('../services/treebuilder')
 
 module.exports = {
-    getClientAll: function(req, res, next) {
-        req.models.client.findAll()
-            .then(function(clients) {
-                return res.status(req.httpStatus.OK)
-                    .json({
-                        status: req.status.success,
-                        data: clients
-                    });
-            }).error(function(error) {
-                return res.status(req.httpStatus.INTERNAL_SERVER_ERROR)
-                    .json({
-                        status: req.status.error,
-                        message: error
-                    });
-            });
+    getClientAll: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_CLIENT`)
+        })
     },
 
-    getClientAllTree: function(req, res, next) {
-        req.models.client.findAll({
-            include: {
-                model: req.models.project,
-                include: {
-                    model: req.models.origin,
-                    include: {
-                        model: req.models.target
-                    }
-                }
-            }
-        }).then(function(clientsTree) {
-            res.status(req.httpStatus.OK)
-                .json({
-                    status: req.status.success,
-                    data: clientsTree
-                });
-        });
+    getClientAllTree: async function(req, res, next) {
+        var sql =   'SELECT C.client_id, P.project_id, O.origin_id, T.target_id ' +
+                    'FROM BB_CLIENT C, BB_PROJECT P, BB_PROJECT_ORIGIN O, BB_PROJECT_TARGET T ' +
+                    'WHERE C.client_id = P.client_id ' +
+                        'AND P.project_id = O.project_id ' +
+                        'AND O.origin_id = T.origin_id ' +
+                    'ORDER BY 1, 2, 3, 4'
+
+        var relations = await req.connection.query(sql)
+        var resources = await Promise.props({
+            clients:    req.connection.query('SELECT * FROM BB_CLIENT'),
+            projects:   req.connection.query('SELECT * FROM BB_PROJECT'),
+            origins:    req.connection.query('SELECT * FROM BB_PROJECT_ORIGIN'),
+            targets:    req.connection.query('SELECT * FROM BB_PROJECT_TARGET')
+        })
+
+        return res.json({
+            status: req.status.success,
+            data: treebuilder(relations, resources)
+        })
     },
 
-    getClient: function(req, res, next) {
-        req.models.client.findById(req.params.id)
-            .then(function(client) {
-                return res.status(req.httpStatus.OK)
-                    .json({
-                        status: req.status.success,
-                        data: client
-                    });
-            });
+    getClient: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_CLIENT WHERE client_id = ${req.params.id}`)
+        })
     },
 
-    getClientTree: function(req, res, next) {
-        req.models.client.findOne({
-            where: { client_id: req.params.id },
-            include: {
-                model: req.models.project,
-                include: {
-                    model: req.models.origin,
-                    include: {
-                        model: req.models.target
-                    }
-                }
-            }
-        }).then(function(clientTree) {
-            res.status(req.httpStatus.OK)
-                .json({
-                    status: req.status.success,
-                    data: clientTree
-                });
-        });
+    getClientProjects: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_PROJECT WHERE client_id = ${req.params.id}`)
+        })
     },
 
-    getClientProjects: function(req, res, next) {
-        req.models.client.findById(req.params.id).then(function(client) {
-            client.getProjects().then(function(projects) {
-                return res.status(req.httpStatus.OK)
-                    .json({
-                        status: req.status.success,
-                        data: projects
-                    });
-            });
-        });
+    getClientOrigins: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(
+                `SELECT * FROM BB_PROJECT_ORIGIN WHERE project_id IN (` +
+                    `SELECT project_id FROM BB_PROJECT WHERE client_id = ${req.params.id}` +
+                `)`
+            )
+        })
     },
 
-    getClientOrigins: function(req, res, next) {
-        req.models.project.findAll({
-            attributes: ['project_id'],
-            where: {
-                client_id: req.params.id
-            }
-         }).then(function(projects) {
-            // console.log(projects);
-            req.models.origin.findAll({
-                where: {
-                    project_id: {
-                        $in: projects
-                    }
-                }
-            }).then(function(origins) {
-                res.status(req.httpStatus.OK)
-                    .json({
-                        status: req.status.success,
-                        data: origins
-                    });
-            });
-        });
+    getClientTargets: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(
+                `SELECT * FROM BB_PROJECT_TARGET WHERE origin_id IN (` +
+                    `SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE project_id IN (` +
+                        `SELECT project_id FROM BB_PROJECT WHERE client_id = ${req.params.id}` +
+                    `)` +
+                `)`
+            )
+        })
     },
 
-    getClientTargets: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_PROJECT_TARGET WHERE origin_id IN (" +
-                        "SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE project_id IN (" +
-                            "SELECT project_id FROM BB_PROJECT WHERE client_id = :id" +
-                        ")" +
-                    ")";
-
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(projects) {
-            return res.status(req.httpStatus.OK)
-                .json({
-                    status: req.status.success,
-                    data: projects
-                });
-        });
+    getClientClusters: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(
+                `SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (` +
+                    `SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id IN (` +
+                        `SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE project_id IN (` +
+                            `SELECT project_id FROM BB_PROJECT WHERE client_id = ${req.params.id}` +
+                        `)` +
+                    `)` +
+                `)`
+            )
+        })
     },
 
-    getClientClusters: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
-                        "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id IN (" +
-                            "SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE project_id IN (" +
-                                "SELECT project_id FROM BB_PROJECT WHERE client_id = :id" +
-                            ")" +
-                        ")" +
-                    ")";
-
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(projects) {
-            return res.status(req.httpStatus.OK)
-                .json({
-                    status: req.status.success,
-                    data: projects
-                });
-        });
-    },
-
-    getClientDatacenters: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_DATA_CENTER WHERE data_center_code IN (" +
-                        "SELECT data_center FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (" +
-                            "SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id IN (" +
-                                "SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE project_id IN (" +
-                                    "SELECT project_id FROM BB_PROJECT WHERE client_id = :id" +
-                                ")" +
-                            ")" +
-                        ")" +
-                    ")";
-
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(projects) {
-            return res.status(req.httpStatus.OK)
-                .json({
-                    status: req.status.success,
-                    data: projects
-                });
-        });
+    getClientDatacenters: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(
+                `SELECT * FROM BB_DATA_CENTER WHERE data_center_code IN (` +
+                    `SELECT data_center FROM BB_ONELINK_CLUSTER WHERE cluster_name IN (` +
+                        `SELECT cluster_name FROM BB_PROJECT_TARGET WHERE origin_id IN (` +
+                            `SELECT origin_id FROM BB_PROJECT_ORIGIN WHERE project_id IN (` +
+                                `SELECT project_id FROM BB_PROJECT WHERE client_id = ${req.params.id}` +
+                            `)` +
+                        `)` +
+                    `)` +
+                `)`
+            )
+        })
     }
-};
+}
