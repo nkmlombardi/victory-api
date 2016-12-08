@@ -1,7 +1,7 @@
 // Dependencies
 var express = require('express')
 var http = require('http')
-var socketio = require('socket.io')
+var socket = require('socket.io')
 var colors = require('colors')
 
 // Environment variables
@@ -12,17 +12,16 @@ env(__dirname + '/.environment/.private.env')
 // Instantiation
 var config = require('./configuration')
 var app = express()
+var server = http.createServer(app)
+var io = socket.listen(server)
 
 // Bootstrapping
 config.middleware(app, config.settings)
+config.sockets(app, io)
 config.routes(app)
 
-// Setup socket & deploy server
-var server = http.createServer(app)
-var io = socketio(server)
-
 // Execute server
-module.exports = server.listen(process.env.NODE_PORT, function() {
+server.listen(process.env.NODE_PORT, function() {
     console.log(('Listening on port ' + process.env.NODE_PORT).green)
 
 }).on('error', function(error) {
@@ -30,3 +29,5 @@ module.exports = server.listen(process.env.NODE_PORT, function() {
         console.log('Address in use. Is the server already running?'.red)
     }
 })
+
+module.exports = server
