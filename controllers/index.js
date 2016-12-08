@@ -12,5 +12,5 @@ module.exports = {
 
     // Authentication
     user:       require('./user'),
-    token:      require('./token')
+    authentication:      require('./authentication')
 }
