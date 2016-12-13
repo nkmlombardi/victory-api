@@ -50,6 +50,8 @@ module.exports = function(app) {
         .get(services.authentication.isBearer, controllers.account.getSelfAllWithTransactions)
     app.route('/v1/accounts/self/plaid')
         .post(services.authentication.isBearer, controllers.account.postPlaidAccounts)
+    app.route('/v1/accounts/self/networth')
+        .get(services.authentication.isBearer, controllers.account.getNetWorthHistory)
 
 
     /* Plaid Services */
