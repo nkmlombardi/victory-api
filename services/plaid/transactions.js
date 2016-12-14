@@ -18,11 +18,18 @@ var retrieveTransactions = async function(models, plaid, user_id, plaid_tokens) 
                 pending: true
             }
 
-            // Only set a greater than property if we've ever pulled before. This
-            // property filters the returned transactions to ones that occured after
-            // the specified date
+            /**
+             * Only set a greater than property if we've ever pulled before. This
+             * property filters the returned transactions to ones that occured after
+             * the specified date.
+             *
+             * We are adding a day to the last transaction pull, because we don't want
+             * retrieve transactions for the date we already pulled. This is a shortcoming
+             * of Plaid, because they don't have greater than, they only have greater than
+             * or equal to the date (not datetime!) of transactions you want.
+             */
             if (token.last_transaction_pull) {
-                requestObject.gte = moment(token.last_transaction_pull).format('MM/DD/YY')
+                requestObject.gte = moment(token.last_transaction_pull).add(1, 'day').format('MM/DD/YY')
             }
 
             var plaidResponse = await plaid.getConnectUserAsync(token.access_token, requestObject)
@@ -75,6 +82,13 @@ var retrieveTransactions = async function(models, plaid, user_id, plaid_tokens) 
                         status: 'error',
                         data: error
                     }
+                }
+
+            // Nothing new was returned
+            } else {
+                return {
+                    status: 'empty',
+                    data: []
                 }
             }
         } catch(error) {
