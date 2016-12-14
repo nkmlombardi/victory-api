@@ -56,38 +56,48 @@ module.exports = {
     },
 
     getNetWorthHistory: async function(req, res, next) {
-        var parameters = {
-            user_id: req.user.id
-        }
-
-        // if (req.query.startDate && req.query.endDate) {
-        //     parameters.date = {
-        //         $between: [
-        //             moment(req.query.startDate).format(),
-        //             moment().format()
-        //         ]
-        //     }
-        // }
-
-        var startDate = moment().subtract(1, 'year')
+        var DATE_FORMAT = 'YYYY-MM-DD'
+        var user_id = req.user.id
+        var startDate = moment(req.query.startDate) || moment().subtract(1, 'year')
         var endDate = moment()
 
         var accounts = await req.models.Account.findAll({
             attributes: ['balance_current'],
-            where: parameters
+            where: {
+                user_id: user_id
+            }
         })
 
         var currentNetWorth = accounts.reduce(function(previous, current) {
             return previous + current.balance_current
         }, 0)
 
-        var transactions = await req.models.Transaction.findAll({
+        var transactions = (await req.models.Transaction.findAll({
             attributes: ['date', 'amount'],
-            where: parameters
+            where: {
+                user_id: req.user.id,
+                date: {
+                    $between: [
+                        startDate.format(),
+                        endDate.format()
+                    ]
+                }
+            },
+            include: {
+                model: req.models.Account,
+                as: 'account',
+                attributes: ['type']
+            }
+        })).map(function(transaction) {
+            // If the transaction is credit, it is negative
+            if (transaction.account.type === 'credit') {
+                transaction.amount = transaction.amount
+            }
+
+            return transaction
         })
 
 
-        var DATE_FORMAT = 'YYYY-MM-DD'
         var transactionDays = _.groupBy(transactions, function(transaction) {
             return moment(transaction.date).startOf('day').format(DATE_FORMAT)
         })
@@ -111,7 +121,7 @@ module.exports = {
         Object.keys(netWorths).sort(function(a, b) {
             return a < b ? 1 : -1
         }).forEach(function(date) {
-            if (date === endDate.format(DATE_FORMAT)) {
+            if (moment(date).format(DATE_FORMAT) === endDate.format(DATE_FORMAT)) {
                 netWorths[date] += currentNetWorth
             } else {
                 netWorths[date] += Math.round(netWorths[moment(date).add(1, 'day').startOf('day').format(DATE_FORMAT)])
@@ -120,7 +130,8 @@ module.exports = {
 
         return res.json({
             status: req.status.success,
-            data: netWorths
+            data: netWorths,
+            transactions: transactionDays
         })
     }
 }
