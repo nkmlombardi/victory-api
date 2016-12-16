@@ -1,133 +1,111 @@
-var treebuilder = require('../services/treebuilder');
-var Promise = require("bluebird");
+var treebuilder = require('../services/treebuilder')
+var Promise = require('bluebird')
 
 module.exports = {
-    getDatacenters: function(req, res, next) {
-        req.connection.query("SELECT * FROM BB_DATA_CENTER")
-            .then(function(datacenters) {
-                return res.json({
-                    status: req.status.success,
-                    data: datacenters
-                })
-            })
+    getDatacenters: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_DATA_CENTER`)
+        })
     },
 
-    getDatacentersTree: function(req, res, next) {
+    getDatacentersTree: async function(req, res, next) {
         var sql =   'SELECT D.data_center_code AS datacenter_id, C.cluster_name AS cluster_id, S.internal_ip AS server_id ' +
-                    'FROM BB_DATA_CENTER D, BB_ONELINK_CLUSTER C, BB_ONELINK_SERVER S ' +
-                    'WHERE D.data_center_code = C.data_center ' +
-                        'AND C.cluster_name = S.cluster_name ' +
-                    'ORDER BY 1, 2, 3;';
+            'FROM BB_DATA_CENTER D, BB_ONELINK_CLUSTER C, BB_ONELINK_SERVER S ' +
+            'WHERE D.data_center_code = C.data_center ' +
+                'AND C.cluster_name = S.cluster_name ' +
+            'ORDER BY 1, 2, 3'
 
-        req.connection.query(sql)
-            .then(function(relations) {
-                Promise.props({
-                    datacenters:    req.connection.query("SELECT *, data_center_code AS datacenter_id FROM BB_DATA_CENTER"),
-                    clusters:       req.connection.query("SELECT *, cluster_name AS cluster_id, data_center AS datacenter_id FROM BB_ONELINK_CLUSTER"),
-                    servers:        req.connection.query("SELECT *, internal_ip AS server_id, cluster_name AS cluster_id FROM BB_ONELINK_SERVER"),
-                }).then(function(data) {
-                    return res.json(treebuilder(relations, data));
-                });
-            })
+        return res.json({
+            status: req.status.success,
+            data: treebuilder(await req.connection.query(sql), await Promise.props({
+                datacenters:    req.connection.query(`SELECT *, data_center_code AS datacenter_id FROM BB_DATA_CENTER`),
+                clusters:       req.connection.query(`SELECT *, cluster_name AS cluster_id, data_center AS datacenter_id FROM BB_ONELINK_CLUSTER`),
+                servers:        req.connection.query(`SELECT *, internal_ip AS server_id, cluster_name AS cluster_id FROM BB_ONELINK_SERVER`),
+            }))
+        })
     },
 
-    getDatacenter: function(req, res, next) {
-        req.models.datacenter.findById(req.params.id).then(function(datacenter) {
-            return res.json(datacenter);
-        });
+    getDatacenter: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: (await req.connection.query(`SELECT * FROM BB_DATA_CENTER WHERE data_center_code = '${req.params.id}'`))[0]
+        })
     },
 
-    getDatacenterClients: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_CLIENT WHERE client_id IN (" +
-                        "SELECT client_id FROM BB_PROJECT WHERE project_id IN (" +
-                            "SELECT project_id FROM BB_PROJECT_ORIGIN WHERE origin_id IN (" +
-                                "SELECT origin_id FROM BB_PROJECT_TARGET WHERE cluster_name IN (" +
-                                    "SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = :id" +
-                                ")" +
-                            ")" +
-                        ")" +
-                    ")";
+    getDatacenterClients: async function(req, res, next) {
+        var sql =   `SELECT * FROM BB_CLIENT WHERE client_id IN (` +
+                        `SELECT client_id FROM BB_PROJECT WHERE project_id IN (` +
+                            `SELECT project_id FROM BB_PROJECT_ORIGIN WHERE origin_id IN (` +
+                                `SELECT origin_id FROM BB_PROJECT_TARGET WHERE cluster_name IN (` +
+                                    `SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = '${req.params.id}'` +
+                                `)` +
+                            `)` +
+                        `)` +
+                    `)`
 
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(datacenters) {
-            return res.json(datacenters);
-        });
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(sql)
+        })
     },
 
-    getDatacenterProjects: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_PROJECT WHERE project_id IN (" +
-                        "SELECT project_id FROM BB_PROJECT_ORIGIN WHERE origin_id IN (" +
-                            "SELECT origin_id FROM BB_PROJECT_TARGET WHERE cluster_name IN (" +
-                                "SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = :id" +
-                            ")" +
-                        ")" +
-                    ")";
+    getDatacenterProjects: async function(req, res, next) {
+        var sql =   `SELECT * FROM BB_PROJECT WHERE project_id IN (` +
+                        `SELECT project_id FROM BB_PROJECT_ORIGIN WHERE origin_id IN (` +
+                            `SELECT origin_id FROM BB_PROJECT_TARGET WHERE cluster_name IN (` +
+                                `SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = '${req.params.id}'` +
+                            `)` +
+                        `)` +
+                    `)`
 
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(datacenters) {
-            return res.json(datacenters);
-        });
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(sql)
+        })
     },
 
-    getDatacenterOrigins: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_PROJECT_ORIGIN WHERE origin_id IN (" +
-                        "SELECT origin_id FROM BB_PROJECT_TARGET WHERE cluster_name IN (" +
-                            "SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = :id" +
-                        ")" +
-                    ")";
+    getDatacenterOrigins: async function(req, res, next) {
+        var sql =   `SELECT * FROM BB_PROJECT_ORIGIN WHERE origin_id IN (` +
+                        `SELECT origin_id FROM BB_PROJECT_TARGET WHERE cluster_name IN (` +
+                            `SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = '${req.params.id}'` +
+                        `)` +
+                    `)`
 
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(datacenters) {
-            return res.json(datacenters);
-        });
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(sql)
+        })
     },
 
-    getDatacenterTargets: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_PROJECT_TARGET WHERE cluster_name IN (" +
-                        "SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = :id" +
-                    ")";
+    getDatacenterTargets: async function(req, res, next) {
+        var sql =   `SELECT * FROM BB_PROJECT_TARGET WHERE cluster_name IN (` +
+                        `SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = '${req.params.id}'` +
+                    `)`
 
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(datacenters) {
-            return res.json(datacenters);
-        });
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(sql)
+        })
     },
 
-    getDatacenterServers: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_ONELINK_SERVER WHERE cluster_name IN (" +
-                        "SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = :id" +
-                    ")";
+    getDatacenterServers: async function(req, res, next) {
+        var sql =   `SELECT * FROM BB_ONELINK_SERVER WHERE cluster_name IN (` +
+                        `SELECT cluster_name FROM BB_ONELINK_CLUSTER WHERE data_center = '${req.params.id}'` +
+                    `)`
 
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(servers) {
-            return res.json(servers);
-        });
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(sql)
+        })
     },
 
-    getDatacenterClusters: function(req, res, next) {
-        var sql =   "SELECT * FROM BB_ONELINK_CLUSTER WHERE data_center = :id";
+    getDatacenterClusters: async function(req, res, next) {
+        var sql = `SELECT * FROM BB_ONELINK_CLUSTER WHERE data_center = '${req.params.id}'`
 
-        req.sequelize.query(sql, {
-            replacements: { id: req.params.id },
-            type: req.sequelize.QueryTypes.SELECT
-
-        }).then(function(clusters) {
-            return res.json(clusters);
-        });
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(sql)
+        })
     }
 }

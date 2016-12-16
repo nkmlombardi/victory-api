@@ -80,7 +80,7 @@ module.exports = function(app) {
         // Datacenter Resource
         app.route('/v1/datacenters')                            .get(      cache('1 hour'),    controllers.datacenter.getDatacenters)
         app.route('/v1/datacenters/tree')                       .get(      cache('1 hour'),    controllers.datacenter.getDatacentersTree)
-        app.route('/v1/datacenters/:id/')                       .get(      cache('1 hour'),    controllers.datacenter.getDatacenter)
+        app.route('/v1/datacenters/:id')                        .get(      cache('1 hour'),    controllers.datacenter.getDatacenter)
 
             //// One to Many Relationships
             app.route('/v1/datacenters/:id/clients')            .get(      cache('1 hour'),    controllers.datacenter.getDatacenterClients)
@@ -94,7 +94,7 @@ module.exports = function(app) {
         // Cluster Resource
         app.route('/v1/clusters')                               .get(      cache('1 hour'),    controllers.cluster.getClusters)
         app.route('/v1/clusters/tree')                          .get(      cache('1 hour'),    controllers.cluster.getClustersTree)
-        app.route('/v1/clusters/:id/')                          .get(      cache('1 hour'),    controllers.cluster.getCluster)
+        app.route('/v1/clusters/:id')                          .get(      cache('1 hour'),    controllers.cluster.getCluster)
 
             //// One to One Relationships
             app.route('/v1/clusters/:id/datacenter')            .get(      cache('1 hour'),    controllers.cluster.getClusterDatacenter)
