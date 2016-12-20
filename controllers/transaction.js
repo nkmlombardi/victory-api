@@ -34,21 +34,25 @@ module.exports = {
                 {
                     model: req.models.Account,
                     as: 'account',
-                    required: false
+                    required: false,
+                    attributes: ['id']
                 }, {
                     model: req.models.Category,
                     as: 'category',
                     required: false,
+                    attributes: ['id'],
                     include: {
                         model: req.models.Budget,
                         as: 'budgets',
                         where: { user_id: req.user.id },
                         required: false,
+                        attributes: ['id'],
                         include: {
                             model: req.models.Scenario,
                             as: 'scenario',
                             where: { user_id: req.user.id },
-                            required: false
+                            required: false,
+                            attributes: ['id']
                         }
                     }
                 }

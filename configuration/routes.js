@@ -30,6 +30,8 @@ module.exports = function(app) {
     /* Users Endpoint */
     app.route('/v1/users')
         .post(controllers.user.postUser)
+    app.route('/v1/users/self/networth')
+        .get(services.authentication.isBearer, controllers.user.getNetWorthHistory)
 
 
     /* Transactions Resource */
@@ -50,8 +52,6 @@ module.exports = function(app) {
         .get(services.authentication.isBearer, controllers.account.getSelfAllWithTransactions)
     app.route('/v1/accounts/self/plaid')
         .post(services.authentication.isBearer, controllers.account.postPlaidAccounts)
-    app.route('/v1/accounts/self/networth')
-        .get(services.authentication.isBearer, controllers.account.getNetWorthHistory)
 
 
     /* Plaid Services */
@@ -72,20 +72,20 @@ module.exports = function(app) {
         .get(services.authentication.isBearer, cache('30 minutes'), controllers.category.getAll)
     app.route('/v1/categories/primary')
         .get(services.authentication.isBearer, controllers.category.getAllPrimary)
-    app.route('/v1/categories/self/transactions')
-        .get(services.authentication.isBearer, controllers.category.getAllWithTransactions)
+    app.route('/v1/categories/self/relations')
+        .get(services.authentication.isBearer, controllers.category.getAllWithRelations)
 
 
     /* Scenario Resource */
     app.route('/v1/scenarios/self')
         .get(services.authentication.isBearer, controllers.scenario.getSelfAll)
         .post(services.authentication.isBearer, controllers.scenario.postSelf)
-    app.route('/v1/scenarios/self/budgets')
-        .get(services.authentication.isBearer, controllers.scenario.getSelfAllWithBudgets)
-    app.route('/v1/scenarios/self/category')
-        .get(services.authentication.isBearer, controllers.scenario.getSelfAllWithCategory)
-    app.route('/v1/scenarios/self/transactions')
-        .get(services.authentication.isBearer, controllers.scenario.getSelfAllWithTransactions)
+    // app.route('/v1/scenarios/self/budgets')
+    //     .get(services.authentication.isBearer, controllers.scenario.getSelfAllWithBudgets)
+    // app.route('/v1/scenarios/self/category')
+    //     .get(services.authentication.isBearer, controllers.scenario.getSelfAllWithCategory)
+    app.route('/v1/scenarios/self/relations')
+        .get(services.authentication.isBearer, controllers.scenario.getSelfAllWithRelations)
     app.route('/v1/scenarios/self/:id')
         .get(services.authentication.isBearer, controllers.scenario.getSelf)
         .put(services.authentication.isBearer, controllers.scenario.putSelf)

@@ -18,7 +18,7 @@ module.exports = {
             })
     },
 
-    getAllWithTransactions: function(req, res, next) {
+    getAllWithRelations: function(req, res, next) {
         var isRequired = req.query.required || false
 
         var parameters = {
