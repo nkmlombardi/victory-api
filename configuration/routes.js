@@ -30,6 +30,8 @@ module.exports = function(app) {
     /* Users Endpoint */
     app.route('/v1/users')
         .post(controllers.user.postUser)
+    app.route('/v1/users/self/networth')
+        .get(services.authentication.isBearer, controllers.user.getNetWorthHistory)
 
 
     /* Transactions Resource */
@@ -50,8 +52,6 @@ module.exports = function(app) {
         .get(services.authentication.isBearer, controllers.account.getSelfAllWithTransactions)
     app.route('/v1/accounts/self/plaid')
         .post(services.authentication.isBearer, controllers.account.postPlaidAccounts)
-    app.route('/v1/accounts/self/networth')
-        .get(services.authentication.isBearer, controllers.account.getNetWorthHistory)
 
 
     /* Plaid Services */
