@@ -69,24 +69,41 @@ module.exports = {
         })
     },
 
-    postSelf: function(req, res, next) {
-        req.models.Budget.create({
+    postSelf: async function(req, res, next) {
+        var budget = await req.models.Budget.create({
             user_id: req.user.id,
             name: req.body.name,
             category_id: req.body.category_id,
             scenario_id: req.body.scenario_id,
             type: req.body.type,
             allowance: req.body.allowance
-        }).then(function(budget) {
-            return res.json({
-                status: req.status.success,
-                data: budget
-            })
+        })
+
+        var budgetWithRelations = await req.models.Budget.findOne({
+            where: {
+                id: budget.id,
+                user_id: req.user.id
+            },
+            include: {
+                model: req.models.Category,
+                as: 'category',
+                required: false,
+                include: {
+                    model: req.models.Transaction,
+                    as: 'transactions',
+                    required: false
+                }
+            }
+        })
+
+        return res.json({
+            status: req.status.success,
+            data: budgetWithRelations
         })
     },
 
-    putSelf: function(req, res, next) {
-        req.models.Budget.findOne({
+    putSelf: async function(req, res, next) {
+        var budget = await req.models.Budget.findOne({
             where: {
                 id: req.params.id,
                 user_id: req.user.id
@@ -101,25 +118,53 @@ module.exports = {
                     required: false
                 }
             }
-        }).then(function(budget) {
-            var category = budget.category
-
-            if (budget) {
-                budget.updateAttributes(req.body).then(function(budget) {
-                    budget.category = category
-
-                    return res.json({
-                        status: req.status.success,
-                        data: budget
-                    })
-                })
-            } else {
-                res.json({
-                    status: req.status.error,
-                    message: 'Budget does not exist or does not belong to requesting user.'
-                })
-            }
         })
+
+        if (budget) {
+            var category = budget.category
+            var updateBudget = budget.updateAttributes(req.body)
+            updateBudget.category = category
+
+            return res.json({
+                status: req.status.success,
+                data: budget
+            })
+
+        /**
+         * Needs to be refactored, just copied from POST
+         */
+        } else {
+            var newBudget = await req.models.Budget.create({
+                user_id: req.user.id,
+                name: req.body.name,
+                category_id: req.body.category_id,
+                scenario_id: req.body.scenario_id,
+                type: req.body.type,
+                allowance: req.body.allowance
+            })
+
+            var budgetWithRelations = await req.models.Budget.findOne({
+                where: {
+                    id: newBudget.id,
+                    user_id: req.user.id
+                },
+                include: {
+                    model: req.models.Category,
+                    as: 'category',
+                    required: false,
+                    include: {
+                        model: req.models.Transaction,
+                        as: 'transactions',
+                        required: false
+                    }
+                }
+            })
+
+            return res.json({
+                status: req.status.success,
+                data: budgetWithRelations
+            })
+        }
     },
 
     deleteSelf: function(req, res, next) {

@@ -164,7 +164,7 @@ module.exports = {
         }).then(function(data) {
             res.json({
                 status: req.status.success,
-                data: data
+                data: (data ? true : false)
             })
         })
     }
