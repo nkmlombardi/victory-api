@@ -106,7 +106,7 @@ module.exports = {
         return res.json({
             status: req.status.success,
             data: netWorths,
-            transactions: transactionDays
+            // transactions: transactionDays
         })
     }
 }

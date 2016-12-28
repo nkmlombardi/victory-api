@@ -1,3 +1,5 @@
+var moment = require('moment')
+
 module.exports = function(Sequelize, DataTypes) {
     return Sequelize.define('Budget', {
         id: {
@@ -44,7 +46,9 @@ module.exports = function(Sequelize, DataTypes) {
             type: DataTypes.JSON,
             defaultValue: {
                 text: 'Monthly',
-                value: 2678400000
+                value: 2678400000,
+                start: moment().startOf('month').format(),
+                end: moment().startOf('month').add(1, 'year').format()
             }
         }
     }, {
