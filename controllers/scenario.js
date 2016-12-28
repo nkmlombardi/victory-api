@@ -103,6 +103,20 @@ module.exports = {
         })
     },
 
+    getSelfBudgets: function(req, res, next) {
+        req.models.Budget.findAll({
+            where: {
+                scenario_id: req.params.id,
+                user_id: req.user.id
+            }
+        }).then(function(data) {
+            res.json({
+                status: req.status.success,
+                data: data
+            })
+        })
+    },
+
     postSelf: function(req, res, next) {
         req.models.Scenario.create({
             user_id: req.user.id,

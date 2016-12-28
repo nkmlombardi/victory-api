@@ -90,6 +90,8 @@ module.exports = function(app) {
         .get(services.authentication.isBearer, controllers.scenario.getSelf)
         .put(services.authentication.isBearer, controllers.scenario.putSelf)
         .delete(services.authentication.isBearer, controllers.scenario.deleteSelf)
+    app.route('/v1/scenarios/self/:id/budgets')
+        .get(services.authentication.isBearer, controllers.scenario.getSelfBudgets)
 
 
     /* Budget Resource */
