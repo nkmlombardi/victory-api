@@ -43,13 +43,23 @@ module.exports = function(Sequelize, DataTypes) {
 
         // MILLISECONDS
         interval: {
-            type: DataTypes.JSON,
-            defaultValue: {
-                text: 'Monthly',
-                value: 2678400000,
-                start: moment().startOf('month').format(),
-                end: moment().startOf('month').add(1, 'year').format()
-            }
+            type: DataTypes.BIGINT,
+            defaultValue: 2678400000
+        },
+
+        interval_text: {
+            type: DataTypes.STRING,
+            defaultValue: 'Monthly'
+        },
+
+        start: {
+            type: DataTypes.DATE,
+            defaultValue: moment().startOf('month').toDate()
+        },
+
+        end: {
+            type: DataTypes.DATE,
+            defaultValue: moment().startOf('month').add(1, 'year').toDate()
         }
     }, {
         timestamps: true,

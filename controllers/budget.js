@@ -103,6 +103,7 @@ module.exports = {
     },
 
     putSelf: async function(req, res, next) {
+        console.log('Payload: ', req.body)
         var budget = await req.models.Budget.findOne({
             where: {
                 id: req.params.id,
