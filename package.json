@@ -1,31 +1,35 @@
 {
-    "name": "onelink-api",
-    "description": "This is a global OneLink API that will be consumed by various internal and external applications.",
-    "version": "0.1.0",
-    "scripts": {
-        "start": "babel-watch --presets=es2017 ./server.js"
-    },
-    "dependencies": {
-        "bcryptjs": "^2.3.0",
-        "body-parser": "~1.14.2",
-        "colors": "0.6.2",
-        "express-oi": "0.0.21",
-        "fs": "0.0.2",
-        "fs-extra": "~0.26.4",
-        "helmet": "~1.1.0",
-        "morgan": "~1.6.1",
-        "mysql": "^2.12.0",
-        "node-env-file": "^0.1.8",
-        "passport": "^0.3.2",
-        "passport-http-bearer": "^1.0.1",
-        "passport-local": "^1.0.0",
-        "path": "~0.12.7",
-        "sequelize": "^3.24.1",
-        "sequelize-import": "^1.2.1"
-    },
-    "devDependencies": {
-        "babel-core": "^6.18.2",
-        "babel-preset-es2017": "^6.16.0",
-        "babel-watch": "^2.0.3"
-    }
+  "name": "onelink-api",
+  "description": "This is a global OneLink API that will be consumed by various internal and external applications.",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "babel-watch --presets=es2017 ./server.js"
+  },
+  "dependencies": {
+    "apicache": "^0.7.3",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "~1.14.2",
+    "colors": "0.6.2",
+    "express-oi": "0.0.21",
+    "fs": "0.0.2",
+    "fs-extra": "~0.26.4",
+    "helmet": "~1.1.0",
+    "morgan": "~1.6.1",
+    "mysql": "^2.12.0",
+    "node-env-file": "^0.1.8",
+    "passport": "^0.3.2",
+    "passport-http-bearer": "^1.0.1",
+    "passport-local": "^1.0.0",
+    "path": "~0.12.7",
+    "promise-mysql": "^3.0.0",
+    "sequelize": "^3.24.1",
+    "sequelize-import": "^1.2.1",
+    "socket.io-events": "^0.4.6",
+    "winston": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-preset-es2017": "^6.16.0",
+    "babel-watch": "^2.0.3"
+  }
 }

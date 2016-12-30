@@ -10,12 +10,18 @@ module.exports = {
     },
 
     getClientAllTree: async function(req, res, next) {
-        var sql =   'SELECT C.client_id, P.project_id, O.origin_id, T.target_id ' +
-                    'FROM BB_CLIENT C, BB_PROJECT P, BB_PROJECT_ORIGIN O, BB_PROJECT_TARGET T ' +
-                    'WHERE C.client_id = P.client_id ' +
-                        'AND P.project_id = O.project_id ' +
-                        'AND O.origin_id = T.origin_id ' +
-                    'ORDER BY 1, 2, 3, 4'
+        var sql =   'select C.client_id\n' +
+                    '     , P.project_id\n' +
+                    '     , O.origin_id\n' +
+                    '     , T.target_id\n' +
+                    '  from BB_CLIENT         C\n' +
+                    '     , BB_PROJECT        P\n' +
+                    '     , BB_PROJECT_ORIGIN O\n' +
+                    '     , BB_PROJECT_TARGET T\n' +
+                    ' where C.client_id = P.client_id\n' +
+                    '   and P.project_id = O.project_id\n' +
+                    '   and O.origin_id = T.origin_id\n' +
+                    ' order by 1, 2, 3, 4';
 
         var relations = await req.connection.query(sql)
         var resources = await Promise.props({
@@ -49,8 +55,8 @@ module.exports = {
         return res.json({
             status: req.status.success,
             data: await req.connection.query(
-                `SELECT * FROM BB_PROJECT_ORIGIN WHERE project_id IN (` +
-                    `SELECT project_id FROM BB_PROJECT WHERE client_id = ${req.params.id}` +
+                `SELECT * FROM BB_PROJECT_ORIGIN WHERE project_id IN (\n` +
+                `    SELECT project_id FROM BB_PROJECT WHERE client_id = ${req.params.id}\n` +
                 `)`
             )
         })

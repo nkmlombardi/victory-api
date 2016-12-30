@@ -3,9 +3,7 @@ var helmet = require('helmet')
 var morgan = require('morgan')
 var bodyParser = require('body-parser')
 
-module.exports = function(app, settings) {
-    // Setup & connect to database
-    var database = require('../database')(settings)
+module.exports = function(app, database) {
 
     // Parse the body of requests
     app.use(bodyParser.json())

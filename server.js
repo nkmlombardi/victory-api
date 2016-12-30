@@ -11,13 +11,14 @@ env(__dirname + '/.environment/.private.env')
 
 // Instantiation
 var config = require('./configuration')
+var database = require('./database')(config.settings)
 var app = express()
 var server = http.createServer(app)
 var io = socket.listen(server)
 
 // Bootstrapping
-config.middleware(app, config.settings)
-config.sockets(app, io)
+config.middleware(app, database)
+config.sockets(io, database)
 config.routes(app)
 
 // Execute server
