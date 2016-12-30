@@ -1,4 +1,6 @@
 var moment = require('moment')
+var Sequelize = require('sequelize')
+var util = require('util')
 
 module.exports = {
     getSelfAll: function(req, res, next) {
@@ -51,8 +53,8 @@ module.exports = {
         })
     },
 
-    getSelfAllWithTransactions: function(req, res, next) {
-        req.models.Scenario.findAll({
+    getSelfAllWithTransactions: async function(req, res, next) {
+        var scenarios = await req.models.Scenario.findAll({
             where: { user_id: req.user.id },
             order: [['created_at', 'DESC']],
             include: {
@@ -63,29 +65,38 @@ module.exports = {
                 include: {
                     model: req.models.Category,
                     as: 'category',
-                    required: false,
+                    required: true
+                }
+            }
+        })
 
-                    include: {
-                        model: req.models.Transaction,
-                        as: 'transactions',
-                        required: false,
+        /**
+         * We are iterating through each budget and attaching it's transactions based on the
+         * current period for the budget. Don't forget that we can't add properties to Sequelize
+         * instance objects, so we need to convert them to JSON objects first.
+         */
+        res.json({
+            status: req.status.success,
+            data: await Promise.all(scenarios.map(async function(scenario) {
+                scenario.budgets = await Promise.all(scenario.budgets.map(async function(budget) {
+                    var transactions = await budget.category.getTransactions({
                         where: {
                             date: {
                                 $between: [
-                                    moment(req.query.startDate).format(),
-                                    moment(req.query.endDate).format()
+                                    budget.period.start,
+                                    budget.period.end
                                 ]
                             }
                         }
-                    }
-                }
-            }
+                    })
 
-        }).then(function(data) {
-            res.json({
-                status: req.status.success,
-                data: data
-            })
+                    budget = budget.toJSON()
+                    budget.category.transactions = transactions
+                    return budget
+                }))
+
+                return scenario
+            }))
         })
     },
 

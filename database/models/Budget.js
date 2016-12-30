@@ -81,6 +81,44 @@ module.exports = function(Sequelize, DataTypes) {
                     as: 'transactions'
                 })
             }
+        },
+        getterMethods: {
+            period: function() {
+                if (this.interval_text === 'Monthly') {
+                    return {
+                        start: moment().startOf('month').format(),
+                        end: moment().endOf('month').format()
+                    }
+                }
+
+                if (this.interval_text === 'Weekly') {
+                    return {
+                        start: moment().startOf('week').format(),
+                        end: moment().endOf('week').format()
+                    }
+                }
+
+                var range = {
+                    now: moment(),
+                    start: moment(this.start),
+                    end: moment(this.start).add(this.interval, 'milliseconds')
+                }
+
+                while (range.end < range.now) {
+                    // Make sure we set some hard limit
+                    if (range.start > this.end) {
+                        break;
+                    }
+
+                    range.start.add(this.interval)
+                    range.end.add(this.interval)
+                }
+
+                return {
+                    start: range.start.format(),
+                    end: range.end.format()
+                }
+            }
         }
     })
 }
