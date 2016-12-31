@@ -1,3 +1,5 @@
+var moment = require('moment')
+
 module.exports = {
     getSelfAll: function(req, res, next) {
         req.models.Budget.findAll({
@@ -72,11 +74,13 @@ module.exports = {
     postSelf: async function(req, res, next) {
         var budget = await req.models.Budget.create({
             user_id: req.user.id,
-            name: req.body.name,
             category_id: req.body.category_id,
             scenario_id: req.body.scenario_id,
-            type: req.body.type,
-            allowance: req.body.allowance
+            allowance: req.body.allowance,
+            interval: req.body.interval,
+            interval_text: req.body.interval_text,
+            start: req.body.start,
+            end: req.body.end
         })
 
         var budgetWithRelations = await req.models.Budget.findOne({
@@ -103,69 +107,64 @@ module.exports = {
     },
 
     putSelf: async function(req, res, next) {
-        console.log('Payload: ', req.body)
-        var budget = await req.models.Budget.findOne({
+        req.models.Budget.findOne({
             where: {
                 id: req.params.id,
                 user_id: req.user.id
-            },
-            include: {
-                model: req.models.Category,
-                as: 'category',
-                required: false,
-                include: {
-                    model: req.models.Transaction,
-                    as: 'transactions',
-                    required: false
-                }
             }
-        })
+        }).then(async function(budget) {
+            if (budget) {
+                budget = (await budget.update({
+                    name: req.body.name,
+                    category_id: req.body.category_id,
+                    scenario_id: req.body.scenario_id,
+                    allowance: req.body.allowance,
+                    interval: req.body.interval,
+                    interval_text: req.body.interval_text,
+                    start: req.body.start,
+                    end: req.body.end
+                })).toJSON()
 
-        if (budget) {
-            var category = budget.category
-            var updateBudget = budget.updateAttributes(req.body)
-            updateBudget.category = category
-
-            return res.json({
-                status: req.status.success,
-                data: budget
-            })
-
-        /**
-         * Needs to be refactored, just copied from POST
-         */
-        } else {
-            var newBudget = await req.models.Budget.create({
-                user_id: req.user.id,
-                name: req.body.name,
-                category_id: req.body.category_id,
-                scenario_id: req.body.scenario_id,
-                type: req.body.type,
-                allowance: req.body.allowance
-            })
-
-            var budgetWithRelations = await req.models.Budget.findOne({
-                where: {
-                    id: newBudget.id,
-                    user_id: req.user.id
-                },
-                include: {
-                    model: req.models.Category,
-                    as: 'category',
-                    required: false,
+                budget.category = await req.models.Category.findOne({
+                    where: {
+                        id: budget.category_id
+                    },
                     include: {
                         model: req.models.Transaction,
                         as: 'transactions',
-                        required: false
+                        required: false,
+                        where: {
+                            user_id: req.user.id,
+                            date: {
+                                $gte: moment(budget.period.start).format(),
+                                $lte: moment(budget.period.end).format()
+                            }
+                        }
                     }
-                }
-            })
+                })
 
-            return res.json({
-                status: req.status.success,
-                data: budgetWithRelations
-            })
-        }
+                res.json({
+                    status: req.status.success,
+                    data: budget
+                })
+            } else {
+                var budget = await req.models.Budget.create({
+                    user_id: req.user.id,
+                    category_id: req.body.category_id,
+                    scenario_id: req.body.scenario_id,
+                    allowance: req.body.allowance,
+                    interval: req.body.interval,
+                    interval_text: req.body.interval_text,
+                    start: req.body.start,
+                    end: req.body.end
+                })
+
+                res.json({
+                    status: req.status.success,
+                    data: budget
+                })
+            }
+        })
     },
 
     deleteSelf: function(req, res, next) {
