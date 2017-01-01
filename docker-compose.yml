@@ -3,8 +3,8 @@ services:
     api:
         build: .
         env_file:
-            - ./.environment/.public.env
-            - ./.environment/.private.env
+            - ./.environment/public.env
+            - ./.environment/private.env
         links:
             - "database"
         ports:
@@ -19,8 +19,8 @@ services:
     database:
         image: postgres
         env_file:
-            - ./.environment/.public.env
-            - ./.environment/.private.env
+            - ./.environment/public.env
+            - ./.environment/private.env
         ports:
             - "5432:5432"
         volumes:
