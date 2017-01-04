@@ -57,7 +57,7 @@ module.exports = function(app) {
     /* Plaid Services */
     app.route('/v1/plaid/connect')
         .post(services.authentication.isBearer, controllers.plaid.postConnect)
-    app.route('/v1/plaid/exchange')
+    app.route('/v1/plaid/self/exchange')
         .post(services.authentication.isBearer, controllers.plaid.postExchange)
     app.route('/v1/plaid/self/accounts')
         .get(services.authentication.isBearer, controllers.plaid.getRetrieveAccounts)

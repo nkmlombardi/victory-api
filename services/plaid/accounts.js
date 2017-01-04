@@ -39,9 +39,7 @@ var retrieveAccounts = async function(models, plaid, user_id, plaid_tokens) {
                         accountsResponse.accounts,
                         user_id
                     ), {
-                        where: {
-                            plaid_id: this._id
-                        }
+                        where: 'plaid_id'
                     }
                 )
             )

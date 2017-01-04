@@ -112,7 +112,9 @@ module.exports = function(Sequelize, DataTypes) {
             upsertArray: async function(transactions, options) {
                 return await transactions.map(async function(transaction) {
                     return await this.upsertObject({
-                        where: options.where,
+                        where: {
+                            [options.where]: transaction[options.where]
+                        },
                         defaults: transaction
                     })
                 }, this)

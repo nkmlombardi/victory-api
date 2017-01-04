@@ -69,9 +69,7 @@ var retrieveTransactions = async function(models, plaid, user_id, plaid_tokens) 
                                 // used when determining if a Transaction should
                                 // be overwritten or if a new Transaction should
                                 // be created
-                                where: {
-                                    plaid_id: this._id
-                                }
+                                where: 'plaid_id'
                             }
                         )
                     )
