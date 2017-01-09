@@ -61,7 +61,7 @@ module.exports = {
         })
     },
 
-    getOriginTargets: function(req, res, next) {
+    getOriginTargets: async function(req, res, next) {
         return res.json({
             status: req.status.success,
             data: await req.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE origin_id = ${req.params.id}`)
