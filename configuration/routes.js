@@ -55,7 +55,7 @@ module.exports = function(app) {
         //     app.route('/v1/origins/:id/project')                .get(      cache('1 hour'),    controllers.origin.getOriginProject)
 
         //     //// One to Many Relationships
-        //     app.route('/v1/origins/:id/targets')                .get(      cache('1 hour'),    controllers.origin.getOriginTargets)
+            app.route('/v1/origins/:id/targets')                .get(      cache('1 hour'),    controllers.origin.getOriginTargets)
         //     // app.route('/v1/origins/:id/servers')                .get(      cache('1 hour'),    controllers.origin.getOriginServers)
         //     app.route('/v1/origins/:id/clusters')               .get(      cache('1 hour'),    controllers.origin.getOriginClusters)
         //     app.route('/v1/origins/:id/datacenters')            .get(      cache('1 hour'),    controllers.origin.getOriginDatacenters)
