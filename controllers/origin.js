@@ -2,10 +2,11 @@ var treebuilder = require('../services/treebuilder');
 var Promise = require("bluebird");
 
 module.exports = {
-    getOriginAll: function(req, res, next) {
-        req.models.origin.findAll().then(function(origins) {
-            return res.json(origins);
-        });
+    getOriginAll: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_PROJECT_ORIGIN`)
+        })
     },
 
     getOriginAllTree: function(req, res, next) {
@@ -18,10 +19,11 @@ module.exports = {
         });
     },
 
-    getOrigin: function(req, res, next) {
-        req.models.origin.findById(req.params.id).then(function(origin) {
-            return res.json(origin);
-        });
+    getOrigin: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_PROJECT_ORIGIN WHERE origin_id = ${req.params.id}`)
+        })
     },
 
     getOriginTree: function(req, res, next) {
