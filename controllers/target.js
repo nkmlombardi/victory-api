@@ -1,14 +1,16 @@
 module.exports = {
-    getTargets: function(req, res, next) {
-        req.models.target.findAll().then(function(targets) {
-            return res.json(targets);
-        });
+    getTargets: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_PROJECT_TARGET`)
+        })
     },
 
-    getTarget: function(req, res, next) {
-        req.models.target.findById(req.params.id).then(function(targets) {
-            return res.json(targets);
-        });
+    getTarget: async function(req, res, next) {
+        return res.json({
+            status: req.status.success,
+            data: await req.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE target_id = ${req.params.id}`)
+        })
     },
 
     getTargetClient: function(req, res, next) {
