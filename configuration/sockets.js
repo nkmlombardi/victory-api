@@ -32,7 +32,34 @@ module.exports = function(io, database) {
                 socket.emit('datacenter:new', {
                     data: datacenter
                 })
-            }, (Math.floor((Math.random() * 20) + 1)) * 500)
+            }, (Math.floor((Math.random() * 120) + 1)) * 500)
         })
+
+
+        // var clients = await database.connection.query(`SELECT * FROM BB_CLIENT`)
+
+        // clients.forEach(function(client, index) {
+        //     setInterval(function() {
+        //         client.status = { stable: Math.floor((Math.random() * 100) + 1) }
+        //         client.status.warning = Math.floor(((100 - client.status.stable) / 3) * 2)
+        //         client.status.danger = Math.floor((100 - client.status.stable) / 3)
+        //         client.health = []
+
+        //         // Generate health history
+        //         for (var i = 0; i < 24; i++) {
+        //             client.health.push({
+        //                 date: moment().startOf('hour').subtract(i + 1, 'hour').format(),
+        //                 status: Math.floor((Math.random() * 35) + 65)
+        //             })
+        //         }
+
+        //         // console.log('client:new', client)
+
+        //         socket.emit('client:new', {
+        //             data: client
+        //         })
+        //     }, (Math.floor((Math.random() * 120) + 1)) * 500)
+        // })
+
     })
 }

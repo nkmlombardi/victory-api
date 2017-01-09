@@ -44,10 +44,10 @@ module.exports = function(app) {
         //     app.route('/v1/projects/:id/datacenters')           .get(      cache('1 hour'),    controllers.project.getProjectDatacenters)
 
 
-        // // Origin Resource
-        // app.route('/v1/origins')                                .get(      cache('1 hour'),    controllers.origin.getOriginAll)
+        // Origin Resource
+        app.route('/v1/origins')                                .get(      cache('1 hour'),    controllers.origin.getOriginAll)
         // app.route('/v1/origins/tree')                           .get(      cache('1 hour'),    controllers.origin.getOriginAllTree)
-        // app.route('/v1/origins/:id/')                           .get(      cache('1 hour'),    controllers.origin.getOrigin)
+        app.route('/v1/origins/:id/')                           .get(      cache('1 hour'),    controllers.origin.getOrigin)
         // app.route('/v1/origins/:id/tree')                       .get(      cache('1 hour'),    controllers.origin.getOriginTree)
 
         //     //// One to One Relationships
@@ -61,9 +61,9 @@ module.exports = function(app) {
         //     app.route('/v1/origins/:id/datacenters')            .get(      cache('1 hour'),    controllers.origin.getOriginDatacenters)
 
 
-        // // Target Resource
-        // app.route('/v1/targets')                                .get(      cache('1 hour'),    controllers.target.getTargets)
-        // app.route('/v1/targets/:id/')                           .get(      cache('1 hour'),    controllers.target.getTarget)
+        // Target Resource
+        app.route('/v1/targets')                                .get(      cache('1 hour'),    controllers.target.getTargets)
+        app.route('/v1/targets/:id/')                           .get(      cache('1 hour'),    controllers.target.getTarget)
 
         //     //// One to One Relationships
         //     app.route('/v1/targets/:id/client')                 .get(      cache('1 hour'),    controllers.target.getTargetClient)
