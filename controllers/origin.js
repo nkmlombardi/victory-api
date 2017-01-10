@@ -23,11 +23,11 @@ module.exports = {
         })
     },
 
-    getOriginAllHealth: async function() {
+    getOriginAllHealth: async function(req, res, next) {
         return res.json({
-            status: success,
+            status: req.status.success,
             data: await database.connection.query(
-                `SELECT origin_id AS id, statistic_health_score AS health, health_dtm as timestamp FROM BB_PROJECT_ORIGIN_HEALTH`
+                `SELECT origin_id AS id, statistic_health_score AS health, health_dtm AS timestamp FROM BB_PROJECT_ORIGIN_HEALTH`
             )
         })
     }
