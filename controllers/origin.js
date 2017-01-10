@@ -21,5 +21,14 @@ module.exports = {
             status: req.status.success,
             data: await req.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE origin_id = ${req.params.id}`)
         })
+    },
+
+    getOriginAllHealth: async function() {
+        return res.json({
+            status: success,
+            data: await database.connection.query(
+                `SELECT origin_id AS id, statistic_health_score AS health, health_dtm as timestamp FROM BB_PROJECT_ORIGIN_HEALTH`
+            )
+        })
     }
 }

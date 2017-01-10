@@ -25,6 +25,7 @@ module.exports = function(app) {
     // Origin Resource
     app.route('/v1/origins')                                .get(      cache('1 hour'),    controllers.origin.getOriginAll)
     app.route('/v1/origins/:id/')                           .get(      cache('1 hour'),    controllers.origin.getOrigin)
+    app.route('/v1/origins/health')                         .get(                          controllers.origin.getOriginAllHealth)
 
         //// One to Many Relationships
         app.route('/v1/origins/:id/targets')                .get(      cache('1 hour'),    controllers.origin.getOriginTargets)
