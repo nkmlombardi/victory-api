@@ -24,9 +24,10 @@ module.exports = function(app) {
 
     // Origin Resource
     app.route('/v1/origins')                                .get(      cache('1 hour'),    controllers.origin.getOriginAll)
-    app.route('/v1/origins/health')                         .get(                          controllers.origin.getOriginAllHealth)
+    app.route('/v1/origins/health')                         .get(controllers.origin.getOriginAllHealth)
+
     app.route('/v1/origins/:id/')                           .get(      cache('1 hour'),    controllers.origin.getOrigin)
-    app.route('/v1/origins/:id/health')                     .get(                          controllers.origin.getOriginHealth)
+    app.route('/v1/origins/:id/health')                     .get(controllers.origin.getOriginHealth)
 
         //// One to Many Relationships
         app.route('/v1/origins/:id/targets')                .get(      cache('1 hour'),    controllers.origin.getOriginTargets)

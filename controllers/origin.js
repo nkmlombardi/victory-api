@@ -23,19 +23,28 @@ module.exports = {
         })
     },
 
-    getOriginAllHealth: async function(req, res, next) {
+    getOriginHealth: async function(req, res, next) {
         return res.json({
             status: req.status.success,
-            data: await database.connection.query(
-                `SELECT origin_id AS id, statistic_health_score AS health, health_dtm AS timestamp FROM BB_PROJECT_ORIGIN_HEALTH`
+            data: await req.connection.query(
+                `SELECT` +
+                    `origin_id                  AS id, ` +
+                    `statistic_health_score     AS health, ` +
+                    `health_dtm                 AS timestamp ` +
+                `FROM       BB_PROJECT_ORIGIN_HEALTH ` +
+                `WHERE      origin_id = ${req.params.id} ` +
+                `ORDER BY   timestamp DESC`
             )
         })
     },
 
-    getOriginHealth: async function(req, res, next) {
+    getOriginAllHealth: async function(req, res, next) {
         return res.json({
             status: req.status.success,
-            data: await req.connection.query(`SELECT * FROM BB_PROJECT_ORIGIN WHERE origin_id = ${req.params.id}`)
+            data: await req.connection.query(
+                `SELECT     origin_id AS id, statistic_health_score AS health, health_dtm AS timestamp ` +
+                `FROM       BB_PROJECT_ORIGIN_HEALTH`
+            )
         })
     }
 }
