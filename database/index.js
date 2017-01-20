@@ -30,7 +30,7 @@ module.exports = function(settings) {
             seeder.down(database)
             seeder.up(database)
 
-            console.log('Database Seeded.')
+            console.log('Database Seeded.'.green)
         }
     }).catch(function(error) {
         console.log('Failed to sync to database: '.red, error)
@@ -43,7 +43,7 @@ module.exports = function(settings) {
         user: settings.mysql.user,
         password: settings.mysql.password
     }).then(function(conn) {
-        console.log('Vanila MYSQL Connection connected.'.yellow)
+        console.log('Vanilla MYSQL Connection established.'.yellow)
         database.connection = conn
     })
 

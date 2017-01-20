@@ -23,7 +23,7 @@ config.routes(app)
 
 // Execute server
 server.listen(process.env.NODE_PORT, function() {
-    console.log(('Listening on port ' + process.env.NODE_PORT).green)
+    console.log(('Listening on port ' + process.env.NODE_PORT + '.').green)
 
 }).on('error', function(error) {
     if (error.code == 'EADDRINUSE') {
