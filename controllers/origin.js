@@ -27,13 +27,10 @@ module.exports = {
         return res.json({
             status: req.status.success,
             data: await req.connection.query(
-                `SELECT` +
-                    `origin_id                  AS id, ` +
-                    `statistic_health_score     AS health, ` +
-                    `health_dtm                 AS timestamp ` +
+                `SELECT     origin_id, statistic_health_score AS health_score, health_dtm ` +
                 `FROM       BB_PROJECT_ORIGIN_HEALTH ` +
                 `WHERE      origin_id = ${req.params.id} ` +
-                `ORDER BY   timestamp DESC`
+                `ORDER BY   health_dtm DESC`
             )
         })
     },
@@ -42,8 +39,9 @@ module.exports = {
         return res.json({
             status: req.status.success,
             data: await req.connection.query(
-                `SELECT     origin_id AS id, statistic_health_score AS health, health_dtm AS timestamp ` +
-                `FROM       BB_PROJECT_ORIGIN_HEALTH`
+                `SELECT DISTINCT origin_id, AVG(statistic_health_score) AS health_percent, MAX(health_dtm) as health_dtm ` +
+                `FROM BB_PROJECT_ORIGIN_HEALTH ` +
+                `GROUP BY origin_id`
             )
         })
     }
