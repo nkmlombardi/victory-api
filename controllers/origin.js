@@ -27,7 +27,7 @@ module.exports = {
         return res.json({
             status: req.status.success,
             data: await req.connection.query(
-                `SELECT` +
+                `SELECT ` +
                     `origin_id                  AS id, ` +
                     `statistic_health_score     AS health, ` +
                     `health_dtm                 AS timestamp ` +
