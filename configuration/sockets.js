@@ -7,33 +7,54 @@ module.exports = function(io, database) {
     io.on('connection', async function(socket) {
         console.log('User connected...')
 
+        var emitters = []
+
         socket.on('disconnect', function() {
             console.log('User disconnected...')
+
+            emitters.forEach((emitter) => {
+                clearInterval(emitter)
+            })
         })
 
-        // var datacenters = await database.connection.query(`SELECT * FROM BB_DATA_CENTER`)
 
-        // datacenters.forEach(function(datacenter, index) {
-        //     setInterval(function() {
-        //         datacenter.status = { stable: Math.floor((Math.random() * 100) + 1) }
-        //         datacenter.status.warning = Math.floor(((100 - datacenter.status.stable) / 3) * 2)
-        //         datacenter.status.danger = Math.floor((100 - datacenter.status.stable) / 3)
-        //         datacenter.health = []
+        /*
+            Emit Datacenter Healths
+         */
+        emitters.push(setInterval(async () => {
+            console.log('datacenters:health event emitted to:', socket.id)
+            socket.emit('datacenters:health', {
+                    status: 'success',
+                    data: await database.connection.query(`
+                        SELECT
+                            data_center_code                    AS id,
+                            AVG(statistic_health_score)         AS health,
+                            MAX(health_dtm)                     AS time
+                        FROM        BB_DATA_CENTER_HEALTH
+                        GROUP BY    id
+                    `)
+                }
+            )
+        }, 5000))
 
-        //         // Generate health history
-        //         for (var i = 0; i < 24; i++) {
-        //             datacenter.health.push({
-        //                 date: moment().startOf('hour').subtract(i + 1, 'hour').format(),
-        //                 status: Math.floor((Math.random() * 35) + 65)
-        //             })
-        //         }
 
-        //         // console.log('datacenter:new', datacenter)
-
-        //         socket.emit('datacenter:new', {
-        //             data: datacenter
-        //         })
-        //     }, (Math.floor((Math.random() * 120) + 1)) * 500)
-        // })
+        /*
+            Emit Origin Healths
+         */
+        emitters.push(setInterval(async () => {
+            console.log('origins:health event emitted to:', socket.id)
+            socket.emit('origins:health', {
+                    status: 'success',
+                    data: await database.connection.query(`
+                        SELECT
+                            origin_id                           AS id,
+                            AVG(statistic_health_score)         AS health,
+                            MAX(health_dtm)                     AS time
+                        FROM        BB_PROJECT_ORIGIN_HEALTH
+                        GROUP BY    id
+                    `)
+                }
+            )
+        }, 5000))
     })
 }

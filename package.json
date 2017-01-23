@@ -10,6 +10,7 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.14.2",
     "colors": "0.6.2",
+    "deep-diff": "^0.3.4",
     "express-oi": "0.0.21",
     "fs": "0.0.2",
     "fs-extra": "~0.26.4",
