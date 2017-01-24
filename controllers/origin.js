@@ -27,14 +27,10 @@ module.exports = {
         return res.json({
             status: req.status.success,
             data: await req.connection.query(
-<<<<<<< HEAD
                 `SELECT ` +
                     `origin_id                  AS id, ` +
                     `statistic_health_score     AS health, ` +
                     `health_dtm                 AS timestamp ` +
-=======
-                `SELECT     origin_id, statistic_health_score AS health_score, health_dtm ` +
->>>>>>> 0a4a985118c0f2f2f52f601c8aa3561adb8254b5
                 `FROM       BB_PROJECT_ORIGIN_HEALTH ` +
                 `WHERE      origin_id = ${req.params.id} ` +
                 `ORDER BY   health_dtm DESC`
