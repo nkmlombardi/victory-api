@@ -23,14 +23,17 @@ module.exports = function(settings) {
 
     // Sync models / migrations / seeds to database
     database.sequelize.sync({ force: true }).then(function() {
-        console.log('Models force synced to database.'.green)
-
+        if (process.env.NODE_ENV !== 'test'){
+            console.log('Models force synced to database.'.green)
+        }
         // Seed database if in development mode
         if (process.env.NODE_ENV === 'development') {
             seeder.down(database)
             seeder.up(database)
 
-            console.log('Database Seeded.'.green)
+            if (process.env.NODE_ENV !== 'test'){
+                console.log('Database Seeded.'.green)
+            }
         }
     }).catch(function(error) {
         console.log('Failed to sync to database: '.red, error)
@@ -43,7 +46,9 @@ module.exports = function(settings) {
         user: settings.mysql.user,
         password: settings.mysql.password
     }).then(function(conn) {
-        console.log('Vanilla MYSQL Connection established.'.yellow)
+        if (process.env.NODE_ENV !== 'test'){
+            console.log('Vanilla MYSQL Connection established.'.yellow)
+        }
         database.connection = conn
     })
 

@@ -1,3 +1,5 @@
+process.env.NODE_ENV = 'test'
+
 var plyfil = require('babel-polyfill')
 
 let chai = require('chai')

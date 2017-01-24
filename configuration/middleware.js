@@ -9,7 +9,9 @@ module.exports = function(app, database) {
     app.use(bodyParser.json())
 
     // Logging
-    app.use(morgan('short'))
+    if (process.env.NODE_ENV !== 'test'){
+        app.use(morgan('dev'))
+    }
 
     // Security
     app.use(helmet())
