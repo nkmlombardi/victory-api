@@ -4,38 +4,34 @@ var morgan = require('morgan')
 var bodyParser = require('body-parser')
 var httpStatus = require('http-status-codes')
 var errorhandler = require('../services/error')[process.env.NODE_ENV]
-var winston = require('winston')
-var expressWinston = require('express-winston')
+var logger = require('../services/logger')
 
-module.exports = function (app, database) {
+
+module.exports = function(app, database) {
 
     // Parse the body of requests
     app.use(bodyParser.json())
 
     // Logging
-    if (process.env.NODE_ENV !== 'test') {
-        app.use(morgan('dev'))
-    }
-
-    winston.level='debug'
-
-    winston.info('info_test')
-    winston.debug('debug_test')
-
-    stream = {
-        write: function (message, encoding) {
-            logger.info(message);
-        }
-    }
+    app.use(morgan('dev', {
+        stream: { write: message => logger.console.info(message) }}
+    ))
+    app.use(morgan('tiny', {
+        stream: { write: message => logger.file.info(message) }}
+    ))
 
     // Security
     app.use(helmet())
 
-    // Error Handling
-    // defining errors
-    app.use(function (request, response, next) {
+    // Http status codes for request objects
+    app.use(function(request, response, next) {
         request.status = httpStatus
-        request.errorHandler = errorhandler
+        next()
+    })
+
+    // Error Handling
+    app.use(function(request, response, next) {
+        response.errorHandler = errorhandler
         next()
     })
 

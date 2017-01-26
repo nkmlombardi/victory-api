@@ -1,6 +1,3 @@
-var treebuilder = require('../services/treebuilder');
-var Promise = require("bluebird");
-
 module.exports = {
     getProjectAll: function(request, response, next) {
         request.models.project.findAll().then(function(projects) {

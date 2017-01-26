@@ -1,11 +1,17 @@
 var internal = require('./errors')
 
 // Figure out how to process database errors, and application errors respectively
-module.exports = function(error, request, response) {
+module.exports = function(error, request, response, next) {
     switch (error) {
-        case 10000:
+        case 1000:
             return response.json({
                 status: request.status['NOT_FOUND'],
+                message: internal[error]
+            })
+
+        case 1001:
+            return response.json({
+                status: request.status['BAD_REQUEST'],
                 message: internal[error]
             })
 
@@ -16,4 +22,5 @@ module.exports = function(error, request, response) {
                 data: error
             })
     }
+    next()
 }

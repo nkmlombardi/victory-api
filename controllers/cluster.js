@@ -26,10 +26,9 @@ module.exports = {
         }
 
         if (query.length === 0) return request.errorHandler(10000, request, response)
-
-        response.json({
-            status: request.status['OK'],
-            data: query
-        })
+            response.json({
+                status: request.status['OK'],
+                data: query
+            })
     }
 }

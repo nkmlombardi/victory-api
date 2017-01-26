@@ -1,6 +1,3 @@
-var treebuilder = require('../services/treebuilder')
-var Promise = require("bluebird")
-
 module.exports = {
     getOriginAll: async function(request, response, next) {
         return response.json({
