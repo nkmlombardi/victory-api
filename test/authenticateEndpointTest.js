@@ -12,8 +12,8 @@ describe('Authentication endpoints', () => {
     it('should return an object trying to authenticate', function(done) {
         chai.request(server)
         .get('/v1/authenticate')
-        .end((err, res) => {
-            res.body.should.be.a('object')
+        .end((error, response) => {
+            response.body.should.be.a('object')
             done()
         })
     })

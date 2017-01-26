@@ -1,15 +1,15 @@
 module.exports = {
-    getTargets: async function(req, res, next) {
-        return res.json({
-            status: req.status.success,
-            data: await req.connection.query(`SELECT * FROM BB_PROJECT_TARGET`)
+    getTargets: async function(request, response, next) {
+        return response.json({
+            status: request.status.success,
+            data: await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET`)
         })
     },
 
-    getTarget: async function(req, res, next) {
-        return res.json({
-            status: req.status.success,
-            data: await req.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE target_id = ${req.params.id}`)
+    getTarget: async function(request, response, next) {
+        return response.json({
+            status: request.status.success,
+            data: await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE target_id = ${request.params.id}`)
         })
     }
 }

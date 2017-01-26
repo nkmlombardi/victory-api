@@ -10,40 +10,40 @@ describe('Origins', () => {
     it('should return an object containing a success status', function(done) {
         chai.request(server)
         .get('/v1/origins')
-        .end((err, res) => {
-            res.body.should.be.a('object')
-            res.body.should.have.property('status').eql('success')
-            done(err)
+        .end((error, response) => {
+            response.body.should.be.a('object')
+            response.body.should.have.property('status').eql('success')
+            done(error)
         })
     }),
     it('the object should have a data array of objects', function(done) {
         chai.request(server)
         .get('/v1/origins')
-        .end((err, res) => {
-            res.body.should.have.property('data')
-            res.body.data.should.be.a('array')
-            done(err)
+        .end((error, response) => {
+            response.body.should.have.property('data')
+            response.body.data.should.be.a('array')
+            done(error)
         })
     }),
     it('should have an array containing at least one origin object', function(done) {
         chai.request(server)
         .get('/v1/origins')
-        .end((err, res) => {
-            res.body.data[0].should.be.a('object')
-            res.body.data.length.should.be.gt(0)
-            done(err)
+        .end((error, response) => {
+            response.body.data[0].should.be.a('object')
+            response.body.data.length.should.be.gt(0)
+            done(error)
         })
     }),
     it('should be able to query a single origin by its id', function (done) {
         chai.request(server)
         .get('/v1/origins')
-        .end((err, res) => {
-            var originId =  + res.body.data[0].origin_id
+        .end((error, response) => {
+            var originId =  + response.body.data[0].origin_id
             chai.request(server)
             .get('/v1/origins/' + originId)
-            .end((err, res) => {
-                res.body.data[0].should.be.a('object')
-                res.body.data[0].origin_id.should.be.deep.eql(originId)
+            .end((error, response) => {
+                response.body.data[0].should.be.a('object')
+                response.body.data[0].origin_id.should.be.deep.eql(originId)
                 done()
             })
         })
@@ -51,16 +51,16 @@ describe('Origins', () => {
     it('should return targets for a specified origin', function(done) {
         chai.request(server)
         .get('/v1/origins')
-        .end((err, res) => {
-            var originId =  + res.body.data[0].origin_id
+        .end((error, response) => {
+            var originId =  + response.body.data[0].origin_id
             chai.request(server)
             .get('/v1/origins/' + originId + '/targets')
-            .end((err, res) => {
-                res.body.should.have.property('status')
-                res.body.status.should.be.eql('success')
-                res.body.data.should.have.length.gt(0)
-                res.body.data[0].should.be.a('object')
-                res.body.data[0].origin_id.should.be.deep.eql(originId)
+            .end((error, response) => {
+                response.body.should.have.property('status')
+                response.body.status.should.be.eql('success')
+                response.body.data.should.have.length.gt(0)
+                response.body.data[0].should.be.a('object')
+                response.body.data[0].origin_id.should.be.deep.eql(originId)
                 done()
             })
         })
@@ -68,30 +68,30 @@ describe('Origins', () => {
     it.skip('should return origin health', function(done) {
         chai.request(server)
         .get('/v1/origins/health')
-        .end((err, res) => {
-            res.body.should.have.property('status')
-            res.body.status.should.be.eql('success')
-            res.body.data.should.have.length.gt(0)
-            res.body.data[0].should.be.a('object')
-            res.body.data[0].should.have.property('health')
-            res.body.data[0].health.should.be.a('int')
+        .end((error, response) => {
+            response.body.should.have.property('status')
+            response.body.status.should.be.eql('success')
+            response.body.data.should.have.length.gt(0)
+            response.body.data[0].should.be.a('object')
+            response.body.data[0].should.have.property('health')
+            response.body.data[0].health.should.be.a('int')
             done()
         })
     }),
     it.skip('should return health for specified origin', function(done) {
         chai.request(server)
         .get('/v1/origins')
-        .end((err, res) => {
-            var originId =  + res.body.data[0].origin_id
+        .end((error, response) => {
+            var originId =  + response.body.data[0].origin_id
             chai.request(server)
             .get('/v1/origins/' + originId + '/health')
-            .end((err, res) => {
-                res.body.should.have.property('status')
-                res.body.status.should.be.eql('success')
-                res.body.data.should.have.length.gt(0)
-                res.body.data[0].should.be.a('object')
-                res.body.data[0].should.have.property('health')
-                res.body.data[0].health.should.be.a('int')
+            .end((error, response) => {
+                response.body.should.have.property('status')
+                response.body.status.should.be.eql('success')
+                response.body.data.should.have.length.gt(0)
+                response.body.data[0].should.be.a('object')
+                response.body.data[0].should.have.property('health')
+                response.body.data[0].health.should.be.a('int')
                 done()
             })
         })

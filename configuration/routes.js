@@ -2,20 +2,28 @@ var controllers = require('../controllers')
 var services = require('../services')
 var cache = require('apicache').middleware
 
+
 module.exports = function(app) {
 
+    // Testing error handling
+    // app.get('/v1/error', function createError(request, response, next) {
+    //     var err = new Error('Sample error');
+    //     err.status = 500;
+    //     next(err);
+    // });
 
     // Base Endpoint
-    app.route('/')                                              .get(function(req, res, next) { res.sendStatus(200) })
+    app.route('/')                                              .get(function(request, response, next) { response.sendStatus(200) })
     app.route('/v1/authenticate')                               .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
-
 
     /*
         OneLink Software
      */
 
     // Client Resource
-    app.route('/v1/clients')                                .get(      cache('1 hour'),    controllers.client.getClientAll)
+    app.route('/v1/clients')
+    .get(cache('1 hour'),controllers.client.getClientAll)
+
     app.route('/v1/clients/:id')                            .get(      cache('1 hour'),    controllers.client.getClient)
 
         //// One to Many Relationships

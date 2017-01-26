@@ -2,15 +2,15 @@ var passport = require('passport')
 var strategy = require('passport-local').Strategy
 
 passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
-    async function(req, email, password, callback) {
+    async function(request, email, password, callback) {
         try {
-            var user = await req.models.User.findOne({
+            var user = await request.models.User.findOne({
                 where: {
                     email: email
                 }
             })
         } catch(error) {
-            console.error('Database error retrieving User during local authentication: ', req, email, error)
+            console.error('Database error retrieving User during local authentication: ', request, email, error)
             return callback(error)
         }
 
@@ -25,7 +25,7 @@ passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
             if (!isMatch) { return callback(null, false) }
 
             // If password was correct
-            req.strategy = 'local'
+            request.strategy = 'local'
             return callback(null, user)
         })
     }
