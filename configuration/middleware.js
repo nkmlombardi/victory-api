@@ -2,6 +2,10 @@
 var helmet = require('helmet')
 var morgan = require('morgan')
 var bodyParser = require('body-parser')
+var httpStatus = require('http-status-codes')
+var errorhandler = require('../services/error')[process.env.NODE_ENV]
+var logger = require('../services/logger')
+
 
 module.exports = function(app, database) {
 
@@ -9,32 +13,42 @@ module.exports = function(app, database) {
     app.use(bodyParser.json())
 
     // Logging
-    app.use(morgan('short'))
+    if (process.env.NODE_ENV !== 'test') {
+        app.use(morgan('dev', {
+            stream: { write: message => logger.console.info(message) }}
+        ))
+        app.use(morgan('tiny', {
+            stream: { write: message => logger.file.info(message) }}
+        ))
+    }
 
     // Security
     app.use(helmet())
 
+    // Http status codes for request objects
+    app.use(function(request, response, next) {
+        request.status = httpStatus
+        next()
+    })
+
     // Error Handling
-    app.use(function(req, res, next) {
-        req.status = {
-            success: 'success',
-            error: 'error'
-        }
+    app.use(function(request, response, next) {
+        response.errorHandler = errorhandler
         next()
     })
 
     // Database Middleware
-    app.use(function(req, res, next) {
-        req.models = database.models
-        req.connection = database.connection
+    app.use(function (request, response, next) {
+        request.models = database.models
+        request.connection = database.connection
         next()
     })
 
     // Enable CORS to avoid Cross Domain Origin issues
-    app.use(function(req, res, next) {
-        res.header('Access-Control-Allow-Origin', req.headers.origin)
-        res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
-        res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
+    app.use(function (request, response, next) {
+        response.header('Access-Control-Allow-Origin', request.headers.origin)
+        response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
+        response.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
         next()
     })
 }
