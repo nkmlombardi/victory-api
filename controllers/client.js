@@ -8,7 +8,7 @@ module.exports = {
             return response.errorHandler(error, request, response, next)
         }
 
-        if (query.length === 0) return request.errorHandler(1000, request, response)
+        if (response.query.length === 0) return response.errorHandler(1000, request, response)
 
         response.json({
             status: request.status['OK'],
@@ -22,13 +22,10 @@ module.exports = {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_CLIENT WHERE client_id = ${request.params.id}`)
         } catch(error) {
-            console.log('Are we erroring?', error)
             return response.errorHandler(error, request, response, next)
         }
 
-        console.log('Or are we not?', query)
-
-        if (query.length === 0) return response.errorHandler(1000, request, response)
+        if (response.query.length === 0) return response.errorHandler(1000, request, response)
 
         response.json({
             status: request.status['OK'],

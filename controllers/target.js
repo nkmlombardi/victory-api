@@ -1,15 +1,31 @@
 module.exports = {
     getTargets: async function(request, response, next) {
-        return response.json({
-            status: request.status.success,
-            data: await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET`)
+        try {
+            response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET`)
+        } catch(error) {
+            return response.errorHandler(error, request, response, next)
+        }
+
+        if (response.query.length === 0) return request.errorHandler(1000, request, response)
+
+        response.json({
+            status: request.status['OK'],
+            data: response.query
         })
     },
 
     getTarget: async function(request, response, next) {
-        return response.json({
-            status: request.status.success,
-            data: await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE target_id = ${request.params.id}`)
+        try {
+            response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE target_id = ${request.params.id}`)
+        } catch(error) {
+            return response.errorHandler(error, request, response, next)
+        }
+
+        if (response.query.length === 0) return request.errorHandler(1000, request, response)
+
+        response.json({
+            status: request.status['OK'],
+            data: response.query
         })
     }
 }

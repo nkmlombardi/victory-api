@@ -12,7 +12,7 @@ describe('Origins', () => {
         .get('/v1/origins')
         .end((error, response) => {
             response.body.should.be.a('object')
-            response.body.should.have.property('status').eql('success')
+            response.body.should.have.property('status').eql(200)
             done(error)
         })
     }),
@@ -57,7 +57,7 @@ describe('Origins', () => {
             .get('/v1/origins/' + originId + '/targets')
             .end((error, response) => {
                 response.body.should.have.property('status')
-                response.body.status.should.be.eql('success')
+                response.body.status.should.be.eql(200)
                 response.body.data.should.have.length.gt(0)
                 response.body.data[0].should.be.a('object')
                 response.body.data[0].origin_id.should.be.deep.eql(originId)
@@ -70,7 +70,7 @@ describe('Origins', () => {
         .get('/v1/origins/health')
         .end((error, response) => {
             response.body.should.have.property('status')
-            response.body.status.should.be.eql('success')
+            response.body.status.should.be.eql(200)
             response.body.data.should.have.length.gt(0)
             response.body.data[0].should.be.a('object')
             response.body.data[0].should.have.property('health')
@@ -87,7 +87,7 @@ describe('Origins', () => {
             .get('/v1/origins/' + originId + '/health')
             .end((error, response) => {
                 response.body.should.have.property('status')
-                response.body.status.should.be.eql('success')
+                response.body.status.should.be.eql(200)
                 response.body.data.should.have.length.gt(0)
                 response.body.data[0].should.be.a('object')
                 response.body.data[0].should.have.property('health')

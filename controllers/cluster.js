@@ -1,34 +1,34 @@
+var utility = require('../services/utilities')
+
 module.exports = {
     getClusters: async function(request, response, next) {
-        var query
-
         try {
-            query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER`)
+            response.query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER`)
         } catch(error) {
-            return response.json(request.errorHandler(error))
+            return response.json(error, request, response, next)
         }
 
-        if (query.length === 0) return request.errorHandler(10000, request, response)
+        if (response.query.length === 0) return response.errorHandler(10000, request, response)
 
         return response.json({
             status: request.status['OK'],
-            data: query
+            data: response.query
         })
     },
 
     getCluster: async function(request, response, next) {
-        var query
-
+        if (utility.isAlphaNumericSpecial(request.params.id) === false) return response.errorHandler(1001, request, response)
         try {
-            query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name = '${request.params.id}'`)
+            console.log(utility.isAlphaNumericSpecial(request.params.id) + request.params.id)
+            response.query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name = '${request.params.id}'`)
         } catch(error) {
-            return response.json(request.errorHandler(error))
+            return response.json(error, request, response, next)
         }
 
-        if (query.length === 0) return request.errorHandler(10000, request, response)
+        if (response.query.length === 0) return response.errorHandler(1000, request, response)
             response.json({
                 status: request.status['OK'],
-                data: query
+                data: response.query
             })
     }
 }

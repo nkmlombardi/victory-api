@@ -13,12 +13,14 @@ module.exports = function(app, database) {
     app.use(bodyParser.json())
 
     // Logging
-    app.use(morgan('dev', {
-        stream: { write: message => logger.console.info(message) }}
-    ))
-    app.use(morgan('tiny', {
-        stream: { write: message => logger.file.info(message) }}
-    ))
+    if (process.env.NODE_ENV !== 'test') {
+        app.use(morgan('dev', {
+            stream: { write: message => logger.console.info(message) }}
+        ))
+        app.use(morgan('tiny', {
+            stream: { write: message => logger.file.info(message) }}
+        ))
+    }
 
     // Security
     app.use(helmet())

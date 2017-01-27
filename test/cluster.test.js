@@ -14,7 +14,7 @@ describe('Clusters', () => {
         .get('/v1/clusters')
         .end((error, response) => {
             response.body.should.be.a('object')
-            response.body.should.have.property('status').eql('success')
+            response.body.should.have.property('status').eql(200)
             done(error)
         })
     }),
@@ -36,16 +36,16 @@ describe('Clusters', () => {
             done(error)
         })
     }),
-    it.skip('should be able to query a single cluster by its id', function (done) {
+    it('should be able to query a single cluster by its id', function (done) {
         chai.request(server)
         .get('/v1/clusters')
         .end((error, response) => {
-            var clusterName =  + response.body.data[0].cluster_name
+            var clusterName = response.body.data[0].cluster_name
             chai.request(server)
             .get('/v1/clusters/' + clusterName)
             .end((error, response) => {
                 response.body.data[0].should.be.a('object')
-                response.body.data[0].cluster_name.should.be.deep.eql(clusterId)
+                response.body.data[0].cluster_name.should.be.deep.eql(clusterName)
                 done()
             })
         })
