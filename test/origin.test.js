@@ -52,7 +52,7 @@ describe('Origins', () => {
         chai.request(server)
         .get('/v1/origins')
         .end((error, response) => {
-            var originId =  + response.body.data[0].origin_id
+            var originId = response.body.data[0].origin_id
             chai.request(server)
             .get('/v1/origins/' + originId + '/targets')
             .end((error, response) => {
@@ -82,7 +82,7 @@ describe('Origins', () => {
         chai.request(server)
         .get('/v1/origins')
         .end((error, response) => {
-            var originId =  + response.body.data[0].origin_id
+            var originId = response.body.data[0].origin_id
             chai.request(server)
             .get('/v1/origins/' + originId + '/health')
             .end((error, response) => {

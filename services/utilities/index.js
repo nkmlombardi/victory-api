@@ -11,6 +11,7 @@ module.exports = {
         //      "$" makes the previous part of the pattern match at end of input
         return /(0|[1-9]\d*)$/.test(value)
     },
+
     // Used for cluster_name
     isAlphaNumericSpecial: function(value) {
         return /^[A-Za-z]*[0-9]*\/*\-*\+*$/.test(value)

@@ -1,7 +1,7 @@
 var internal = require('./errors')
 
 // Figure out how to process database errors, and application errors respectively
-module.exports = function(error, request, response, next) {
+module.exports = function(error, request, response) {
     switch (error) {
         case 1000:
             return response.json({
@@ -22,5 +22,4 @@ module.exports = function(error, request, response, next) {
                 data: error
             })
     }
-    next()
 }

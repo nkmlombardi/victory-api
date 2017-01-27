@@ -5,7 +5,7 @@ module.exports = {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER`)
         } catch(error) {
-            return response.json(error, request, response, next)
+            return response.errorHandler(error, request, response, next)
         }
 
         if (response.query.length === 0) return response.errorHandler(10000, request, response)
@@ -18,11 +18,11 @@ module.exports = {
 
     getCluster: async function(request, response, next) {
         if (utility.isAlphaNumericSpecial(request.params.id) === false) return response.errorHandler(1001, request, response)
+
         try {
-            console.log(utility.isAlphaNumericSpecial(request.params.id) + request.params.id)
             response.query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name = '${request.params.id}'`)
         } catch(error) {
-            return response.json(error, request, response, next)
+            return response.errorHandler(error, request, response, next)
         }
 
         if (response.query.length === 0) return response.errorHandler(1000, request, response)

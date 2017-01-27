@@ -11,7 +11,7 @@ env(__dirname + '/.environment/.private.env')
 
 // Instantiation
 var config = require('./configuration')
-var database = require('./database')(config.settings)
+var database = require('./database')()
 var app = express()
 var server = http.createServer(app)
 var io = socket.listen(server)
