@@ -615,3 +615,4 @@
 {"level":"info","message":"GET /v1/origins/300025 200 663 - 12.549 ms\n","timestamp":"2017-01-27T20:01:18.489Z"}
 {"level":"info","message":"GET /v1/origins/300025/targets 404 38 - 4.102 ms\n","timestamp":"2017-01-27T20:01:40.859Z"}
 {"level":"info","message":"GET /v1/origins/300025/targets 200 1735 - 19.528 ms\n","timestamp":"2017-01-27T20:02:30.001Z"}
+{"level":"info","message":"GET /v1/datacenters/AWS/clusters 200 1761 - 15.731 ms\n","timestamp":"2017-01-27T20:28:27.146Z"}
