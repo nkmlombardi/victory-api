@@ -39,7 +39,7 @@ module.exports = function(io, database) {
 
 
         /*
-            Emit Datacenter Healths
+            Emit Cluster Healths
          */
         emitters.push(setInterval(async () => {
             console.log('clusters:health event emitted to:', socket.id)
