@@ -16,6 +16,7 @@ module.exports = {
 
 
     getOrigin: async function(request, response, next) {
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_ORIGIN WHERE origin_id = ${request.params.id}`)
         } catch(error) {
@@ -33,6 +34,7 @@ module.exports = {
 
 
     getOriginTargets: async function(request, response, next) {
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE origin_id = ${request.params.id}`)
         } catch(error) {
@@ -48,6 +50,7 @@ module.exports = {
     },
 
     getOriginHealth: async function(request, response, next) {
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
         try {
             response.query = await request.connection.query(
                 `SELECT ` +

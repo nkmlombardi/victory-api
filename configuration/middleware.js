@@ -5,6 +5,8 @@ var bodyParser = require('body-parser')
 var httpStatus = require('http-status-codes')
 var errorhandler = require('../services/error')[process.env.NODE_ENV]
 var logger = require('../services/logger')
+var express = require('express')
+var errorHandlerExpress = require('../node_modules/express-error-handler')
 
 
 module.exports = function(app, database) {
@@ -51,4 +53,5 @@ module.exports = function(app, database) {
         response.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
         next()
     })
+
 }
