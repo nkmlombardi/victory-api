@@ -11,17 +11,7 @@ module.exports = {
      * @return {[type]}        [description]
      */
     postSelfPassport: async function(request, response, next) {
-        if (!request.strategy) {
-            console.error('API error, there was an an attempt to generate ' +
-                'a passport authentication without a strategy')
-            return response.json({
-                status: request.status.error,
-                data: {
-                    message: 'API error, there was an an attempt to generate ' +
-                        'a passport authentication without a strategy.'
-                }
-            })
-        }
+        if (!request.strategy) return response.errorHandler(2000, request, response)
 
         try {
             var passport = await request.models.Passport.create({
@@ -29,11 +19,7 @@ module.exports = {
                 strategy: request.strategy
             })
         } catch(error) {
-            console.error('Database error trying to generate a new Passport: ', error)
-            return response.json({
-                status: request.status.error,
-                data: error
-            })
+            return response.errorHandler(2001, request, response)
         }
 
         response.json({

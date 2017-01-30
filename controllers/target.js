@@ -18,6 +18,7 @@ module.exports = {
 
     getTarget: async function(request, response, next) {
         if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
+
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE target_id = ${request.params.id}`)
         } catch(error) {

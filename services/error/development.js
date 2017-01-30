@@ -15,6 +15,25 @@ module.exports = function(error, request, response) {
                 message: internal[error]
             })
 
+        case 1002:
+            return response.json({
+                status: request.status['NOT_FOUND'],
+                message: internal[error],
+                data: []
+            })
+
+        case 2000:
+            return response.json({
+                status: request.status['NOT_ACCEPTABLE'],
+                message: internal[error]
+            })
+
+        case 2001:
+            return response.json({
+                status: request.status['CONFLICT'],
+                message: internal[error]
+            })
+
         default:
             return response.json({
                 status: request.status['INTERNAL_SERVER_ERROR'],
