@@ -586,6 +586,7 @@
 {"level":"info","message":"GET /v1/clusters/dsaae1 200 63 - 3.672 ms\n","timestamp":"2017-01-27T17:06:31.619Z"}
 {"level":"info","message":"GET /v1/clusters/dsaae1! 200 71 - 0.833 ms\n","timestamp":"2017-01-27T17:06:36.409Z"}
 {"level":"info","message":"GET /v1/clusters/dsaae1!$sdhg 200 71 - 1.079 ms\n","timestamp":"2017-01-27T17:06:55.443Z"}
+<<<<<<< HEAD
 {"level":"info","message":"GET /v1/clusters/ae 200 301 - 13.303 ms\n","timestamp":"2017-01-27T19:01:33.928Z"}
 {"level":"info","message":"GET /v1/clusters/aedsa 200 63 - 3.140 ms\n","timestamp":"2017-01-27T19:01:38.033Z"}
 {"level":"info","message":"GET /v1/clusters/aedsa1-//dsa+ 404 38 - 1.080 ms\n","timestamp":"2017-01-27T19:01:47.295Z"}

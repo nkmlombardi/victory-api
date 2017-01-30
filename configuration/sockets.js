@@ -39,6 +39,26 @@ module.exports = function(io, database) {
 
 
         /*
+            Emit Cluster Healths
+         */
+        emitters.push(setInterval(async () => {
+            console.log('clusters:health event emitted to:', socket.id)
+            socket.emit('clusters:health', {
+                    status: 'success',
+                    data: await database.connection.query(`
+                        SELECT
+                            cluster_name                        AS id,
+                            AVG(statistic_health_score)         AS health,
+                            MAX(health_dtm)                     AS time
+                        FROM        BB_ONELINK_CLUSTER_HEALTH
+                        GROUP BY    id
+                    `)
+                }
+            )
+        }, 5000))
+
+
+        /*
             Emit Origin Healths
          */
         emitters.push(setInterval(async () => {
