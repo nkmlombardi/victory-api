@@ -2,3 +2,5 @@
 node_modules/
 npm-debug.log
 .environment/.private.env
+logs/access_logs.json
+logs/error_logs.log

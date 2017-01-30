@@ -1,3 +1,3 @@
 require('babel-register')({
-  "presets": ["es2017"]
-});
+    'presets': ['es2017']
+})
