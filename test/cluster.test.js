@@ -39,13 +39,14 @@ describe('Clusters', () => {
         chai.request(server)
         .get('/v1/clusters')
         .end((error, response) => {
-            var clusterName = response.body.data.cluster_name
+            var clusterName = response.body.data[0].cluster_name
+
             chai.request(server)
             .get('/v1/clusters/' + clusterName)
             .end((error, response) => {
                 response.body.data.should.be.a('object')
                 response.body.data.cluster_name.should.be.deep.eql(clusterName)
-                done()
+                done(error)
             })
         })
     })

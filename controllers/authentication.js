@@ -11,7 +11,7 @@ module.exports = {
      * @return {[type]}        [description]
      */
     postSelfPassport: async function(request, response, next) {
-        if (!request.strategy) return response.errorHandler(2000, request, response)
+        if (!request.strategy) return response.errorHandler(request, response)
 
         try {
             var passport = await request.models.Passport.create({
@@ -23,7 +23,6 @@ module.exports = {
         }
 
         response.json({
-            status: request.status.success,
             data: {
                 token: passport,
                 user: request.user.publicAttributes()

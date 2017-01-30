@@ -2,7 +2,7 @@ var passport = require('passport')
 var strategy = require('passport-local').Strategy
 
 passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
-    async function(request, email, password, callback) {
+    async function(request, response, email, password, callback) {
         try {
             var user = await request.models.User.findOne({
                 where: {
@@ -10,8 +10,7 @@ passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
                 }
             })
         } catch(error) {
-            console.error('Database error retrieving User during local authentication: ', request, email, error)
-            return callback(error)
+            return response.errorHandler(5004, request, response)
         }
 
         // If no user was returned from query
@@ -21,8 +20,10 @@ passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
         user.verifyPassword(password, function(error, isMatch) {
 
             // If error or password doesn't match
-            if (error) { return callback(error) }
-            if (!isMatch) { return callback(null, false) }
+            //if (error) return callback(error)
+            if (!isMatch) {
+                callback(null, false)
+            }
 
             // If password was correct
             request.strategy = 'local'

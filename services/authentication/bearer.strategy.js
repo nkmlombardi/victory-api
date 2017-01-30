@@ -10,8 +10,7 @@ passport.use(new strategy({ passReqToCallback: true },
                 }
             })
         } catch(error) {
-            console.error('Database error retrieving Passport associated with auth_token: ', error)
-            return callback(error)
+            return response.errorHandler(5002, request, response)
         }
 
         if (!token) { return callback(null, false); }
@@ -23,8 +22,7 @@ passport.use(new strategy({ passReqToCallback: true },
                 }
             })
         } catch(error) {
-            console.error('Database error retrieving User associated with bearer token: ', request, error)
-            return callback(error)
+            return response.errorHandler(5003, request, response)
         }
 
         if (!user) { return callback(null, false) }

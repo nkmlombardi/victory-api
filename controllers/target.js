@@ -8,7 +8,7 @@ module.exports = {
             return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return request.errorHandler(4001, request, response)
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
 
         response.json({
             data: response.query
@@ -24,7 +24,7 @@ module.exports = {
             return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return request.errorHandler(4001, request, response)
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
 
         response.json({
             data: response.query[0]
