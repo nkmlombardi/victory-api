@@ -8,16 +8,15 @@ module.exports = {
             return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return response.errorHandler(10000, request, response)
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
 
         return response.json({
-            status: request.status['OK'],
             data: response.query
         })
     },
 
     getCluster: async function(request, response, next) {
-        if (utility.isAlphaNumericDashSlashPlus(request.params.id) === false) return response.errorHandler(1001, request, response)
+        if (utility.isAlphaNumericDashSlashPlus(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER WHERE cluster_name = '${request.params.id}'`)
@@ -25,10 +24,9 @@ module.exports = {
             return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return response.errorHandler(1000, request, response)
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
             response.json({
-                status: request.status['OK'],
-                data: response.query
+                data: response.query[0]
             })
     }
 }

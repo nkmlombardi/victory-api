@@ -8,27 +8,25 @@ module.exports = {
             return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return response.errorHandler(1000, request, response)
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
 
         response.json({
-            status: request.status['OK'],
             data: response.query
         })
     },
 
     getClient: async function(request, response, next) {
-        if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_CLIENT WHERE client_id = ${request.params.id}`)
         } catch(error) {
             return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return response.errorHandler(1000, request, response)
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
 
         response.json({
-            status: request.status['OK'],
-            data: response.query
+            data: response.query[0]
         })
     }
 }

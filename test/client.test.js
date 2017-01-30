@@ -7,17 +7,16 @@ let server = require('../server')
 chai.use(chaiHttp)
 
 describe('Clients', () => {
-    it('should return an object containing a success status', function (done) {
+    it('should return an object', function (done) {
         chai.request(server)
             .get('/v1/clients')
             .end((error, response) => {
                 response.body.should.be.a('object')
-                response.body.should.have.property('status').eql(200)
                 done()
             })
     }),
 
-    it('should return an array of objects', function (done) {
+    it('the object should have an array', function (done) {
         chai.request(server)
             .get('/v1/clients')
             .end((error, response) => {
@@ -27,7 +26,7 @@ describe('Clients', () => {
             })
     }),
 
-    it('should have an array containing at least one object', function (done) {
+    it('the array should contain at least one object', function (done) {
         chai.request(server)
             .get('/v1/clients')
             .end((error, response) => {
@@ -46,8 +45,8 @@ describe('Clients', () => {
                 chai.request(server)
                     .get('/v1/clients/' + clientId)
                     .end((error, response) => {
-                        response.body.data[0].should.be.a('object')
-                        response.body.data[0].client_id.should.be.deep.eql(clientId)
+                        response.body.data.should.be.a('object')
+                        response.body.data.client_id.should.be.deep.eql(clientId)
                         done()
                     })
             })

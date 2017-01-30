@@ -3,56 +3,53 @@ module.exports = {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_ORIGIN`)
         } catch(error) {
-            return response.errorHandler(error, request, response, next)
+            return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return request.errorHandler(1000, request, response)
+        if (response.query.length === 0) return request.errorHandler(4001, request, response)
 
         response.json({
-            status: request.status['OK'],
             data: response.query
         })
     },
 
 
     getOrigin: async function(request, response, next) {
-        if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_ORIGIN WHERE origin_id = ${request.params.id}`)
         } catch(error) {
-            return response.errorHandler(error, request, response, next)
+            return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return request.errorHandler(1000, request, response)
+        if (response.query.length === 0) return request.errorHandler(4001, request, response)
 
         response.json({
-            status: request.status['OK'],
-            data: response.query
+            data: response.query[0]
         })
     },
 
 
 
     getOriginTargets: async function(request, response, next) {
-        if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE origin_id = ${request.params.id}`)
         } catch(error) {
-            return response.errorHandler(error, request, response, next)
+            return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return request.errorHandler(1000, request, response)
+        if (response.query.length === 0) return request.errorHandler(4001, request, response)
 
         response.json({
-            status: request.status['OK'],
             data: response.query
         })
     },
 
     getOriginHealth: async function(request, response, next) {
-        if (utility.isNumber(request.params.id) === false) return response.errorHandler(1001, request, response)
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
             response.query = await request.connection.query(
@@ -65,13 +62,12 @@ module.exports = {
             `ORDER BY   health_dtm DESC`
             )
         } catch(error) {
-            return response.errorHandler(error, request, response, next)
+            return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return request.errorHandler(1000, request, response)
+        if (response.query.length === 0) return request.errorHandler(4001, request, response)
 
         response.json({
-            status: request.status['OK'],
             data: response.query
         })
     },
@@ -84,13 +80,12 @@ module.exports = {
                 `GROUP BY origin_id`
             )
         } catch(error) {
-            return response.errorHandler(error, request, response, next)
+            return response.errorHandler(error, request, response)
         }
 
-        if (response.query.length === 0) return request.errorHandler(1000, request, response)
+        if (response.query.length === 0) return request.errorHandler(4001, request, response)
 
         response.json({
-            status: request.status['OK'],
             data: response.query
         })
     },
