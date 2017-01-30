@@ -1,0 +1,2 @@
+#!/bin/bash
+mocha --reporter spec --recursive --require mocha-babel
