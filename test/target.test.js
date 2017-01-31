@@ -14,7 +14,6 @@ describe('Targets', () => {
         .get('/v1/targets')
         .end((err, response) => {
             response.body.should.be.a('object')
-            response.body.should.have.property('status').eql(200)
             done(err)
         })
     }),
@@ -40,12 +39,12 @@ describe('Targets', () => {
         chai.request(server)
         .get('/v1/targets')
         .end((err, response) => {
-            var targetId =  + response.body.data[0].target_id
+            var targetId = response.body.data[0].target_id
             chai.request(server)
             .get('/v1/targets/' + targetId)
             .end((err, response) => {
-                response.body.data[0].should.be.a('object')
-                response.body.data[0].target_id.should.be.deep.eql(targetId)
+                response.body.data.should.be.a('object')
+                response.body.data.target_id.should.be.deep.eql(targetId)
                 done()
             })
         })
