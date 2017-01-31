@@ -3,7 +3,7 @@ var utility = require('../services/utilities')
 module.exports = {
     getTargets: async function(request, response, next) {
         try {
-            response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET`)
+            response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE is_inactive = 0 AND is_hidden = 0`)
         } catch(error) {
             return response.errorHandler(error, request, response)
         }

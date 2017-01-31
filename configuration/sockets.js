@@ -17,6 +17,20 @@ module.exports = function(io, database) {
             })
         })
 
+        socket.on('datacenter:health:history', async (id) => {
+            console.log('Ayyy')
+
+            socket.emit('datacenters:health', {
+                    status: 'success',
+                    data: await database.connection.query(`
+                        SELECT      *
+                        FROM        BB_DATA_CENTER_HEALTH_LOG
+                        WHERE       data_center_code = '${id}'
+                    `)
+                }
+            )
+        })
+
 
         /*
             Emit Datacenter Healths

@@ -3,7 +3,7 @@ var utility = require('../services/utilities')
 module.exports = {
     getDatacenters: async function(request, response, next) {
         try {
-            response.query = await request.connection.query(`SELECT * FROM BB_DATA_CENTER`)
+            response.query = await request.connection.query(`SELECT * FROM BB_DATA_CENTER WHERE is_active = 1`)
         } catch(error) {
             return response.errorHandler(error, request, response)
         }

@@ -48,7 +48,7 @@ module.exports = function(app, database) {
 
     // Enable CORS to avoid Cross Domain Origin issues
     app.use(function (request, response, next) {
-        response.header('Access-Control-Allow-Origin', request.headers.origin)
+        response.header('Access-Control-Allow-Origin', '*')
         response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         response.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
         next()

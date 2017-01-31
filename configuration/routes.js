@@ -18,17 +18,14 @@ module.exports = function(app) {
         .get(cache('1 hour'), controllers.client.getClientAll)
     app.route('/v1/clients/:id')
         .get(cache('1 hour'), controllers.client.getClient)
+    app.route('/v1/clients/:id/origins')
+        .get(cache('1 hour'), controllers.client.getClientOrigins)
 
     // Origin Resource
     app.route('/v1/origins')
         .get(cache('1 hour'), controllers.origin.getOriginAll)
-    app.route('/v1/origins/health')
-        .get(controllers.origin.getOriginAllHealth)
-
     app.route('/v1/origins/:id/')
         .get(cache('1 hour'), controllers.origin.getOrigin)
-    app.route('/v1/origins/:id/health')
-        .get(controllers.origin.getOriginHealth)
     app.route('/v1/origins/:id/targets')
         .get(controllers.origin.getOriginTargets)
 
