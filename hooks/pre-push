@@ -1,5 +1,0 @@
-#!/bin/sh
-rm ./logs/access_logs.json
-rm ./logs/error_logs.json
-touch ./logs/access_logs.json
-touch ./logs/error_logs.json
