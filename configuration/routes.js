@@ -15,7 +15,7 @@ module.exports = function(app) {
      */
     // Client Resource
     app.route('/v1/clients')
-        .get(cache('1 hour'), controllers.client.getClientAll)
+        .get(cache('1 hour'), controllers.client.getClients)
     app.route('/v1/clients/:id')
         .get(cache('1 hour'), controllers.client.getClient)
     app.route('/v1/clients/:id/origins')
@@ -23,11 +23,13 @@ module.exports = function(app) {
 
     // Origin Resource
     app.route('/v1/origins')
-        .get(cache('1 hour'), controllers.origin.getOriginAll)
+        .get(cache('1 hour'), controllers.origin.getOrigins)
     app.route('/v1/origins/:id/')
         .get(cache('1 hour'), controllers.origin.getOrigin)
     app.route('/v1/origins/:id/targets')
         .get(controllers.origin.getOriginTargets)
+    app.route('/v1/origins/:id/health')
+        .get(controllers.origin.getOriginHealthLog)
 
     // Target Resource
     app.route('/v1/targets')

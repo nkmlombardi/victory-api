@@ -1,7 +1,7 @@
 var utility = require('../services/utilities')
 
 module.exports = {
-    getClientAll: async function(request, response, next) {
+    getClients: async function(request, response, next) {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_CLIENT WHERE is_inactive = 0 AND is_hidden = 0`)
         } catch(error) {
