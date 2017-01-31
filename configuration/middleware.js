@@ -36,6 +36,7 @@ module.exports = function(app, database) {
     // Error Handling
     app.use(function(request, response, next) {
         response.errorHandler = errorhandler
+        request.errorHandler = errorhandler
         next()
     })
 

@@ -10,20 +10,21 @@ passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
                 }
             })
         } catch(error) {
-            return response.errorHandler(5004, request, response)
+            console.error('Database error retrieving User during local authentication: ', request, email, error)
+            return callback(error)
         }
 
         // If no user was returned from query
-        if (!user) { return callback(null, false) }
+        if (!user) {
+            response.errorHandler(5004, request, response)
+            return callback(null, false) }
 
         // Verify the password that was provided
         user.verifyPassword(password, function(error, isMatch) {
 
             // If error or password doesn't match
-            //if (error) return callback(error)
-            if (!isMatch) {
-                callback(null, false)
-            }
+            if (error) { return callback(error) }
+            if (!isMatch) { return console.log("username wrong") }
 
             // If password was correct
             request.strategy = 'local'

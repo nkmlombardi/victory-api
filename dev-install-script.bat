@@ -1,7 +1,8 @@
 @echo off
 title Installing OneLink application
-echo Copying over git pre-commits for continuous integration testing
+echo Copying over git hooks for continuous integration testing
 cp ./hooks/pre-commit ./.git/hooks/pre-commit
+cp ./hooks/pre-push ./.git/hooks/pre-push
 echo installing API...
 call npm install
 echo running Mocha and Chai tests...
