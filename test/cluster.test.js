@@ -45,8 +45,9 @@ describe('Clusters', () => {
             .end((error, response) => {
                 response.body.data.should.be.a('object')
                 response.body.data.cluster_name.should.be.deep.eql(clusterName)
-                done()
+                done(error)
             })
+        done(error)
         })
     })
 })

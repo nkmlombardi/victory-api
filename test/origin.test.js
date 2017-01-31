@@ -12,7 +12,6 @@ describe('Origins', () => {
         .get('/v1/origins')
         .end((error, response) => {
             response.body.should.be.a('object')
-            response.body.should.have.property('status').eql(200)
             done(error)
         })
     }),
@@ -38,14 +37,15 @@ describe('Origins', () => {
         chai.request(server)
         .get('/v1/origins')
         .end((error, response) => {
-            var originId =  + response.body.data[0].origin_id
+            var originId = response.body.data[0].origin_id
             chai.request(server)
             .get('/v1/origins/' + originId)
             .end((error, response) => {
                 response.body.data[0].should.be.a('object')
                 response.body.data[0].origin_id.should.be.deep.eql(originId)
-                done()
+                done(error)
             })
+            done(error)
         })
     }),
     it('should return targets for a specified origin', function(done) {
@@ -61,8 +61,9 @@ describe('Origins', () => {
                 response.body.data.should.have.length.gt(0)
                 response.body.data[0].should.be.a('object')
                 response.body.data[0].origin_id.should.be.deep.eql(originId)
-                done()
+                done(error)
             })
+            done(error)
         })
     }),
     it.skip('should return origin health', function(done) {
@@ -75,7 +76,7 @@ describe('Origins', () => {
             response.body.data[0].should.be.a('object')
             response.body.data[0].should.have.property('health')
             response.body.data[0].health.should.be.a('int')
-            done()
+            done(error)
         })
     }),
     it.skip('should return health for specified origin', function(done) {

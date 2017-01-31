@@ -40,14 +40,14 @@ describe('Clients', () => {
         chai.request(server)
             .get('/v1/clients')
             .end((error, response) => {
-                var clientId =  + response.body.data[0].client_id
+                var clientId = response.body.data[0].client_id
 
                 chai.request(server)
                     .get('/v1/clients/' + clientId)
                     .end((error, response) => {
                         response.body.data.should.be.a('object')
                         response.body.data.client_id.should.be.deep.eql(clientId)
-                        done()
+                        done(error)
                     })
             })
     })
