@@ -49,7 +49,7 @@ module.exports = function(io, database) {
                     `)
                 }
             )
-        }, 5000))
+        }, 3000))
 
 
         /*
@@ -69,7 +69,7 @@ module.exports = function(io, database) {
                     `)
                 }
             )
-        }, 5000))
+        }, 3000))
 
 
         /*
@@ -90,5 +90,25 @@ module.exports = function(io, database) {
                 }
             )
         }, 5000))
+
+
+        /*
+            Emit Target Healths
+         */
+        emitters.push(setInterval(async () => {
+            console.log('targets:health event emitted to:', socket.id)
+            socket.emit('targets:health', {
+                    status: 'success',
+                    data: await database.connection.query(`
+                        SELECT
+                            target_id                           AS id,
+                            AVG(statistic_health_score)         AS health,
+                            MAX(health_dtm)                     AS time
+                        FROM        BB_PROJECT_TARGET_HEALTH
+                        GROUP BY    id
+                    `)
+                }
+            )
+        }, 10000))
     })
 }

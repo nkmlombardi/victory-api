@@ -11,7 +11,16 @@ module.exports = function(error, request, response) {
                     code: error,
                     message: internal[error]
                 },
-                data: request.query
+                data: []
+            })
+
+        case 2002:
+            return response.status(request.status['OK']).json({
+                status: {
+                    code: error,
+                    message: internal[error]
+                },
+                data: {}
             })
             break
 

@@ -1,6 +1,7 @@
 module.exports = {
     // 2000: Successful response
-    2001: 'This relation has no resources.',
+    2001: 'This relation has no related collections.',
+    2002: 'This relation has no related resource.',
 
     // 4000: Invalid request
     4001: 'A resource at this ID was not found.',
