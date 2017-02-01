@@ -8,13 +8,24 @@ let server = require('../server')
 
 chai.use(chaiHttp)
 
+describe('Endpoints', () => {
+    it('base url should return HTTP status code 200', (done) => {
+        chai.request(server)
+            .get('/')
+            .end((error, response) =>{
+                response.statusCode.should.be.eql(200)
+                done(error)
+            })
+    })
+})
+
 describe('Authentication endpoints', () => {
-    it('should return an object trying to authenticate', function(done) {
+    xit('should return an object trying to authenticate', function(done) {
         chai.request(server)
             .get('/v1/authenticate')
             .end((error, response) => {
                 response.body.should.be.a('object')
-                done()
+                done(error)
             })
     })
 })

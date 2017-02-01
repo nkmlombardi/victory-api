@@ -5,10 +5,10 @@ module.exports = {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_CLIENT WHERE is_inactive = 0 AND is_hidden = 0`)
         } catch(error) {
-            return response.errorHandler(error, request, response)
+            return response.handlers.error(error, request, response)
         }
 
-        if (response.query.length === 0) return response.errorHandler(4001, request, response)
+        if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
         response.json({
             data: response.query
@@ -16,15 +16,15 @@ module.exports = {
     },
 
     getClient: async function(request, response, next) {
-        if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
+        if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_CLIENT WHERE client_id = ${request.params.id}`)
         } catch(error) {
-            return response.errorHandler(error, request, response)
+            return response.handlers.error(error, request, response)
         }
 
-        if (response.query.length === 0) return response.errorHandler(4001, request, response)
+        if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
         response.json({
             data: response.query[0]
@@ -45,13 +45,10 @@ module.exports = {
                 )
             `)
         } catch (error) {
-            console.log('hoho', error)
-            return response.errorHandler(error, request, response)
+            return response.handlers.error(error, request, response)
         }
 
-        console.log('hihi')
-
-        if (response.query.length === 0) return response.errorHandler(4001, request, response)
+        if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
         response.json({
             data: response.query

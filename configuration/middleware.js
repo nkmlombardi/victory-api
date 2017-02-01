@@ -3,10 +3,9 @@ var helmet = require('helmet')
 var morgan = require('morgan')
 var bodyParser = require('body-parser')
 var httpStatus = require('http-status-codes')
-var errorhandler = require('../services/error')[process.env.NODE_ENV]
+var handlers = require('../services/handlers')
 var logger = require('../services/logger')
 var express = require('express')
-var errorHandlerExpress = require('../node_modules/express-error-handler')
 
 
 module.exports = function(app, database) {
@@ -35,7 +34,7 @@ module.exports = function(app, database) {
 
     // Error Handling
     app.use(function(request, response, next) {
-        response.errorHandler = errorhandler
+        response.handlers = handlers
         next()
     })
 

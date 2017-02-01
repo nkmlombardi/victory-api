@@ -1,4 +1,4 @@
-var internal = require('./errors')
+var internal = require('./data/errors')
 
 // Figure out how to process database errors, and application errors respectively
 module.exports = function(error, request, response) {
@@ -13,6 +13,7 @@ module.exports = function(error, request, response) {
                 },
                 data: request.query
             })
+            break
 
 
         // Invalid requests
@@ -23,6 +24,7 @@ module.exports = function(error, request, response) {
                     message: internal[error]
                 }
             })
+            break
 
         case 4002:
             return response.status(request.status['BAD_REQUEST']).json({
@@ -31,6 +33,7 @@ module.exports = function(error, request, response) {
                     message: internal[error]
                 }
             })
+            break
 
         case 4003:
             return response.status(request.status['FORBIDDEN']).json({
@@ -39,6 +42,7 @@ module.exports = function(error, request, response) {
                     message: internal[error]
                 }
             })
+            break
 
 
         // Internal server errors
@@ -49,9 +53,10 @@ module.exports = function(error, request, response) {
                     message: internal[error]
                 }
             })
+            break
 
 
-        // Defualt case
+        // Default case
         default:
             return response.json({
                 status: {

@@ -11,7 +11,7 @@ module.exports = {
      * @return {[type]}        [description]
      */
     postSelfPassport: async function(request, response, next) {
-        if (!request.strategy) return response.errorHandler(2000, request, response)
+        if (!request.strategy) return response.handlers.error(2000, request, response)
 
         try {
             var passport = await request.models.Passport.create({
@@ -19,7 +19,7 @@ module.exports = {
                 strategy: request.strategy
             })
         } catch(error) {
-            return response.errorHandler(2001, request, response)
+            return response.handlers.error(2001, request, response)
         }
 
         response.json({
