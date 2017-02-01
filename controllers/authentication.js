@@ -10,7 +10,7 @@ module.exports = {
      * @param  {Function} next [description]
      * @return {[type]}        [description]
      */
-    postSelfPassport: async function(request, response, next) {
+    postSelfPassport: async (request, response, next) => {
         if (!request.strategy) return response.handlers.error(2000, request, response)
 
         try {

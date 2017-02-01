@@ -1,7 +1,7 @@
 var utility = require('../services/utilities')
 
 module.exports = {
-    getDatacenters: async function(request, response, next) {
+    getDatacenters: async (request, response, next) => {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_DATA_CENTER WHERE is_active = 1`)
         } catch(error) {
@@ -15,7 +15,7 @@ module.exports = {
         })
     },
 
-    getDatacenter: async function(request, response, next) {
+    getDatacenter: async (request, response, next) => {
         if (utility.isUppercaseDashColon(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {
@@ -31,7 +31,7 @@ module.exports = {
         })
     },
 
-    getDatacenterClusters: async function(request, response, next) {
+    getDatacenterClusters: async (request, response, next) => {
         // Pre-database checks
         if (utility.isUppercaseDashColon(request.params.id) === false) return response.handlers.error(4002, request, response)
 

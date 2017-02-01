@@ -1,7 +1,7 @@
 var utility = require('../services/utilities')
 
 module.exports = {
-    getClusters: async function(request, response, next) {
+    getClusters: async (request, response, next) => {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_ONELINK_CLUSTER`)
         } catch(error) {
@@ -15,7 +15,7 @@ module.exports = {
         })
     },
 
-    getCluster: async function(request, response, next) {
+    getCluster: async (request, response, next) => {
         if (utility.isAlphaNumericDashSlashPlus(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {

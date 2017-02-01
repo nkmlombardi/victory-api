@@ -1,4 +1,4 @@
 module.exports = {
-    getServer: function(request, response, next) {},
-    getServers: function(request, response, next) {}
+    getServer: (request, response, next) => {},
+    getServers: (request, response, next) => {}
 }

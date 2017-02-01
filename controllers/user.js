@@ -1,5 +1,5 @@
 module.exports = {
-    postUser: async function(request, response, next) {
+    postUser: async (request, response, next) => {
         var user = await request.models.User.findOne({
             where: { email: request.body.email }
         })

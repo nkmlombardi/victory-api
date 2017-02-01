@@ -1,7 +1,7 @@
 var utility = require('../services/utilities')
 
 module.exports = {
-    getTargets: async function(request, response, next) {
+    getTargets: async (request, response, next) => {
         try {
             response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_TARGET WHERE is_inactive = 0 AND is_hidden = 0`)
         } catch(error) {
@@ -15,7 +15,7 @@ module.exports = {
         })
     },
 
-    getTarget: async function(request, response, next) {
+    getTarget: async (request, response, next) => {
         if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {

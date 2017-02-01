@@ -1,7 +1,7 @@
 var utility = require('../services/utilities')
 
 module.exports = {
-    getOrigins: async function(request, response, next) {
+    getOrigins: async (request, response, next) => {
         try {
             response.query = await request.connection.query(`
                 SELECT *
