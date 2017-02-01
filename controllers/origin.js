@@ -69,6 +69,7 @@ module.exports = {
                 SELECT *
                 FROM BB_PROJECT_ORIGIN_HEALTH_LOG
                 WHERE origin_id = ${request.params.id}
+                ORDER BY health_dtm DESC
                 LIMIT 25
             `)
         } catch(error) {
