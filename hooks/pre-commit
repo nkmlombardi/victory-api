@@ -1,0 +1,6 @@
+#!/bin/bash
+mocha --reporter spec --recursive --require mocha-babel
+rm ./logs/access_logs.json
+rm ./logs/error_logs.json
+touch ./logs/access_logs.json
+touch ./logs/error_logs.json

@@ -55,6 +55,38 @@ module.exports = function(error, request, response) {
             })
             break
 
+        case 5002:
+            return response.status(request.status['INTERNAL_SERVER_ERROR']).json({
+                status: {
+                    code: error,
+                    message: internal[error]
+                }
+            })
+
+        case 5003:
+            return response.status(request.status['INTERNAL_SERVER_ERROR']).json({
+                status: {
+                    code: error,
+                    message: internal[error]
+                }
+            })
+
+        case 5004:
+        console.log("reached 5004")
+            return response.json({
+                status: {
+                    code: error,
+                    message: internal[error]
+                }
+            })
+
+        case 5005:
+            return response.status(request.status['INTERNAL_SERVER_ERROR']).json({
+                status: {
+                    code: error,
+                    message: internal[error]
+                }
+            })
 
         // Default case
         default:

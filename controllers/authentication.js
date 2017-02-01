@@ -23,7 +23,6 @@ module.exports = {
         }
 
         response.json({
-            status: request.status.success,
             data: {
                 token: passport,
                 user: request.user.publicAttributes()
