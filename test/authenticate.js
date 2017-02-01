@@ -5,23 +5,27 @@ let chai = require('chai')
 let chaiHttp = require('chai-http')
 let should = chai.should()
 let server = require('../server')
-let expect = require('expect.js')
-let stRequest = require('supertest').agent('http://localhost:3000')
-
 
 chai.use(chaiHttp)
-describe('authencation should work', function () {
-    xit('should post the authentication', function (done) {
-        stRequest
-            .post('/v1/authenticate')
-            .send({
-                email: "onelink",
-                password: "onelink"
+
+describe('Endpoints', () => {
+    it('base url should return HTTP status code 200', (done) => {
+        chai.request(server)
+            .get('/')
+            .end((error, response) =>{
+                response.statusCode.should.be.eql(200)
+                done(error)
             })
-            .set('Accept', 'application/json')
-            .end(function (error, response) {
-                response.status.should.be.eql(200)
-                done()
+    })
+})
+
+describe('Authentication endpoints', () => {
+    xit('should return an object trying to authenticate', function(done) {
+        chai.request(server)
+            .get('/v1/authenticate')
+            .end((error, response) => {
+                response.body.should.be.a('object')
+                done(error)
             })
     })
 })
