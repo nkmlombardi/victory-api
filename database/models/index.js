@@ -1,4 +1,4 @@
-const simport = require('sequelize-import')
+let simport = require('sequelize-import')
 
 module.exports = (database) => {
     // Load in database models
