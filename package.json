@@ -11,6 +11,7 @@
     "bcryptjs": "^2.3.0",
     "body-parser": "~1.14.2",
     "colors": "0.6.2",
+    "express": "^4.14.1",
     "express-error-handler": "^1.1.0",
     "express-oi": "0.0.21",
     "express-winston": "^2.1.3",
