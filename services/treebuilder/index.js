@@ -15,13 +15,13 @@ module.exports = function(data, datasets, levels, resources, tree) {
     data.forEach(function(d) {
 
         // Keep this as a reference to the current level
-        var depthCursor = tree
+        const depthCursor = tree
 
         // Go down one level at a time
         levels.forEach(function(property, depth) {
 
             // Look to see if a branch has already been created
-            var index
+            const index
             depthCursor.forEach(function(child, i) {
                 if (d[property] == child[levels[depth]]) {
                     index = i
@@ -30,11 +30,11 @@ module.exports = function(data, datasets, levels, resources, tree) {
 
             // Add a branch if it isn't there
             if (isNaN(index)) {
-                var newResource = { [levels[depth]]: d[property] }
+                const newResource = { [levels[depth]]: d[property] }
 
                 // Search through the dataset for an object that has a matching ID
-                var resource = function(resources, reference, attribute) {
-                    for (var i = 0; i < resources.length; i++) {
+                const resource = function(resources, reference, attribute) {
+                    for (const i = 0; i < resources.length; i++) {
                         if (resources[i][attribute] === reference[attribute]) {
                             return resources[i]
                         }
@@ -45,7 +45,7 @@ module.exports = function(data, datasets, levels, resources, tree) {
 
                 // Copy properties to the tree object we are iterating on
                 if (resource) {
-                    for (var property in resource) {
+                    for (const property in resource) {
                         newResource[property] = resource[property]
                     }
                 } else {

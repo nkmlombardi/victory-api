@@ -1,10 +1,10 @@
-var passport = require('passport')
-var strategy = require('passport-http-bearer').Strategy
+const passport = require('passport')
+const strategy = require('passport-http-bearer').Strategy
 
 passport.use(new strategy({ passReqToCallback: true },
     async function(request, auth_token, callback) {
         try {
-            var token = await request.models.Passport.findOne({
+            const token = await request.models.Passport.findOne({
                 where: {
                     auth_token: auth_token
                 }
@@ -16,7 +16,7 @@ passport.use(new strategy({ passReqToCallback: true },
         if (!token) { return callback(null, false); }
 
         try {
-            var user = await request.models.User.scope('public').findOne({
+            const user = await request.models.User.scope('public').findOne({
                 where: {
                     id: token.user_id
                 }

@@ -64,7 +64,7 @@ describe('Clients', () => {
         chai.request(server)
             .get('/v1/clients')
             .end((error, response) => {
-                var clientId = response.body.data[0].client_id
+                const clientId = response.body.data[0].client_id
                 chai.request(server)
                     .get('/v1/clients/' + clientId)
                     .end((error, response) => {

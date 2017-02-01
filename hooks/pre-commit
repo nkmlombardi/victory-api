@@ -1,5 +1,5 @@
 #!/bin/bash
-mocha --reporter spec --recursive --require mocha-babel
+mocha --reporter spec --recursive --compilers js:babel-register
 rm ./logs/access_logs.json
 rm ./logs/error_logs.json
 touch ./logs/access_logs.json

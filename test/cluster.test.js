@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'test'
 
-var plyfil = require('babel-polyfill')
+const plyfil = require('babel-polyfill')
 
 let chai = require('chai')
 let chaiHttp = require('chai-http')
@@ -63,7 +63,7 @@ describe('Clusters', () => {
         chai.request(server)
         .get('/v1/clusters')
         .end((error, response) => {
-            var clusterName = response.body.data[0].cluster_name
+            const clusterName = response.body.data[0].cluster_name
             chai.request(server)
             .get('/v1/clusters/' + clusterName)
             .end((error, response) => {

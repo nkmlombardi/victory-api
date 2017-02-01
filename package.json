@@ -5,7 +5,7 @@
   "scripts": {
     "start": "babel-watch ./server.js",
     "test": "mocha --reporter spec --recursive --compilers js:babel-register",
-    "lint": "eslint --ext .js ./server.js"
+    "lint": "eslint --ext .js ./"
   },
   "dependencies": {
     "apicache": "^0.7.3",

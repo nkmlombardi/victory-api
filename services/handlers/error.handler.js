@@ -1,4 +1,4 @@
-var internal = require('./data/errors')
+const internal = require('./data/errors')
 
 // Figure out how to process database errors, and application errors respectively
 module.exports = function(error, request, response) {

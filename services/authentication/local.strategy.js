@@ -1,10 +1,10 @@
-var passport = require('passport')
-var strategy = require('passport-local').Strategy
+const passport = require('passport')
+const strategy = require('passport-local').Strategy
 
 passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
     async function(request, response, email, password, callback) {
         try {
-            var user = await request.models.User.findOne({
+            const user = await request.models.User.findOne({
                 where: {
                     email: email
                 }

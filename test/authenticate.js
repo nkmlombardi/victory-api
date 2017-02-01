@@ -1,6 +1,6 @@
 process.env.NODE_ENV = 'test'
 
-var plyfil = require('babel-polyfill')
+const plyfil = require('babel-polyfill')
 let chai = require('chai')
 let chaiHttp = require('chai-http')
 let should = chai.should()

@@ -1,10 +1,10 @@
-var path = require('path')
-var fs = require('fs')
-var Promise = require('bluebird')
+const path = require('path')
+const fs = require('fs')
+const Promise = require('bluebird')
 
 // Accumulate seed files
-var seeders = function() {
-    var result = []
+const seeders = function() {
+    const result = []
 
     fs.readdirSync(__dirname).forEach(function(file) {
         /* If its the current file ignore it */

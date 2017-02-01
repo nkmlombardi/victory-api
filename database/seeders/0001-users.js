@@ -1,18 +1,18 @@
-var fs = require('fs')
+const fs = require('fs')
 
 module.exports = {
-    up: function(sequelize, models) {
+    up: (sequelize, models) => {
         if (process.env.NODE_ENV !== 'test'){
-            console.log('User Model Seeder called.'.yellow)
+            console.log(colors.yellow('User Model Seeder called.'))
         }
         return models.User.bulkCreate(
             JSON.parse(fs.readFileSync(__dirname + '/data/users.json', 'utf8'))
         )
     },
 
-    down: function(sequelize, models) {
+    down: (sequelize, models) =>{
         if (process.env.NODE_ENV !== 'test'){
-            console.log('User Model De-Seeder called.'.yellow)
+            console.log(colors.yellow('User Model De-Seeder called.'))
         }
         return models.User.truncate()
     }
