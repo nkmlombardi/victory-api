@@ -5,7 +5,6 @@ module.exports = {
         sourceType: 'module'
     },
     extends: 'airbnb-base',
-
     'env': {
         browser: false,
         node: true
@@ -17,12 +16,6 @@ module.exports = {
         'no-param-reassign': 0,
         'import/no-unresolved': 0,
         'import/imports-first': 0,
-
-        // don't require .vue extension when importing
-        'import/extensions': ['error', 'always', {
-            'js': 'never',
-            'vue': 'never'
-        }],
 
         // allow debugger during development
         'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
