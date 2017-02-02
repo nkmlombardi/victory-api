@@ -1,31 +1,35 @@
 const passport = require('passport')
-const strategy = require('passport-http-bearer').Strategy
+const Strategy = require('passport-http-bearer').Strategy
 
-passport.use(new strategy({ passReqToCallback: true },
-    async function(request, auth_token, callback) {
+// FIX ERORR HANDLERS HERE
+
+passport.use(new Strategy({ passReqToCallback: true },
+    async (request, authToken, callback) => {
+        let token
+        let user
         try {
-            const token = await request.models.Passport.findOne({
+            token = await request.models.Passport.findOne({
                 where: {
-                    auth_token: auth_token
+                    authToken
                 }
             })
-        } catch(error) {
-            return response.errorHandler(5002, request, response)
+        } catch (error) {
+            return response.handlers.error(5002, request, response)
         }
 
-        if (!token) { return callback(null, false); }
+        if (!token) return callback(null, false)
 
         try {
-            const user = await request.models.User.scope('public').findOne({
+            user = await request.models.User.scope('public').findOne({
                 where: {
                     id: token.user_id
                 }
             })
-        } catch(error) {
-            return response.errorHandler(5003, request, response)
+        } catch (error) {
+            return response.handlers.error(5003, request, response)
         }
 
-        if (!user) { return callback(null, false) }
+        if (!user) return callback(null, false)
         return callback(null, user, { scope: '*' })
     }
 ))

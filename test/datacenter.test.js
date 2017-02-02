@@ -1,9 +1,10 @@
 process.env.NODE_ENV = 'test'
 
-let chai = require('chai')
-let chaiHttp = require('chai-http')
-let should = chai.should()
-let server = require('../server')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const should = chai.should()
+const server = require('../server')
+
 chai.use(chaiHttp)
 
 describe('Datacenters', () => {
@@ -87,7 +88,7 @@ describe('Datacenters', () => {
                 response.body.should.have.property('data')
                 response.body.data.should.be.a('array')
                 response.body.data.length.should.be.gt(0)
-                for (const i = 0; i < response.body.data.length; i ++) {
+                for (let i = 0; i < response.body.data.length; i += 1) {
                     response.body.data[i].data_center.should.be.eql(datacenterCode)
                 }
                 done()
