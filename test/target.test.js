@@ -1,11 +1,10 @@
 process.env.NODE_ENV = 'test'
 
-var plyfil = require('babel-polyfill')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const should = chai.should()
+const server = require('../server')
 
-let chai = require('chai')
-let chaiHttp = require('chai-http')
-let should = chai.should()
-let server = require('../server')
 chai.use(chaiHttp)
 
 describe('Targets', () => {
@@ -63,7 +62,7 @@ describe('Targets', () => {
         chai.request(server)
         .get('/v1/targets')
         .end((error, response) => {
-            var targetId = response.body.data[0].target_id
+            const targetId = response.body.data[0].target_id
             chai.request(server)
             .get('/v1/targets/' + targetId)
             .end((error, response) => {

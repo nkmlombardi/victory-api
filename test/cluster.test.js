@@ -1,11 +1,10 @@
 process.env.NODE_ENV = 'test'
 
-var plyfil = require('babel-polyfill')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const should = chai.should()
+const server = require('../server')
 
-let chai = require('chai')
-let chaiHttp = require('chai-http')
-let should = chai.should()
-let server = require('../server')
 chai.use(chaiHttp)
 
 describe('Clusters', () => {
@@ -16,7 +15,7 @@ describe('Clusters', () => {
             response.statusCode.should.be.eql(200)
         })
         done()
-    })
+    }),
     it('should return with a 404 status code if a potentially valid resource is not found', (done) => {
         chai.request(server)
         .get('/v1/clusters/aeiouASF00-lol')
@@ -24,7 +23,7 @@ describe('Clusters', () => {
             response.statusCode.should.be.eql(404)
         })
         done()
-    })
+    }),
     it('should return with a 400 status code if an invalid resource is queried for', (done) => {
         chai.request(server)
         .get('/v1/clusters/ae!ou:')
@@ -32,7 +31,7 @@ describe('Clusters', () => {
             response.statusCode.should.be.eql(400)
         })
         done()
-    })
+    }),
     it('should return an object', (done) => {
         chai.request(server)
         .get('/v1/clusters')
@@ -63,7 +62,7 @@ describe('Clusters', () => {
         chai.request(server)
         .get('/v1/clusters')
         .end((error, response) => {
-            var clusterName = response.body.data[0].cluster_name
+            const clusterName = response.body.data[0].cluster_name
             chai.request(server)
             .get('/v1/clusters/' + clusterName)
             .end((error, response) => {

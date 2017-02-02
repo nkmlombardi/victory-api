@@ -1,0 +1,8 @@
+2017-02-02T19:31:46.396Z - info: GET /v1/origins/300025 200 648 - 28.493 ms
+
+2017-02-02T19:58:55.883Z - info: POST /v1/authenticate 200 83 - 148.595 ms
+
+2017-02-02T19:59:04.330Z - info: POST /v1/authenticate 200 83 - 128.548 ms
+
+2017-02-02T20:01:56.511Z - info: POST /v1/authenticate 200 400 - 264.971 ms
+

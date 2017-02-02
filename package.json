@@ -5,11 +5,12 @@
   "scripts": {
     "start": "babel-watch ./server.js",
     "test": "mocha --reporter spec --recursive --compilers js:babel-register",
-    "lint": "eslint --ext .js ./server.js"
+    "lint": "eslint --ext .js ./"
   },
   "dependencies": {
     "apicache": "^0.7.3",
     "bcryptjs": "^2.3.0",
+    "bluebird": "^3.4.7",
     "body-parser": "~1.14.2",
     "colors": "0.6.2",
     "express": "^4.14.1",

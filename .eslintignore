@@ -1,0 +1,3 @@
+# ignore test files because linter can't handle them
+
+test/*

@@ -6,50 +6,49 @@
  * @param  {[type]} datasets  should contain all resources that will be referenced
  * @return {[type]}           fully linked tree
  */
-module.exports = function(data, datasets, levels, resources, tree) {
-    levels      = levels || Object.keys(data[0])
-    resources   = resources || levels.map(function(x) { return x.replace('_id', 's') })
-    tree        = tree || []
+module.exports = (data, datasets, levels, resources, tree) => {
+    levels = levels || Object.keys(data[0])
+    resources = resources || levels.map(x => x.replace('_id', 's'))
+    tree = tree || []
 
     // For each data row, loop through the expected levels traversing the output tree
-    data.forEach(function(d) {
-
+    data.forEach((d) => {
         // Keep this as a reference to the current level
-        var depthCursor = tree
+        let depthCursor = tree
 
         // Go down one level at a time
-        levels.forEach(function(property, depth) {
-
+        levels.forEach((property, depth) => {
             // Look to see if a branch has already been created
-            var index
-            depthCursor.forEach(function(child, i) {
-                if (d[property] == child[levels[depth]]) {
+            let index
+            depthCursor.forEach((child, i) => {
+                if (d[property] === child[levels[depth]]) {
                     index = i
                 }
             })
 
             // Add a branch if it isn't there
             if (isNaN(index)) {
-                var newResource = { [levels[depth]]: d[property] }
+                const newResource = { [levels[depth]]: d[property] }
 
                 // Search through the dataset for an object that has a matching ID
-                var resource = function(resources, reference, attribute) {
-                    for (var i = 0; i < resources.length; i++) {
+                const resource = (singleResources, reference, attribute) => {
+                    for (let i = 0; i < resources.length; i += 1) {
                         if (resources[i][attribute] === reference[attribute]) {
                             return resources[i]
                         }
                     }
 
                     return false
-                }(datasets[[resources[depth]]], newResource, levels[depth])
+                }
+                // (datasets[[resources[depth]]], newResource, levels[depth])
 
                 // Copy properties to the tree object we are iterating on
                 if (resource) {
-                    for (var property in resource) {
-                        newResource[property] = resource[property]
+                    for (const property in resource) {                      // eslint-disable-line
+                        if (resource.hasOwnProperty(property)) {            // eslint-disable-line
+                            newResource[property] = resource[property]      // eslint-disable-line
+                        }
                     }
-                } else {
-
                 }
 
                 // Check for end of resources before adding new subtree

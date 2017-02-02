@@ -1,7 +1,7 @@
-var bcrypt = require('bcryptjs')
+const bcrypt = require('bcryptjs')
 
-module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('User', {
+module.exports = (Sequelize, DataTypes) =>
+    Sequelize.define('User', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -13,16 +13,16 @@ module.exports = function(Sequelize, DataTypes) {
             validate: {
                 isEmail: true
             },
-            set: function(value) {
+            set(value) {
                 this.setDataValue('email', value.toLowerCase())
             }
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            set: function(value) {
-                var salt = bcrypt.genSaltSync(10)
-                var encrypted = bcrypt.hashSync(value, salt)
+            set(value) {
+                const salt = bcrypt.genSaltSync(10)
+                const encrypted = bcrypt.hashSync(value, salt)
 
                 this.setDataValue('password', encrypted)
                 this.setDataValue('salt', salt)
@@ -35,18 +35,12 @@ module.exports = function(Sequelize, DataTypes) {
         timestamps: true,
         paranoid: true,
         underscored: true,
-        classMethods: {
-            associate: function(models) {
-                // Associations
-            }
-        },
         instanceMethods: {
-            verifyPassword: function(password, callback) {
-                return bcrypt.compare(password, this.password, function(err, res) {
-                    return callback(err, res)
-                })
+            verifyPassword(password, callback) {
+                return bcrypt.compare(password, this.password, (err, res) => callback(err, res))
             },
-            publicAttributes: function() {
+
+            publicAttributes() {
                 return {
                     id: this.id,
                     email: this.email
@@ -61,4 +55,3 @@ module.exports = function(Sequelize, DataTypes) {
             }
         }
     })
-}

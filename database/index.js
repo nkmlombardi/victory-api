@@ -1,12 +1,11 @@
-var sequelize = require('sequelize')
-var mysql = require('promise-mysql')
-var models = require('./models')
-var seeder = require('./seeders')
-var winston = require('winston')
+const Sequelize = require('sequelize')
+const mysql = require('promise-mysql')
+const models = require('./models')
+const seeder = require('./seeders')
 
-module.exports = function() {
-    var database = {
-        sequelize: new sequelize(
+module.exports = () => {
+    const database = {
+        sequelize: new Sequelize(
             process.env.POSTGRES_NAME,
             process.env.POSTGRES_USER,
             process.env.POSTGRES_PASSWORD, {
@@ -22,7 +21,7 @@ module.exports = function() {
     models(database)
 
     // Sync models / migrations / seeds to database
-    database.sequelize.sync({ force: true }).then(function() {
+    database.sequelize.sync({ force: true }).then(() => {
         if (process.env.NODE_ENV !== 'test') {
             console.log('Models force synced to database.'.green)
         }
@@ -34,7 +33,7 @@ module.exports = function() {
 
             if (process.env.NODE_ENV !== 'test') console.log('Database Seeded.'.green)
         }
-    }).catch(function(error) {
+    }).catch((error) => {
         console.log('Failed to sync to database: '.red, error)
     })
 
@@ -44,7 +43,7 @@ module.exports = function() {
         host: process.env.MYSQL_HOST,
         user: process.env.MYSQL_USER,
         password: process.env.MYSQL_PASS
-    }).then(function(connection) {
+    }).then((connection) => {
         if (process.env.NODE_ENV !== 'test') console.log('Vanilla MYSQL Connection established.'.yellow)
 
         database.connection = connection

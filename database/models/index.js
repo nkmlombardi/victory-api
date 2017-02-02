@@ -1,15 +1,15 @@
-var simport = require('sequelize-import')
+const simport = require('sequelize-import')
 
-module.exports = function(database) {
+module.exports = (database) => {
     // Load in database models
     database.models = simport(__dirname, database.sequelize, {
         exclude: ['index.js']
     })
 
-    Object.keys(database.models).forEach(function(modelName) {
+    Object.keys(database.models).forEach((modelName) => {
         if ('associate' in database.models[modelName]) {
             database.models[modelName].associate(database.models)
-            console.log(modelName + ' relations linked.')
+            console.log(`${modelName}relations linked.`)
         }
     })
 }
