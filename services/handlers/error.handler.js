@@ -1,4 +1,5 @@
 const internal = require('./data/errors')
+const errorLogger = require('../logger/file.logger').errorLogger
 
 // Figure out how to process database errors, and application errors respectively
 module.exports = (error, request, response) => {
@@ -49,6 +50,7 @@ module.exports = (error, request, response) => {
 
     // Internal server errors
     case 5001:
+    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
         return response.status(request.status.INTERNAL_SERVER_ERROR).json({
             status: {
                 code: error,
@@ -57,6 +59,7 @@ module.exports = (error, request, response) => {
         })
 
     case 5002:
+    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
         return response.status(request.status.INTERNAL_SERVER_ERROR).json({
             status: {
                 code: error,
@@ -65,6 +68,7 @@ module.exports = (error, request, response) => {
         })
 
     case 5003:
+    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
         return response.status(request.status.INTERNAL_SERVER_ERROR).json({
             status: {
                 code: error,
@@ -73,6 +77,7 @@ module.exports = (error, request, response) => {
         })
 
     case 5004:
+    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
         return response.json({
             status: {
                 code: error,
@@ -81,6 +86,7 @@ module.exports = (error, request, response) => {
         })
 
     case 5005:
+    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
         return response.status(request.status.INTERNAL_SERVER_ERROR).json({
             status: {
                 code: error,
@@ -90,6 +96,7 @@ module.exports = (error, request, response) => {
 
     // Default case
     default:
+    errorLogger.log('error', '\n\t' + request.status.INTERNAL_SERVER_ERROR + '\n\t\tMessage: ' + 'There was an internal server error.' + '\n\t\t\t Data: ' + error)
         return response.json({
             status: {
                 code: request.status.INTERNAL_SERVER_ERROR,
