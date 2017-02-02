@@ -4,12 +4,9 @@ const Strategy = require('passport-local').Strategy
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
     async (request, email, password, callback) => {
         let user
+
         try {
-            user = await request.models.User.findOne({
-                where: {
-                    email
-                }
-            })
+            user = await request.models.User.findOne({ where: { email } })
         } catch (error) {
             console.error('Database error retrieving User during local authentication: ', request, email, error)
             return callback(error)
@@ -25,12 +22,11 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
         user.verifyPassword(password, (error, isMatch) => {
             // If error or password doesn't match
             if (error) return callback(error)
-            if (!isMatch) return console.log('username wrong')
+            if (!isMatch) return callback(error)
+
             request.strategy = 'local'
-            return request.strategy
+            return callback(null, user)
         })
-        // If password was correct
-        return callback(null, user)
     }
 ))
 
