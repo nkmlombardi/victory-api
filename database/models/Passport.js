@@ -1,7 +1,7 @@
 const crypto = require('crypto')
 
-module.exports = function (Sequelize, DataTypes) {
-    return Sequelize.define('Passport', {
+module.exports = (Sequelize, DataTypes) =>
+    Sequelize.define('Passport', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -33,4 +33,3 @@ module.exports = function (Sequelize, DataTypes) {
             }
         }
     })
-}

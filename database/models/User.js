@@ -1,7 +1,7 @@
 const bcrypt = require('bcryptjs')
 
-module.exports = function (Sequelize, DataTypes) {
-    return Sequelize.define('User', {
+module.exports = (Sequelize, DataTypes) =>
+    Sequelize.define('User', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -13,14 +13,14 @@ module.exports = function (Sequelize, DataTypes) {
             validate: {
                 isEmail: true
             },
-            set: function (value) {
+            set(value) {
                 this.setDataValue('email', value.toLowerCase())
             }
         },
         password: {
             type: DataTypes.STRING,
             allowNull: false,
-            set: function (value) {
+            set(value) {
                 const salt = bcrypt.genSaltSync(10)
                 const encrypted = bcrypt.hashSync(value, salt)
 
@@ -35,16 +35,12 @@ module.exports = function (Sequelize, DataTypes) {
         timestamps: true,
         paranoid: true,
         underscored: true,
-        // classMethods: {
-        //     associate: (models) => {
-        //         // Associations
-        //     }
-        // },
         instanceMethods: {
-            verifyPassword: (password, callback) => {
+            verifyPassword(password, callback) {
                 return bcrypt.compare(password, this.password, (err, res) => callback(err, res))
             },
-            publicAttributes: function () {
+
+            publicAttributes() {
                 return {
                     id: this.id,
                     email: this.email
@@ -59,4 +55,3 @@ module.exports = function (Sequelize, DataTypes) {
             }
         }
     })
-}

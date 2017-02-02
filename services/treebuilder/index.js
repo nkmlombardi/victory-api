@@ -44,8 +44,10 @@ module.exports = (data, datasets, levels, resources, tree) => {
 
                 // Copy properties to the tree object we are iterating on
                 if (resource) {
-                    for (const property in resource) {
-                        newResource[property] = resource[property]
+                    for (const property in resource) {                      // eslint-disable-line
+                        if (resource.hasOwnProperty(property)) {            // eslint-disable-line
+                            newResource[property] = resource[property]      // eslint-disable-line
+                        }
                     }
                 }
 

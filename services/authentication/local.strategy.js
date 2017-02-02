@@ -2,7 +2,7 @@ const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
-    async (request, response, email, password, callback) => {
+    async (request, email, password, callback) => {
         let user
         try {
             user = await request.models.User.findOne({
@@ -17,7 +17,7 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
 
         // If no user was returned from query
         if (!user) {
-            response.errorHandler(5004, request, response)
+            // response.errorHandler(5004, request, response)
             return callback(null, false)
         }
 
