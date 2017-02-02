@@ -6,7 +6,7 @@ module.exports = {
             new winston.transports.File({
                 name: 'error',
                 level: 'error',
-                filename: './logs/error_logs.json',
+                filename: './logs/error.log',
                 handleExceptions: true,
                 json: false,
                 maxsize: 5242880, // 5MB
@@ -21,7 +21,7 @@ module.exports = {
             new winston.transports.File({
                 name: 'access',
                 level: 'info',
-                filename: './logs/access_logs.json',
+                filename: './logs/access.log',
                 handleExceptions: true,
                 json: false,
                 maxsize: 5242880, // 5MB
