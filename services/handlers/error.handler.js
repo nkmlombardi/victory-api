@@ -48,6 +48,22 @@ module.exports = (error, request, response) => {
             }
         })
 
+    case 4004:
+        return response.status(request.status.FORBIDDEN).json({
+            status: {
+                code: error,
+                message: internal[error]
+            }
+        })
+
+    case 4005:
+        return response.status(request.status.UNAUTHORIZED).json({
+            status: {
+                code: error,
+                message: internal[error]
+            }
+        })
+
     // Internal server errors
     case 5001:
     errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])

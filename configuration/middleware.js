@@ -7,7 +7,6 @@ const handlers = require('../services/handlers')
 const consoleLogger = require('../services/logger/console.logger')
 const fileLogger = require('../services/logger/file.logger').accessLogger
 
-
 module.exports = (app, database) => {
     // Parse the body of requests
     app.use(bodyParser.json())

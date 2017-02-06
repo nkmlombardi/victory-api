@@ -1,4 +1,5 @@
 const crypto = require('crypto')
+const moment = require('moment')
 
 module.exports = (Sequelize, DataTypes) =>
     Sequelize.define('Passport', {
@@ -22,9 +23,17 @@ module.exports = (Sequelize, DataTypes) =>
         },
         strategy: {
             type: DataTypes.STRING
+        },
+        updated_at: {
+            type: DataTypes.STRING,
+            defaultValue: () => moment().format()
+        },
+        created_at: {
+            type: DataTypes.STRING,
+            defaultValue: moment().format()
         }
     }, {
-        timestamps: true,
+        timestamps: false,
         paranoid: true,
         underscored: true,
         classMethods: {
