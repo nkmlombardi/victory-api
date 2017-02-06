@@ -51,7 +51,13 @@ module.exports = {
         if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
-            response.query = await request.connection.query(`SELECT * FROM BB_PROJECT_ORIGIN_HEALTH_LOG WHERE origin_id = ${request.params.id} ORDER BY health_dtm DESC LIMIT 25`)
+            response.query = await request.connection.query(`
+                SELECT *
+                FROM BB_PROJECT_ORIGIN_HEALTH_LOG
+                WHERE origin_id = ${request.params.id}
+                ORDER BY health_dtm ASC
+                LIMIT 25
+            `)
         } catch (error) {
             return response.errorHandler(error, request, response)
         }

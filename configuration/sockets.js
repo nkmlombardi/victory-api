@@ -73,14 +73,18 @@ module.exports = (io, database) => {
                 status: 'success',
                 data: await database.connection.query(`
                     SELECT
-                        origin_id                           AS id,
-                        AVG(statistic_health_score)         AS health,
-                        MAX(health_dtm)                     AS time
-                    FROM        BB_PROJECT_ORIGIN_HEALTH
+                        health.origin_id                    AS id,
+                        AVG(health.statistic_health_score)  AS health,
+                        MAX(health.health_dtm)              AS time
+                    FROM
+                        BB_PROJECT_ORIGIN_HEALTH            AS health,
+                        BB_PROJECT_ORIGIN                   AS resource
+                    WHERE       health.origin_id = resource.origin_id
+                        AND     resource.is_inactive = 0
+                        AND     resource.is_hidden = 0
                     GROUP BY    id
                 `)
-            }
-            )
+            })
         }, 5000))
 
         /*
@@ -92,10 +96,15 @@ module.exports = (io, database) => {
                 status: 'success',
                 data: await database.connection.query(`
                     SELECT
-                        target_id                           AS id,
-                        AVG(statistic_health_score)         AS health,
-                        MAX(health_dtm)                     AS time
-                    FROM        BB_PROJECT_TARGET_HEALTH
+                        health.target_id                    AS id,
+                        AVG(health.statistic_health_score)  AS health,
+                        MAX(health.health_dtm)              AS time
+                    FROM
+                        BB_PROJECT_TARGET_HEALTH            AS health,
+                        BB_PROJECT_TARGET                   AS resource
+                    WHERE       health.target_id = resource.target_id
+                        AND     resource.is_inactive = 0
+                        AND     resource.is_hidden = 0
                     GROUP BY    id
                 `)
             })
