@@ -6,8 +6,9 @@ module.exports = new winston.Logger({
             level: 'info',
             handleExceptions: true,
             json: false,
-            colorize: true
+            colorize: true,
+            humanReadableUnhandledException: true
         })
     ],
-    exitOnError: false
+    exitOnError: true
 })
