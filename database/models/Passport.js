@@ -1,4 +1,5 @@
 const crypto = require('crypto')
+const moment = require('moment')
 
 module.exports = (Sequelize, DataTypes) =>
     Sequelize.define('Passport', {

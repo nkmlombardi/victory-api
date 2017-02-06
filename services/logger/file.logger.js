@@ -11,10 +11,11 @@ module.exports = {
                 json: false,
                 maxsize: 5242880, // 5MB
                 maxFiles: 5,
-                colorize: false
+                colorize: false,
+                humanReadableUnhandledException: true
             })
         ],
-        exitOnError: false
+        exitOnError: true
     }),
     accessLogger: new winston.Logger({
         transports: [
@@ -26,9 +27,10 @@ module.exports = {
                 json: false,
                 maxsize: 5242880, // 5MB
                 maxFiles: 5,
-                colorize: false
+                colorize: false,
+                humanReadableUnhandledException: true
             })
         ],
-        exitOnError: false
+        exitOnError: true
     })
 }

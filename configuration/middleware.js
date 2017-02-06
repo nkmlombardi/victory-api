@@ -7,7 +7,6 @@ const handlers = require('../services/handlers')
 const consoleLogger = require('../services/logger/console.logger')
 const fileLogger = require('../services/logger/file.logger').accessLogger
 
-
 module.exports = (app, database) => {
     // Parse the body of requests
     app.use(bodyParser.json())
@@ -31,12 +30,6 @@ module.exports = (app, database) => {
         next()
     })
 
-    // Error Handling
-    app.use((request, response, next) => {
-        response.handlers = handlers
-        next()
-    })
-
     // Database Middleware
     app.use((request, response, next) => {
         request.models = database.models
@@ -49,6 +42,18 @@ module.exports = (app, database) => {
         response.header('Access-Control-Allow-Origin', '*')
         response.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization')
         response.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
+        next()
+    })
+
+    // Error Handling
+    app.use((request, response, next) => {
+        response.handlers = handlers
+        next()
+    })
+
+    app.use((error, request, response, next) => {
+        console.error(error.stack)
+        console.log("I AM HEREEEEEEEEEEEEEEEEE")
         next()
     })
 }
