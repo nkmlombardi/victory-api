@@ -18,6 +18,7 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
             // response.errorHandler(5004, request, response)
             return callback(null, false)
         }
+        user.client_IP = request.ip
         // Verify the password that was provided
         user.verifyPassword(password, (error, isMatch) => {
             // If error or password doesn't match
@@ -26,6 +27,7 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
 
             request.strategy = 'local'
             request.user = user
+
             return callback(null, user)
         })
     }

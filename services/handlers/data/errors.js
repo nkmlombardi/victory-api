@@ -8,7 +8,8 @@ module.exports = {
     4002: 'An invalid resource identifier was provided.',
     4003: 'Attempt to generate a passport authentication without a strategy.',
     4004: 'No user was found with the supplied credentials.',
-    4005: 'User authentication token expired',
+    4005: 'User authentication token expired.',
+    4006: 'Request made from unauthorized IP address.',
 
     // 5000: Database error
     5001: 'Database error generating a new passport.',

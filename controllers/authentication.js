@@ -15,8 +15,6 @@ module.exports = {
 
         if (!request.strategy) return response.handlers.error(2000, request, response)
 
-        console.log('PS: ', request.email, request.strategy)
-
         try {
             passport = await request.models.Passport.create({
                 user_id: request.user.id,

@@ -23,17 +23,9 @@ module.exports = (Sequelize, DataTypes) =>
         },
         strategy: {
             type: DataTypes.STRING
-        },
-        updated_at: {
-            type: DataTypes.STRING,
-            defaultValue: () => moment().format()
-        },
-        created_at: {
-            type: DataTypes.STRING,
-            defaultValue: moment().format()
         }
     }, {
-        timestamps: false,
+        timestamps: true,
         paranoid: true,
         underscored: true,
         classMethods: {
