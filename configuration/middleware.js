@@ -6,6 +6,10 @@ const httpStatus = require('http-status-codes')
 const handlers = require('../services/handlers')
 const consoleLogger = require('../services/logger/console.logger')
 const fileLogger = require('../services/logger/file.logger').accessLogger
+const expressJwt = require('express-jwt')
+const secret = require('../services/authentication/.secret.key').secretKey
+
+
 
 module.exports = (app, database) => {
     // Parse the body of requests
@@ -44,6 +48,12 @@ module.exports = (app, database) => {
         response.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
         next()
     })
+
+    // JWT authentication
+    // app.use((request, response, next) => {
+    //     expressJwt({ secret: secret })
+    //     next()
+    // })
 
     // Error Handling
     app.use((request, response, next) => {

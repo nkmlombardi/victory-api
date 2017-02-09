@@ -18,9 +18,18 @@ module.exports = {
 
         if (!request.strategy) return response.handlers.error(2000, request, response)
 
+        request.token = jwt.sign({
+            iss: 'api.onelink.com',
+            sub: 'api_user',
+            aud: 'noc.onelink.com'
+        }, secret , {
+            expiresIn: 120
+        })
+
         try {
             passport = await request.models.Passport.create({
                 user_id: request.user.id,
+                jwt_token: request.token,
                 strategy: request.strategy
             })
 
@@ -29,17 +38,10 @@ module.exports = {
             return response.handlers.error(2001, request, response)
         }
 
-        request.token = jwt.sign({
-            iss: 'api.onelink.com',
-            sub: 'api_user',
-            aud: 'noc.onelink.com'
-        }, secret , {
-            expiresInMinutes: 120
-        })
+
 
         return response.json({
             data: {
-                jwt: request.token
                 token: passport,
                 user: request.user.publicAttributes()
             }
