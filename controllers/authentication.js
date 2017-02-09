@@ -1,3 +1,6 @@
+const jwt = require('jsonwebtoken')
+const secret = require('../services/authentication/.secret.key').secretKey
+
 module.exports = {
     /**
      * Create new Passport login via a local authentication strategy. This
@@ -26,8 +29,17 @@ module.exports = {
             return response.handlers.error(2001, request, response)
         }
 
+        request.token = jwt.sign({
+            iss: 'api.onelink.com',
+            sub: 'api_user',
+            aud: 'noc.onelink.com'
+        }, secret , {
+            expiresInMinutes: 120
+        })
+
         return response.json({
             data: {
+                jwt: request.token
                 token: passport,
                 user: request.user.publicAttributes()
             }

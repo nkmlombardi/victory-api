@@ -4,3 +4,4 @@ node_modules/
 logs/error.log
 logs/access.log
 npm-debug.log
+/services/authentication/.secret.key
