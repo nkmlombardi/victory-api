@@ -6,7 +6,8 @@ const authJwt = expressJwt({ secret: secret })
 const errorLogger = require('../logger/file.logger').errorLogger
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
-
+let jwtString
+let user_id = false
 const parameters = {
     secretOrKey: secret,
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
@@ -18,31 +19,28 @@ const parameters = {
 
 passport.use(new Strategy(parameters,
     async (payload, callback) => {
-        console.log('inside jwt pass1')
-        console.log('payload.header.auth', payload.headers.authorization.split(' ')[1])
-        jwt.verify('ets', secret, (err, decoded) => {
-            if (err) return console.log('error')
-            var user = users[decoded.id]
-            return callback(null, user ? user : false)
-        })
-        console.log('inside jwt pass2')
-        token = await payload.models.Passport.findOne({ where: { jwt_token: payload.headers.authorization.split(' ')[1] } })
+        jwtString = payload.headers.authorization.split(' ')[1]
+        try {
+            token = await payload.models.Passport.findOne({ where: { jwt_token: jwtString } })
+        } catch (error) {
 
-        console.log('inside jwt pass3')
+        }
+        (token ? console.log('passport works and returns a valid object') : console.log('passport fails'))
+        jwt.verify(jwtString, secret, (err, decoded) => {
+            if (err) return console.log('error verifying JWT')
+            console.log('callback', callback)
+            return token.user_id
+        })
+        console.log('jwt.verify passes')
+
 
         return callback
     }
 ))
 
-module.exports = function (payload, callback, next) {
-    passport.authenticate('jwt', { session: false}), function (response, callback) {
+// passport.authenticate('jwt', { session: false }), function(req, res) { res.send(req.user.profile) }
 
+module.exports = passport.authenticate('jwt', { session: false}), function (response, callback) {
         console.log('export from jwt')
-        // console.log(payload)
-        // will generate a 500 error
-        // if (error) return errorLogger.log('error', '\n\t\tMessage: ', error)
-
-        // wrong user/pass combo
-        // if (!payload) return errorLogger.log('payload', '\n\t\tMessage: ', payload)
-    }(payload, callback, next)
-}
+        return token.user_id
+    }

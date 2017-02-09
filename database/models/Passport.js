@@ -17,7 +17,7 @@ module.exports = (Sequelize, DataTypes) =>
             }
         },
         jwt_token: {
-            type: DataTypes.STRING
+            type: DataTypes.TEXT
         },
         strategy: {
             type: DataTypes.STRING

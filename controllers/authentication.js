@@ -21,18 +21,18 @@ module.exports = {
         request.token = jwt.sign({
             iss: 'api.onelink.com',
             sub: 'api_user',
-            aud: 'noc.onelink.com'
+            aud: 'noc.onelink.com',
+            user_id: request.user.id
         }, secret , {
-            expiresIn: 120
+            expiresIn: 300 // 5 minutes
         })
 
         try {
             passport = await request.models.Passport.create({
                 user_id: request.user.id,
-                jwt_token: request.token,
-                strategy: request.strategy
+                strategy: request.strategy,
+                jwt_token: request.token
             })
-
         } catch (error) {
             console.log('passport error', error)
             return response.handlers.error(2001, request, response)
