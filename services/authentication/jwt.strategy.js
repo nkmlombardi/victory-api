@@ -6,8 +6,14 @@ const authJwt = expressJwt({ secret: secret })
 const errorLogger = require('../logger/file.logger').errorLogger
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
+const crypto = require('crypto')
+const decipher = crypto.createDecipher('aes192', secret)
 let jwtString
 let user_id = false
+let verify
+let token = false
+let ipValid = false
+let noJWT = false
 const parameters = {
     secretOrKey: secret,
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
@@ -19,30 +25,36 @@ const parameters = {
 
 passport.use(new Strategy(parameters,
     async (request, payload, callback) => {
+        if (request.headers.authorization.split(' ')[0] !== 'JWT') {
+            noJWT = true
+            return callback(null, false, console.log('JWT not found in header'))
+        }
         jwtString = request.headers.authorization.split(' ')[1]
         console.log('1 got the JWT from header')
         try {
             jwt.verify(jwtString, secret, (err, decoded) => {
-                if (err) return err
-                    console.log('2verification worked, issuer: ', decoded.iss)
-                return decoded.iss
+                if (err) {
+                    verify = false
+                    return verify
+                } else {
+                    verify = false
+                    return verify
+                }
             })
         } catch (error) {
             console.log('3 problem with verification of JWT')
         }
         try {
             token = await request.models.Passport.findOne({ where: { jwt_token: jwtString } })
-            if (!token) return console.log('failed getting token from passport')
+            if (!token) {
+                return callback(null, false, console.log('legit token, doesn\'t match any in passport though'))
+            }
             console.log('got token from passport')
         } catch (error) {
             console.log('3 errors w/ passport token: ', error)
         }
-        (token ? console.log('3 passport works and returns a valid object') : console.log('3 passport fails'))
 
-
-        console.log('4 jwt.verify passes')
-
-        return callback(null, token.user_id, console.log('it\'s alive!'))
+        return callback(null, token.user_id, console.log('jwt strategy executes callback'))
     }
 ))
 
@@ -51,10 +63,14 @@ module.exports = function (request, response, next) {
         console.log('5 inside jwt export')
         console.log('6 error?: ', error)
         console.log('7 info: ', info)
+
         console.log('8 user: ', user)
-        if (!user) {
-            return response.handlers.error(4005, request, response)
-        }
+        console.log('9 !token: ', !token)
+        console.log('10 verify: ', verify)
+        if (noJWT == true) return response.handlers.error(4007, request, response)
+        if (!token && verify) return response.handlers.error(4008, request, response)
+        if (!verify && !user) return response.handlers.error(4007, request, response)
+
         return next()
     })(request, response, next)
 }

@@ -21,6 +21,9 @@ module.exports = (Sequelize, DataTypes) =>
         },
         strategy: {
             type: DataTypes.STRING
+        },
+        user_ip: {
+            type: DataTypes.STRING
         }
     }, {
         timestamps: true,

@@ -24,7 +24,7 @@ config.sockets(io, database)
 config.routes(app)
 
 // Execute server
-server.listen(process.env.NODE_PORT, () => {
+server.listen(process.env.NODE_PORT, '127.0.0.1', () => {
     console.log(colors.green(`Listening on port ${process.env.NODE_PORT}.`))
 }).on('error', (error) => {
     if (error.code === 'EADDRINUSE') {
