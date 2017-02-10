@@ -18,29 +18,43 @@ const parameters = {
 }
 
 passport.use(new Strategy(parameters,
-    async (payload, callback) => {
-        jwtString = payload.headers.authorization.split(' ')[1]
+    async (request, payload, callback) => {
+        jwtString = request.headers.authorization.split(' ')[1]
+        console.log('1 got the JWT from header')
         try {
-            token = await payload.models.Passport.findOne({ where: { jwt_token: jwtString } })
+            jwt.verify(jwtString, secret, (err, decoded) => {
+                if (err) return err
+                    console.log('2verification worked, issuer: ', decoded.iss)
+                return decoded.iss
+            })
         } catch (error) {
-
+            console.log('3 problem with verification of JWT')
         }
-        (token ? console.log('passport works and returns a valid object') : console.log('passport fails'))
-        jwt.verify(jwtString, secret, (err, decoded) => {
-            if (err) return console.log('error verifying JWT')
-            console.log('callback', callback)
-            return token.user_id
-        })
-        console.log('jwt.verify passes')
+        try {
+            token = await request.models.Passport.findOne({ where: { jwt_token: jwtString } })
+            if (!token) return console.log('failed getting token from passport')
+            console.log('got token from passport')
+        } catch (error) {
+            console.log('3 errors w/ passport token: ', error)
+        }
+        (token ? console.log('3 passport works and returns a valid object') : console.log('3 passport fails'))
 
 
-        return callback
+        console.log('4 jwt.verify passes')
+
+        return callback(null, token.user_id, console.log('it\'s alive!'))
     }
 ))
 
-// passport.authenticate('jwt', { session: false }), function(req, res) { res.send(req.user.profile) }
-
-module.exports = passport.authenticate('jwt', { session: false}), function (response, callback) {
-        console.log('export from jwt')
-        return token.user_id
-    }
+module.exports = function (request, response, next) {
+    passport.authenticate('jwt', (error, user, info) => {
+        console.log('5 inside jwt export')
+        console.log('6 error?: ', error)
+        console.log('7 info: ', info)
+        console.log('8 user: ', user)
+        if (!user) {
+            return response.handlers.error(4005, request, response)
+        }
+        return next()
+    })(request, response, next)
+}
