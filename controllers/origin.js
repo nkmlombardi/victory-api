@@ -77,8 +77,8 @@ module.exports = {
                 SELECT *
                 FROM BB_PROJECT_ORIGIN_HEALTH_LOG
                 WHERE origin_id = ${request.params.id}
+                    AND health_dtm BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()
                 ORDER BY health_dtm DESC
-                LIMIT 25
             `)
         } catch (error) {
             return response.errorHandler(error, request, response)
@@ -89,5 +89,28 @@ module.exports = {
         return response.json({
             data: response.query
         })
-    }
+    },
+
+    getOriginDispatchHistory: async (request, response) => {
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
+
+        try {
+            response.query = await request.connection.query(`
+                SELECT *
+                FROM NOC_EVENT_DISPATCH
+                WHERE noc_dispatch_object = 'BB_PROJECT_ORIGIN_HEALTH'
+                    AND noc_dispatch_object_id = ${request.params.id}
+                ORDER BY noc_dispatch_start_dtm DESC
+                LIMIT 10
+            `)
+        } catch (error) {
+            return response.errorHandler(error, request, response)
+        }
+
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
+
+        return response.json({
+            data: response.query
+        })
+    },
 }

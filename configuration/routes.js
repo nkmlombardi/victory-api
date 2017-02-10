@@ -26,9 +26,12 @@ module.exports = (app) => {
     app.route('/v1/origins/:id/')
         .get(cache('1 hour'), controllers.origin.getOrigin)
     app.route('/v1/origins/:id/targets')
-        .get(controllers.origin.getOriginTargets)
+        .get(cache('1 hour'), controllers.origin.getOriginTargets)
+
     app.route('/v1/origins/:id/health')
         .get(controllers.origin.getOriginHealthLog)
+    app.route('/v1/origins/:id/dispatch')
+        .get(controllers.origin.getOriginDispatchHistory)
 
     // Target Resource
     app.route('/v1/targets')
