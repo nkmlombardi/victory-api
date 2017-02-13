@@ -1,25 +1,19 @@
-const secret = require('./.secret.key').secretKey
+const secrets = require('./.secrets')
+const secretKey = secrets.secretKey
+const ip_hash = secrets.ip_hash
+const random_ip = secrets.random_ip
+const bcrypt = require('bcryptjs')
 const Strategy = require('passport-jwt').Strategy
 const ExtractJwt = require('passport-jwt').ExtractJwt
 const expressJwt = require('express-jwt')
-const authJwt = expressJwt({ secret: secret })
+const authJwt = expressJwt({ secret: secretKey })
 const errorLogger = require('../logger/file.logger').errorLogger
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
 
-let jwtString
-let user_id = false
-let decoded
-let token = false
-let ipValid = false
-let noJWT
-let cutOff
-let tokenUpdate
-let expired
-
 const parameters = {
-    secretOrKey: secret,
+    secretOrKey: secretKey,
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
     iss: 'api.onelink.com',
     sub: 'api_user',
@@ -29,8 +23,10 @@ const parameters = {
 
 passport.use(new Strategy(parameters,
     async (request, payload, callback) => {
+        // when we get IP from requests working, use this:
+        // valid_ip = bcrypt.compareSync(request.header['x-forwarded-for'][0], ip_hash)
         try {
-            jwt.verify(request.headers.authorization.split(' ')[1], secret, (err, decoded) => {
+            jwt.verify(request.headers.authorization.split(' ')[1], secretKey, (err, decoded) => {
                 if (decoded) {
                     request.verify = true
                 } else {
@@ -40,6 +36,16 @@ passport.use(new Strategy(parameters,
         } catch (error) {
             request.verify = false
             return callback(null, false)
+        }
+        // When IP address is working, use this
+        //
+        // if (bcrypt.compareSync(random_ip, ip_hash) || bcrypt.compareSync(request.header['x-forwarded-for'][0], ip_hash)) {
+        //
+        // For now, this will just work
+        if (bcrypt.compareSync(random_ip, ip_hash)) {
+            request.valid_ip = true
+        } else {
+            request.valid_ip = false
         }
         try {
             request.token_exists = true
@@ -62,16 +68,34 @@ passport.use(new Strategy(parameters,
 
 module.exports = function (request, response, next) {
     passport.authenticate('jwt', (info, user, error) => {
+        let cutOff
+        let tokenUpdate
+        let expired
+
         if (token) {
             cutOff = moment().subtract(30, 'seconds').format()
             tokenUpdate = moment(token.updated_at).format()
             expired = !moment(tokenUpdate).isAfter(cutOff)
         }
-        if (typeof request.headers.authorization == 'undefined') return response.handlers.error(4008, request, response)
-        if (request.headers.authorization.split(' ')[0] != 'JWT') return response.handlers.error(4008, request, response)
-        if (request.verify !== true) return response.handlers.error(4007, request, response)
-        if (request.token_exists !== true) return response.handlers.error(4004, request, response)
-        if (expired) return response.handlers.error(4005, request, response)
+
+        if (typeof request.headers.authorization == 'undefined')
+            return response.handlers.error(4008, request, response)
+
+        if (request.headers.authorization.split(' ')[0] != 'JWT')
+            return response.handlers.error(4008, request, response)
+
+        if (request.verify !== true)
+            return response.handlers.error(4007, request, response)
+
+        if (request.valid_ip !== true)
+            return response.handlers.error(4006, request, response)
+
+        if (request.token_exists !== true)
+            return response.handlers.error(4004, request, response)
+
+        if (expired)
+            return response.handlers.error(4005, request, response)
+
         token.changed('updated_at', true).save()
         return next()
     })(request, response, next)
