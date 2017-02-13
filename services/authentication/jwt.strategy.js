@@ -29,10 +29,8 @@ const parameters = {
 
 passport.use(new Strategy(parameters,
     async (request, payload, callback) => {
-        jwtString = request.headers.authorization.split(' ')[1]
-        console.log('1 got the JWT from header')
         try {
-            jwt.verify(jwtString, secret, (err, decoded) => {
+            jwt.verify(request.headers.authorization.split(' ')[1], secret, (err, decoded) => {
                 if (decoded) {
                     request.verify = true
                 } else {
@@ -40,12 +38,14 @@ passport.use(new Strategy(parameters,
                 }
             })
         } catch (error) {
-            console.log('3 problem with verification of JWT')
+            request.verify = false
+            return callback(null, false)
         }
         try {
+            request.token_exists = true
             token = await request.models.Passport.findOne({
                 where: {
-                    jwt_token: jwtString
+                    jwt_token: request.headers.authorization.split(' ')[1]
                 }
             })
             if (!token) {
@@ -53,28 +53,25 @@ passport.use(new Strategy(parameters,
                 return callback(null, false)
             }
         } catch (error) {
-            console.log('3 errors w/ passport token: ', error)
+            return callback(null, false)
         }
 
-        return callback(null, token.user_id, console.log('jwt strategy executes callback'))
+        return callback(null, token.user_id, errorLogger.log('error', 'error in passport JWT strategy'))
     }
 ))
 
 module.exports = function (request, response, next) {
     passport.authenticate('jwt', (info, user, error) => {
-
         if (token) {
             cutOff = moment().subtract(30, 'seconds').format()
             tokenUpdate = moment(token.updated_at).format()
             expired = !moment(tokenUpdate).isAfter(cutOff)
         }
-        console.log('decoded', decoded)
-        console.log('verify= ', request.verify)
-        console.log('expired: ', expired)
-        if (request.headers.authorization.split(' ')[0] != 'JWT') return response.handlers.error(4010, request, response)
-
+        if (typeof request.headers.authorization == 'undefined') return response.handlers.error(4008, request, response)
+        if (request.headers.authorization.split(' ')[0] != 'JWT') return response.handlers.error(4008, request, response)
         if (request.verify !== true) return response.handlers.error(4007, request, response)
-        if (expired) return response.handlers.error(4008, request, response)
+        if (request.token_exists !== true) return response.handlers.error(4004, request, response)
+        if (expired) return response.handlers.error(4005, request, response)
         token.changed('updated_at', true).save()
         return next()
     })(request, response, next)

@@ -11,9 +11,7 @@ module.exports = {
     4005: 'User authentication token expired.',
     4006: 'Request made from unauthorized IP address.',
     4007: 'JWT verification failed.',
-    4008: 'JWT Expired.',
-    4009: 'No user with that JWT found.',
-    4010: 'No JWT provided.',
+    4008: 'No authentication provided.',
 
     // 5000: Database error
     5001: 'Database error generating a new passport.',
