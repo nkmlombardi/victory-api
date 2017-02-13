@@ -6,14 +6,18 @@ const authJwt = expressJwt({ secret: secret })
 const errorLogger = require('../logger/file.logger').errorLogger
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
-const crypto = require('crypto')
-const decipher = crypto.createDecipher('aes192', secret)
+const moment = require('moment')
+
 let jwtString
 let user_id = false
-let verify
+let decoded
 let token = false
 let ipValid = false
-let noJWT = false
+let noJWT
+let cutOff
+let tokenUpdate
+let expired
+
 const parameters = {
     secretOrKey: secret,
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
@@ -25,31 +29,29 @@ const parameters = {
 
 passport.use(new Strategy(parameters,
     async (request, payload, callback) => {
-        if (request.headers.authorization.split(' ')[0] !== 'JWT') {
-            noJWT = true
-            return callback(null, false, console.log('JWT not found in header'))
-        }
         jwtString = request.headers.authorization.split(' ')[1]
         console.log('1 got the JWT from header')
         try {
             jwt.verify(jwtString, secret, (err, decoded) => {
-                if (err) {
-                    verify = false
-                    return verify
+                if (decoded) {
+                    request.verify = true
                 } else {
-                    verify = false
-                    return verify
+                    request.verify = false
                 }
             })
         } catch (error) {
             console.log('3 problem with verification of JWT')
         }
         try {
-            token = await request.models.Passport.findOne({ where: { jwt_token: jwtString } })
+            token = await request.models.Passport.findOne({
+                where: {
+                    jwt_token: jwtString
+                }
+            })
             if (!token) {
-                return callback(null, false, console.log('legit token, doesn\'t match any in passport though'))
+                request.token_exists = false
+                return callback(null, false)
             }
-            console.log('got token from passport')
         } catch (error) {
             console.log('3 errors w/ passport token: ', error)
         }
@@ -59,18 +61,21 @@ passport.use(new Strategy(parameters,
 ))
 
 module.exports = function (request, response, next) {
-    passport.authenticate('jwt', (error, user, info) => {
-        console.log('5 inside jwt export')
-        console.log('6 error?: ', error)
-        console.log('7 info: ', info)
+    passport.authenticate('jwt', (info, user, error) => {
 
-        console.log('8 user: ', user)
-        console.log('9 !token: ', !token)
-        console.log('10 verify: ', verify)
-        if (noJWT == true) return response.handlers.error(4007, request, response)
-        if (!token && verify) return response.handlers.error(4008, request, response)
-        if (!verify && !user) return response.handlers.error(4007, request, response)
+        if (token) {
+            cutOff = moment().subtract(30, 'seconds').format()
+            tokenUpdate = moment(token.updated_at).format()
+            expired = !moment(tokenUpdate).isAfter(cutOff)
+        }
+        console.log('decoded', decoded)
+        console.log('verify= ', request.verify)
+        console.log('expired: ', expired)
+        if (request.headers.authorization.split(' ')[0] != 'JWT') return response.handlers.error(4010, request, response)
 
+        if (request.verify !== true) return response.handlers.error(4007, request, response)
+        if (expired) return response.handlers.error(4008, request, response)
+        token.changed('updated_at', true).save()
         return next()
     })(request, response, next)
 }

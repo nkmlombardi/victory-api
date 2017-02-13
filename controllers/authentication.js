@@ -1,9 +1,7 @@
 const jwt = require('jsonwebtoken')
 const secret = require('../services/authentication/.secret.key').secretKey
-const crypto = require('crypto')
-const cipher = crypto.createCipher('aes192', secret)
-const decipher = crypto.createDecipher('aes192', secret)
 const chance = require('chance')()
+const randomIP = chance.ip()
 module.exports = {
     /**
      * Create new Passport login via a local authentication strategy. This
@@ -21,15 +19,11 @@ module.exports = {
 
         if (!request.strategy) return response.handlers.error(2000, request, response)
 
-        let encrypted = cipher.update(chance.ip(), 'utf8', 'hex')
-        encrypted += cipher.final('hex')
-        console.log('encrypted: ', encrypted)
-
         request.token = jwt.sign({
             iss: 'api.onelink.com',
             sub: 'api_user',
             aud: 'noc.onelink.com',
-            user_ip: encrypted
+            user_ip: randomIP
         }, secret , {
             expiresIn: 300 // 5 minutes
         })
@@ -38,14 +32,13 @@ module.exports = {
             passport = await request.models.Passport.create({
                 user_id: request.user.id,
                 strategy: request.strategy,
-                jwt_token: request.token
+                jwt_token: request.token,
+                user_ip: randomIP
             })
         } catch (error) {
             console.log('passport error', error)
             return response.handlers.error(2001, request, response)
         }
-
-
 
         return response.json({
             data: {
