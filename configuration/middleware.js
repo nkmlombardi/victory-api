@@ -9,9 +9,9 @@ const fileLogger = require('../services/logger/file.logger').accessLogger
 const expressJwt = require('express-jwt')
 const secret = require('../services/authentication/.secrets').secretKey
 
-
-
 module.exports = (app, database) => {
+    // For getting IP
+    //app.set('trust proxy', 'uniquelocal')
     // Parse the body of requests
     app.use(bodyParser.json())
 
@@ -28,6 +28,12 @@ module.exports = (app, database) => {
     // Security
     app.use(helmet())
 
+    // Attach IP info to request
+    app.use((request, response, next) => {
+        request.client_ip_addr = request.ip
+        next()
+    })
+
     // Http status codes for request objects
     app.use((request, response, next) => {
         request.status = httpStatus
@@ -40,6 +46,7 @@ module.exports = (app, database) => {
         request.connection = database.connection
         next()
     })
+
 
     // Enable CORS to avoid Cross Domain Origin issues
     app.use((request, response, next) => {

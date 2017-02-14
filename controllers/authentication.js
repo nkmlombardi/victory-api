@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken')
 const secrets = require('../services/authentication/.secrets')
 const secretKey = secrets.secretKey
-const ip_hash = secrets.ip_hash
+const bcrypt = require('bcryptjs')
+
 module.exports = {
     /**
      * Create new Passport login via a local authentication strategy. This
@@ -15,11 +16,12 @@ module.exports = {
      * @return {[type]}        [description]
      */
     postSelfPassport: async (request, response) => {
+        console.log('testing request.ip in athentication', request.client_ip_addr)
         let passport
+        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 10)
+        console.log(ip_hash)
 
         if (!request.strategy) return response.handlers.error(2000, request, response)
-
-
 
         request.token = jwt.sign({
             iss: 'api.onelink.com',

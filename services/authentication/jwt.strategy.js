@@ -11,7 +11,6 @@ const errorLogger = require('../logger/file.logger').errorLogger
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
-
 const parameters = {
     secretOrKey: secretKey,
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
@@ -26,9 +25,12 @@ passport.use(new Strategy(parameters,
         // when we get IP from requests working, use this:
         // valid_ip = bcrypt.compareSync(request.header['x-forwarded-for'][0], ip_hash)
         try {
-            jwt.verify(request.headers.authorization.split(' ')[1], secretKey, (err, decoded) => {
+            verified = await jwt.verify(request.headers.authorization.split(' ')[1], secretKey, (err, decoded) => {
                 if (decoded) {
                     request.verify = true
+                    console.log(decoded.user_ip)
+                    request.ip_hash = decoded.user_ip
+                    console.log(request.ip_hash)
                 } else {
                     request.verify = false
                 }
@@ -42,9 +44,12 @@ passport.use(new Strategy(parameters,
         // if (bcrypt.compareSync(random_ip, ip_hash) || bcrypt.compareSync(request.header['x-forwarded-for'][0], ip_hash)) {
         //
         // For now, this will just work
-        if (bcrypt.compareSync(random_ip, ip_hash)) {
+        console.log('comparing hashes: ', request.client_ip_addr, ' \n', request.ip_hash)
+        if (bcrypt.compareSync(request.client_ip_addr, request.ip_hash)) {
+            console.log('ip valid')
             request.valid_ip = true
         } else {
+            console.log('ip not valid')
             request.valid_ip = false
         }
         try {
