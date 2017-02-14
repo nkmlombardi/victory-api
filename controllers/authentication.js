@@ -1,6 +1,4 @@
 const jwt = require('jsonwebtoken')
-const secrets = require('../services/authentication/.secrets')
-const secretKey = secrets.secretKey
 const bcrypt = require('bcryptjs')
 
 module.exports = {
@@ -28,7 +26,7 @@ module.exports = {
             sub: 'api_user',
             aud: 'noc.onelink.com',
             user_ip: ip_hash
-        }, secrets.secretKey , {
+        }, process.env.API_SECRET , {
             expiresIn: 300 // 5 minutes
         })
 

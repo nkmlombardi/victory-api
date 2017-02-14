@@ -7,7 +7,6 @@ const handlers = require('../services/handlers')
 const consoleLogger = require('../services/logger/console.logger')
 const fileLogger = require('../services/logger/file.logger').accessLogger
 const expressJwt = require('express-jwt')
-const secret = require('../services/authentication/.secrets').secretKey
 
 module.exports = (app, database) => {
     // For getting IP
