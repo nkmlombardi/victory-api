@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
-
 module.exports = {
     /**
      * Create new Passport login via a local authentication strategy. This
@@ -14,13 +13,10 @@ module.exports = {
      * @return {[type]}        [description]
      */
     postSelfPassport: async (request, response) => {
-        console.time('Authentication.js')
+    console.time('Authentication.js')
         let passport
-        console.time('bcrypt ip_hash')
-        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 8)
-        console.timeEnd('bcrypt ip_hash')
+        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 10)
         if (!request.strategy) return response.handlers.error(2000, request, response)
-
         request.token = jwt.sign({
             iss: 'api.onelink.com',
             sub: 'api_user',
@@ -29,13 +25,11 @@ module.exports = {
         }, process.env.API_SECRET)
 
         try {
-            console.time('awaiting passport')
             passport = await request.models.Passport.create({
                 user_id: request.user.id,
                 strategy: request.strategy,
                 jwt_token: request.token
             })
-            console.timeEnd('awaiting passport')
         } catch (error) {
             console.log('passport error', error)
             return response.handlers.error(2001, request, response)
@@ -43,10 +37,10 @@ module.exports = {
         console.timeEnd('Authentication.js')
         return response.json({
             data: {
-                token: passport,
-                user: request.user.publicAttributes()
+                token: passport
             }
         })
 
     }
+
 }

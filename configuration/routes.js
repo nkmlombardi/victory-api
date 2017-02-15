@@ -4,12 +4,12 @@ const cache = require('apicache').middleware
 const passport = require('passport')
 
 module.exports = (app) => {
+    console.time('routes File')
     // Base Endpoint
     app.route('/')
         .get((request, response) => { response.sendStatus(200) })
     app.route('/v1/authenticate')
         .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
-
     /*
         OneLink Software
      */
@@ -57,4 +57,5 @@ module.exports = (app) => {
         .get(cache('1 hour'), controllers.cluster.getClusters)
     app.route('/v1/clusters/:id')
         .get(cache('1 hour'), controllers.cluster.getCluster)
+    console.timeEnd('routes File')
 }

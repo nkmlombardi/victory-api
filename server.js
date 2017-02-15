@@ -21,7 +21,9 @@ const io = socket.listen(server)
 // Bootstrapping
 config.middleware(app, database)
 config.sockets(io, database)
+console.time('route Time')
 config.routes(app)
+console.timeEnd('route Time')
 
 // Execute server
 server.listen(process.env.NODE_PORT, '127.0.0.1', () => {
