@@ -25,34 +25,33 @@ passport.use(new Strategy({
         // Check if auth header undefined
 
         // Check if JWT is verified
-        let verified = await jwt.verify(request.headers.authorization.split(' ')[1], process.env.API_SECRET, (err, decoded) => {
+        verified = await jwt.verify(request.headers.authorization.split(' ')[1], process.env.API_SECRET, async (err, decoded) => {
             if (decoded) {
                 console.log('decoded: ', decoded)
                 hashed_ip = decoded.user_ip
+                token = request.models.Passport.findOne({
+                    where: {
+                        jwt_token: request.headers.authorization.split(' ')[1]
+                    }
+                })
+                // console.log('token: ', token)
             }
-            // check if a passport exists with a matching jwt
-            // token = await request.models.Passport.findOne({
-            //     where: {
-            //         jwt_token: request.headers.authorization.split(' ')[1]
-            //     }
-            // })
         })
-        if (!bcrypt.compareSync("10.10.10.10", hashed_ip)) {
-            return callback(null, Error('IP is unverified'))
+        console.log('hashedip: ', hashed_ip)
+        if (!bcrypt.compareSync(request.client_ip_addr, hashed_ip)) {
+            return callback(null, null, Error('IP is unverified'))
         }
 
-        //  return callback('\nno auth header found', 'user', 4008)
-        // If all is well, return no error and just user_id
-         return callback('success', 'token.user_id', 'no error')
+         return callback(null, 'token.user_id', false)
     }
 ))
 
 module.exports = function (request, response, next) {
-    passport.authenticate('jwt', (user, error) => {
+    passport.authenticate('jwt', (info, user, error) => {
         let cutOff
         let tokenUpdate
         let expired
-        console.log('\n user: ', user, '\n error: ', error)
+        console.log('\ninfo: ', info, '\n user: ', user, '\n error: ', error)
         if (error) {
             console.log('\n user: ', user, '\n error: ', error, '\n errorToSTring: ', error.toString().split('\n')[0])
             let error_string = error.toString().split('\n')[0]
