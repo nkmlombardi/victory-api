@@ -14,11 +14,11 @@ module.exports = {
      * @return {[type]}        [description]
      */
     postSelfPassport: async (request, response) => {
-        console.log('testing request.ip in athentication', request.client_ip_addr)
+        console.time('Authentication.js')
         let passport
-        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 10)
-        console.log(ip_hash)
-
+        console.time('bcrypt ip_hash')
+        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 8)
+        console.timeEnd('bcrypt ip_hash')
         if (!request.strategy) return response.handlers.error(2000, request, response)
 
         request.token = jwt.sign({
@@ -26,27 +26,27 @@ module.exports = {
             sub: 'api_user',
             aud: 'noc.onelink.com',
             user_ip: ip_hash
-        }, process.env.API_SECRET , {
-            expiresIn: 300 // 5 minutes
-        })
+        }, process.env.API_SECRET)
 
         try {
+            console.time('awaiting passport')
             passport = await request.models.Passport.create({
                 user_id: request.user.id,
                 strategy: request.strategy,
-                jwt_token: request.token,
-                user_ip: ip_hash
+                jwt_token: request.token
             })
+            console.timeEnd('awaiting passport')
         } catch (error) {
             console.log('passport error', error)
             return response.handlers.error(2001, request, response)
         }
-
+        console.timeEnd('Authentication.js')
         return response.json({
             data: {
                 token: passport,
                 user: request.user.publicAttributes()
             }
         })
+
     }
 }

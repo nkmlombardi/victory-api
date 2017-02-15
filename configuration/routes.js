@@ -23,7 +23,7 @@ module.exports = (app) => {
 
     // Origin Resource
     app.route('/v1/origins')
-        .get(cache('1 hour'), controllers.origin.getOrigins)
+        .get(services.authentication.isBearer, controllers.origin.getOrigins)
     app.route('/v1/origins/:id/')
         .get(cache('1 hour'), controllers.origin.getOrigin)
     app.route('/v1/origins/:id/targets')
