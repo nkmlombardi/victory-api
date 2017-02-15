@@ -22,18 +22,19 @@ passport.use(new Strategy({
     async (request, payload, callback) => {
         console.log('testing')
         let hashed_ip
+        const jwt_auth_token = request.headers.authorization.split(' ')[1]
         // Check if auth header undefined
 
         // Check if JWT is verified
-        verified = await jwt.verify(request.headers.authorization.split(' ')[1], process.env.API_SECRET, async (err, decoded) => {
+        verified = await jwt.verify(jwt_auth_token, process.env.API_SECRET, async (err, decoded) => {
             if (decoded) {
                 console.log('decoded: ', decoded)
                 hashed_ip = decoded.user_ip
-                token = request.models.Passport.findOne({
-                    where: {
-                        jwt_token: request.headers.authorization.split(' ')[1]
-                    }
-                })
+                // token = request.models.Passport.findOne({
+                //     where: {
+                //         jwt_token: jwt_auth_token
+                //     }
+                // })
                 // console.log('token: ', token)
             }
         })
@@ -42,7 +43,13 @@ passport.use(new Strategy({
             return callback(null, null, Error('IP is unverified'))
         }
 
-         return callback(null, 'token.user_id', false)
+        console.log('JWT auth header', jwt_auth_token)
+        console.log('passports?:', await request.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } }))
+
+        token = await request.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
+        if (!token) return callback(null, null, Error('No token'))
+        if (!moment(moment(token.updated_at).format()).isAfter(moment().subtract(30, 'seconds').format())) return callback(null, null, Error('Token expired'))
+        return callback(null, token.user_id, false)
     }
 ))
 
@@ -51,7 +58,7 @@ module.exports = function (request, response, next) {
         let cutOff
         let tokenUpdate
         let expired
-        console.log('\ninfo: ', info, '\n user: ', user, '\n error: ', error)
+        console.log('\ninfo: ', info, '\n user: ', user, '\n error: ', error, '\ntoken: ', token)
         if (error) {
             console.log('\n user: ', user, '\n error: ', error, '\n errorToSTring: ', error.toString().split('\n')[0])
             let error_string = error.toString().split('\n')[0]
@@ -69,6 +76,14 @@ module.exports = function (request, response, next) {
                     console.log('caught unverified ip')
                     return response.handlers.error(4006, request, response)
 
+                case 'Error: No token':
+                    console.log('no passport token found')
+                    return response.handlers.error(4004, request, response)
+
+                case 'Error: Token expired':
+                    console.log('JWT expired')
+                    return response.handlers.error(4005, request, response)
+
                 default:
                     console.log('default error')
                     return response.handlers.error(4009, request, response)
@@ -80,7 +95,9 @@ module.exports = function (request, response, next) {
         // if (token) {
         //     cutOff = moment().subtract(30, 'seconds').format()
         //     tokenUpdate = moment(token.updated_at).format()
-        //     expired = !moment(tokenUpdate).isAfter(cutOff)
+        //     expired = !moment(moment(token.updated_at).format()).isAfter(moment().subtract(30, 'seconds').format())
+        //
+        //
         // }
 
 
