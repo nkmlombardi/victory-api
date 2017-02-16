@@ -5,6 +5,7 @@ const passport = require('passport')
 
 module.exports = (app) => {
     console.time('routes File')
+
     // Base Endpoint
     app.route('/')
         .get((request, response) => { response.sendStatus(200) })

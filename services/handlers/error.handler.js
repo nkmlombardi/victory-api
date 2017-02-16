@@ -156,7 +156,7 @@ module.exports = (error, request, response) => {
         return response.json({
             status: {
                 code: request.status.INTERNAL_SERVER_ERROR,
-                message: 'There was an internal server error.',
+                message: error.message,
                 data: error
             }
         })

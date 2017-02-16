@@ -21,6 +21,7 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
         }
         user.client_IP = request.ip
         // Verify the password that was provided
+        console.time('pass verification')
         user.verifyPassword(password, (error, isMatch) => {
             // If error or password doesn't match
             if (error) return callback(error)
@@ -31,6 +32,7 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
 
             return callback(null, user)
         })
+        console.timeEnd('pass verification')
         console.timeEnd('local strat')
     }
 ))

@@ -15,7 +15,9 @@ module.exports = {
     postSelfPassport: async (request, response) => {
     console.time('Authentication.js')
         let passport
-        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 10)
+        console.time('hashing')
+        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 12)
+        console.timeEnd('hashing')
         if (!request.strategy) return response.handlers.error(2000, request, response)
         request.token = jwt.sign({
             iss: 'api.onelink.com',
