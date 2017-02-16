@@ -15,27 +15,29 @@ module.exports = {
     postSelfPassport: async (request, response) => {
     console.time('Authentication.js')
         let passport
-        console.time('hashing')
-        let ip_hash = bcrypt.hashSync(request.client_ip_addr, 12)
-        console.timeEnd('hashing')
-        if (!request.strategy) return response.handlers.error(2000, request, response)
-        request.token = jwt.sign({
-            iss: 'api.onelink.com',
-            sub: 'api_user',
-            aud: 'noc.onelink.com',
-            user_ip: ip_hash
-        }, process.env.API_SECRET)
 
         try {
             passport = await request.models.Passport.create({
                 user_id: request.user.id,
                 strategy: request.strategy,
-                jwt_token: request.token
+                jwt_token: request.token = jwt.sign({
+                    iss: 'api.onelink.com',
+                    sub: 'api_user',
+                    aud: 'noc.onelink.com',
+                    user_ip: request.client_ip_addr,
+                    user_id: request.user.id,
+                    strategy: 'Jwt'
+                }, process.env.API_SECRET, { expiresIn: 30 })
             })
         } catch (error) {
             console.log('passport error', error)
             return response.handlers.error(2001, request, response)
         }
+
+        if (!request.strategy) return response.handlers.error(2000, request, response)
+
+
+
         console.timeEnd('Authentication.js')
         return response.json({
             data: {

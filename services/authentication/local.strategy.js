@@ -1,7 +1,6 @@
 const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 
-
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
     async (request, email, password, callback) => {
         console.time('local strat')
