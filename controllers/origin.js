@@ -1,12 +1,39 @@
-<<<<<<< HEAD
 var utility = require('../services/utilities')
 var transformers = require('../services/transformers')
-=======
-const utility = require('../services/utilities')
->>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
 
 module.exports = {
-    getOrigins: async (request, response) => {
+
+    /**
+     * Find singleton in the resource collection
+     *
+     * @param  {object} request
+     * @param  {object} response
+     * @return {Promise} singleton
+     */
+    find: async (request, response, next) => {
+        if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
+
+        try {
+            response.query = await request.connection.query(`
+                SELECT *
+                FROM BB_PROJECT_ORIGIN
+                WHERE origin_id = ${request.params.id}
+            `)
+        } catch (error) { return response.handlers.error(error, request, response) }
+
+        if (response.query.length === 0) return response.handlers.error(4001, request, response)
+        response.json({ data: transformers.origins.singleton(response.query[0]) })
+    },
+
+
+    /**
+     * Find the resource collection
+     *
+     * @param  {object} request
+     * @param  {object} response
+     * @return {Promise} collection
+     */
+    findAll: async (request, response) => {
         try {
             response.query = await request.connection.query(`
                 SELECT
@@ -21,62 +48,21 @@ module.exports = {
                     AND origin.is_inactive = 0
                     AND origin.is_hidden = 0
             `)
-<<<<<<< HEAD
-        } catch(error) { return response.handlers.error(error, request, response) }
+        } catch (error) { return response.handlers.error(error, request, response) }
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
-
         response.json({ data: transformers.origins.collection(response.query) })
     },
 
 
-    getOrigin: async (request, response, next) => {
-=======
-        } catch (error) {
-            return response.handlers.error(error, request, response)
-        }
-
-        if (response.query.length === 0) return response.handlers.error(4001, request, response)
-
-        return response.json({
-            data: response.query
-        })
-    },
-
-    getOrigin: async (request, response) => {
->>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
-        if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
-
-        try {
-            response.query = await request.connection.query(`
-                SELECT *
-                FROM BB_PROJECT_ORIGIN
-                WHERE origin_id = ${request.params.id}
-            `)
-<<<<<<< HEAD
-        } catch(error) { return response.handlers.error(error, request, response) }
-
-        if (response.query.length === 0) return response.handlers.error(4001, request, response)
-
-        response.json({ data: transformers.origins.singleton(response.query[0]) })
-    },
-
-
-    getOriginTargets: async function(request, response, next) {
-=======
-        } catch (error) {
-            return response.handlers.error(error, request, response)
-        }
-
-        if (response.query.length === 0) return response.handlers.error(4001, request, response)
-
-        return response.json({
-            data: response.query[0]
-        })
-    },
-
-    getOriginTargets: async (request, response) => {
->>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
+    /**
+     * Find all target resources that are children of the origin resource.
+     *
+     * @param  {object} request
+     * @param  {object} response
+     * @return {Promise} collection
+     */
+    getTargets: async (request, response, next) => {
         if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {
@@ -87,23 +73,21 @@ module.exports = {
                     AND is_inactive = 0
                     AND is_hidden = 0
             `)
-        } catch (error) {
-            return response.handlers.error(error, request, response)
-        }
+        } catch (error) { return response.handlers.error(error, request, response) }
 
         if (response.query.length === 0) return request.handlers.error(4001, request, response)
-
-        return response.json({
-            data: response.query
-        })
+        return response.json({ data: transformers.targets.collection(response.query) })
     },
 
-<<<<<<< HEAD
 
-    getOriginHealthLog: async function(request, response, next) {
-=======
-    getOriginHealthLog: async (request, response) => {
->>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
+    /**
+     * Find all of an origin's health history entries
+     *
+     * @param  {object} request
+     * @param  {object} response
+     * @return {Promise} collection
+     */
+    getHealthHistory: async (request, response, next) => {
         if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
@@ -114,18 +98,21 @@ module.exports = {
                     AND health_dtm BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()
                 ORDER BY health_dtm DESC
             `)
-        } catch (error) {
-            return response.errorHandler(error, request, response)
-        }
+        } catch (error) { return response.errorHandler(error, request, response) }
 
         if (response.query.length === 0) return response.errorHandler(4001, request, response)
-
-        return response.json({
-            data: response.query
-        })
+        return response.json({ data: response.query })
     },
 
-    getOriginDispatchHistory: async (request, response) => {
+
+    /**
+     * Find all of an origin's dispatch history entries
+     *
+     * @param  {object} request
+     * @param  {object} response
+     * @return {Promise} collection
+     */
+    getDispatchHistory: async (request, response) => {
         if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
@@ -137,14 +124,10 @@ module.exports = {
                 ORDER BY noc_dispatch_start_dtm DESC
                 LIMIT 10
             `)
-        } catch (error) {
-            return response.errorHandler(error, request, response)
-        }
+        } catch (error) { return response.errorHandler(error, request, response) }
 
         if (response.query.length === 0) return response.errorHandler(4001, request, response)
+        return response.json({ data: response.query })
+    }
 
-        return response.json({
-            data: response.query
-        })
-    },
 }

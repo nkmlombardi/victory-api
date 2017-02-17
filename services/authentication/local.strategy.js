@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var passport = require('passport')
 var strategy = require('passport-local').Strategy
 
@@ -21,35 +20,6 @@ passport.use(new strategy({ usernameField: 'email', passReqToCallback: true },
             if (!isMatch) { return console.log("username wrong") }
 
             // If password was correct
-=======
-const passport = require('passport')
-const Strategy = require('passport-local').Strategy
-
-
-passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
-    async (request, email, password, callback) => {
-        let user
-
-        try {
-            user = await request.models.User.findOne({ where: { email } })
-        } catch (error) {
-            return callback(error)
-        }
-
-
-        // If no user was returned from query
-        if (!user) {
-            // response.errorHandler(5004, request, response)
-            return callback(null, false)
-        }
-        user.client_IP = request.ip
-        // Verify the password that was provided
-        user.verifyPassword(password, (error, isMatch) => {
-            // If error or password doesn't match
-            if (error) return callback(error)
-            if (!isMatch) return callback(error)
-
->>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
             request.strategy = 'local'
             request.user = user
 

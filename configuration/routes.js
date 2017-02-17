@@ -3,60 +3,73 @@ const services = require('../services')
 const cache = require('apicache').middleware
 
 module.exports = (app) => {
-    // Base Endpoint
+
+    /**
+     * Fallbacks
+     */
     app.route('/')
         .get((request, response) => { response.sendStatus(200) })
+
+
+    /**
+     * Authentication
+     */
     app.route('/v1/authenticate')
         .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
 
-    /*
-        OneLink Software
+
+    /**
+     * Clients
      */
-    // Client Resource
     app.route('/v1/clients')
-        .get(cache('1 hour'), controllers.client.getClients)
+        .get(cache('1 hour'), controllers.client.findAll)
     app.route('/v1/clients/:id')
-        .get(cache('1 hour'), controllers.client.getClient)
+        .get(cache('1 hour'), controllers.client.find)
     app.route('/v1/clients/:id/origins')
-        .get(cache('1 hour'), controllers.client.getClientOrigins)
-
-    // Origin Resource
-    app.route('/v1/origins')
-        .get(cache('1 hour'), controllers.origin.getOrigins)
-    app.route('/v1/origins/:id/')
-        .get(cache('1 hour'), controllers.origin.getOrigin)
-    app.route('/v1/origins/:id/targets')
-        .get(cache('1 hour'), controllers.origin.getOriginTargets)
-
-    app.route('/v1/origins/:id/health')
-        .get(controllers.origin.getOriginHealthLog)
-    app.route('/v1/origins/:id/dispatch')
-        .get(controllers.origin.getOriginDispatchHistory)
-
-    // Target Resource
-    app.route('/v1/targets')
-        .get(cache('1 hour'), controllers.target.getTargets)
-    app.route('/v1/targets/:id/')
-        .get(cache('1 hour'), controllers.target.getTarget)
+        .get(cache('1 hour'), controllers.client.getOrigins)
 
 
-    /*
-        Onelink Infrastructure
+    /**
+     * Origins
      */
+    app.route('/v1/origins')
+        .get(cache('1 hour'), controllers.origin.findAll)
+    app.route('/v1/origins/:id/')
+        .get(cache('1 hour'), controllers.origin.find)
+    app.route('/v1/origins/:id/targets')
+        .get(cache('1 hour'), controllers.origin.getTargets)
+    app.route('/v1/origins/:id/health')
+        .get(controllers.origin.getHealthHistory)
+    app.route('/v1/origins/:id/dispatch')
+        .get(controllers.origin.getDispatchHistory)
 
-    // Datacenter Resource
+
+    /**
+     * Targets
+     */
+    app.route('/v1/targets')
+        .get(cache('1 hour'), controllers.target.findAll)
+    app.route('/v1/targets/:id/')
+        .get(cache('1 hour'), controllers.target.find)
+
+
+    /**
+     * Datacenters
+     */
     app.route('/v1/datacenters')
-        .get(cache('1 hour'), controllers.datacenter.getDatacenters)
+        .get(cache('1 hour'), controllers.datacenter.findAll)
     app.route('/v1/datacenters/:id')
-        .get(cache('1 hour'), controllers.datacenter.getDatacenter)
-
-    //     One to Many Relationships
+        .get(cache('1 hour'), controllers.datacenter.find)
     app.route('/v1/datacenters/:id/clusters')
-        .get(cache('1 hour'), controllers.datacenter.getDatacenterClusters)
+        .get(cache('1 hour'), controllers.datacenter.getClusters)
 
-    // Cluster Resource
+
+    /**
+     * Clusters
+     */
     app.route('/v1/clusters')
-        .get(cache('1 hour'), controllers.cluster.getClusters)
+        .get(cache('1 hour'), controllers.cluster.findAll)
     app.route('/v1/clusters/:id')
-        .get(cache('1 hour'), controllers.cluster.getCluster)
+        .get(cache('1 hour'), controllers.cluster.find)
+
 }
