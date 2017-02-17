@@ -17,7 +17,6 @@ module.exports = {
         try {
             passport = await request.models.Passport.create({
                 user_id: request.user.id,
-                strategy: request.strategy,
                 jwt_token: request.token = jwt.sign({
                     iss: 'api.onelink.com',
                     sub: 'api_user',

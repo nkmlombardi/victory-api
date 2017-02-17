@@ -19,11 +19,12 @@ passport.use(new Strategy({
         jwt.verify(jwt_auth_token, process.env.API_SECRET, async (error, decoded) => {
             if (request.client_ip_addr !== decoded.user_ip) return callback(null, null, Error('4006'))
             token = await request.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
-            if (!token) {
-                return callback(null, null, Error('5002'))
-            }
-            if (!moment(moment(token.updated_at).format()).isAfter(moment().subtract(30, 'seconds').format()))
+            if (!token) return callback(null, null, Error('5002'))
+            if (token.deleted_at) return callback(null, null, Error('4005'))
+            if (!moment(moment(token.updated_at).format()).isAfter(moment().subtract(6, 'hours').format())) {
+                token.deleted_at = moment().format()
                 return callback(null, null, Error('4005'))
+            }
 
             // If all is well, return the payload
             request.strategy = 'jwt'
@@ -40,6 +41,7 @@ module.exports = function (request, response, next) {
             if (!isNaN(error.message)) error.message = Number(error.message)
             return response.handlers.error(error.message, request, response)
         }
+        token.changed('updated_at', true).save()
 
         return next()
     })(request, response, next)

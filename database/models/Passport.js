@@ -16,16 +16,11 @@ module.exports = (Sequelize, DataTypes) =>
                 key: 'id'
             }
         },
-        // auth_token: {
-        //     type: DataTypes.STRING,
-        //     allowNull: false,
-        //     defaultValue: () => crypto.randomBytes(32).toString('hex')
-        // },
+        deleted_at: {
+            type: DataTypes.DATE
+        },
         jwt_token: {
             type: DataTypes.TEXT
-        },
-        strategy: {
-            type: DataTypes.STRING
         }
     }, {
         timestamps: true,
