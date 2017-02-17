@@ -16,9 +16,6 @@ module.exports = (Sequelize, DataTypes) =>
                 key: 'id'
             }
         },
-        deleted_at: {
-            type: DataTypes.DATE
-        },
         device_type: {
             type: DataTypes.TEXT
         },

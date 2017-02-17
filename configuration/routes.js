@@ -9,6 +9,8 @@ module.exports = (app) => {
         .get((request, response) => { response.sendStatus(200) })
     app.route('/v1/authenticate')
         .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
+    app.route('/v1/logout')
+        .get(services.authentication.logout)
     /*
         OneLink Software
      */

@@ -25,7 +25,6 @@ passport.use(new Strategy({
                 token.deleted_at = moment().format()
                 return callback(null, null, Error('4005'))
             }
-
             // If all is well, return the payload
             return callback(null, decoded, false)
         })
