@@ -19,6 +19,9 @@ module.exports = (Sequelize, DataTypes) =>
         deleted_at: {
             type: DataTypes.DATE
         },
+        device_type: {
+            type: DataTypes.TEXT
+        },
         jwt_token: {
             type: DataTypes.TEXT
         }

@@ -27,7 +27,6 @@ passport.use(new Strategy({
             }
 
             // If all is well, return the payload
-            request.strategy = 'jwt'
             return callback(null, decoded, false)
         })
     }
