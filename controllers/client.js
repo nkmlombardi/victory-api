@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 var utility = require('../services/utilities')
 var transformers = require('../services/transformers')
+=======
+const utility = require('../services/utilities')
+>>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
 
 module.exports = {
-    getClients: async (request, response, next) => {
+    getClients: async (request, response) => {
         try {
             response.query = await request.connection.query(`
                 SELECT *
@@ -14,10 +18,16 @@ module.exports = {
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
+<<<<<<< HEAD
         response.json({ data: transformers.clients.collection(response.query) })
+=======
+        return response.json({
+            data: response.query
+        })
+>>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
     },
 
-    getClient: async (request, response, next) => {
+    getClient: async (request, response) => {
         if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {
@@ -30,10 +40,16 @@ module.exports = {
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
+<<<<<<< HEAD
         response.json({ data: transformers.clients.singleton(response.query[0]) })
+=======
+        return response.json({
+            data: response.query[0]
+        })
+>>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
     },
 
-    getClientOrigins: async (request, response, next) => {
+    getClientOrigins: async (request, response) => {
         try {
             response.query = await request.connection.query(`
                 SELECT  *
@@ -52,8 +68,8 @@ module.exports = {
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
-        response.json({
+        return response.json({
             data: response.query
         })
-    },
+    }
 }

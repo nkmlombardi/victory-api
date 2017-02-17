@@ -15,9 +15,7 @@ module.exports = {
      * @param  {string}  value [an identifier]
      * @return {Boolean}       [description]
      */
-    isNumber: function (value) {
-        return /^(0|[1-9]\d*)$/.test(value)
-    },
+    isNumber: value => /^(0|[1-9]\d*)$/.test(value),
 
     /**
      * Regex checking if the value starts with an alphabet character, then contains
@@ -27,9 +25,7 @@ module.exports = {
      * @param  {string}  value [an identifier]
      * @return {Boolean}       [description]
      */
-    isAlphaNumericDashSlashPlus: function (value) {
-        return /^[A-Za-z0-9\/\-\+]*$/.test(value)
-    },
+    isAlphaNumericDashSlashPlus: value => /^[A-Za-z0-9/\-+]*$/.test(value),
 
     /**
      * Regex checking if the value is all uppercase letters, dashes(-), or colons(:).
@@ -38,8 +34,5 @@ module.exports = {
      * @param  {string}  value [an identifier]
      * @return {Boolean}       [description]
      */
-    isUppercaseDashColon: function (value) {
-        return /^[A-Z\-\:]*$/.test(value)
-        // /^[A-Za-z]*[0-9]*\-*\:*$/.test(request.params.id))
-    }
+    isUppercaseDashColon: value => /^[A-Z\-:]*$/.test(value)
 }

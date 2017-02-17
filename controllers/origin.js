@@ -1,15 +1,27 @@
+<<<<<<< HEAD
 var utility = require('../services/utilities')
 var transformers = require('../services/transformers')
+=======
+const utility = require('../services/utilities')
+>>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
 
 module.exports = {
-    getOrigins: async (request, response, next) => {
+    getOrigins: async (request, response) => {
         try {
             response.query = await request.connection.query(`
-                SELECT *
-                FROM BB_PROJECT_ORIGIN
-                WHERE is_inactive = 0
-                    AND is_hidden = 0
+                SELECT
+                    origin.*,
+                    client.notification_level
+                FROM
+                    BB_CLIENT           AS client,
+                    BB_PROJECT          AS project,
+                    BB_PROJECT_ORIGIN   AS origin
+                WHERE origin.project_id = project.project_id
+                    AND client.client_id = project.client_id
+                    AND origin.is_inactive = 0
+                    AND origin.is_hidden = 0
             `)
+<<<<<<< HEAD
         } catch(error) { return response.handlers.error(error, request, response) }
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
@@ -19,6 +31,20 @@ module.exports = {
 
 
     getOrigin: async (request, response, next) => {
+=======
+        } catch (error) {
+            return response.handlers.error(error, request, response)
+        }
+
+        if (response.query.length === 0) return response.handlers.error(4001, request, response)
+
+        return response.json({
+            data: response.query
+        })
+    },
+
+    getOrigin: async (request, response) => {
+>>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
         if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {
@@ -27,6 +53,7 @@ module.exports = {
                 FROM BB_PROJECT_ORIGIN
                 WHERE origin_id = ${request.params.id}
             `)
+<<<<<<< HEAD
         } catch(error) { return response.handlers.error(error, request, response) }
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
@@ -36,28 +63,47 @@ module.exports = {
 
 
     getOriginTargets: async function(request, response, next) {
+=======
+        } catch (error) {
+            return response.handlers.error(error, request, response)
+        }
+
+        if (response.query.length === 0) return response.handlers.error(4001, request, response)
+
+        return response.json({
+            data: response.query[0]
+        })
+    },
+
+    getOriginTargets: async (request, response) => {
+>>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
         if (utility.isNumber(request.params.id) === false) return response.handlers.error(4002, request, response)
 
         try {
             response.query = await request.connection.query(`
-                SELECT * FROM BB_PROJECT_TARGET
+                SELECT *
+                FROM BB_PROJECT_TARGET
                 WHERE origin_id = ${request.params.id}
                     AND is_inactive = 0
                     AND is_hidden = 0
             `)
-        } catch(error) {
+        } catch (error) {
             return response.handlers.error(error, request, response)
         }
 
         if (response.query.length === 0) return request.handlers.error(4001, request, response)
 
-        response.json({
+        return response.json({
             data: response.query
         })
     },
 
+<<<<<<< HEAD
 
     getOriginHealthLog: async function(request, response, next) {
+=======
+    getOriginHealthLog: async (request, response) => {
+>>>>>>> 631441fbc108703295b0a31f66fa9d96d400b132
         if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
 
         try {
@@ -65,16 +111,39 @@ module.exports = {
                 SELECT *
                 FROM BB_PROJECT_ORIGIN_HEALTH_LOG
                 WHERE origin_id = ${request.params.id}
+                    AND health_dtm BETWEEN CURDATE() - INTERVAL 7 DAY AND CURDATE()
                 ORDER BY health_dtm DESC
-                LIMIT 25
             `)
-        } catch(error) {
+        } catch (error) {
             return response.errorHandler(error, request, response)
         }
 
         if (response.query.length === 0) return response.errorHandler(4001, request, response)
 
-        response.json({
+        return response.json({
+            data: response.query
+        })
+    },
+
+    getOriginDispatchHistory: async (request, response) => {
+        if (utility.isNumber(request.params.id) === false) return response.errorHandler(4002, request, response)
+
+        try {
+            response.query = await request.connection.query(`
+                SELECT *
+                FROM NOC_EVENT_DISPATCH
+                WHERE noc_dispatch_object = 'BB_PROJECT_ORIGIN_HEALTH'
+                    AND noc_dispatch_object_id = ${request.params.id}
+                ORDER BY noc_dispatch_start_dtm DESC
+                LIMIT 10
+            `)
+        } catch (error) {
+            return response.errorHandler(error, request, response)
+        }
+
+        if (response.query.length === 0) return response.errorHandler(4001, request, response)
+
+        return response.json({
             data: response.query
         })
     },

@@ -10,19 +10,23 @@ module.exports = {
      * @param  {Function} next [description]
      * @return {[type]}        [description]
      */
-    postSelfPassport: async (request, response, next) => {
+    postSelfPassport: async (request, response) => {
+        let passport
+
         if (!request.strategy) return response.handlers.error(2000, request, response)
 
         try {
-            var passport = await request.models.Passport.create({
+            passport = await request.models.Passport.create({
                 user_id: request.user.id,
                 strategy: request.strategy
             })
-        } catch(error) {
+
+        } catch (error) {
+            console.log('passport error', error)
             return response.handlers.error(2001, request, response)
         }
 
-        response.json({
+        return response.json({
             data: {
                 token: passport,
                 user: request.user.publicAttributes()

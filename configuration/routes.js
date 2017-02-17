@@ -1,12 +1,11 @@
-var controllers = require('../controllers')
-var services = require('../services')
-var cache = require('apicache').middleware
+const controllers = require('../controllers')
+const services = require('../services')
+const cache = require('apicache').middleware
 
-module.exports = function(app) {
-
+module.exports = (app) => {
     // Base Endpoint
     app.route('/')
-        .get(function(request, response, next) { response.sendStatus(200) })
+        .get((request, response) => { response.sendStatus(200) })
     app.route('/v1/authenticate')
         .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
 
@@ -27,9 +26,12 @@ module.exports = function(app) {
     app.route('/v1/origins/:id/')
         .get(cache('1 hour'), controllers.origin.getOrigin)
     app.route('/v1/origins/:id/targets')
-        .get(controllers.origin.getOriginTargets)
+        .get(cache('1 hour'), controllers.origin.getOriginTargets)
+
     app.route('/v1/origins/:id/health')
         .get(controllers.origin.getOriginHealthLog)
+    app.route('/v1/origins/:id/dispatch')
+        .get(controllers.origin.getOriginDispatchHistory)
 
     // Target Resource
     app.route('/v1/targets')
@@ -48,7 +50,7 @@ module.exports = function(app) {
     app.route('/v1/datacenters/:id')
         .get(cache('1 hour'), controllers.datacenter.getDatacenter)
 
-    //// One to Many Relationships
+    //     One to Many Relationships
     app.route('/v1/datacenters/:id/clusters')
         .get(cache('1 hour'), controllers.datacenter.getDatacenterClusters)
 
@@ -57,5 +59,4 @@ module.exports = function(app) {
         .get(cache('1 hour'), controllers.cluster.getClusters)
     app.route('/v1/clusters/:id')
         .get(cache('1 hour'), controllers.cluster.getCluster)
-
 }

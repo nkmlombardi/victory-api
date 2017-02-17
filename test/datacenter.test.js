@@ -1,9 +1,10 @@
 process.env.NODE_ENV = 'test'
 
-let chai = require('chai')
-let chaiHttp = require('chai-http')
-let should = chai.should()
-let server = require('../server')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
+const should = chai.should()
+const server = require('../server')
+
 chai.use(chaiHttp)
 
 describe('Datacenters', () => {
@@ -64,7 +65,7 @@ describe('Datacenters', () => {
             response.body.should.have.property('data')
             response.body.data.should.be.a('array')
             response.body.data[0].should.have.property('data_center_code')
-            var datacenterCode =  response.body.data[0].data_center_code
+            const datacenterCode =  response.body.data[0].data_center_code
             chai.request(server)
             .get('/v1/datacenters/' + datacenterCode)
             .end((error, response) => {
@@ -80,14 +81,14 @@ describe('Datacenters', () => {
         chai.request(server)
         .get('/v1/datacenters')
         .end((error, response) => {
-            var datacenterCode =  response.body.data[0].data_center_code
+            const datacenterCode =  response.body.data[0].data_center_code
             chai.request(server)
             .get('/v1/datacenters/' + datacenterCode + '/clusters')
             .end((error, response) => {
                 response.body.should.have.property('data')
                 response.body.data.should.be.a('array')
                 response.body.data.length.should.be.gt(0)
-                for (var i = 0; i < response.body.data.length; i ++) {
+                for (let i = 0; i < response.body.data.length; i += 1) {
                     response.body.data[i].data_center.should.be.eql(datacenterCode)
                 }
                 done()

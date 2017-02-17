@@ -1,7 +1,8 @@
-var crypto = require('crypto')
+const crypto = require('crypto')
+const moment = require('moment')
 
-module.exports = function(Sequelize, DataTypes) {
-    return Sequelize.define('Passport', {
+module.exports = (Sequelize, DataTypes) =>
+    Sequelize.define('Passport', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -18,9 +19,7 @@ module.exports = function(Sequelize, DataTypes) {
         auth_token: {
             type: DataTypes.STRING,
             allowNull: false,
-            defaultValue: function() {
-                return crypto.randomBytes(32).toString('hex')
-            }
+            defaultValue: () => crypto.randomBytes(32).toString('hex')
         },
         strategy: {
             type: DataTypes.STRING
@@ -30,9 +29,8 @@ module.exports = function(Sequelize, DataTypes) {
         paranoid: true,
         underscored: true,
         classMethods: {
-            associate: function(models) {
+            associate: (models) => {
                 models.Passport.belongsTo(models.User)
             }
         }
     })
-}
