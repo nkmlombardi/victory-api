@@ -1,4 +1,5 @@
 var utility = require('../services/utilities')
+var transformers = require('../services/transformers')
 
 module.exports = {
     getClients: async (request, response, next) => {
@@ -9,15 +10,11 @@ module.exports = {
                 WHERE is_inactive = 0
                     AND is_hidden = 0
             `)
-        } catch (error) {
-            return response.handlers.error(error, request, response)
-        }
+        } catch (error) { return response.handlers.error(error, request, response) }
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
-        response.json({
-            data: response.query
-        })
+        response.json({ data: transformers.clients.collection(response.query) })
     },
 
     getClient: async (request, response, next) => {
@@ -29,15 +26,11 @@ module.exports = {
                 FROM BB_CLIENT
                 WHERE client_id = ${request.params.id}
             `)
-        } catch (error) {
-            return response.handlers.error(error, request, response)
-        }
+        } catch (error) { return response.handlers.error(error, request, response) }
 
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
-        response.json({
-            data: response.query[0]
-        })
+        response.json({ data: transformers.clients.singleton(response.query[0]) })
     },
 
     getClientOrigins: async (request, response, next) => {

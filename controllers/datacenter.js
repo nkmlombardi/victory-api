@@ -1,4 +1,5 @@
 var utility = require('../services/utilities')
+var transformers = require('../services/transformers')
 
 module.exports = {
     getDatacenters: async (request, response, next) => {
@@ -11,7 +12,8 @@ module.exports = {
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
         response.json({
-            data: response.query
+            data: transformers.datacenters.collection(response.query)
+            // data: response.query
         })
     },
 
@@ -27,7 +29,7 @@ module.exports = {
         if (response.query.length === 0) return response.handlers.error(4001, request, response)
 
         response.json({
-            data: response.query[0]
+            data: transformers.datacenters.singleton(response.query[0])
         })
     },
 
