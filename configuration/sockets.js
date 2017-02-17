@@ -3,8 +3,6 @@
 // const moment = require('moment')
 
 module.exports = (io, database) => {
-    console.log('testing socket')
-    console.log(io.remoteAddress)
     io.on('connection', async (socket) => {
         const emitters = []
         console.log('User connected...')

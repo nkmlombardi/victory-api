@@ -9,8 +9,8 @@ passport.use(new Strategy({ passReqToCallback: true },
             if (!token) {
                 return callback(Error('5002'), null, null)
             }
-            // if (!moment(moment(token.updated_at).format()).isAfter(moment().subtract(30, 'seconds').format()))
-            //     return callback(Error('4005'), null, null)
+            if (!moment(moment(token.updated_at).format()).isAfter(moment().subtract(30, 'seconds').format()))
+                return callback(Error('4005'), null, null)
             user = await request.models.User.scope('public').findOne({ where: { id: token.user_id } })
             if (!user)
                 return callback(Error('4004'), null, null)

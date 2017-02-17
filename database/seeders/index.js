@@ -1,5 +1,6 @@
 const Promise = require('bluebird')
 const fs = require('fs')
+const colors = require('colors')
 
 // Accumulate seed files
 const seeders = (() => fs.readdirSync(__dirname)
@@ -19,7 +20,7 @@ module.exports = {
                 .catch(error => console.error(seeders[index], ' seeder error: ', error)),
             { concurrency: 1 }
         )
-        .then(() => console.log('Persisted all models successfully.'.green))
+        .then(() => console.log(colors.green('Persisted all models successfully.')))
         .catch(error => console.error('Promise Map Error: ', error)),
 
     down: database => seeders.forEach(seeder => seeder.down(database.sequelize, database.models))

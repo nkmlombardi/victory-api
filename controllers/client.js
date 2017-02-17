@@ -1,6 +1,7 @@
 const utility = require('../services/utilities')
 
 module.exports = {
+
     getClients: async (request, response) => {
         try {
             response.query = await request.connection.query(`

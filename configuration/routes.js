@@ -4,8 +4,6 @@ const cache = require('apicache').middleware
 const passport = require('passport')
 
 module.exports = (app) => {
-    console.time('routes File')
-
     // Base Endpoint
     app.route('/')
         .get((request, response) => { response.sendStatus(200) })
@@ -16,7 +14,7 @@ module.exports = (app) => {
      */
     // Client Resource
     app.route('/v1/clients')
-        .get(services.authentication.isJwt, controllers.client.getClients)
+        .get(cache('1 hour'), controllers.client.getClients)
     app.route('/v1/clients/:id')
         .get(cache('1 hour'), controllers.client.getClient)
     app.route('/v1/clients/:id/origins')
@@ -24,7 +22,7 @@ module.exports = (app) => {
 
     // Origin Resource
     app.route('/v1/origins')
-        .get(services.authentication.isJwt, controllers.origin.getOrigins)
+        .get(cache('1 hour'), controllers.origin.getOrigins)
     app.route('/v1/origins/:id/')
         .get(cache('1 hour'), controllers.origin.getOrigin)
     app.route('/v1/origins/:id/targets')
@@ -58,5 +56,4 @@ module.exports = (app) => {
         .get(cache('1 hour'), controllers.cluster.getClusters)
     app.route('/v1/clusters/:id')
         .get(cache('1 hour'), controllers.cluster.getCluster)
-    console.timeEnd('routes File')
 }

@@ -21,13 +21,11 @@ module.exports = (Sequelize, DataTypes) =>
             type: DataTypes.STRING,
             allowNull: false,
             set(value) {
-                console.time('ser hash')
                 const salt = bcrypt.genSaltSync(10)
                 const encrypted = bcrypt.hashSync(value, salt)
 
                 this.setDataValue('password', encrypted)
                 this.setDataValue('salt', salt)
-                console.timeEnd('ser hash')
             }
         },
         salt: {
@@ -39,9 +37,7 @@ module.exports = (Sequelize, DataTypes) =>
         underscored: true,
         instanceMethods: {
             verifyPassword(password, callback) {
-                console.time('verify password')
                 return bcrypt.compare(password, this.password, (err, res) => callback(err, res))
-                console.timeEnd('verify password')
             },
 
             publicAttributes() {
