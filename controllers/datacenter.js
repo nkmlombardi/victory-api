@@ -11,7 +11,7 @@ module.exports = {
      * @return {Promise} singleton
      */
     find: async (request, response) => {
-        if (utility.isUppercaseDashColon(request.params.id) === false) return response.handlers.error(4002, request, response)
+        if (utility.isUppercaseDashColon(request.params.id) === false) return request.handlers.error(4002, request, response)
 
         try {
             response.query = await request.connection.query(`
@@ -19,9 +19,9 @@ module.exports = {
                 FROM BB_DATA_CENTER
                 WHERE data_center_code = '${request.params.id}'
             `)
-        } catch (error) { return response.handlers.error(error, request, response) }
+        } catch (error) { return request.handlers.error(error, request, response) }
 
-        if (response.query.length === 0) return response.handlers.error(4001, request, response)
+        if (response.query.length === 0) return request.handlers.error(4001, request, response)
         response.json({ data: transformers.datacenters.singleton(response.query[0]) })
     },
 
@@ -40,9 +40,9 @@ module.exports = {
                 FROM BB_DATA_CENTER
                 WHERE is_active = 1
             `)
-        } catch (error) { return response.handlers.error(error, request, response) }
+        } catch (error) { return request.handlers.error(error, request, response) }
 
-        if (response.query.length === 0) return response.handlers.error(4001, request, response)
+        if (response.query.length === 0) return request.handlers.error(4001, request, response)
         response.json({ data: transformers.datacenters.collection(response.query) })
     },
 
@@ -56,7 +56,7 @@ module.exports = {
      */
     getClusters: async (request, response) => {
         // Pre-database checks
-        if (utility.isUppercaseDashColon(request.params.id) === false) return response.handlers.error(4002, request, response)
+        if (utility.isUppercaseDashColon(request.params.id) === false) return request.handlers.error(4002, request, response)
 
         // Database query
         try {
@@ -65,7 +65,7 @@ module.exports = {
                 FROM BB_ONELINK_CLUSTER
                 WHERE data_center = '${request.params.id}'
             `)
-        } catch (error) { return response.handlers.error(error, request, response) }
+        } catch (error) { return request.handlers.error(error, request, response) }
 
         // Post-database checks
         if (response.query.length === 0) {
@@ -75,8 +75,8 @@ module.exports = {
                 WHERE data_center_code = '${request.params.id}'
             `)
 
-            if (validateResource.length === 0) return response.handlers.error(4001, request, response)
-            return response.handlers.error(2001, request, response)
+            if (validateResource.length === 0) return request.handlers.error(4001, request, response)
+            return request.handlers.error(2001, request, response)
         }
 
         // Endpoint response

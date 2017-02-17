@@ -1,7 +1,7 @@
 const winston = require('winston')
 
 module.exports = {
-    errorLogger: new winston.Logger({
+    error: new winston.Logger({
         transports: [
             new winston.transports.File({
                 name: 'error',
@@ -17,7 +17,8 @@ module.exports = {
         ],
         exitOnError: true
     }),
-    accessLogger: new winston.Logger({
+
+    access: new winston.Logger({
         transports: [
             new winston.transports.File({
                 name: 'access',

@@ -1,132 +1,91 @@
-const internal = require('./data/errors')
-const errorLogger = require('../logger/file.logger').errorLogger
+const data = require('./data')
+const logger = require('../logger')
+const httpStatus = require('http-status-codes')
 
 // Figure out how to process database errors, and application errors respectively
-module.exports = (error, request, response) => {
-    switch (error) {
-        // Successful responses
-    case 2001:
-        return response.status(request.status.OK).json({
-            status: {
-                code: error,
-                message: internal[error]
-            },
-            data: []
-        })
+module.exports = (code, callback) => {
+    switch (code) {
+        /**
+         * Successful Requests
+         */
+        case 2001:
+            return callback(httpStatus.OK, {
+                status: {
+                    message: data.errors[code]
+                },
+                data: []
+            })
 
-    case 2002:
-        return response.status(request.status.OK).json({
-            status: {
-                code: error,
-                message: internal[error]
-            },
-            data: {}
-        })
 
-    // Invalid requests
-    case 4001:
-        return response.status(request.status.NOT_FOUND).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
+        case 2002:
+            return callback(httpStatus.OK, {
+                status: {
+                    message: data.errors[code]
+                },
+                data: {}
+            })
 
-    case 4002:
-        return response.status(request.status.BAD_REQUEST).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
 
-    case 4003:
-        return response.status(request.status.FORBIDDEN).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
+        /**
+         * Invalid Requests
+         */
+        case 4001:
+            return callback(httpStatus.NOT_FOUND, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
 
-    case 4004:
-        return response.status(request.status.FORBIDDEN).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
 
-    case 4005:
-        return response.status(request.status.UNAUTHORIZED).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
+        case 4002:
+            return callback(httpStatus.BAD_REQUEST, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
 
-    case 4006:
-        return response.status(request.status.FORBIDDEN).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
 
-    // Internal server errors
-    case 5001:
-    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
-        return response.status(request.status.INTERNAL_SERVER_ERROR).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
+        case 4003:
+        case 4004:
+        case 4006:
+            return callback(httpStatus.FORBIDDEN, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
 
-    case 5002:
-    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
-        return response.status(request.status.INTERNAL_SERVER_ERROR).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
 
-    case 5003:
-    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
-        return response.status(request.status.INTERNAL_SERVER_ERROR).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
+        case 4005:
+            return callback(httpStatus.UNAUTHORIZED, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
 
-    case 5004:
-    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
-        return response.json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
 
-    case 5005:
-    errorLogger.log('error', '\n\tCode ' + error + '\n\t\tMessage: ' + internal[error])
-        return response.status(request.status.INTERNAL_SERVER_ERROR).json({
-            status: {
-                code: error,
-                message: internal[error]
-            }
-        })
+        /**
+         * Internal Server Errors
+         */
+        case 5001:
+        case 5002:
+        case 5003:
+        case 5004:
+        case 5005:
+            return callback(httpStatus.INTERNAL_SERVER_ERROR, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
 
-    // Default case
-    default:
-    errorLogger.log('error', '\n\t' + request.status.INTERNAL_SERVER_ERROR + '\n\t\tMessage: ' + 'There was an internal server error.' + '\n\t\t\t Data: ' + error)
-        return response.json({
-            status: {
-                code: request.status.INTERNAL_SERVER_ERROR,
-                message: 'There was an internal server error.',
-                data: error
-            }
-        })
+
+        /**
+         * Fallback
+         */
+        default:
+            return callback(httpStatus.INTERNAL_SERVER_ERROR, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
     }
 }
