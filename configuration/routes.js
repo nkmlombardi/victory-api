@@ -25,7 +25,7 @@ module.exports = (app) => {
     app.route('/v1/clients')
         .get(handlers.controller(controllers.client.getCollection))
     app.route('/v1/clients/:id')
-       .get(handlers.controller(controllers.client.getSingleton, (req, res, next) => [req.params.id]))
+       .get(handlers.controller(controllers.client.getSingleton, (request) => [request.params.id]))
     app.route('/v1/clients/:id/origins')
         .get(cache('1 hour'), controllers.client.getOrigins)
 
