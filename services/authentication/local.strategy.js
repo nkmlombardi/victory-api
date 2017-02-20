@@ -3,9 +3,8 @@ const Strategy = require('passport-local').Strategy
 
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
     async (request, email, password, callback) => {
-        let user
         try {
-            user = await request.models.User.findOne({ where: { email } })
+            let user = await request.models.User.findOne({ where: { email } })
             if (!user) {
                 return callback(null, null, Error('4004'))
             }

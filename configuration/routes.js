@@ -16,9 +16,9 @@ module.exports = (app) => {
      */
     // Client Resource
     app.route('/v1/clients')
-        .get(services.authentication.isJwt, controllers.client.getClients)
+        .get(cache('1 hour'), controllers.client.findAll)
     app.route('/v1/clients/:id')
-        .get(cache('1 hour'), controllers.client.getClient)
+        .get(cache('1 hour'), controllers.client.find)
     app.route('/v1/clients/:id/origins')
         .get(cache('1 hour'), controllers.client.getClientOrigins)
 

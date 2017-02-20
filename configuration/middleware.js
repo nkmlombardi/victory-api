@@ -4,8 +4,7 @@ const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const httpStatus = require('http-status-codes')
 const handlers = require('../services/handlers')
-const consoleLogger = require('../services/logger/console.logger')
-const fileLogger = require('../services/logger/file.logger').accessLogger
+const logger = require('../services/logger')
 const expressJwt = require('express-jwt')
 
 module.exports = (app, database) => {
@@ -14,10 +13,10 @@ module.exports = (app, database) => {
     // Logging
     if (process.env.NODE_ENV !== 'test') {
         app.use(morgan('dev', {
-            stream: { write: message => consoleLogger.info(message) } }
+            stream: { write: message => logger.console.info(message) } }
         ))
         app.use(morgan('tiny', {
-            stream: { write: message => fileLogger.info(message) } }
+            stream: { write: message => logger.file.info(message) } }
         ))
     }
 
