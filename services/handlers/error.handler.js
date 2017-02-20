@@ -4,6 +4,8 @@ const httpStatus = require('http-status-codes')
 
 // Figure out how to process database errors, and application errors respectively
 module.exports = (code, callback) => {
+    console.log('Handling: ', code)
+
     switch (code) {
         /**
          * Successful Requests
@@ -30,7 +32,7 @@ module.exports = (code, callback) => {
          * Invalid Requests
          */
         case 4001:
-            return callback(httpStatus.NOT_FOUND, {
+            return callback(httpStatus.BAD_REQUEST, {
                 status: {
                     message: data.errors[code]
                 }

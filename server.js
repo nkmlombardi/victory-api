@@ -11,17 +11,18 @@ env(`${__dirname}/.environment/.public.env`)
 env(`${__dirname}/.environment/.private.env`)
 
 // Instantiation
-const config = require('./configuration')
-const database = require('./database')()
+const configuration = require('./configuration')
+const database = require('./database').connect()
 
 const app = express()
 const server = http.createServer(app)
 const io = socket.listen(server)
 
 // Bootstrapping
-config.middleware(app, database)
-config.sockets(io, database)
-config.routes(app)
+configuration.classes()
+configuration.middleware(app, database)
+configuration.sockets(io, database)
+configuration.routes(app)
 
 // Execute server
 server.listen(process.env.NODE_PORT, () => {

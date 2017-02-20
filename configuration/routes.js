@@ -1,6 +1,7 @@
 const controllers = require('../controllers')
-const services = require('../services')
 const cache = require('apicache').middleware
+const authentication = require('../services/authentication')
+const handlers = require('../services/handlers')
 
 module.exports = (app) => {
 
@@ -15,16 +16,16 @@ module.exports = (app) => {
      * Authentication
      */
     app.route('/v1/authenticate')
-        .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
+        .post(authentication.isLocal, controllers.authentication.postSelfPassport)
 
 
     /**
      * Clients
      */
     app.route('/v1/clients')
-        .get(cache('1 hour'), controllers.client.findAll)
+        .get(handlers.controller(controllers.client.getCollection))
     app.route('/v1/clients/:id')
-        .get(cache('1 hour'), controllers.client.find)
+       .get(handlers.controller(controllers.client.getSingleton, (req, res, next) => [req.params.id]))
     app.route('/v1/clients/:id/origins')
         .get(cache('1 hour'), controllers.client.getOrigins)
 

@@ -32,10 +32,4 @@ module.exports = (app, database) => {
         response.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS')
         next()
     })
-
-    // Error Handling
-    app.use((request, response, next) => {
-        response.handlers = handlers
-        next()
-    })
 }

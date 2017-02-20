@@ -17,6 +17,7 @@ module.exports = {
      */
     isNumber: value => /^(0|[1-9]\d*)$/.test(value),
 
+
     /**
      * Regex checking if the value starts with an alphabet character, then contains
      * any number of upper/lower case letters, numbers, -, /, or + characters.
@@ -27,6 +28,7 @@ module.exports = {
      */
     isAlphaNumericDashSlashPlus: value => /^[A-Za-z0-9/\-+]*$/.test(value),
 
+
     /**
      * Regex checking if the value is all uppercase letters, dashes(-), or colons(:).
      * Returns false otherwise.
@@ -34,5 +36,5 @@ module.exports = {
      * @param  {string}  value [an identifier]
      * @return {Boolean}       [description]
      */
-    isUppercaseDashColon: value => /^[A-Z\-:]*$/.test(value)
+    isUppercaseDashColon: value => /^[A-Z\-:]*$/.test(value),
 }

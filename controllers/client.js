@@ -1,8 +1,8 @@
-var utility = require('../services/utilities')
-var transformers = require('../services/transformers')
+const utility = require('../services/utilities')
+const transformers = require('../services/transformers')
+const database = require('../database').state
 
 module.exports = {
-
     /**
      * Find singleton in the resource collection
      *
@@ -10,18 +10,24 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} singleton
      */
-    find: async (request, response) => {
+    getSingleton: async (id) => {
+        if (utility.isNumber(id) === false) return new ApiError(4002)
+
+        let singleton
+
         try {
-            response.query = await request.connection.query(`
+            singleton = (await database.mysql.query(`
                 SELECT *
                 FROM BB_CLIENT
-                WHERE is_inactive = 0
-                    AND is_hidden = 0
-            `)
-        } catch (error) { return request.handlers.error(error, request, response) }
+                WHERE client_id = ${id}
+            `))[0]
+        } catch (error) {
+            return error
+        }
 
-        if (response.query.length === 0) return request.handlers.error(4001, request, response)
-        response.json({ data: transformers.clients.collection(response.query) })
+        if (!singleton) return new ApiError(4001)
+
+        return transformers.clients.singleton(singleton)
     },
 
 
@@ -32,19 +38,21 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} collection
      */
-    findAll: async (request, response) => {
-        if (utility.isNumber(request.params.id) === false) return request.handlers.error(4002, request, response)
+    getCollection: async () => {
+        let collection
 
         try {
-            response.query = await request.connection.query(`
+            collection = await database.mysql.query(`
                 SELECT *
                 FROM BB_CLIENT
-                WHERE client_id = ${request.params.id}
+                WHERE is_inactive = 0
+                    AND is_hidden = 0
             `)
-        } catch (error) { return request.handlers.error(error, request, response) }
+        } catch (error) {
+            return error
+        }
 
-        if (response.query.length === 0) return request.handlers.error(4001, request, response)
-        response.json({ data: transformers.clients.singleton(response.query[0]) })
+        return transformers.clients.collection(collection)
     },
 
 
@@ -55,23 +63,29 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} collection
      */
-    getOrigins: async (request, response) => {
+    getOrigins: async (id) => {
+        if (utility.isNumber(id) === false) return new ApiError(4002)
+
+        let collection
+
         try {
-            response.query = await request.connection.query(`
+            response.query = await database.mysql.query(`
                 SELECT  *
                 FROM    BB_PROJECT_ORIGIN
                 WHERE   project_id  IN (
                     SELECT  project_id
                     FROM    BB_PROJECT
-                    WHERE   client_id = '${request.params.id}'
+                    WHERE   client_id = '${id}'
                         AND is_inactive = 0
                         AND is_hidden = 0
                 )
             `)
-        } catch (error) { return request.handlers.error(error, request, response) }
+        } catch (error) {
+            return error
+        }
 
-        if (response.query.length === 0) return request.handlers.error(4001, request, response)
-        return response.json({ data: transformers.origins.collection(response.query) })
+        if (collection.length === 0) return new ApiError(4001)
+
+        return transformers.origins.collection(collection)
     }
-
 }

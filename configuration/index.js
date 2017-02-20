@@ -1,5 +1,6 @@
 module.exports = {
     middleware: require('./middleware'),
     sockets: require('./sockets'),
-    routes: require('./routes')
+    routes: require('./routes'),
+    classes: require('./classes')
 }
