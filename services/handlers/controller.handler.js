@@ -17,13 +17,8 @@ module.exports = (promise, params) => async(request, response, next) => {
 
         // Check if controller returned an error
         if (result instanceof ApiError) {
-            console.error('ApiError: ', result)
+            // console.error('ApiError: ', result)
             return errorHandler((result.code || error), (status, payload) => response.status(status).json(payload))
-        }
-
-        if (result instanceof Error) {
-            console.error('Error: ', result)
-            return response.status(httpStatus.INTERNAL_SERVER_ERROR).json(result)
         }
 
         // Return the controllers response

@@ -1,5 +1,6 @@
-var utility = require('../services/utilities')
-var transformers = require('../services/transformers')
+const utility = require('../services/utilities')
+const transformers = require('../services/transformers')
+const database = require('../database').state
 
 module.exports = {
 
@@ -10,19 +11,24 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} singleton
      */
-    find: async (request, response) => {
-        if (utility.isUppercaseDashColon(request.params.id) === false) return request.handlers.error(4002, request, response)
+    getSingleton: async (id) => {
+        if (utility.isUppercaseDashColon(id) === false) return new ApiError(4002)
+
+        let singleton
 
         try {
-            response.query = await request.connection.query(`
+            singleton = (await database.mysql.query(`
                 SELECT *
                 FROM BB_DATA_CENTER
-                WHERE data_center_code = '${request.params.id}'
-            `)
-        } catch (error) { return request.handlers.error(error, request, response) }
+                WHERE data_center_code = '${id}'
+            `))[0]
+        } catch (error) {
+            return error
+        }
 
-        if (response.query.length === 0) return request.handlers.error(4001, request, response)
-        response.json({ data: transformers.datacenters.singleton(response.query[0]) })
+        if (!singleton) return new ApiError(4001)
+
+        return transformers.datacenters.singleton(singleton)
     },
 
 
@@ -33,17 +39,20 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} collection
      */
-    findAll: async (request, response) => {
+    getCollection: async() => {
+        let collection
+
         try {
-            response.query = await request.connection.query(`
+            collection = await database.mysql.query(`
                 SELECT *
                 FROM BB_DATA_CENTER
                 WHERE is_active = 1
             `)
-        } catch (error) { return request.handlers.error(error, request, response) }
+        } catch (error) {
+            return error
+        }
 
-        if (response.query.length === 0) return request.handlers.error(4001, request, response)
-        response.json({ data: transformers.datacenters.collection(response.query) })
+        return transformers.datacenters.collection(collection)
     },
 
 
@@ -54,33 +63,28 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} collection
      */
-    getClusters: async (request, response) => {
+    getClusters: async (id) => {
         // Pre-database checks
-        if (utility.isUppercaseDashColon(request.params.id) === false) return request.handlers.error(4002, request, response)
+        if (utility.isUppercaseDashColon(id) === false) return new ApiError(4002)
+
+        let collection
 
         // Database query
         try {
-            response.query = await request.connection.query(`
+            collection = await database.mysql.query(`
                 SELECT *
                 FROM BB_ONELINK_CLUSTER
-                WHERE data_center = '${request.params.id}'
+                WHERE data_center = '${id}'
             `)
-        } catch (error) { return request.handlers.error(error, request, response) }
-
-        // Post-database checks
-        if (response.query.length === 0) {
-            const validateResource = await request.connection.query(`
-                SELECT *
-                FROM BB_DATA_CENTER
-                WHERE data_center_code = '${request.params.id}'
-            `)
-
-            if (validateResource.length === 0) return request.handlers.error(4001, request, response)
-            return request.handlers.error(2001, request, response)
+        } catch (error) {
+            return error
         }
 
+        // Post-database checks
+        if (collection.length === 0) return new ApiError(4001)
+
         // Endpoint response
-        return response.json({ data: response.query })
+        return transformers.clusters.collection(collection)
     }
 
 }

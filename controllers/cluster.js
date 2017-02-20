@@ -1,5 +1,6 @@
-var utility = require('../services/utilities')
-var transformers = require('../services/transformers')
+const utility = require('../services/utilities')
+const transformers = require('../services/transformers')
+const database = require('../database').state
 
 module.exports = {
 
@@ -10,19 +11,25 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} singleton
      */
-    find: async (request, response) => {
+    getSingleton: async(id) => {
+        if (utility.isAlphaNumericDashSlashPlus(id) === false) return new ApiError(4002)
+        let singleton
+
         try {
-            response.query = await request.connection.query(`
-                SELECT *
-                FROM BB_ONELINK_CLUSTER
-            `)
+            singleton = (await database.mysql.query(`
+                 SELECT *
+                 FROM BB_ONELINK_CLUSTER
+                 WHERE cluster_name = '${id}'
+             `))[0]
+        } catch (error) {
+            console.log('error here', error)
+            return error
         }
-        catch (error) { return request.handlers.error(error, request, response) }
 
-        if (response.query.length === 0) return request.handlers.error(4001, request, response)
-        return response.json({ data: transformers.clusters.collection(response.query) })
+        if (!singleton) return new ApiError(4001)
+
+        return transformers.clusters.singleton(singleton)
     },
-
 
     /**
      * Find the resouce collection
@@ -31,19 +38,23 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} collection
      */
-    findAll: async (request, response) => {
-        if (utility.isAlphaNumericDashSlashPlus(request.params.id) === false) return request.handlers.error(4002, request, response)
+
+    getCollection: async() => {
+        let collection
 
         try {
-            response.query = await request.connection.query(`
+            collection = await database.mysql.query(`
                 SELECT *
                 FROM BB_ONELINK_CLUSTER
-                WHERE cluster_name = '${request.params.id}'
             `)
-        } catch (error) { return request.handlers.error(error, request, response) }
+        } catch (error) {
 
-        if (response.query.length === 0) return request.handlers.error(4001, request, response)
-        response.json({ data: transformers.clusters.singleton(response.query[0]) })
+                console.log('here\'s your problem')
+                console.log(error)
+            return error
+        }
+
+        return transformers.clusters.collection(collection)
     }
 
 }

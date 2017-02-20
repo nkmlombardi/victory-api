@@ -25,52 +25,52 @@ module.exports = (app) => {
     app.route('/v1/clients')
         .get(handlers.controller(controllers.client.getCollection))
     app.route('/v1/clients/:id')
-       .get(handlers.controller(controllers.client.getSingleton, (request) => [request.params.id]))
+        .get(handlers.controller(controllers.client.getSingleton, (request) => [request.params.id]))
     app.route('/v1/clients/:id/origins')
-        .get(cache('1 hour'), controllers.client.getOrigins)
+        .get(handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
 
 
     /**
      * Origins
      */
     app.route('/v1/origins')
-        .get(cache('1 hour'), controllers.origin.findAll)
+        .get(handlers.controller(controllers.origin.getCollection))
     app.route('/v1/origins/:id/')
-        .get(cache('1 hour'), controllers.origin.find)
+        .get(handlers.controller(controllers.origin.getSingleton, (request) => [request.params.id]))
     app.route('/v1/origins/:id/targets')
-        .get(cache('1 hour'), controllers.origin.getTargets)
+        .get(handlers.controller(controllers.origin.getTargets, (request) => [request.params.id]))
     app.route('/v1/origins/:id/health')
-        .get(controllers.origin.getHealthHistory)
+        .get(handlers.controller(controllers.origin.getHealthHistory, (request) => [request.params.id]))
     app.route('/v1/origins/:id/dispatch')
-        .get(controllers.origin.getDispatchHistory)
+        .get(handlers.controller(controllers.origin.getDispatchHistory, (request) => [request.params.id]))
 
 
     /**
      * Targets
      */
     app.route('/v1/targets')
-        .get(cache('1 hour'), controllers.target.findAll)
+        .get(handlers.controller(controllers.target.getCollection))
     app.route('/v1/targets/:id/')
-        .get(cache('1 hour'), controllers.target.find)
+        .get(handlers.controller(controllers.target.getSingleton, (request) => [request.params.id]))
 
 
     /**
      * Datacenters
      */
     app.route('/v1/datacenters')
-        .get(cache('1 hour'), controllers.datacenter.findAll)
+        .get(handlers.controller(controllers.datacenter.getCollection))
     app.route('/v1/datacenters/:id')
-        .get(cache('1 hour'), controllers.datacenter.find)
+        .get(handlers.controller(controllers.datacenter.getSingleton, (request) => [request.params.id]))
     app.route('/v1/datacenters/:id/clusters')
-        .get(cache('1 hour'), controllers.datacenter.getClusters)
+        .get(handlers.controller(controllers.datacenter.getClusters, (request) => [request.params.id]))
 
 
     /**
      * Clusters
      */
     app.route('/v1/clusters')
-        .get(cache('1 hour'), controllers.cluster.findAll)
+        .get(handlers.controller(controllers.cluster.getCollection))
     app.route('/v1/clusters/:id')
-        .get(cache('1 hour'), controllers.cluster.find)
+        .get(handlers.controller(controllers.cluster.getSingleton, (request) => [request.params.id]))
 
 }

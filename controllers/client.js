@@ -19,7 +19,7 @@ module.exports = {
             singleton = (await database.mysql.query(`
                 SELECT *
                 FROM BB_CLIENT
-                WHERE client_id = ${id}
+                WHERE client_id = '${id}'
             `))[0]
         } catch (error) {
             return error
@@ -69,7 +69,7 @@ module.exports = {
         let collection
 
         try {
-            response.query = await database.mysql.query(`
+            collection = await database.mysql.query(`
                 SELECT  *
                 FROM    BB_PROJECT_ORIGIN
                 WHERE   project_id  IN (

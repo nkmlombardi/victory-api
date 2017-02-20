@@ -4,7 +4,6 @@ const httpStatus = require('http-status-codes')
 
 // Figure out how to process database errors, and application errors respectively
 module.exports = (code, callback) => {
-    console.log('Handling: ', code)
 
     switch (code) {
         /**
