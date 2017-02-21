@@ -1,35 +1,35 @@
 const data = require('./data')
-const fileLogger = require('../logger').file.error
-const consoleLogger = require('../logger').console
+const logger = require('../logger')
 const httpStatus = require('http-status-codes')
 
 // Figure out how to process database errors, and application errors respectively
 module.exports = (code, callback) => {
-
     switch (code) {
         /**
          * Successful Requests
          */
         case 2001:
-        consoleLogger.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-        fileLogger.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.OK, {
                 status: {
                     message: data.errors[code]
                 },
                 data: []
             })
+            break;
 
 
         case 2002:
-        consoleLogger.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-        fileLogger.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.OK, {
                 status: {
                     message: data.errors[code]
                 },
                 data: {}
             })
+            break;
 
 
         /**
@@ -37,35 +37,38 @@ module.exports = (code, callback) => {
          */
         case 4001:
         case 4002:
-        consoleLogger.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-        fileLogger.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.BAD_REQUEST, {
                 status: {
                     message: data.errors[code]
                 }
             })
+            break;
 
 
         case 4003:
         case 4004:
         case 4006:
-        consoleLogger.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-        fileLogger.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.FORBIDDEN, {
                 status: {
                     message: data.errors[code]
                 }
             })
+            break;
 
 
         case 4005:
-        consoleLogger.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-        fileLogger.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.UNAUTHORIZED, {
                 status: {
                     message: data.errors[code]
                 }
             })
+            break;
 
 
         /**
@@ -76,25 +79,27 @@ module.exports = (code, callback) => {
         case 5003:
         case 5004:
         case 5005:
-        consoleLogger.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-        fileLogger.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.INTERNAL_SERVER_ERROR, {
                 status: {
                     message: data.errors[code]
                 }
             })
+            break;
 
 
         /**
          * Fallback
          */
         default:
-        consoleLogger.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-        fileLogger.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.INTERNAL_SERVER_ERROR, {
                 status: {
                     message: data.errors[code]
                 }
             })
+            break;
     }
 }

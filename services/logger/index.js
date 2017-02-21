@@ -1,4 +1,5 @@
 module.exports = {
-    file: require('./file.logger'),
+    access: require('./access.logger'),
+    error: require('./error.logger'),
     console: require('./console.logger')
 }

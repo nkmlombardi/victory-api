@@ -12,7 +12,7 @@ module.exports = (app, database) => {
     // Logging
     if (process.env.NODE_ENV !== 'test') {
         app.use(morgan('dev', { stream: { write: message => logger.console.info(message) } }))
-        app.use(morgan('tiny', { stream: { write: message => logger.file.access.info(message) } }))
+        app.use(morgan('tiny', { stream: { write: message => logger.access.info(message) } }))
     }
 
     // Security

@@ -1,8 +1,7 @@
 const passport = require('passport')
 const Strategy = require('passport-http-bearer').Strategy
 const moment = require('moment')
-const consoleLogger = require('../logger/console.logger')
-const accessLogger = require('../logger/file.logger').accessLogger
+const logger = require('../logger')
 let expired = true
 
 // TODO: FIX ERORR HANDLERS HERE
