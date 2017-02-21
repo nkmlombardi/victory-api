@@ -3,7 +3,7 @@
 // const moment = require('moment')
 
 module.exports = (io, database) => {
-    io.on('connection', async (socket) => {
+    io.on('mysql', async (socket) => {
         const emitters = []
         console.log('User connected...')
 
@@ -20,7 +20,7 @@ module.exports = (io, database) => {
 
             socket.emit('datacenters:health', {
                 status: 'success',
-                data: await database.connection.query(`
+                data: await database.mysql.query(`
                     SELECT      *
                     FROM        BB_DATA_CENTER_HEALTH_LOG
                     WHERE       data_center_code = '${id}'
@@ -35,7 +35,7 @@ module.exports = (io, database) => {
             console.log('datacenters:health event emitted to:', socket.id)
             socket.emit('datacenters:health', {
                 status: 'success',
-                data: await database.connection.query(`
+                data: await database.mysql.query(`
                     SELECT
                         data_center_code                    AS id,
                         AVG(statistic_health_score)         AS health,
@@ -53,7 +53,7 @@ module.exports = (io, database) => {
             console.log('clusters:health event emitted to:', socket.id)
             socket.emit('clusters:health', {
                 status: 'success',
-                data: await database.connection.query(`
+                data: await database.mysql.query(`
                     SELECT
                         cluster_name                        AS id,
                         AVG(statistic_health_score)         AS health,
@@ -71,7 +71,7 @@ module.exports = (io, database) => {
             console.log('origins:health event emitted to:', socket.id)
             socket.emit('origins:health', {
                 status: 'success',
-                data: await database.connection.query(`
+                data: await database.mysql.query(`
                     SELECT
                         health.origin_id                    AS id,
                         AVG(health.statistic_health_score)  AS health,
@@ -94,7 +94,7 @@ module.exports = (io, database) => {
             console.log('targets:health event emitted to:', socket.id)
             socket.emit('targets:health', {
                 status: 'success',
-                data: await database.connection.query(`
+                data: await database.mysql.query(`
                     SELECT
                         health.target_id                    AS id,
                         AVG(health.statistic_health_score)  AS health,
