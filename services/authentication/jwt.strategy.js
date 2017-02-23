@@ -16,7 +16,6 @@ passport.use(new Strategy({
     (request, payload, callback) => {
         // Save the JWT from the header
         const jwt_auth_token = request.headers.authorization.split(' ')[1]
-
         // Verify the JWT appears in auth, is a legitimate token, and hasn't been manipulated
         jwt.verify(jwt_auth_token, process.env.API_SECRET, async (error, decoded) => {
             if (request.client_ip_addr !== decoded.user_ip) return callback(null, null, new ApiError(4006))
@@ -41,13 +40,15 @@ module.exports = function (request, response, next) {
     passport.authenticate('jwt', (info, user, error) => {
         // Check to see if it's an error we returned
         if (error instanceof ApiError) {
+            if (error.message) return handlers.error(error, (status, payload) => response.status(status).json(payload))
             return handlers.error((error.code || error), (status, payload) => response.status(status).json(payload))
         }
 
-        // Check to see if it's an error the passport library returned
-        if (error instanceof Error) {
-            return handlers.error((error.message || error), (status, payload) => response.status(status).json(payload))
-        }
+        // // Check to see if it's an error the passport library returned
+        // if (error instanceof Error) {
+        //     console.log(error.message)
+        //     return handlers.error((error.message), (status, payload) => response.status(status).json(payload))
+        // }
 
         token.changed('updated_at', true).save()
 

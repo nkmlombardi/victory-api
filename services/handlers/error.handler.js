@@ -100,11 +100,12 @@ module.exports = (code, callback) => {
          * Fallback
          */
         default:
-            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
-            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.console.log('error', '\ Code:\ \ \ \ ', code.name, '\n\tMessage: ', code.message, '\n')
+            logger.error.log('error', 'Code', code.name, '\n\tMessage: ', code.message, '\n')
             return callback(httpStatus.INTERNAL_SERVER_ERROR, {
                 status: {
-                    message: code
+                    name: code.name,
+                    message: code.message
                 }
             })
             break;
