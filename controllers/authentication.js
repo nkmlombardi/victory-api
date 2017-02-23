@@ -31,16 +31,36 @@ module.exports = {
                 // expiration is 1 day (60s * 60 = 1hr, 1hr * 24 = 1d)
             })
         } catch (error) {
-            return response.handlers.error(2001, request, response)
+            return handlers.error(2001, (status, payload) => response.status(status).json(payload))
         }
 
-        if (!request.strategy) return response.handlers.error(2000, request, response)
+        if (!request.strategy) return handlers.error(2000, (status, payload) => response.status(status).json(payload))
 
         return response.json({
             data: {
                 token: passport
             }
         })
+
+    },
+
+    postNewPassport: async (request, response, hash) => {
+        let passport
+        try {
+            passport = await request.models.User.create({
+                email: request.email,
+                password: hash
+            })
+        } catch (error) {
+            return handlers.error(2001, (status, payload) => response.status(status).json(payload))
+        }
+
+        return response.json({
+            data: {
+                status: "Successful registration."
+            }
+        })
+
 
     }
 

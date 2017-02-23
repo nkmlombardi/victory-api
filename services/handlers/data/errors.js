@@ -16,5 +16,9 @@ module.exports = {
     5002: 'Database error retrieving Passport associated with auth_token.',
     5003: 'Database error attempting to verify credentials.',
     5004: 'Database error retrieving User during local authentication.',
-    5005: 'Database error bad password.'
+    5005: 'Database error bad password.',
+
+    // 6000: Registration error
+    6000: 'Invalid email address.',
+    6001: 'Email address already in use.'
 }

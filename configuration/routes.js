@@ -18,8 +18,11 @@ module.exports = (app) => {
      */
     app.route('/v1/authenticate')
         .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
+    app.route('/v1/register')
+        .post(services.authentication.register, controllers.authentication.postNewPassport)
     app.route('/v1/logout')
         .get(services.authentication.logout)
+
     /*
         OneLink Software
      */

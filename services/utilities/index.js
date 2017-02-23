@@ -37,4 +37,12 @@ module.exports = {
      * @return {Boolean}       [description]
      */
     isUppercaseDashColon: value => /^[A-Z\-:]*$/.test(value),
+
+    /**
+     * Regex checking if the value is a valid email address.  Taken from emailregex.com.
+     * Looks horrifying, but works.
+     * @param  {string} value [an identifier]
+     * @return {Boolean}      [description]
+     */
+    isValidEmail: value => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)
 }

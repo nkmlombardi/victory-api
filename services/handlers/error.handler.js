@@ -95,6 +95,17 @@ module.exports = (code, callback) => {
             })
             break;
 
+        case 6000:
+        case 6001:
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            return callback(httpStatus.FORBIDDEN, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
+            break;
+
 
         /**
          * Fallback
