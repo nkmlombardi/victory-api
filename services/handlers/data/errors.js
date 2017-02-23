@@ -14,7 +14,7 @@ module.exports = {
     // 5000: Database error
     5001: 'Database error generating a new passport.',
     5002: 'Database error retrieving Passport associated with auth_token.',
-    5003: 'Database error retrieving User associated with bearer_token.',
+    5003: 'Database error attempting to verify credentials.',
     5004: 'Database error retrieving User during local authentication.',
     5005: 'Database error bad password.'
 }

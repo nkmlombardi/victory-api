@@ -1,51 +1,36 @@
 const passport = require('passport')
 const Strategy = require('passport-http-bearer').Strategy
 const moment = require('moment')
-const logger = require('../logger')
-let expired = true
 
-// TODO: FIX ERORR HANDLERS HERE
 passport.use(new Strategy({ passReqToCallback: true },
     async (request, auth_token, callback) => {
-        let user
-        let cutOff
-        let tokenUpdate
-
         try {
             token = await request.models.Passport.findOne({ where: { auth_token } })
-        } catch (error) {
-            return response.handlers.error(5002, request, response)
-        }
-
-        if (!token) {
-            return callback(null, false)
-        }
-
-        cutOff = moment().subtract(30, 'minutes').format()
-        tokenUpdate = moment(token.updated_at).format()
-        expired = !moment(tokenUpdate).isAfter(cutOff)
-
-        try {
+            if (!token) {
+                return callback(Error('5002'), null, null)
+            }
+            if (!moment(moment(token.updated_at).format()).isAfter(moment().subtract(30, 'seconds').format()))
+                return callback(Error('4005'), null, null)
             user = await request.models.User.scope('public').findOne({ where: { id: token.user_id } })
+            if (!user)
+                return callback(Error('4004'), null, null)
         } catch (error) {
-            return response.handlers.error(5003, request, response)
+            return callback(error, null, null)
         }
-
-        return callback(null, user, { scope: '*' })
+        return callback(false, user, null)
     }
 ))
 
 module.exports = function (request, response, next) {
     passport.authenticate('bearer', function (error, user, info) {
-        // will generate a 500 error
-        if (error) return response.handlers.error(error, request, response)
-
-        // if token is expired
-        if (expired) return response.handlers.error(4005, request, response)
-
-        // wrong user/pass combo
-        if (!user) return response.handlers.error(4004, request, response)
-
+        // If we have an error, check and see if the message is an error code,
+        // if so, throw that custom error, if not, throw default catch all error
+        //
+        if (error) {
+            if (!isNaN(error.message)) error.message = Number(error.message)
+            return response.handlers.error(error.message, request, response)
+        }
+        if (token) token.changed('updated_at', true).save()
         return next()
     })(request, response, next)
 }

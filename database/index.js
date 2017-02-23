@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 const mysql = require('promise-mysql')
 const models = require('./models')
 const seeder = require('./seeders')
+const colors = require('colors')
 
 module.exports = {
     /**

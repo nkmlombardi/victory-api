@@ -16,11 +16,11 @@ module.exports = (app) => {
      * Authentication
      */
     app.route('/v1/authenticate')
-        .post(authentication.isLocal, controllers.authentication.postSelfPassport)
-
-
-    /**
-     * Clients
+        .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
+    app.route('/v1/logout')
+        .get(services.authentication.logout)
+    /*
+        OneLink Software
      */
     app.route('/v1/clients')
         .get(handlers.controller(controllers.client.getCollection))

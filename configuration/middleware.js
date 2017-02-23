@@ -6,7 +6,6 @@ const handlers = require('../services/handlers')
 const logger = require('../services/logger')
 
 module.exports = (app, database) => {
-    // Parse the body of requests
     app.use(bodyParser.json())
 
     // Logging
@@ -24,6 +23,7 @@ module.exports = (app, database) => {
         request.connection = database.connection
         next()
     })
+
 
     // Enable CORS to avoid Cross Domain Origin issues
     app.use((request, response, next) => {

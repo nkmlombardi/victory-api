@@ -30,7 +30,6 @@ module.exports = {
         return transformers.clients.singleton(singleton)
     },
 
-
     /**
      * Find the resource collection
      *
@@ -56,6 +55,7 @@ module.exports = {
     },
 
 
+
     /**
      * Find all origin resources that are children of the client resource.
      *
@@ -63,6 +63,7 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} collection
      */
+
     getOrigins: async (id) => {
         if (utility.isNumber(id) === false) return new ApiError(4002)
 
