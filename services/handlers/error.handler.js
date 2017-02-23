@@ -104,7 +104,7 @@ module.exports = (code, callback) => {
             logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.INTERNAL_SERVER_ERROR, {
                 status: {
-                    message: data.errors[code]
+                    message: code
                 }
             })
             break;

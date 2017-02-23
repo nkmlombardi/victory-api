@@ -2,6 +2,7 @@ const controllers = require('../controllers')
 const cache = require('apicache').middleware
 const authentication = require('../services/authentication')
 const handlers = require('../services/handlers')
+const services = require('../services')
 
 module.exports = (app) => {
 
@@ -23,7 +24,7 @@ module.exports = (app) => {
         OneLink Software
      */
     app.route('/v1/clients')
-        .get(handlers.controller(controllers.client.getCollection))
+        .get(services.authentication.isJwt, handlers.controller(controllers.client.getCollection))
     app.route('/v1/clients/:id')
         .get(handlers.controller(controllers.client.getSingleton, (request) => [request.params.id]))
     app.route('/v1/clients/:id/origins')

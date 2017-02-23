@@ -5,6 +5,7 @@ const authJwt = expressJwt({ secret: process.env.API_SECRET })
 const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
+const handlers = require('../handlers')
 
 passport.use(new Strategy({
     secretOrKey: process.env.API_SECRET,
@@ -37,7 +38,8 @@ module.exports = function (request, response, next) {
         // if so, throw that custom error, if not, throw default catch all error
         if (error) {
             if (!isNaN(error.message)) error.message = Number(error.message)
-            return response.handlers.error(error.message, request, response)
+            console.log('error loop, error: ', error)
+            return handlers.error(new ApiError(error.message))
         }
         token.changed('updated_at', true).save()
 
