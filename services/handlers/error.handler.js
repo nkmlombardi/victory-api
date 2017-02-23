@@ -36,6 +36,15 @@ module.exports = (code, callback) => {
          * Invalid Requests
          */
         case 4001:
+            logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
+            logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
+            return callback(httpStatus.NOT_FOUND, {
+                status: {
+                    message: data.errors[code]
+                }
+            })
+            break;
+
         case 4002:
             logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
             logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
