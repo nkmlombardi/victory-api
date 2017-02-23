@@ -43,13 +43,6 @@ module.exports = function (request, response, next) {
             if (error.message) return handlers.error(error, (status, payload) => response.status(status).json(payload))
             return handlers.error((error.code || error), (status, payload) => response.status(status).json(payload))
         }
-
-        // // Check to see if it's an error the passport library returned
-        // if (error instanceof Error) {
-        //     console.log(error.message)
-        //     return handlers.error((error.message), (status, payload) => response.status(status).json(payload))
-        // }
-
         token.changed('updated_at', true).save()
 
         return next()
