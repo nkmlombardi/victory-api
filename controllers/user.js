@@ -10,13 +10,12 @@ module.exports = {
             if (!validEmail(email)) {
                 return new ApiError(6000)
             }
-            console.log('test')
+
             // Check if password is valid
             // 8 char minimum, alphanumberic upper lower + symbols
             if (!validPassword(password)) {
                 return new ApiError(6002)
             }
-            console.log('test')
 
             // If so, check if it's already registered
             let user = await database.models.User.findOne({

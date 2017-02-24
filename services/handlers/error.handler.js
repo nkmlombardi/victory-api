@@ -68,6 +68,7 @@ module.exports = (code, callback) => {
             break;
 
         case 4005:
+        case 4007:
             logger.console.log('error', '\ Code:\ \ \ \ ', code, '\n\tMessage: ', data.errors[code], '\n')
             logger.error.log('error', 'Code', code, '\n\tMessage: ', data.errors[code], '\n')
             return callback(httpStatus.UNAUTHORIZED, {

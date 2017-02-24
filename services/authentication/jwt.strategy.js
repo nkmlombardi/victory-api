@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken')
 const moment = require('moment')
 const handlers = require('../handlers')
 const utility = require('../utilities')
+const database = require('../../database').state
 
 passport.use(new Strategy({
     secretOrKey: process.env.API_SECRET,
@@ -18,8 +19,9 @@ passport.use(new Strategy({
         const jwt_auth_token = request.headers.authorization.split(' ')[1]
         // Verify the JWT appears in auth, is a legitimate token, and hasn't been manipulated
         jwt.verify(jwt_auth_token, process.env.API_SECRET, async (error, decoded) => {
+            if (error) return callback(null, null, new ApiError(4007))
             if (request.client_ip_addr !== decoded.user_ip) return callback(null, null, new ApiError(4006))
-            token = await request.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
+            token = await database.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
 
             if (!token) return callback(null, null, new ApiError(5002))
 

@@ -14,8 +14,9 @@ module.exports = {
      * @param  {Function} next [description]
      * @return {[type]}        [description]
      */
-    postPassport: async (user_id) => {
+    postPassport: async (user_id, user_ip) => {
         let passport
+        console.log(user_ip)
         try {
             passport = await database.models.Passport.create({
                 user_id: user_id,
@@ -24,7 +25,8 @@ module.exports = {
                     iss: 'api.onelink.com',
                     sub: 'api_user',
                     aud: 'noc.onelink.com',
-                    user_id: user_id
+                    user_id: user_id,
+                    user_ip: user_ip
                 }, process.env.API_SECRET, { expiresIn: 60 * 60 * 24 })
                 // expiration is 1 day (60s * 60 = 1hr, 1hr * 24 = 1d)
             })

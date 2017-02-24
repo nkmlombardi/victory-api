@@ -17,7 +17,7 @@ module.exports = (app) => {
      * Authentication
      */
     app.route('/v1/login')
-        .post(services.authentication.isLocal, handlers.controller(controllers.passport.postPassport, (request) => [request.user.id]))
+        .post(services.authentication.isLocal, handlers.controller(controllers.passport.postPassport, (request) => [request.user.id, request.client_ip_addr]))
     app.route('/v1/logout')
         .get(handlers.controller(controllers.passport.deletePassport, (request) => [request.headers.authorization.split(" ")[1]]))
     app.route('/v1/register')
@@ -27,7 +27,7 @@ module.exports = (app) => {
         OneLink Software
      */
     app.route('/v1/clients')
-        .get(services.authentication.isJwt, handlers.controller(controllers.client.getCollection))
+        .get(services.authentication.isJwt, handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
         // .get(handlers.controller(controllers.client.getCollection))
     app.route('/v1/clients/:id')
         .get(handlers.controller(controllers.client.getSingleton, (request) => [request.params.id]))

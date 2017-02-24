@@ -1,9 +1,10 @@
 const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 const handlers = require('../handlers')
+const database = require('../../database').state
 
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
-    async (database, email, password, callback) => {
+    async (request, email, password, callback) => {
         try {
             // Look for a user with supplied email
             let user = await database.models.User.findOne({ where: { email } })
@@ -21,6 +22,7 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
                 return callback(null, user, false)
             })
         } catch (error) {
+            console.log('local passport error: ', error)
             return callback(null, null, new ApiError(5004))
         }
     }
