@@ -1,10 +1,11 @@
 const passport = require('passport')
 const Strategy = require('passport-local').Strategy
+const handlers = require('../handlers')
 
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
-    async (request, email, password, callback) => {
+    async (database, email, password, callback) => {
         try {
-            let user = await request.models.User.findOne({ where: { email } })
+            let user = await database.models.User.findOne({ where: { email } })
             if (!user) {
                 return callback(null, null, new ApiError(4004))
             }
@@ -12,8 +13,6 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
                 // If error or password doesn't match
                 if (error) return callback(null, null, new ApiError(5003))
                 if (!isMatch) return callback(null, null, new ApiError(4004))
-                request.strategy = 'local'
-                request.user = user
                 return callback(null, user, false)
             })
         } catch (error) {
@@ -28,6 +27,7 @@ module.exports = function (request, response, next) {
             if (error.message) return handlers.error(error, (status, payload) => response.status(status).json(payload))
             return handlers.error((error.code || error), (status, payload) => response.status(status).json(payload))
         }
+        request.user = user
         return next()
     })(request, response, next)
 }

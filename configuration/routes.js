@@ -18,11 +18,11 @@ module.exports = (app) => {
      */
     // TODO: Convert these to new controller handler format, I started logout for you
     app.route('/v1/login')
-        .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
+        .post(services.authentication.isLocal, handlers.controller(controllers.passport.postPassport, (request) => [request.user.id]))
     app.route('/v1/logout')
-        .get(handlers.controller(controllers.authentication.deletePassport, (request) => [request.params.id]))
+        .get(handlers.controller(controllers.passport.deletePassport, (request) => [request.params.id]))
     app.route('/v1/register')
-        .post(services.authentication.register, controllers.authentication.postNewPassport)
+        .post(services.authentication.register, handlers.controller(controllers.passport.postPassport, (request) => []))
 
     /*
         OneLink Software
