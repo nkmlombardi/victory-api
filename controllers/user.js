@@ -1,25 +1,32 @@
+const validEmail = require('../services/utilities').isValidEmail
+const handlers = require('../services/handlers')
+const database = require('../database').state
+
 module.exports = {
-    postUser: async (request, response) => {
-        let user = await request.models.User.findOne({
-            where: { email: request.body.email }
-        })
+    postUser: async (email, password) => {
+        try {
+            if (!validEmail(email)) {
+                return new ApiError(6000)
+            }
 
-        if (user) {
-            return response.status(400).json({
-                status: request.status.error,
-                message: 'Email is already registered in the system.'
+            let user = await database.models.User.findOne({
+                where: { email: email }
             })
+
+            if (user) return new ApiError(6001)
+
+
+            // Create the new user
+            user = await database.models.User.create({
+                email: email,
+                password: password
+            })
+
+            return {
+                message: 'User c r e a t e d'
+            }
+        } catch (error) {
+            return new ApiError(error)
         }
-
-        // Create the new user
-        user = await request.models.User.create({
-            email: request.body.email,
-            password: request.body.password
-        })
-
-        return response.json({
-            status: request.status.success,
-            data: user
-        })
     }
 }

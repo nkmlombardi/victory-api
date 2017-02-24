@@ -16,9 +16,8 @@ module.exports = {
      */
     postPassport: async (user_id) => {
         let passport
-
+        console.log('userID', user_id)
         try {
-            // console.log(request.user.id)
             passport = await database.models.Passport.create({
                 user_id: user_id,
                 device_type: device().type,
@@ -38,17 +37,22 @@ module.exports = {
     },
 
 
-    deletePassport: async () => {
+    deletePassport: async (jwt_auth_token) => {
         let passport
 
         try {
-            passport = await request.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
+            passport = await database.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
         } catch (error) {
             return new ApiError(error)
+        }
+        if (!passport) {
+            return new ApiError(4004)
         }
 
         passport.destroy()
 
-        return true
+        return {
+            message: "s u c c e s s f u l l y logged o u  t"
+        }
     }
 }

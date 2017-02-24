@@ -20,9 +20,9 @@ module.exports = (app) => {
     app.route('/v1/login')
         .post(services.authentication.isLocal, handlers.controller(controllers.passport.postPassport, (request) => [request.user.id]))
     app.route('/v1/logout')
-        .get(handlers.controller(controllers.passport.deletePassport, (request) => [request.params.id]))
+        .get(handlers.controller(controllers.passport.deletePassport, (request) => [request.headers.authorization.split(" ")[1]]))
     app.route('/v1/register')
-        .post(services.authentication.register, handlers.controller(controllers.passport.postPassport, (request) => []))
+        .post(handlers.controller(controllers.user.postUser, (request) => [request.body.email, request.body.password]))
 
     /*
         OneLink Software
