@@ -36,7 +36,11 @@ module.exports = {
         return passport
     },
 
-
+    /**
+     * Soft deletes a passport, requiring the user to authenticate again
+     * @param  {[type]}  jwt_auth_token [description]
+     * @return {Promise}                [description]
+     */
     deletePassport: async (jwt_auth_token) => {
         let passport
 

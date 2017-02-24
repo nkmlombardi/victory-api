@@ -16,7 +16,6 @@ module.exports = (app) => {
     /**
      * Authentication
      */
-    // TODO: Convert these to new controller handler format, I started logout for you
     app.route('/v1/login')
         .post(services.authentication.isLocal, handlers.controller(controllers.passport.postPassport, (request) => [request.user.id]))
     app.route('/v1/logout')

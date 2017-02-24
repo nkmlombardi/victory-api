@@ -20,5 +20,6 @@ module.exports = {
 
     // 6000: Registration error
     6000: 'Invalid email address.',
-    6001: 'Email address already in use.'
+    6001: 'Email address already in use.',
+    6002: 'Password does not meet requirements.'
 }

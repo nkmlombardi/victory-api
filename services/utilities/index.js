@@ -44,5 +44,13 @@ module.exports = {
      * @param  {string} value [an identifier]
      * @return {Boolean}      [description]
      */
-    isValidEmail: value => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)
+    isValidEmail: value => /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value),
+
+
+    /**
+     * Checks if a password is alphanumeric with symbols, minimum 8 chars
+     * @param  {[type]}  value [description]
+     * @return {Boolean}       [description]
+     */
+    isValidPassword: value => /^[a-zA-Z0-9@\#$%&*()_+\]\[';:?.,!^-]{8,40}$/.test(value)
 }
