@@ -16,12 +16,13 @@ module.exports = (app) => {
     /**
      * Authentication
      */
-    app.route('/v1/authenticate')
+    // TODO: Convert these to new controller handler format, I started logout for you
+    app.route('/v1/login')
         .post(services.authentication.isLocal, controllers.authentication.postSelfPassport)
+    app.route('/v1/logout')
+        .get(handlers.controller(controllers.authentication.deletePassport, (request) => [request.params.id]))
     app.route('/v1/register')
         .post(services.authentication.register, controllers.authentication.postNewPassport)
-    app.route('/v1/logout')
-        .get(services.authentication.logout)
 
     /*
         OneLink Software

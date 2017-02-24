@@ -2,6 +2,8 @@ const passport = require('passport')
 const jwt = require('jsonwebtoken')
 const moment = require('moment')
 
+// TODO: I need to be a controller
+
 module.exports = (request, response, next) => {
     // Save the JWT from the header
     const jwt_auth_token = request.headers.authorization.split(' ')[1]

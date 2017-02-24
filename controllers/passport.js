@@ -13,7 +13,7 @@ module.exports = {
      * @param  {Function} next [description]
      * @return {[type]}        [description]
      */
-    postSelfPassport: async (request, response) => {
+    postPassport: async (request, response) => {
         let passport
         let user_device = device()
 
@@ -41,27 +41,16 @@ module.exports = {
                 token: passport
             }
         })
-
     },
 
-    postNewPassport: async (request, response, hash) => {
+
+    deletePassport: async () => {
         let passport
-        try {
-            passport = await request.models.User.create({
-                email: request.email,
-                password: hash
-            })
-        } catch (error) {
-            return handlers.error(2001, (status, payload) => response.status(status).json(payload))
-        }
 
-        return response.json({
-            data: {
-                status: "Successful registration."
-            }
-        })
+        passport = await request.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
 
+        passport.destroy()
 
+        return true
     }
-
 }
