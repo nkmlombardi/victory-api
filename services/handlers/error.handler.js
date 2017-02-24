@@ -95,6 +95,10 @@ module.exports = (code, callback) => {
             })
             break;
 
+
+        /**
+         * Registration Errors
+         */
         case 6000:
         case 6001:
         case 6002:

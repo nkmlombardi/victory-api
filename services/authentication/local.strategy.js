@@ -5,10 +5,15 @@ const handlers = require('../handlers')
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
     async (database, email, password, callback) => {
         try {
+            // Look for a user with supplied email
             let user = await database.models.User.findOne({ where: { email } })
+
+            // If they don't exist, error
             if (!user) {
                 return callback(null, null, new ApiError(4004))
             }
+
+            // If they do, verify their password
             user.verifyPassword(password, (error, isMatch) => {
                 // If error or password doesn't match
                 if (error) return callback(null, null, new ApiError(5003))

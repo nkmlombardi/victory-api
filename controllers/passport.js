@@ -16,7 +16,6 @@ module.exports = {
      */
     postPassport: async (user_id) => {
         let passport
-        console.log('userID', user_id)
         try {
             passport = await database.models.Passport.create({
                 user_id: user_id,
