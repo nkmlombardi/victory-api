@@ -14,9 +14,11 @@ passport.use(new Strategy({
     jwtFromRequest: ExtractJwt.fromAuthHeader(),
     passReqToCallback: true
 },
-    (request, payload, callback) => {
+    async (request, payload, callback) => {
         // Save the JWT from the header
         const jwt_auth_token = request.headers.authorization.split(' ')[1]
+
+
         // Verify the JWT appears in auth, is a legitimate token, and hasn't been manipulated
         jwt.verify(jwt_auth_token, process.env.API_SECRET, async (error, decoded) => {
             if (error) return callback(null, null, new ApiError(4007))
@@ -32,6 +34,14 @@ passport.use(new Strategy({
                 return callback(null, null, new ApiError(4005))
             }
 
+            // Check if user is verified
+            let user_temp = await database.models.User.findOne({ where: { id: token.user_id } })
+
+            console.log('user info temp:', user_temp)
+            if (!user_temp.verified) {
+                console.log('checking verified...:', user_temp.verified)
+                return callback(null, null, new ApiError(6003))
+            }
             // If all is well, return the payload
             return callback(null, decoded, false)
         })

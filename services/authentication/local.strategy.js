@@ -6,10 +6,6 @@ const url = require('url')
 
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
     async (request, email, password, callback) => {
-        console.log(request.query)
-        if (request.query) {
-            console.log('query is true: ', request.query)
-        }
         try {
             // Look for a user with supplied email
             let user = await database.models.User.findOne({ where: { email } })
@@ -19,6 +15,7 @@ passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
                 return callback(null, null, new ApiError(4004))
             }
 
+            if (!user.verified) return callback(null, null, new ApiError(6003))
             // If they do, verify their password
             user.verifyPassword(password, (error, isMatch) => {
                 // If error or password doesn't match

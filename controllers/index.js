@@ -12,5 +12,6 @@ module.exports = {
 
     // Authentication
     user: require('./user'),
-    passport: require('./passport')
+    passport: require('./passport'),
+    verification: require('./verification')
 }
