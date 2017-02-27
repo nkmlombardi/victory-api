@@ -36,10 +36,7 @@ passport.use(new Strategy({
 
             // Check if user is verified
             let user_temp = await database.models.User.findOne({ where: { id: token.user_id } })
-
-            console.log('user info temp:', user_temp)
             if (!user_temp.verified) {
-                console.log('checking verified...:', user_temp.verified)
                 return callback(null, null, new ApiError(6003))
             }
             // If all is well, return the payload

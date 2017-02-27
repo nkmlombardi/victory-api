@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer')
 const handlers = require('../handlers')
+const logger = require('../logger')
 
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -20,10 +21,10 @@ module.exports = {
 
         let sendMail = await transporter.sendMail(mailOptions, function(error, info){
             if (error) {
-                console.log(error);
                 return new ApiError(error)
             } else {
-                console.log('Message sent: ' + info.response);
+                logger.console.log('info', '\n\tMessage: ', info.response, '\n')
+                logger.access.log('access', '\n\tMessage: ', info.response, '\n')
                 return "registration email s e n t"
             }
         })
@@ -39,10 +40,10 @@ module.exports = {
 
         let recovery = await transporter.sendMail(mailOptions, function(error, info){
             if (error) {
-                console.log(error);
                 return new ApiError(error)
             } else {
-                console.log('Message sent: ' + info.response);
+                    logger.console.log('info', '\n\tMessage: ', info.response, '\n')
+                    logger.access.log('access', '\n\tMessage: ', info.response, '\n')
                 return "recover email s e n t"
             }
         })

@@ -9,21 +9,22 @@ const bcrypt = require('bcryptjs')
  */
 module.exports = async (request, response) => {
     let email = request.body.email
-    let password = request.body.password
 
     if (!validEmail(email)) {
-        return handlers.error(6000, (status, payload) => response.status(status).json(payload))
+        return new ApiError(6000)
     }
 
     try {
-        let user = await request.models.User.findOne({ where: { email } })
+        let user = await request.models.User.findOne({
+            where: { email }
+        })
         return user
     } catch (error) {
-        return handlers.error(error, (status, payload) => response.status(status).json(payload))
+        return new ApiError(error)
     }
 
     if (user) {
-        return handlers.error(6001, (status, payload) => response.status(status).json(payload))
+        return new ApiError(6001)
     }
 
     return response.json({
