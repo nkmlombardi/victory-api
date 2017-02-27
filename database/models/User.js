@@ -30,6 +30,10 @@ module.exports = (Sequelize, DataTypes) =>
         },
         salt: {
             type: DataTypes.STRING
+        },
+        verified: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
         timestamps: true,

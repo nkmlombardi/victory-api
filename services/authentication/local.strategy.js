@@ -2,9 +2,14 @@ const passport = require('passport')
 const Strategy = require('passport-local').Strategy
 const handlers = require('../handlers')
 const database = require('../../database').state
+const url = require('url')
 
 passport.use(new Strategy({ usernameField: 'email', passReqToCallback: true },
     async (request, email, password, callback) => {
+        console.log(request.query)
+        if (request.query) {
+            console.log('query is true: ', request.query)
+        }
         try {
             // Look for a user with supplied email
             let user = await database.models.User.findOne({ where: { email } })
