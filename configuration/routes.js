@@ -32,8 +32,8 @@ module.exports = (app) => {
         OneLink Software
      */
     app.route('/v1/clients')
-        .get(services.authentication.isJwt, handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
-        // .get(handlers.controller(controllers.client.getCollection))
+        // .get(services.authentication.isJwt, handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
+        .get(handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
     app.route('/v1/clients/:id')
         .get(handlers.controller(controllers.client.getSingleton, (request) => [request.params.id]))
     app.route('/v1/clients/:id/origins')
