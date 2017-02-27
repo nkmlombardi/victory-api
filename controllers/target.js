@@ -39,8 +39,11 @@ module.exports = {
      * @param  {object} response
      * @return {Promise} collection
      */
-    getCollection: async () => {
+    getCollection: async (query) => {
         let collection
+
+        const limit = query.limit || 999999
+        const offset = query.offset || 0
 
         try {
             collection = await database.mysql.query(`
@@ -48,6 +51,8 @@ module.exports = {
                 FROM BB_PROJECT_TARGET
                 WHERE is_inactive = 0
                     AND is_hidden = 0
+                LIMIT ${limit}
+                OFFSET ${offset}
             `)
         } catch (error) {
             return error

@@ -51,7 +51,7 @@ module.exports = (app) => {
      * Targets
      */
     app.route('/v1/targets')
-        .get(handlers.controller(controllers.target.getCollection))
+        .get(handlers.controller(controllers.target.getCollection, (request) => [request.query]))
     app.route('/v1/targets/:id/')
         .get(handlers.controller(controllers.target.getSingleton, (request) => [request.params.id]))
 
