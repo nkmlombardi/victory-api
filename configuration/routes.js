@@ -18,12 +18,16 @@ module.exports = (app) => {
      */
     app.route('/v1/login')
         .post(services.authentication.isLocal, handlers.controller(controllers.passport.postPassport, (request) => [request.user.id, request.client_ip_addr]))
-    app.route('/v1/verification')
-        .get(handlers.controller(controllers.verification.verify, (request) => [request.query]))
     app.route('/v1/logout')
         .get(handlers.controller(controllers.passport.deletePassport, (request) => [request.headers.authorization.split(" ")[1]]))
+    app.route('/v1/recovery')
+        .post(handlers.controller(controllers.verification.recovery, (request) => [request.body.email, request.ip]))
     app.route('/v1/register')
         .post(handlers.controller(controllers.user.postUser, (request) => [request.body.email, request.body.password, request.client_ip_addr]))
+    app.route('/v1/resetPassword')
+        .get(handlers.controller(controllers.verification.resetPass, (request) => [request.query]))
+    app.route('/v1/verification')
+        .get(handlers.controller(controllers.verification.verify, (request) => [request.query]))
     /*
         OneLink Software
      */

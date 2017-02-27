@@ -4,6 +4,7 @@ const handlers = require('../services/handlers')
 const database = require('../database').state
 const nodemailer = require('nodemailer')
 const passport_create = require('./passport').postPassport
+const send_email = require('../services/email')
 
 
 module.exports = {
@@ -35,49 +36,20 @@ module.exports = {
                 password: password
             })
 
-
+            // Create a passport for new user
             passport_create(user.id, ip)
 
-
-        // After user is created, send an email to the address
-        //
-        // link in the email to activate account and let it log in?
-        //
-
+            // Get the user's email and jwt
             user = await database.models.User.findOne({ where: { email } })
             passport = await database.models.Passport.findOne( { where: { user_id: user.id } } )
-
-            console.log('user.ikd:', user.id)
-            console.log('passport:', passport)
-
             let registration_jwt = passport.jwt_token
 
-            let transporter = nodemailer.createTransport({
-                service: 'Gmail',
-                auth: {
-                    user: process.env.API_EMAIL, // Your email id
-                    pass: process.env.API_EMAIL_PASS // Your password
-                }
-            })
+            // Send them a verification email
+            send_email.sender.sendVerification(email, registration_jwt)
 
-            var mailOptions = {
-                from: process.env.API_EMAIL, // sender address
-                to: email, // list of receivers
-                subject: 'OneLink API registration', // Subject line
-                text: 'Thank you for registering with the OneLink API.  Please click this link to complete your registration: http://localhost:3000/v1/verification?query=' + passport.jwt_token + '\n Send any bug reports to onelinkapitest@gmail.com. '
-            }
-
-            sendMail = await transporter.sendMail(mailOptions, function(error, info){
-                if (error) {
-                    console.log(error);
-                    return new ApiError(error)
-                } else {
-                    console.log('Message sent: ' + info.response);
-                    return "s u c c e s s f u l l y sent email"
-                }
-            })
         } catch (error) {
             return new ApiError(error)
         }
+        return "email verification l a u n c h e d "
     }
 }
