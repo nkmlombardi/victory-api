@@ -145,5 +145,4 @@ module.exports = {
 
         return collection.map(item => transformers.origins.dispatch(item))
     }
-
 }
