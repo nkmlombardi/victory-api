@@ -31,6 +31,7 @@ module.exports = {
         try {
             user = await database.models.User.findOne({ where: { email } })
             if (!user) return new ApiError(4004)
+            if (!user.verified) return new ApiError(6003)
 
             send_email.sender.sendRecovery(email)
             passport_create(user.id, ip)
