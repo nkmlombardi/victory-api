@@ -18,13 +18,14 @@ module.exports = (app, database) => {
     // Security
     app.use(helmet())
 
-    // grab IP
+    // Grab IP
     app.use((request, response, next) => {
         request.client_ip_addr = request.ip
         next()
     })
 
     // Rate Limiter
+    // For login attempts
     app.use('/v1/login', limiter({
         windowMs: 1000 * 60 * 10,
         max: 5,
@@ -32,6 +33,7 @@ module.exports = (app, database) => {
         message: 'Too many login requests made, try again later.'
     }))
 
+    // For registering new accounts
     app.use('/v1/register', limiter({
         windowMs: 1000 * 60 * 10,
         max: 2,
@@ -39,6 +41,7 @@ module.exports = (app, database) => {
         message: 'Too many accounts created recently, try again later'
     }))
 
+    // For requesting endpoints
     app.use('/v1/', limiter({
         windowMs: 1000 * 60 * 10,
         max: 10,
@@ -46,6 +49,7 @@ module.exports = (app, database) => {
         message: 'Too many endpoint requests made, try again later.'
     }))
 
+    // Generic error logging
     app.use((error, request, response, next) => {
         logger.console.log('error', 'Application error: ', error)
     })

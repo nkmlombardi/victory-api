@@ -5,11 +5,9 @@ const database = require('../database').state
 module.exports = {
 
     /**
-     * Find singleton in the resource collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} singleton
+     * Get datacenter singleton
+     * @param  {[type]}  id [unique datacenter identifier]
+     * @return {Promise}    [description]
      */
     getSingleton: async (id) => {
         if (utility.isUppercaseDashColon(id) === false) return new ApiError(4002)
@@ -33,13 +31,10 @@ module.exports = {
 
 
     /**
-     * Find the resouce collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get datacenter collection
+     * @return {Promise} [description]
      */
-    getCollection: async() => {
+    getCollection: async () => {
         let collection
 
         try {
@@ -57,11 +52,9 @@ module.exports = {
 
 
     /**
-     * Find all cluster resources that are children of the datacenter resource.
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get clusters of a datacenter singleton
+     * @param  {[type]}  id [unique datacenter identifier]
+     * @return {Promise}    [description]
      */
     getClusters: async (id) => {
         // Pre-database checks

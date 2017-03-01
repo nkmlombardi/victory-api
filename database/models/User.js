@@ -21,6 +21,7 @@ module.exports = (Sequelize, DataTypes) =>
             type: DataTypes.STRING,
             allowNull: false,
             set(value) {
+                // Salting and encrypting the password for security(should do 10 rounds of salting minimum)
                 const salt = bcrypt.genSaltSync(10)
                 const encrypted = bcrypt.hashSync(value, salt)
 

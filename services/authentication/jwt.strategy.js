@@ -22,15 +22,19 @@ passport.use(new Strategy({
         // Verify the JWT appears in auth, is a legitimate token, and hasn't been manipulated
         jwt.verify(jwt_auth_token, process.env.API_SECRET, async (error, decoded) => {
             if (error) return callback(null, null, new ApiError(4007))
+
+            // Check if client making the request has the same IP as when they were logged in before
             if (request.client_ip_addr !== decoded.user_ip) return callback(null, null, new ApiError(4006))
             token = await database.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
 
             if (!token) return callback(null, null, new ApiError(5002))
 
+            // If the token was soft deleted, it's no longer valid
             if (token.deleted_at) return callback(null, null, new ApiError(4005))
 
+            // If the token hasn't been used in 6 hours, soft delete it
             if (!moment(moment(token.updated_at).format()).isAfter(moment().subtract(6, 'hours').format())) {
-                token.deleted_at = moment().format()
+                token.destroy()
                 return callback(null, null, new ApiError(4005))
             }
 
@@ -53,7 +57,6 @@ module.exports = function (request, response, next) {
             return handlers.error((error.code || error), (status, payload) => response.status(status).json(payload))
         }
         token.changed('updated_at', true).save()
-
         return next()
     })(request, response, next)
 }

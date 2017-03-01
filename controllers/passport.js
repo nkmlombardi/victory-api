@@ -8,11 +8,9 @@ module.exports = {
      * endpoint verifies the credentials provided against an existing user in
      * the database. If the credentials are invalid, an error is returned and
      * a Passport authentication is not created.
-     *
-     * @param  {[type]}   req  [description]
-     * @param  {[type]}   res  [description]
-     * @param  {Function} next [description]
-     * @return {[type]}        [description]
+     * @param  {[type]}  user_id [a User's id]
+     * @param  {[type]}  user_ip [the client(the one making the current request)'s IP address]
+     * @return {Promise}         [description]
      */
     postPassport: async (user_id, user_ip) => {
         let passport
@@ -33,12 +31,13 @@ module.exports = {
             return new ApiError(2001)
         }
 
+        // If successful, return the passport
         return passport
     },
 
     /**
      * Soft deletes a passport, requiring the user to authenticate again
-     * @param  {[type]}  jwt_auth_token [description]
+     * @param  {[type]}  jwt_auth_token [a unique auth token]
      * @return {Promise}                [description]
      */
     deletePassport: async (jwt_auth_token) => {
@@ -49,10 +48,13 @@ module.exports = {
         } catch (error) {
             return new ApiError(error)
         }
+
+        // If no passport was found, return an error
         if (!passport) {
             return new ApiError(4004)
         }
 
+        // Soft delete the passport
         passport.destroy()
 
         return {

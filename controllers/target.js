@@ -5,13 +5,11 @@ const database = require('../database').state
 module.exports = {
 
     /**
-     * Find singleton in the resource collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} singleton
+     * Get target singleton
+     * @param  {[type]}  id [unique target identifier]
+     * @return {Promise}    [description]
      */
-     getSingleton: async(id) => {
+     getSingleton: async (id) => {
         if (utility.isNumber(id) === false) return new ApiError(4002)
 
         let singleton
@@ -33,11 +31,8 @@ module.exports = {
 
 
     /**
-     * Find the resource collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get target collection
+     * @return {Promise} [description]
      */
     getCollection: async () => {
         let collection

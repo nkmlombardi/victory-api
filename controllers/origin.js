@@ -4,11 +4,9 @@ const database = require('../database').state
 
 module.exports = {
     /**
-     * Find singleton in the resource collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} singleton
+     * Get origin singleton
+     * @param  {[type]}  id [unique origin identifier]
+     * @return {Promise}    [description]
      */
     getSingleton: async (id) => {
         if (utility.isNumber(id) === false) return new ApiError(4002)
@@ -32,11 +30,8 @@ module.exports = {
 
 
     /**
-     * Find the resource collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get origin collection
+     * @return {Promise} [description]
      */
     getCollection: async () => {
         let collection
@@ -64,11 +59,9 @@ module.exports = {
 
 
     /**
-     * Find all target resources that are children of the origin resource.
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get targets of specified origin
+     * @param  {[type]}  id [unique origin identifier]
+     * @return {Promise}    [description]
      */
     getTargets: async (id) => {
         if (utility.isNumber(id) === false) return new ApiError(4002)
@@ -91,11 +84,9 @@ module.exports = {
 
 
     /**
-     * Find all of an origin's health history entries
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get health history of specified origin
+     * @param  {[type]}  id [unique origin indentifier]
+     * @return {Promise}    [description]
      */
     getHealthHistory: async (id) => {
         if (utility.isNumber(id) === false) return new ApiError(4002)
@@ -119,11 +110,9 @@ module.exports = {
 
 
     /**
-     * Find all of an origin's dispatch history entries
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get dispatch history of specified origin
+     * @param  {[type]}  id [unique origin identifier]
+     * @return {Promise}    [description]
      */
     getDispatchHistory: async (id) => {
         if (utility.isNumber(id) === false) return new ApiError(4002)

@@ -25,7 +25,7 @@ module.exports = (app) => {
     app.route('/v1/register')
         .post(handlers.controller(controllers.user.postUser, (request) => [request.body.email, request.body.password, request.client_ip_addr]))
     app.route('/v1/resetPassword')
-        .get(handlers.controller(controllers.verification.resetPass, (request) => [request.query]))
+        .get(handlers.controller(controllers.verification.resetPass, (request) => [request.query, request.body.password]))
     app.route('/v1/verification')
         .get(handlers.controller(controllers.verification.verify, (request) => [request.query]))
     /*

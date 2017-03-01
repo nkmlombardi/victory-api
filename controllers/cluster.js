@@ -5,13 +5,11 @@ const database = require('../database').state
 module.exports = {
 
     /**
-     * Find singleton in the resource collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} singleton
+     * Get cluster singleton
+     * @param  {[type]}  id [unique cluster identifier]
+     * @return {Promise}    [description]
      */
-    getSingleton: async(id) => {
+    getSingleton: async (id) => {
         if (utility.isAlphaNumericDashSlashPlus(id) === false) return new ApiError(4002)
         let singleton
 
@@ -32,13 +30,9 @@ module.exports = {
     },
 
     /**
-     * Find the resouce collection
-     *
-     * @param  {object} request
-     * @param  {object} response
-     * @return {Promise} collection
+     * Get cluster collection
+     * @type {[type]}
      */
-
     getCollection: async() => {
         let collection
 
