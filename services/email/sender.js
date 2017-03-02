@@ -2,6 +2,8 @@ const nodemailer = require('nodemailer')
 const handlers = require('../handlers')
 const logger = require('../logger')
 const nunjucks = require('nunjucks')
+const less = require('less')
+const juice = require('juice')
 
 let transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -15,7 +17,11 @@ let EmailTemplate = require('email-templates').EmailTemplate
 
 module.exports = {
     sendVerification: async (email, jwt) => {
-        let verificationEmail = new EmailTemplate('./services/email/templates/verification')
+        let verificationEmail = new EmailTemplate('./services/email/templates/verification', {
+            lessOptions: {
+                includePaths: ['./services/email/templates/style.less']
+            }
+        })
         let info = {
             token: passport.jwt_token,
             url: 'http://localhost:3000/v1/verification?query='
@@ -23,8 +29,6 @@ module.exports = {
 
         verificationEmail.render(info, (error, result) => {
             if (error) {
-                console.log("template dir", templateDir)
-                console.log('error', error)
                 return new ApiError(error)
             }
             let mailOptions = {
@@ -46,7 +50,11 @@ module.exports = {
     },
 
     sendRecovery: async (email) => {
-        let recoveryEmail = new EmailTemplate('./services/email/templates/recovery')
+        let recoveryEmail = new EmailTemplate('./services/email/templates/recovery', {
+            lessOptions: {
+                includePaths: ['./services/email/templates/style.less']
+            }
+        })
         let info = {
             token: passport.jwt_token,
             url: 'http://localhost:3000/v1/resetPassword?query='
