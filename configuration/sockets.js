@@ -1,7 +1,3 @@
-// const controllers = require('../controllers')
-// const services = require('../services')
-// const moment = require('moment')
-
 module.exports = (io, database) => {
     io.on('connection', async (socket) => {
         const emitters = []

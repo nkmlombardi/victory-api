@@ -1,5 +1,5 @@
 const simport = require('sequelize-import')
-const colors = require('colors')
+const chalk = require('chalk')
 
 module.exports = (database) => {
     // Load in database models
@@ -10,7 +10,7 @@ module.exports = (database) => {
     Object.keys(database.models).forEach((modelName) => {
         if ('associate' in database.models[modelName]) {
             database.models[modelName].associate(database.models)
-            console.log(colors.yellow(`${modelName}`), `relations linked.`)
+            console.log(chalk.yellow(`${modelName}:`), `             relations linked.`)
         }
     })
 }

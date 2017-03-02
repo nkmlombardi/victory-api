@@ -2,7 +2,7 @@ const Sequelize = require('sequelize')
 const mysql = require('promise-mysql')
 const models = require('./models')
 const seeder = require('./seeders')
-const colors = require('colors')
+const chalk = require('chalk')
 
 module.exports = {
     /**
@@ -25,18 +25,17 @@ module.exports = {
 
         this.state.sequelize.sync({ force: true }).then(() => {
             if (process.env.NODE_ENV !== 'test') {
-                console.log('Models force synced to database.'.green)
+                console.log(chalk.green('Models:'),'       force synced to database.')
             }
 
             // Seed database if in development mode
             if (process.env.NODE_ENV === 'development') {
                 seeder.down(this.state)
                 seeder.up(this.state)
-
-                if (process.env.NODE_ENV !== 'test') console.log('Database Seeded.'.green)
             }
+            if (process.env.NODE_ENV !== 'test') console.log(chalk.green('Database:'),'                       seeded.')
         }).catch((error) => {
-            console.log('Failed to sync to database: '.red, error)
+            console.log(chalk.red('Failed to sync to database: '), error)
         })
 
         // Native MySql connection
@@ -46,7 +45,7 @@ module.exports = {
             user: process.env.MYSQL_USER,
             password: process.env.MYSQL_PASS
         }).then((connection) => {
-            if (process.env.NODE_ENV !== 'test') console.log('Vanilla MYSQL Connection established.'.yellow)
+            if (process.env.NODE_ENV !== 'test') console.log(chalk.yellow('Vanilla MYSQL:'),'  connection established.')
 
             this.state.mysql = connection
         })
