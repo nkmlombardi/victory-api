@@ -7,6 +7,21 @@ const server = require('../server')
 
 chai.use(chaiHttp)
 
+describe('Variables', () => {
+    it('API_SECRET should be defined', (done) => {
+        process.env.API_SECRET.exist
+        done()
+    })
+    it('API_EMAIL should be defined', (done) => {
+        process.env.API_EMAIL.exist
+        done()
+    })
+    it('API_EMAIL_PASS should be defined', (done) => {
+        process.env.API_EMAIL_PASS.exist
+        done()
+    })
+})
+
 describe('Endpoints', () => {
     it('base url should return HTTP status code 200', (done) => {
         chai.request(server)

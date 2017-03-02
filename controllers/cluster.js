@@ -15,12 +15,11 @@ module.exports = {
 
         try {
             singleton = (await database.mysql.query(`
-                 SELECT *
-                 FROM BB_ONELINK_CLUSTER
-                 WHERE cluster_name = '${id}'
-             `))[0]
+                SELECT *
+                FROM BB_ONELINK_CLUSTER
+                WHERE cluster_name = '${id}'
+            `))[0]
         } catch (error) {
-            console.log('error here', error)
             return error
         }
 
@@ -33,7 +32,7 @@ module.exports = {
      * Get cluster collection
      * @type {[type]}
      */
-    getCollection: async() => {
+    getCollection: async () => {
         let collection
 
         try {
@@ -42,9 +41,6 @@ module.exports = {
                 FROM BB_ONELINK_CLUSTER
             `)
         } catch (error) {
-
-                console.log('here\'s your problem')
-                console.log(error)
             return error
         }
 

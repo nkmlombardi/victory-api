@@ -18,7 +18,6 @@ passport.use(new Strategy({
         // Save the JWT from the header
         const jwt_auth_token = request.headers.authorization.split(' ')[1]
 
-
         // Verify the JWT appears in auth, is a legitimate token, and hasn't been manipulated
         jwt.verify(jwt_auth_token, process.env.API_SECRET, async (error, decoded) => {
             if (error) return callback(null, null, new ApiError(4007))

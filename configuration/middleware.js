@@ -26,28 +26,30 @@ module.exports = (app, database) => {
 
     // Rate Limiter
     // For login attempts
-    app.use('/v1/login', limiter({
-        windowMs: 1000 * 60 * 10,
-        max: 5,
-        delayMs: 0,
-        message: 'Too many login requests made, try again later.'
-    }))
+    if (process.env.NODE_ENV !== 'test') {
+        app.use('/v1/login', limiter({
+            windowMs: 1000 * 60 * 10,
+            max: 5,
+            delayMs: 0,
+            message: 'Too many login requests made, try again later.'
+        }))
 
-    // For registering new accounts
-    app.use('/v1/register', limiter({
-        windowMs: 1000 * 60 * 10,
-        max: 2,
-        delayMs: 0,
-        message: 'Too many accounts created recently, try again later'
-    }))
+        // For registering new accounts
+        app.use('/v1/register', limiter({
+            windowMs: 1000 * 60 * 10,
+            max: 2,
+            delayMs: 0,
+            message: 'Too many accounts created recently, try again later'
+        }))
 
-    // For requesting endpoints
-    app.use('/v1/', limiter({
-        windowMs: 1000 * 60 * 10,
-        max: 10,
-        delayMs: 0,
-        message: 'Too many endpoint requests made, try again later.'
-    }))
+        // For requesting endpoints
+        app.use('/v1/', limiter({
+            windowMs: 1000 * 60 * 10,
+            max: 10,
+            delayMs: 0,
+            message: 'Too many endpoint requests made, try again later.'
+        }))
+    }
 
     // Generic error logging
     app.use((error, request, response, next) => {

@@ -24,7 +24,7 @@ describe('Origins', () => {
         })
         done()
     })
-    xit('should return with a 400 status code if an invalid resource is queried for', (done) => {
+    it('should return with a 400 status code if an invalid resource is queried for', (done) => {
         chai.request(server)
         .get('/v1/origins/sdaf213')
         .end((error, response) => {
@@ -67,9 +67,9 @@ describe('Origins', () => {
             .get('/v1/origins/' + originId)
             .end((error, response) => {
                 response.body.data.should.be.a('object')
-                response.body.data.origin_id.should.be.deep.eql(originId)
-                done()
+                response.body.data.id.should.be.deep.eql(originId)
             })
+        done()
         })
     }),
     it('should return targets for a specified origin', (done) => {

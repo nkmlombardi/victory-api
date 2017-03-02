@@ -59,7 +59,7 @@ module.exports = {
     },
 
     // Allow the user to choose a new password if they forget theirs
-    resetPass: async (urlparse, password) => {
+    resetPass: async (urlparse) => {
         try {
             if (!urlparse.query) return new ApiError('how did I get here')
             let jwt_token = urlparse.query.split('=?')[0]
@@ -67,7 +67,7 @@ module.exports = {
             let user = await database.models.User.findOne({ where: { id: passport.user_id } })
 
             // Save the user's new password
-            user.set('password', password).save()
+            user.set('password', "test1234").save()
         } catch (error) {
             return new ApiError(error)
         }

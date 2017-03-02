@@ -53,6 +53,7 @@ describe('Clusters', () => {
         chai.request(server)
         .get('/v1/clusters')
         .end((error, response) => {
+            console.log('in obj should contain array 1 obj')
             response.body.data[0].should.be.a('object')
             response.body.data.length.should.be.gt(0)
         })
@@ -67,7 +68,7 @@ describe('Clusters', () => {
             .get('/v1/clusters/' + clusterName)
             .end((error, response) => {
                 response.body.data.should.be.a('object')
-                response.body.data.cluster_name.should.be.deep.eql(clusterName)
+                response.body.data.name.should.be.deep.eql(clusterName)
             })
             done()
         })
