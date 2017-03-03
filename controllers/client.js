@@ -68,7 +68,7 @@ module.exports = {
                 WHERE   project_id  IN (
                     SELECT  project_id
                     FROM    BB_PROJECT
-                    WHERE   client_id = '${id}'
+                    WHERE   client_id = ${id}
                         AND is_inactive = 0
                         AND is_hidden = 0
                 )

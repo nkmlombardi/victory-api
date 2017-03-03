@@ -105,7 +105,7 @@ module.exports = {
             return error
         }
 
-        return transformers.origins.collection(collection)
+        return collection.map(item => transformers.origins.health(item))
     },
 
 
@@ -132,7 +132,6 @@ module.exports = {
             return error
         }
 
-        return transformers.origins.collection(collection)
+        return collection.map(item => transformers.origins.dispatch(item))
     }
-
 }

@@ -28,16 +28,17 @@ module.exports = (app) => {
         .get(handlers.controller(controllers.verification.resetPass, (request) => [request.query, request.body.password]))
     app.route('/v1/verification')
         .get(handlers.controller(controllers.verification.verify, (request) => [request.query]))
+
     /*
         OneLink Software
      */
     app.route('/v1/clients')
-        .get(services.authentication.isJwt, handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
-        // .get(handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
+        // .get(services.authentication.isJwt, handlers.controller(controllers.client.getCollection))
+        .get(handlers.controller(controllers.client.getCollection))
     app.route('/v1/clients/:id')
         .get(handlers.controller(controllers.client.getSingleton, (request) => [request.params.id]))
     app.route('/v1/clients/:id/origins')
-        .get(handlers.controller(controllers.client.getCollection, (request) => [request.params.id]))
+        .get(handlers.controller(controllers.client.getOrigins, (request) => [request.params.id]))
 
 
     /**
@@ -59,9 +60,13 @@ module.exports = (app) => {
      * Targets
      */
     app.route('/v1/targets')
-        .get(handlers.controller(controllers.target.getCollection))
+        .get(handlers.controller(controllers.target.getCollection, (request) => [request.query]))
     app.route('/v1/targets/:id/')
         .get(handlers.controller(controllers.target.getSingleton, (request) => [request.params.id]))
+    app.route('/v1/targets/:id/health')
+        .get(handlers.controller(controllers.target.getHealthHistory, (request) => [request.params.id]))
+    app.route('/v1/targets/:id/dispatch')
+        .get(handlers.controller(controllers.target.getDispatchHistory, (request) => [request.params.id]))
 
 
     /**
