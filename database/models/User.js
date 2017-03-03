@@ -40,6 +40,21 @@ module.exports = (Sequelize, DataTypes) =>
         timestamps: true,
         paranoid: true,
         underscored: true,
+        classMethods: {
+            associate: function(models) {
+                models.User.hasMany(models.PlaidToken, {
+                    as: 'PlaidTokens'
+                })
+
+                models.User.hasMany(models.Account, {
+                    as: 'accounts'
+                })
+
+                models.User.hasMany(models.Transaction, {
+                    as: 'transactions'
+                })
+            }
+        },
         instanceMethods: {
             verifyPassword(password, callback) {
                 return bcrypt.compare(password, this.password, (err, res) => callback(err, res))

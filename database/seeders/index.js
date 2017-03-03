@@ -20,7 +20,7 @@ module.exports = {
                 .catch(error => console.error(seeders[index], ' seeder error: ', error)),
             { concurrency: 1 }
         )
-        .then(() => console.log(chalk.green('Persisted: '), '    all models successfully.'))
+        .then(() => console.log(chalk.green('Persisted: '), '     all models successfully'))
         .catch(error => console.error('Promise Map Error: ', error)),
 
     down: database => seeders.forEach(seeder => seeder.down(database.sequelize, database.models))

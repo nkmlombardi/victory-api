@@ -19,7 +19,10 @@ module.exports = (Sequelize, DataTypes) =>
         device_type: {
             type: DataTypes.TEXT
         },
-        jwt_token: {
+        payload: {
+            type: DataTypes.TEXT
+        },
+        strategy: {
             type: DataTypes.TEXT
         }
     }, {

@@ -1,0 +1,13 @@
+[{
+    "id": "11cb2f4a-0731-4f91-a063-ca6a41112a5a",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "name": "Mustang Purchase",
+    "image": "mustang.jpg",
+    "color": "#1A91EB"
+}, {
+    "id": "a044fcc8-848a-4468-a918-90fbe6b8c99a",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "name": "House Purchase",
+    "image": "house.jpg",
+    "color": "#fa424a"
+}]

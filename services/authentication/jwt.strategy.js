@@ -24,7 +24,7 @@ passport.use(new Strategy({
 
             // Check if client making the request has the same IP as when they were logged in before
             if (request.client_ip_addr !== decoded.user_ip) return callback(null, null, new ApiError(4006))
-            token = await database.models.Passport.findOne({ where: { jwt_token: jwt_auth_token } })
+            token = await database.models.Passport.findOne({ where: { payload: jwt_auth_token } })
 
             if (!token) return callback(null, null, new ApiError(5002))
 
@@ -38,10 +38,11 @@ passport.use(new Strategy({
             }
 
             // Check if user is verified
-            let user_temp = await database.models.User.findOne({ where: { id: token.user_id } })
-            if (!user_temp.verified) {
+            request.user = await database.models.User.findOne({ where: { id: token.user_id } })
+            if (!request.user.verified) {
                 return callback(null, null, new ApiError(6003))
             }
+
             // If all is well, return the payload
             return callback(null, decoded, false)
         })

@@ -1,0 +1,48 @@
+[{
+    "id": "555963ab-4b2c-49bd-9cde-4c869d927807",
+    "plaid_id": "QPO8Jo8vdDHMepg41PBwckXm4KdK1yUdmXOwK",
+    "plaid_item": "KdDjmojBERUKx3JkDd9RuxA5EvejA4SENO4AA",
+    "plaid_user": "eJXpMzpR65FP4RYno6rzuA7OZjd9n3Hna0RYa",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "name": "Plaid Savings",
+    "balance_available": 1203.42,
+    "balance_current": 1274.93,
+    "institution_type": "fake_institution",
+    "type": "depository",
+    "subtype": "savings"
+}, {
+    "id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
+    "plaid_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
+    "plaid_item": "KdDjmojBERUKx3JkDd9RuxA5EvejA4SENO4AA",
+    "plaid_user": "eJXpMzpR65FP4RYno6rzuA7OZjd9n3Hna0RYa",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "name": "Plaid Checking",
+    "balance_available": 1081.78,
+    "balance_current": 1253.32,
+    "institution_type": "fake_institution",
+    "type": "depository",
+    "subtype": "checking"
+}, {
+    "id": "6ce61974-e858-41d3-a61c-63f8848a7829",
+    "plaid_id": "XARE85EJqKsjxLp6XR8ocg8VakrkXpTXmRdOo",
+    "plaid_item": "KdDjmojBERUKx3JkDd9RuxA5EvejA4SENO4AA",
+    "plaid_user": "eJXpMzpR65FP4RYno6rzuA7OZjd9n3Hna0RYa",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "name": "Plaid Premier Checking",
+    "balance_available": 7205.23,
+    "balance_current": 7255.23,
+    "institution_type": "fake_institution",
+    "type": "depository",
+    "subtype": "checking"
+}, {
+    "id": "a234601c-f64c-4477-bfbc-d4e2cd5b1848",
+    "plaid_id": "pJPM4LMBNQFrOwp0jqEyTwyxJQrQbgU6kq37k",
+    "plaid_item": "KdDjmojBERUKx3JkDd9RuxA5EvejA4SENO4AA",
+    "plaid_user": "eJXpMzpR65FP4RYno6rzuA7OZjd9n3Hna0RYa",
+    "user_id": "00000000-0000-0000-0000-000000000000",
+    "name": "Plaid Credit Card",
+    "balance_available": 9930,
+    "balance_current": 2275.58,
+    "institution_type": "fake_institution",
+    "type": "credit"
+}]

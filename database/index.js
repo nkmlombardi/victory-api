@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize')
-const mysql = require('promise-mysql')
 const models = require('./models')
 const seeder = require('./seeders')
 const chalk = require('chalk')
@@ -38,18 +37,6 @@ module.exports = {
             console.log(chalk.red('Failed to sync to database: '), error)
         })
 
-        // Native MySql connection
-        mysql.createConnection({
-            database: process.env.MYSQL_NAME,
-            host: process.env.MYSQL_HOST,
-            user: process.env.MYSQL_USER,
-            password: process.env.MYSQL_PASS
-        }).then((connection) => {
-            if (process.env.NODE_ENV !== 'test') console.log(chalk.yellow('Vanilla MYSQL:'),'  connection established.')
-
-            this.state.mysql = connection
-        })
-
         return this.state
     },
 
@@ -60,7 +47,6 @@ module.exports = {
      */
     state: {
         sequelize: null,
-        mysql: null,
         models: null
     },
 
@@ -70,6 +56,5 @@ module.exports = {
      */
     disconnect() {
         if (this.state.sequelize !== null) this.state.sequelize = null
-        if (this.state.mysql !== null) this.state.mysql = null
     }
 }

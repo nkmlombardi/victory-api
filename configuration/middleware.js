@@ -44,7 +44,7 @@ module.exports = (app, database) => {
 
         // For requesting endpoints
         app.use('/v1/', limiter({
-            windowMs: 1000 * 60 * 10,
+            windowMs: 1000,
             max: 10,
             delayMs: 0,
             message: 'Too many endpoint requests made, try again later.'

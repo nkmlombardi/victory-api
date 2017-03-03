@@ -18,13 +18,14 @@ module.exports = {
             passport = await database.models.Passport.create({
                 user_id: user_id,
                 device_type: device().type,
-                jwt_token: jwt.sign({
+                payload: jwt.sign({
                     iss: 'api.onelink.com',
                     sub: 'api_user',
                     aud: 'noc.onelink.com',
                     user_id: user_id,
                     user_ip: user_ip
-                }, process.env.API_SECRET, { expiresIn: 60 * 60 * 24 })
+                }, process.env.API_SECRET, { expiresIn: 60 * 60 * 24 }),
+                strategy: 'jwt'
                 // expiration is 1 day (60s * 60 = 1hr, 1hr * 24 = 1d)
             })
         } catch (error) {
