@@ -8,11 +8,11 @@ const server = require('../server')
 chai.use(chaiHttp)
 
 describe('Clients', () => {
-    it('should return a 500 HTTP status code', (done) => {
+    it('should return a 200 HTTP status code', (done) => {
         chai.request(server)
         .get('/v1/clients')
         .end((error, response) => {
-            response.status.should.be.eql(500)
+            response.status.should.be.eql(200)
         })
         done()
     }),
