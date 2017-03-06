@@ -28,16 +28,16 @@ module.exports = (app, database) => {
     // For login attempts
     if (process.env.NODE_ENV !== 'test') {
         app.use('/v1/login', limiter({
-            windowMs: 1000 * 60 * 10,
-            max: 5,
+            windowMs: 1000,
+            max: 10,
             delayMs: 0,
             message: 'Too many login requests made, try again later.'
         }))
 
         // For registering new accounts
         app.use('/v1/register', limiter({
-            windowMs: 1000 * 60 * 10,
-            max: 2,
+            windowMs: 1000,
+            max: 10,
             delayMs: 0,
             message: 'Too many accounts created recently, try again later'
         }))
