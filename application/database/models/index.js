@@ -7,7 +7,6 @@ module.exports = (database) => {
         exclude: ['index.js']
     })
 
-    console.log('--------------------------------')
     Object.keys(database.models).forEach(function(modelName) {
         if ('associate' in database.models[modelName]) {
             database.models[modelName].associate(database.models)
@@ -19,8 +18,7 @@ module.exports = (database) => {
                 spaces = spaces.concat(' ')
             }
 
-            console.log(`${chalk.yellow(modelName)} ${spaces} relations linked`)
+            console.log(`${chalk.yellow(modelName)} ${spaces} model imported`)
         }
     })
-    console.log('--------------------------------')
 }
