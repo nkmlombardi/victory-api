@@ -3,7 +3,7 @@
   "description": "This is a global OneLink API that will be consumed by various internal and external applications.",
   "version": "0.1.0",
   "scripts": {
-    "start": "babel-watch ./server.js",
+    "start": "babel-watch ./application/server.js",
     "test": "mocha --reporter spec --recursive --compilers js:babel-register",
     "lint": "eslint --ext .js ./"
   },
