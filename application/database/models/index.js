@@ -13,7 +13,7 @@ module.exports = (database) => {
 
             // Spacing trick for console output
             var spaces = ''
-            var spacesCount = (14 - modelName.length)
+            var spacesCount = (16 - modelName.length)
             for (var i = 0; i < spacesCount; i++) {
                 spaces = spaces.concat(' ')
             }

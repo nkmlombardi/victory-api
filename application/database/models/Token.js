@@ -5,6 +5,7 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -13,25 +14,37 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
         public_token: {
             type: DataTypes.STRING,
             allowNull: false
         },
+
         access_token: {
             type: DataTypes.STRING,
             allowNull: false
         },
+
         last_account_pull: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NULL
         },
+
         last_transaction_pull: {
             type: DataTypes.DATE,
             defaultValue: DataTypes.NULL
         },
-        plaid_raw: {
-            type: DataTypes.JSON,
-            allowNull: true
+
+        source: {
+            type: DataTypes.ENUM(
+                'plaid',
+                'salt_edge'
+            ),
+            allowNull: false
+        },
+
+        source_raw: {
+            type: DataTypes.JSON
         }
     }, {
         timestamps: true,

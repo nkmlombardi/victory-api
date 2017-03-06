@@ -5,6 +5,7 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -13,15 +14,18 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
         name: {
             type: DataTypes.STRING,
             allowNull: false
         },
+
         image: {
             type: DataTypes.STRING,
             allowNull: true,
             defaultValue: 'finance.png'
         },
+
         color: {
             type: DataTypes.STRING,
             allowNull: true

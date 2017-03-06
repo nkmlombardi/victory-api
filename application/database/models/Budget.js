@@ -7,6 +7,7 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -15,6 +16,7 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
         category_id: {
             type: DataTypes.UUID,
             references: {
@@ -22,6 +24,7 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
         scenario_id: {
             type: DataTypes.UUID,
             references: {
@@ -29,6 +32,7 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
         type: {
             type: DataTypes.ENUM(
                 'income',
@@ -36,6 +40,7 @@ module.exports = function(Sequelize, DataTypes) {
             ),
             defaultValue: 'expense'
         },
+
         allowance: {
             type: DataTypes.DOUBLE,
             defaultValue: 0

@@ -8,6 +8,7 @@ module.exports = (Sequelize, DataTypes) =>
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -16,12 +17,15 @@ module.exports = (Sequelize, DataTypes) =>
                 key: 'id'
             }
         },
+
         device_type: {
             type: DataTypes.TEXT
         },
+
         payload: {
             type: DataTypes.TEXT
         },
+
         strategy: {
             type: DataTypes.TEXT
         }

@@ -5,17 +5,27 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
-        plaid_id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            unique: true
-        },
+
         hierarchy: {
             type: DataTypes.ARRAY(DataTypes.STRING),
             allowNull: false
         },
+
         type: {
             type: DataTypes.STRING
+        },
+        
+        source: {
+            type: DataTypes.ENUM(
+                'plaid',
+                'salt_edge'
+            ),
+            allowNull: false
+        },
+
+        source_raw: {
+            type: DataTypes.JSON,
+            allowNull: false
         }
     }, {
         timestamps: true,

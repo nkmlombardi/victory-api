@@ -13,7 +13,7 @@ const seeders = (() => fs.readdirSync(__dirname)
         const name = filename.charAt(0).toUpperCase() + filename.slice(1)
 
         let spaces = ''
-        const spacesCount = (14 - name.length)
+        const spacesCount = (15 - name.length)
         for (var i = 0; i < spacesCount; i++) {
             spaces = spaces.concat(' ')
         }
@@ -29,7 +29,7 @@ const seeders = (() => fs.readdirSync(__dirname)
 module.exports = {
     up: database => Promise.each(seeders,
         (seeder, index) => {
-            console.log(`${chalk.magenta(seeder.name)} ${seeder.spaces} model seeded`)
+            console.log(`${chalk.magenta(seeder.name)} ${seeder.spaces}    model seeded`)
             return seeder.execute.up(database.sequelize, database.models)
                 .catch(error => console.log(`${chalk.red(seeder.name)} failed to seed: `, error))
         }, {

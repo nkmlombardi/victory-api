@@ -46,6 +46,15 @@ module.exports = (app) => {
     app.route('/v1/categories')
         .get(services.authentication.isJwt, handlers.controller(controllers.category.getCollection, (request) => [request.user, request.query]))
 
+    app.route('/v1/tokens')
+        .get(services.authentication.isJwt,
+            handlers.controller(controllers.category.getCollection, (request) => [request.user, request.query])
+        )
+
+    app.route('/v1/tokens/exchange')
+        .get(services.authentication.isJwt,
+            handlers.controller(controllers.token.postExchange, (request) => [request.user])
+        )
 
 
 }

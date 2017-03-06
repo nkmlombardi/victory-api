@@ -5,6 +5,7 @@ module.exports = {
     transaction: require('./transaction'),
     scenario: require('./scenario'),
     category: require('./category'),
+    token: require('./token'),
 
     // Authentication
     user: require('./user'),

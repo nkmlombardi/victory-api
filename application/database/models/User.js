@@ -7,6 +7,7 @@ module.exports = (Sequelize, DataTypes) =>
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
         email: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -17,6 +18,7 @@ module.exports = (Sequelize, DataTypes) =>
                 this.setDataValue('email', value.toLowerCase())
             }
         },
+
         password: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -29,9 +31,11 @@ module.exports = (Sequelize, DataTypes) =>
                 this.setDataValue('salt', salt)
             }
         },
+
         salt: {
             type: DataTypes.STRING
         },
+
         verified: {
             type: DataTypes.BOOLEAN,
             defaultValue: false

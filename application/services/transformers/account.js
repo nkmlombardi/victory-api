@@ -1,8 +1,7 @@
 var Transformer = require('./transformer')
 var moment = require('moment')
 
-class ClusterTransformer extends Transformer {
-
+module.exports = class ResourceTransformer extends Transformer {
     /**
      * Method used to transform a fetched singleton
      * @param {Object} singleton information in api format
@@ -10,12 +9,12 @@ class ClusterTransformer extends Transformer {
      */
     static singleton (singleton) {
         return {
-            name: singleton.cluster_name,
+            id: singleton.origin_id,
+            domain: singleton.origin_live_domain || null,
+            locale: singleton.source_lang_code || null,
             importance: singleton.notification_level,
             created_at: moment(singleton.created_dtm).isValid() ? moment(singleton.created_dtm).format() : null,
             updated_at: moment(singleton.lastmod_dtm).isValid() ? moment(singleton.lastmod_dtm).format() : null
         }
     }
 }
-
-module.exports = ClusterTransformer

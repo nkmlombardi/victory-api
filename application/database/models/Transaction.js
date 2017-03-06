@@ -9,6 +9,7 @@ module.exports = function(Sequelize, DataTypes) {
             defaultValue: DataTypes.UUIDV4,
             primaryKey: true
         },
+
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -17,6 +18,7 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
         account_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -25,6 +27,7 @@ module.exports = function(Sequelize, DataTypes) {
                 key: 'id'
             }
         },
+
         category_id: {
             type: DataTypes.UUID,
             references: {
@@ -33,28 +36,34 @@ module.exports = function(Sequelize, DataTypes) {
             }
         },
 
-        // Intentionally not setting this to unique in the
-        // case of shared accounts
-        plaid_id: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
-
         // Attributes
         name: {
             type: DataTypes.STRING
         },
+
         amount: {
             type: DataTypes.DOUBLE
         },
+
         date: {
             type: DataTypes.DATE
         },
+
         pending: {
             type: DataTypes.BOOLEAN
         },
-        plaid_raw: {
-            type: DataTypes.JSON
+
+        source: {
+            type: DataTypes.ENUM(
+                'plaid',
+                'salt_edge'
+            ),
+            allowNull: false
+        },
+
+        source_raw: {
+            type: DataTypes.JSON,
+            allowNull: false
         }
     }, {
         timestamps: true,

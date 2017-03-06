@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "apicache": "^0.7.3",
+    "babel-watch": "^2.0.6",
     "bcryptjs": "^2.3.0",
     "bluebird": "^3.4.7",
     "body-parser": "~1.14.2",
@@ -51,7 +52,7 @@
     "babel-eslint": "^7.1.1",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2017": "^6.16.0",
-    "babel-watch": "^2.0.3",
+    "babel-watch": "^2.0.6",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
     "eslint": "^3.14.1",

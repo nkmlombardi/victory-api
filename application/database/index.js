@@ -40,7 +40,7 @@ module.exports = {
 
         if (this.state.doSeed) {
             executions.push(
-                console.log(`${chalk.red('De-seeding')} database and wiping models clean`),
+                console.log(`${chalk.red('De-seeding')} database`),
                 console.log('--------------------------------'),
                 await seeder.down(this.state)
                     .then(() => console.log('--------------------------------'))
@@ -49,7 +49,7 @@ module.exports = {
                 console.log('--------------------------------'),
 
 
-                console.log(`${chalk.red('Seeding')} database with example data`),
+                console.log(`${chalk.red('Seeding')} database`),
                 console.log('--------------------------------'),
                 await seeder.up(this.state)
                     .then(() => console.log('--------------------------------'))

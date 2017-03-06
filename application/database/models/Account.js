@@ -6,12 +6,6 @@ module.exports = (Sequelize, DataTypes) =>
             primaryKey: true
         },
 
-        // Intentionally not setting this to unique in the
-        // case of shared accounts
-        plaid_id: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         user_id: {
             type: DataTypes.UUID,
             allowNull: false,
@@ -21,20 +15,23 @@ module.exports = (Sequelize, DataTypes) =>
             }
         },
 
-        // Attributes
         name: {
             type: DataTypes.STRING,
             allowNull: false
         },
+
         balance_available: {
             type: DataTypes.DOUBLE
         },
+
         balance_current: {
             type: DataTypes.DOUBLE
         },
+
         institution_type: {
             type: DataTypes.STRING
         },
+
         type: {
             type: DataTypes.ENUM(
                 'credit',
@@ -45,6 +42,7 @@ module.exports = (Sequelize, DataTypes) =>
                 'other'
             )
         },
+
         subtype: {
             type: DataTypes.ENUM(
                 'auto',
@@ -66,8 +64,18 @@ module.exports = (Sequelize, DataTypes) =>
                 'savings'
             )
         },
-        plaid_raw: {
-            type: DataTypes.JSON
+
+        source: {
+            type: DataTypes.ENUM(
+                'plaid',
+                'salt_edge'
+            ),
+            allowNull: false
+        },
+
+        source_raw: {
+            type: DataTypes.JSON,
+            allowNull: false
         }
     }, {
         timestamps: true,
