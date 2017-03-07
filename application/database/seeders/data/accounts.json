@@ -9,7 +9,8 @@
     "balance_current": 1274.93,
     "institution_type": "fake_institution",
     "type": "depository",
-    "subtype": "savings"
+    "subtype": "savings",
+    "source": "plaid"
 }, {
     "id": "35ebbdbd-106d-4a65-a478-ec90df71d6ad",
     "plaid_id": "nban4wnPKEtnmEpaKzbYFYQvA7D7pnCaeDBMy",
@@ -21,7 +22,8 @@
     "balance_current": 1253.32,
     "institution_type": "fake_institution",
     "type": "depository",
-    "subtype": "checking"
+    "subtype": "checking",
+    "source": "plaid"
 }, {
     "id": "6ce61974-e858-41d3-a61c-63f8848a7829",
     "plaid_id": "XARE85EJqKsjxLp6XR8ocg8VakrkXpTXmRdOo",
@@ -33,7 +35,8 @@
     "balance_current": 7255.23,
     "institution_type": "fake_institution",
     "type": "depository",
-    "subtype": "checking"
+    "subtype": "checking",
+    "source": "plaid"
 }, {
     "id": "a234601c-f64c-4477-bfbc-d4e2cd5b1848",
     "plaid_id": "pJPM4LMBNQFrOwp0jqEyTwyxJQrQbgU6kq37k",
@@ -44,5 +47,6 @@
     "balance_available": 9930,
     "balance_current": 2275.58,
     "institution_type": "fake_institution",
-    "type": "credit"
+    "type": "credit",
+    "source": "plaid"
 }]

@@ -74,8 +74,7 @@ module.exports = (Sequelize, DataTypes) =>
         },
 
         source_raw: {
-            type: DataTypes.JSON,
-            allowNull: false
+            type: DataTypes.JSON
         }
     }, {
         timestamps: true,

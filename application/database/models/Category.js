@@ -13,19 +13,6 @@ module.exports = function(Sequelize, DataTypes) {
 
         type: {
             type: DataTypes.STRING
-        },
-        
-        source: {
-            type: DataTypes.ENUM(
-                'plaid',
-                'salt_edge'
-            ),
-            allowNull: false
-        },
-
-        source_raw: {
-            type: DataTypes.JSON,
-            allowNull: false
         }
     }, {
         timestamps: true,

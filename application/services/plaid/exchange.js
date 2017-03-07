@@ -12,7 +12,7 @@ const plaid = require('./index').state
  * @param  {[type]} user_id         User that the token should be assigned to
  * @return {[type]}                 The token that was created by the exchange process
  */
-module.exports = async function(user, public_token) {
+module.exports = async (user, public_token) => {
     console.log('exchangeToken service called: ', public_token)
 
     try {
@@ -21,10 +21,9 @@ module.exports = async function(user, public_token) {
         var token = await database.Token.create({
             plaid_raw: exchangeResponse,
             user_id: user_id,
-            access_token: await exchangeResponse.access_token,
+            access_token: exchangeResponse.access_token,
             public_token: public_token
         })
-
     } catch(error) {
         console.error('Plaid error exchanging public for access token: ', error)
 
